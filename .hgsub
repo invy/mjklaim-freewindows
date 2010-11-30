@@ -1,6 +1,10 @@
-language = https://aosl.art-of-sequence.googlecode.com/hg/
+# AOS language definition
+language 						= https://aosl.art-of-sequence.googlecode.com/hg/
 
-tools/aosdesigner = https://aosdesigner.art-of-sequence.googlecode.com/hg/
+# tools and libraries
+tools/aosdesigner 				= https://aosdesigner.art-of-sequence.googlecode.com/hg/
+tools/aoslcpp 					= https://aoslcpp.art-of-sequence.googlecode.com/hg/
 
-players/aoswebplayer = https://aoswebplayer.art-of-sequence.googlecode.com/hg/
+# players
+players/aoswebplayer 			= https://aoswebplayer.art-of-sequence.googlecode.com/hg/
 
