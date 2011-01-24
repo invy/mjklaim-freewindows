@@ -17,10 +17,10 @@ import subprocess
 AOSL_XSD_PATH = "../../../language/aosl.xsd" 
 
 # Path of the directory where the generated C++ header files have to be installed.
-AOSCPP_AOSL_INCLUDE_PATH = os.path.abspath( "../include/aoscpp/aosl" )
+AOSCPP_AOSL_INCLUDE_PATH = os.path.abspath( "../include/aoslcpp/lang" )
 
 # Path of the directory where the genreated C++ source files have to be installed.
-AOSCPP_AOSL_SOURCE_PATH = "../source/aosl"
+AOSCPP_AOSL_SOURCE_PATH = "../source/lang"
 
 # Code Synthesis application name to use.
 CODE_SYNTHESIS_GENERATOR = "xsd"
@@ -36,6 +36,12 @@ GENERATOR_COMMAND = [ CODE_SYNTHESIS_GENERATOR
 					, AOSL_XSD_PATH
 					]
 
+					
+# First remove the previously generated files ...
+
+# Now generate the files ...
 subprocess.call( GENERATOR_COMMAND )
+
+# ?
 
 

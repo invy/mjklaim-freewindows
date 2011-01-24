@@ -1,4 +1,4 @@
 
-#define AOSCPP_SOURCE 
-#include <aoscpp/aoscpp_common.h>
+#define AOSLCPP_SOURCE 
+#include <aoslcpp/common.h>
 
