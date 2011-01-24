@@ -38,10 +38,15 @@ GENERATOR_COMMAND = [ CODE_SYNTHESIS_GENERATOR
 
 					
 # First remove the previously generated files ...
+# TODO
 
 # Now generate the files ...
 subprocess.call( GENERATOR_COMMAND )
 
-# ?
+# Move the headers and inline files in the include directory ...
+# TODO
+
+# TODO : add some logs!
+
 
 
