@@ -13,6 +13,10 @@ import sys
 import shutil
 import subprocess
 import re
+import logging
+
+# Name of the log file.
+LOG_FILENAME = 'generate_cpp.log'
 
 # Path of the XSD file to use to generate the code
 AOSL_XSD_PATH = os.path.abspath( "../../../language/aosl.xsd" )
@@ -43,25 +47,30 @@ GENERATOR_COMMAND = [ CODE_SYNTHESIS_GENERATOR
                     , AOSL_XSD_PATH
                     ]
 
+
+def log( text ):
+    logging.debug( text )
+    print( text )
+                    
 def process_files( dir_path , regex_pattern, process, action_text ):
     dir_path = os.path.abspath( dir_path )
-    print( "Looking in directory : " + dir_path + " for action : " + action_text )
+    log( "Looking in directory : " + dir_path + " for action : " + action_text )
     file_names = os.listdir( dir_path )
     compiled_pattern = re.compile( regex_pattern )
     
-    print("Files in path : " )
+    log("Files in path : " )
     for filename in file_names :
         file_path = os.path.abspath( os.path.join( dir_path , filename ) )
-        print( " -> " + filename )
+        log( " -> " + filename )
         
         if os.path.isfile( file_path ) :
             if compiled_pattern.match( filename ) :
-                print( "        Matches! " + action_text + "..." )
+                log( "        Matches! " + action_text + "..." )
                 process( file_path )
             else:
-                print( "        Don't match!" )
+                log( "        Don't match!" )
         else:
-            print( "        Not a file!" )
+            log( "        Not a file!" )
 
 def remove_files( dir_path, regex_pattern ):
     process_files( dir_path, regex_pattern, os.remove, "Removing" )
@@ -77,26 +86,28 @@ def move_files( dir_path, dest_path, regex_pattern ):
     process_files( dir_path, regex_pattern, FileMover( dest_path ), "Moving" )
 
 
-    
-print( "==== AOSL CPP : XSD to C++ Code Generation ====" )
-print( "XSD file path = " + os.path.abspath( AOSL_XSD_PATH ) )
-print( "------------------------------------------------------------\n" )
+logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+
+log( "==== AOSL CPP : XSD to C++ Code Generation - " " ====" )
+log( "XSD file path = " + os.path.abspath( AOSL_XSD_PATH ) )
+log( "------------------------------------------------------------\n" )
 # First remove the previously generated files ...
-print( "== Remove previously generated files ==" )
+log( "== Remove previously generated files ==" )
 remove_files( dir_path=AOSCPP_AOSL_SOURCE_PATH, regex_pattern=CODE_FILE_REGEX_PATTERN )
 remove_files( dir_path=AOSCPP_AOSL_INCLUDE_PATH, regex_pattern=HEADER_FILE_REGEX_PATTERN )
 
 # Now generate the files ...
-print( "== Generate files from xsd! ==" )
+log( "== Generate files from xsd! ==" )
 subprocess.call( GENERATOR_COMMAND )
 
 # Move the headers and inline files in the include directory ...
-print( "== Move generated files to include directory ==" )
-print( "Include path = " + AOSCPP_AOSL_INCLUDE_PATH )
+log( "== Move generated files to include directory ==" )
+log( "Include path = " + AOSCPP_AOSL_INCLUDE_PATH )
 move_files( dir_path=AOSCPP_AOSL_SOURCE_PATH, dest_path=AOSCPP_AOSL_INCLUDE_PATH, regex_pattern=HEADER_FILE_REGEX_PATTERN )
 
 
-print( "==== AOSL CPP : End ====" )
-
+log( "==== AOSL CPP : End ====" )
+log( "See " + GENERATED_LOG_FILENAME + " for the list of generated files." )
+print("#### Logged in " + LOG_FILENAME + " ####" )
 
 
