@@ -1,1 +1,4 @@
 glob:*.log
+glob:tools/aoslcpp/include/aoslcpp/lang/*.hpp
+glob:tools/aoslcpp/include/aoslcpp/lang/*.inl
+glob:tools/aoslcpp/source/lang/*.cpp
