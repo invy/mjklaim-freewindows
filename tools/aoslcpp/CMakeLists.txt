@@ -8,25 +8,20 @@ set( AOSLCPP_HEADER_LANG_DIR ${AOSLCPP_INCLUDE_DIR}/aoslcpp/lang )
 set( AOSLCPP_SOURCE_LANG_DIR ${AOSLCPP_SOURCE_DIR}/lang )
 set( AOSLCPP_SCRIPT_DIR ./script )
 
-#---------------------------------------------
-# First, generate the sources by calling the code generator script...
+#--------------------------------------------
+# Ask the user if he wants us to generate the source code.
+option( AOSLCPP_GENERATE_AOSL_SOURCES "Turn on if you want to generate the AOSL source code." OFF )
 
-execute_process( COMMAND python generate_cpp.py
-				WORKING_DIRECTORY ${AOSLCPP_SCRIPT_DIR}
-)
+if( AOSLCPP_GENERATE_AOSL_SOURCES ) # do we nee to generate the source code from the aosl xsd file?
+	# Generate the source code from the xsd file (see the script)
+	message( "Generating source code for AOSL language..." )
+	execute_process( COMMAND python generate_cpp.py
+					WORKING_DIRECTORY ${AOSLCPP_SCRIPT_DIR}
+	)
+	
+endif()
 
 #--------------------------------------------
-
-# Get all headers...
-file( GLOB_RECURSE AOSLCPP_HEADERS 
-	${AOSLCPP_INCLUDE_DIR}/*.hpp
-	${AOSLCPP_INCLUDE_DIR}/*.inl
-)
-
-# Get all sources...
-file( GLOB_RECURSE AOSLCPP_SOURCES 
-	${AOSLCPP_SOURCE_DIR}/*.cpp
-)
 
 # Get only the generated headers...
 file( GLOB_RECURSE AOSLCPP_LANG_HEADERS 
@@ -41,7 +36,37 @@ file( GLOB_RECURSE AOSLCPP_LANG_SOURCES
 	${AOSLCPP_SOURCE_LANG_DIR}/*.cpp
 )
 
-# Remove 
+#--------------------------------------------
+
+
+# verify that we did get the generated files
+set( AOSLCPP_LANG_ALL_FILES "" )
+list( APPEND AOSLCPP_LANG_ALL_FILES ${AOSLCPP_LANG_HEADERS} )
+list( APPEND AOSLCPP_LANG_ALL_FILES ${AOSLCPP_LANG_INLINES} )
+list( APPEND AOSLCPP_LANG_ALL_FILES ${AOSLCPP_LANG_SOURCES} )
+list( LENGTH AOSLCPP_LANG_ALL_FILES AOSLCPP_LANG_FILES_COUNT )
+
+message( "Found lang sources count = " ${AOSLCPP_LANG_FILES_COUNT} )
+
+if( ${AOSLCPP_LANG_FILES_COUNT} EQUAL 0 )
+
+	# no lang files found! 
+	message( FATAL_ERROR "Couldn't find AOSL language source files! Use option AOSLCPP_GENERATE_AOSL_SOURCES to generate the sources!" )
+	
+endif()
+
+#--------------------------------------------
+
+# Get all headers...
+file( GLOB_RECURSE AOSLCPP_HEADERS 
+	${AOSLCPP_INCLUDE_DIR}/*.hpp
+	${AOSLCPP_INCLUDE_DIR}/*.inl
+)
+
+# Get all sources...
+file( GLOB_RECURSE AOSLCPP_SOURCES 
+	${AOSLCPP_SOURCE_DIR}/*.cpp
+)
 
 # Make sure the generated code is isolated in a separate virtual folder in IDEs supporting them
 source_group( lang\\headers FILES ${AOSLCPP_LANG_HEADERS} )
