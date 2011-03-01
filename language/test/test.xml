@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<sequence xmlns="http://artofsequence.org/lang/1.x"
+          angles="degree"
+          >
+    <meta>
+
+    </meta>
+
+    <library>
+        <resources>
+            <resource id="res_perso_1" type="image">./resources/perso_1.png</resource>
+            <resource id="tic_tac_toe_game" type="!flash">./resources/tic_tac_toe.swf</resource>
+            <resource id="machin" >./resources/machin.jpg</resource>
+            <resource id="test_stream" >./resources/machin.jpg</resource>
+        </resources>
+    </library>
+
+    <canvas>
+        <area>
+            <x>800</x>
+            <y>600</y>
+            <z>10</z>
+        </area>
+        <layers>
+            <layer id="fr" />
+            <layer id="en" />
+        </layers>
+        <elements>
+            <element id="left_screen" >
+                <children>
+                    <element id="test_1">
+
+                    </element>
+                </children>
+            </element>
+            <element id="right_screen" >
+            </element>
+
+            <element id="perso_1" active="true" resource="res_perso_1" >
+
+            </element>
+
+            <element>
+                
+            </element>
+
+        </elements>
+
+    </canvas>
+
+    <thread begin="stage_0">
+        <navigation>
+
+            <selection element="right_screen" move="#next"/>
+            <selection element="left_screen" move="#previous"/>
+
+            <input key="KEY_J" value="down" move="#previous" />
+            <input key="KEY_K" value="down" move="#next" />
+            <input key="KEY_LEFT" value="down" move="#previous" />
+            <input key="KEY_RIGHT" value="down" move="#next" />
+
+
+        </navigation>
+
+        <stages>
+            <stage id="stage_0"></stage>
+            <stage id="stage_1"></stage>
+            <stage id="stage_2">
+                <navigation>
+                    <selection element="perso_1" move="stage_3a" />
+                </navigation>
+            </stage>
+            <stage id="stage_3a"></stage>
+            <stage id="stage_3b"></stage>
+        </stages>
+
+        <moves>
+            <move id="move_0_1" from="stage_0" to="stage_1">
+
+                <transform element="#all" >
+                    <effects>
+                        <effect name="fade">
+                            <test>Some dirty code you know what!</test>
+                            <data>Some data...</data>
+                        </effect>
+                    </effects>
+                    <transformation>
+                        <rotation>
+                            <roll>2.0</roll>
+                        </rotation>
+                        <scale>
+                            <x>2.0</x>
+                            <y>2.0</y>
+                            <z>2.0</z>
+                        </scale>
+
+                    </transformation>
+                </transform>
+
+                <deactivate element="perso_1" />
+
+                <extension>
+                    This is for test.
+                </extension>
+
+            </move>
+            <move id="move_1_2" from="stage_1" to="stage_2">
+                <deactivate element="perso_1" />
+            </move>
+            <move id="move_2_3a" from="stage_2" to="stage_3a">
+                <switch element="perso_1" />
+            </move>
+            <move id="move_2_3b" from="stage_2" to="stage_3b">
+                <transform element="perso_1" >
+                    <transformation referential="absolute">
+                        <translation>
+                            <x>123</x>
+                            <y>123</y>
+                        </translation>
+                    </transformation>
+                </transform>
+            </move>
+        </moves>
+
+    </thread>
+
+</sequence>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<sequence xmlns="http://artofsequence.org/lang/1.x" >
+  <library>
+    <import>
+      <include>something.fichier</include>
+    </import>
+    <resources>
+      
+    </resources>
+  </library>
+  <canvas>
+    <area></area>
+    <elements>
+        
+    </elements>
+  </canvas>
+  <thread begin="test" >
+    <navigation>
+      <input key="left" move="hop" value="down" />
+    </navigation>
+    <stages>
+      <stage id="test"></stage>
+      <stage id="end"></stage>
+    </stages>
+
+    <moves>
+      <move id="hop" from="test" to="end">
+        <switch element="#all" />
+      </move>
+    </moves>
+  </thread>
+</sequence>

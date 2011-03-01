@@ -33,11 +33,30 @@
 
     <xs:simpleType name="stream_unit" >
         <xs:annotation>
-            <xs:documentation>Base type for stream unit.</xs:documentation>
+            <xs:documentation>
+                Unit to define a point or a length in the stream.
+                Might be a percentile value of the whole stream or an absolute time in seconds/
+            </xs:documentation>
         </xs:annotation>
-        <xs:restriction base="xs:double" />
+        <xs:union memberTypes="aos:stream_time_unit aos:percent_value" />
     </xs:simpleType>
 
+    <xs:simpleType name="percent_value" >
+        <xs:annotation>
+            <xs:documentation>Relative percentile value.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d(.\d*)*%" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stream_time_unit">
+        <xs:annotation>
+            <xs:documentation>Seconds in a stream</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:double" />
+
+    </xs:simpleType>
 
     <xs:complexType name="angle" mixed="true">
         <xs:annotation>
@@ -695,28 +714,28 @@
 
     </xs:complexType>
 
-   
-    <!--############## Element's types attributes. ###########################"-->
-    
-    <xs:attributeGroup name="attributes_stream">
+
+    <!--############## Element's components. ###########################"-->
+
+    <xs:complexType name="component_stream">
         <xs:annotation>
             <xs:documentation>
-                Attributes for streams elements types.
+                Stream object representation. Compose elements with stream behaviour.
             </xs:documentation>
         </xs:annotation>
-        
+
         <xs:attribute name="begin" type="aos:stream_unit" default="0%" >
             <xs:annotation>
                 <xs:documentation>
-                    Begin position in the stream resource.
+                    Begin position in the stream source.
                 </xs:documentation>
-            </xs:annotation>    
+            </xs:annotation>
         </xs:attribute>
-        
+
         <xs:attribute name="end" type="aos:stream_unit" default="100%" >
             <xs:annotation>
                 <xs:documentation>
-                    End position in the stream resource.
+                    End position in the stream source.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -724,43 +743,54 @@
         <xs:attribute name="loop" type="xs:boolean" default="false" >
             <xs:annotation>
                 <xs:documentation>
-                    End position in the stream resource.
+                    End position in the stream source.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
-    </xs:attributeGroup>
-    
-    <xs:attributeGroup name="attributes_graphic">
-        
-    </xs:attributeGroup>
+    </xs:complexType>
 
-    <xs:attributeGroup name="attributes_interactive">
+    <xs:complexType name="component_graphic">
+        <xs:annotation>
+            <xs:documentation>
+                Graphic object representation. Compose elements with graphic behaviour.
+            </xs:documentation>
+        </xs:annotation>
 
-    </xs:attributeGroup>
+        <xs:all >
+            <xs:element name="target" type="aos:box" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Area in the canvas occupied by the element.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="source" type="aos:box" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Area in the resource (if applicable). Useful to use only a part of a resource.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="component_interactive">
+        <xs:annotation>
+            <xs:documentation>
+                Interactive object representation. Compose elements with interractive behaviour.
+            </xs:documentation>
+        </xs:annotation>
+
+    </xs:complexType>
+
+
 
     <!--######################################################################-->
 
-    <xs:complexType name="element" final="#all" >
+    <xs:complexType name="element" >
         <xs:annotation>
             <xs:documentation>An Element is a transformed instance of a Resource and can contain other Elements in a hierarchical way.</xs:documentation>
         </xs:annotation>
 
         <xs:all minOccurs="0">
-
-            <xs:element name="area" type="aos:box" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Area in the canvas occupied by the Element.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-
-            <xs:element name="sourceArea" type="aos:box" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Area in the resource (if applicable). Useful to use only a part of a resource.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-
-
             <xs:element name="extension" type="aos:extension" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Interpreter-related additional informations.</xs:documentation>
@@ -781,6 +811,12 @@
         <xs:attribute name="id" type="aos:element_id" use="required" >
             <xs:annotation>
                 <xs:documentation>Id of the Element.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="type" type="aos:element_type"  default="unknown" >
+            <xs:annotation>
+                <xs:documentation>Type of the element or player-specific element type name.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
@@ -809,7 +845,7 @@
         </xs:attribute>
 
     </xs:complexType>
-
+    
     <xs:complexType name="element_list">
         <xs:annotation>
             <xs:documentation>List of Elements.</xs:documentation>
@@ -821,6 +857,117 @@
 
     </xs:complexType>
 
+    <xs:simpleType name="generic_element_type">
+        <xs:annotation>
+            <xs:documentation>Types of the generic Element that should be implemented in all players.</xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="unknown" />
+            <xs:enumeration value="sprite" />
+            <xs:enumeration value="video" />
+            <xs:enumeration value="audio" />
+            <xs:enumeration value="interactive" />
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <xs:simpleType name="specific_element_type">
+        <xs:annotation>
+            <xs:documentation>Interpreter-specific element type : should be prefixed by '!' .</xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[!]([a-zA-Z0-9_])+" />
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <xs:simpleType name="element_type">
+        <xs:annotation>
+            <xs:documentation>Type of generic element or interpreter-specific change.</xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="aos:generic_element_type aos:specific_element_type" />
+    </xs:simpleType>
+
+    <xs:complexType name="sprite" final="#all">
+        <xs:annotation>
+            <xs:documentation>
+                A Sprite is a simple graphic Element.
+            </xs:documentation>
+        </xs:annotation>
+        
+        <xs:complexContent>
+            <xs:extension base="aos:element" >
+            
+                <xs:sequence>
+                    <xs:element name="graphic" type="aos:component_graphic" minOccurs="1" maxOccurs="1" />
+                </xs:sequence>
+        
+            </xs:extension>
+        </xs:complexContent>
+        
+    </xs:complexType>
+
+    <xs:complexType name="audio" final="#all">
+        <xs:annotation>
+            <xs:documentation>
+                A Audio element allows to play sounds and music.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexContent>
+            <xs:extension base="aos:element" >
+
+                <xs:sequence>
+                    <xs:element name="stream" type="aos:component_stream" minOccurs="1" maxOccurs="1" />
+                </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+
+    </xs:complexType>
+
+
+    <xs:complexType name="video" final="#all">
+        <xs:annotation>
+            <xs:documentation>
+                A Video is a graphic Element that diplay a stream of images.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexContent>
+            <xs:extension base="aos:element" >
+
+                <xs:sequence>
+                    <xs:element name="graphic" type="aos:component_graphic" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="stream" type="aos:component_stream" minOccurs="1" maxOccurs="1" />
+                </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+
+    </xs:complexType>
+
+    <xs:complexType name="interactive" final="#all">
+        <xs:annotation>
+            <xs:documentation>
+                An Interactive object is a graphic Element allowed to interract with the user.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexContent>
+            <xs:extension base="aos:element" >
+
+                <xs:sequence>
+                    <xs:element name="graphic" type="aos:component_graphic" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="interaction" type="aos:component_interactive" minOccurs="1" maxOccurs="1" />
+                </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+
+    </xs:complexType>
 
     <!--##### Thread Elements #############################################################-->
 
