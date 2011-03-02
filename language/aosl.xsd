@@ -20,7 +20,7 @@
            >
 
     <!--The root object for a Sequence.-->
-    <xs:element name="sequence" type="aos:sequence"  />
+    <xs:element name="sequence" type="aos:sequence" />
 
     <!--##### Basic types #############################################################-->
 
@@ -1066,7 +1066,7 @@
     </xs:complexType>
 
     <!--TODO : review this, I think it's fucked up-->
-    <xs:group name="change_extensions">
+    <xs:group name="group_change_extensions">
         <xs:sequence>
             <xs:choice>
                 <xs:element name="effects" type="aos:list_effect" minOccurs="0" />
@@ -1084,7 +1084,7 @@
             </xs:documentation>
         </xs:annotation>
 
-        <xs:group ref="aos:change_extensions" />
+        <xs:group ref="aos:group_change_extensions" />
 
         <!--TODO : documentation is missing-->
         <xs:attribute name="type" type="aos:change_type"  default="unknown" />
@@ -1195,7 +1195,7 @@
 
         <xs:complexContent>
             <xs:restriction base="aos:change">
-                <xs:group ref="aos:change_extensions" />
+                <xs:group ref="aos:group_change_extensions" />
                 <xs:attribute name="type" type="aos:change_type" fixed="transform" />
             </xs:restriction>
         </xs:complexContent>
@@ -1335,7 +1335,7 @@
 
     </xs:simpleType>
 
-    <xs:complexType name="signal_base">
+    <xs:complexType name="event_signal_base">
         <xs:annotation>
             <xs:documentation>Base type for signal - inheriting from event and setting the type value.</xs:documentation>
         </xs:annotation>
@@ -1347,13 +1347,13 @@
 
     </xs:complexType>
 
-    <xs:complexType name="signal" >
+    <xs:complexType name="event_signal" >
         <xs:annotation>
-            <xs:documentation>A Signal is a type of Event that comes from Objects (or other undefined sources).</xs:documentation>
+            <xs:documentation>A Signal is a type of Event that comes from Objects or other undefined sources.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:signal_base">
+            <xs:extension base="aos:event_signal_base">
 
                 <xs:attribute name="source" type="aos:signal_source" use="required" >
                     <xs:annotation>
@@ -1366,7 +1366,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="input_base">
+    <xs:complexType name="event_input_base">
         <xs:annotation>
             <xs:documentation>Base type for input - inheriting from event and setting the type value.</xs:documentation>
         </xs:annotation>
@@ -1378,7 +1378,7 @@
     </xs:complexType>
 
 
-    <xs:complexType name="input" >
+    <xs:complexType name="event_input" >
         <xs:annotation>
             <xs:documentation>
                 An Input is an Event that is triggered by the player, often buttons pushed or other
@@ -1387,7 +1387,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:input_base">
+            <xs:extension base="aos:event_input_base">
 
                 <xs:attribute name="key" type="aos:input_key" use="required" >
                     <xs:annotation>
@@ -1406,7 +1406,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="selection_base">
+    <xs:complexType name="event_selection_base">
         <xs:annotation>
             <xs:documentation>Base type for selection - inheriting from event and setting the type value.</xs:documentation>
         </xs:annotation>
@@ -1418,13 +1418,13 @@
     </xs:complexType>
 
 
-    <xs:complexType name="selection" >
+    <xs:complexType name="event_selection" >
         <xs:annotation>
             <xs:documentation>A Selection is an Event triggered when the reader "select" an Object in the Sequence.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:selection_base" >
+            <xs:extension base="aos:event_selection_base" >
 
                 <xs:attribute name="object" type="aos:object_ref" use="required" >
                     <xs:annotation>
