@@ -752,9 +752,9 @@
         
     </xs:attributeGroup>
     
-    <xs:complexType name="properties_common_element">
+    <xs:group name="group_common_element">
  
-        <xs:all>
+        <xs:sequence>
             <xs:element name="extension" type="aos:extension" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Interpreter-related additional informations.</xs:documentation>
@@ -770,9 +770,9 @@
                 </xs:annotation>
             </xs:element>
 
-        </xs:all>
+        </xs:sequence>
 
-    </xs:complexType>
+    </xs:group>
 
     <xs:complexType name="properties_stream_element">
         <xs:annotation>
@@ -842,22 +842,23 @@
 
     <!--######################################################################-->
 
-    QUESTION : base element type or not?
     
-    <xs:complexType name="element_unknown" >
+    <xs:complexType name="element"  abstract="true" >
         <xs:annotation>
             <xs:documentation>An Element is a transformed instance of a Resource and can contain other Elements in a hierarchical way.</xs:documentation>
         </xs:annotation>
 
-        <xs:all>
-            <xs:element name="common" type="aos:properties_common_element" />
-        </xs:all>
-
+        <xs:group ref="aos:group_common_element" />
         <xs:attributeGroup ref="aos:attributes_element" />
-
-        <xs:attribute name="type" type="xs:string" use="required" />
         
     </xs:complexType>
+
+    <xs:element name="element" type="aos:element" />
+    <xs:element name="unknown" type="aos:element_unknown" substitutionGroup="aos:element" />
+    <xs:element name="sprite" type="aos:element_sprite" substitutionGroup="aos:element" />
+    <xs:element name="video" type="aos:element_video" substitutionGroup="aos:element" />
+    <xs:element name="audio" type="aos:element_audio" substitutionGroup="aos:element" />
+    <xs:element name="interactive" type="aos:element_interactive" substitutionGroup="aos:element" />
 
     <xs:complexType name="list_element">
         <xs:annotation>
@@ -865,14 +866,27 @@
         </xs:annotation>
 
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="element" type="aos:element_unknown" />
-            <xs:element name="sprite" type="aos:element_sprite" />
-            <xs:element name="video" type="aos:element_video" />
-            <xs:element name="audio" type="aos:element_audio" />
-            <xs:element name="interactive" type="aos:element_interactive" />
+            <xs:element name="element" type="aos:element" />
         </xs:sequence>
 
     </xs:complexType>
+
+    <xs:complexType name="element_unknown" >
+        <xs:annotation>
+            <xs:documentation>An Element is a transformed instance of a Resource and can contain other Elements in a hierarchical way.</xs:documentation>
+        </xs:annotation>
+
+        <xs:complexContent>
+            <xs:extension base="aos:element">
+
+                <xs:attribute name="type" type="xs:string" use="required" />
+
+            </xs:extension>
+        </xs:complexContent>
+
+    </xs:complexType>
+    
+    
 
     <xs:complexType name="element_sprite" final="#all">
         <xs:annotation>

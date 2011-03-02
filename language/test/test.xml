@@ -27,13 +27,13 @@
             <layer id="en" />
         </layers>
         <elements>
-            <element id="left_screen" >
+            <sprite id="left_screen" >
                 <children>
                     <element id="test_1">
 
                     </element>
                 </children>
-            </element>
+            </sprite>
             <element id="right_screen" >
             </element>
 
