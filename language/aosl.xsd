@@ -719,7 +719,7 @@
 
 
     <xs:attributeGroup name="attributes_object">
-        
+
         <xs:attribute name="id" type="aos:object_id" use="required" >
             <xs:annotation>
                 <xs:documentation>Id of the Object.</xs:documentation>
@@ -749,11 +749,11 @@
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        
+
     </xs:attributeGroup>
-    
+
     <xs:group name="group_common_object">
- 
+
         <xs:sequence>
             <xs:element name="extension" type="aos:extension" minOccurs="0">
                 <xs:annotation>
@@ -842,18 +842,18 @@
 
     <!--######################################################################-->
 
-    
-    <xs:complexType name="object_base"  abstract="true" >
+
+    <xs:complexType name="object"  abstract="true" >
         <xs:annotation>
             <xs:documentation>An Object is a transformed instance of a Resource and can contain other Objects in a hierarchical way.</xs:documentation>
         </xs:annotation>
 
         <xs:group ref="aos:group_common_object" />
         <xs:attributeGroup ref="aos:attributes_object" />
-        
+
     </xs:complexType>
 
-    <xs:element name="object" type="aos:object_base" />
+    <xs:element name="object" type="aos:object" />
     <xs:element name="unknown" type="aos:object_unknown" substitutionGroup="aos:object" />
     <xs:element name="sprite" type="aos:object_sprite" substitutionGroup="aos:object" />
     <xs:element name="video" type="aos:object_video" substitutionGroup="aos:object" />
@@ -877,7 +877,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:object_base">
+            <xs:extension base="aos:object">
 
                 <xs:attribute name="type" type="xs:string" use="required" />
 
@@ -885,8 +885,8 @@
         </xs:complexContent>
 
     </xs:complexType>
-    
-    
+
+
 
     <xs:complexType name="object_sprite" final="#all">
         <xs:annotation>
@@ -896,7 +896,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:object_base" >
+            <xs:extension base="aos:object" >
 
                 <xs:sequence>
                     <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
@@ -915,7 +915,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:object_base" >
+            <xs:extension base="aos:object" >
 
                 <xs:sequence>
                     <xs:element name="stream" type="aos:properties_stream_object" minOccurs="1" maxOccurs="1" />
@@ -935,7 +935,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:object_base" >
+            <xs:extension base="aos:object" >
 
                 <xs:sequence>
                     <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
@@ -955,7 +955,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:object_base" >
+            <xs:extension base="aos:object" >
 
                 <xs:sequence>
                     <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
@@ -1018,7 +1018,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:change_list">
+            <xs:extension base="aos:list_change">
                 <xs:annotation>
                     <xs:documentation>A move is a list of changes.</xs:documentation>
                 </xs:annotation>
@@ -1091,7 +1091,7 @@
         <xs:attribute name="object" type="aos:object_ref"  use="required" />
     </xs:complexType>
 
-    <xs:simpleType name="generic_change_type">
+    <xs:simpleType name="change_type_generic">
         <xs:annotation>
             <xs:documentation>Types of the generic changes that should be implemented in all players.</xs:documentation>
         </xs:annotation>
@@ -1106,7 +1106,7 @@
 
     </xs:simpleType>
 
-    <xs:simpleType name="specific_change_type">
+    <xs:simpleType name="change_type_specific">
         <xs:annotation>
             <xs:documentation>Interpreter-specific change type : should be prefixed by '!' .</xs:documentation>
         </xs:annotation>
@@ -1121,11 +1121,16 @@
         <xs:annotation>
             <xs:documentation>Type of generic change or interpreter-specific change.</xs:documentation>
         </xs:annotation>
-        <xs:union memberTypes="aos:generic_change_type aos:specific_change_type" />
+        <xs:union memberTypes="aos:change_type_generic aos:change_type_specific" />
     </xs:simpleType>
 
-
-    <xs:complexType name="change_list" >
+    <xs:element name="change"       type="aos:change" />
+    <xs:element name="activate"     type="aos:change_activate"      substitutionGroup="aos:change" />
+    <xs:element name="deactivate"   type="aos:change_deactivate"    substitutionGroup="aos:change" />
+    <xs:element name="switch"       type="aos:change_switch"        substitutionGroup="aos:change" />
+    <xs:element name="transform"    type="aos:change_transform"     substitutionGroup="aos:change" />
+    
+    <xs:complexType name="list_change" >
         <xs:annotation>
             <xs:documentation>List of changes.</xs:documentation>
         </xs:annotation>
@@ -1133,46 +1138,18 @@
         <xs:sequence>
             <xs:choice minOccurs="1" maxOccurs="unbounded" >
 
-                <xs:element name="change" type="aos:change" >
+                <xs:element ref="aos:change" >
                     <xs:annotation>
                         <xs:documentation>Generic or specific type of change.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-
-                <xs:element name="activate" type="aos:activate" >
-                    <xs:annotation>
-                        <xs:documentation>Change that will activate an object or do nothing if already activated.</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-
-                <xs:element name="deactivate" type="aos:deactivate" >
-                    <xs:annotation>
-                        <xs:documentation>Change that will deactivate an object or do nothing if already deactivated.</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-
-                <xs:element name="switch" type="aos:switch" >
-                    <xs:annotation>
-                        <xs:documentation>Change that will activate the object if deactivated or deactivate it if activated.</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-
-                <xs:element name="transform" type="aos:transform" >
-                    <xs:annotation>
-                        <xs:documentation>
-                            Change that will modify the geometric state of the object
-                            by applying one or several geometric transformations.
-                        </xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-
 
             </xs:choice>
         </xs:sequence>
 
     </xs:complexType>
 
-    <xs:complexType name="activate">
+    <xs:complexType name="change_activate">
         <xs:annotation>
             <xs:documentation>Change that will activate an object or do nothing if already activated.</xs:documentation>
         </xs:annotation>
@@ -1185,7 +1162,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="deactivate">
+    <xs:complexType name="change_deactivate">
         <xs:annotation>
             <xs:documentation>Change that will deactivate an object or do nothing if already deactivated.</xs:documentation>
         </xs:annotation>
@@ -1198,7 +1175,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="switch">
+    <xs:complexType name="change_switch">
         <xs:annotation>
             <xs:documentation>Change that will activate the object if deactivated or deactivate it if activated.</xs:documentation>
         </xs:annotation>
@@ -1211,7 +1188,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="transform_base">
+    <xs:complexType name="change_transform_base">
         <xs:annotation>
             <xs:documentation>Base type for "transform" change - just inheriting from change and defining "type" value.</xs:documentation>
         </xs:annotation>
@@ -1225,7 +1202,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="transform">
+    <xs:complexType name="change_transform">
         <xs:annotation>
             <xs:documentation>
                 Change that will modify the geometric state of the object
@@ -1234,7 +1211,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:transform_base">
+            <xs:extension base="aos:change_transform_base">
 
                 <xs:sequence>
 
