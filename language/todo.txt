@@ -1,4 +1,4 @@
-Changes to AOSL 1.0 Draft-2 :
+﻿Changes to AOSL 1.0 Draft-2 :
 -----------------------------
 
 1. no inheritance:

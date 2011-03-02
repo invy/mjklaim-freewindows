@@ -842,6 +842,8 @@
 
     <!--######################################################################-->
 
+    QUESTION : base element type or not?
+    
     <xs:complexType name="element_unknown" >
         <xs:annotation>
             <xs:documentation>An Element is a transformed instance of a Resource and can contain other Elements in a hierarchical way.</xs:documentation>
