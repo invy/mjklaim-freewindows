@@ -8,7 +8,7 @@
   Licence : M.I.T.
   http://www.opensource.org/licenses/mit-license.php
 
-  Read the "documentation" tags for comments on element, attributes and types.
+  Read the "documentation" tags for comments on object, attributes and types.
 -->
 
 <xs:schema xmlns:aos="http://artofsequence.org/lang/1.x"
@@ -19,7 +19,7 @@
            version="1.0-draft1"
            >
 
-    <!--The root element for a Sequence.-->
+    <!--The root object for a Sequence.-->
     <xs:element name="sequence" type="aos:sequence"  />
 
     <!--##### Basic types #############################################################-->
@@ -264,7 +264,7 @@
 
     </xs:complexType>
 
-    <!--##### Root Elements #############################################################-->
+    <!--##### Root Objects #############################################################-->
 
     <xs:complexType name="sequence" final="#all" >
         <xs:annotation>
@@ -291,7 +291,7 @@
 
             <xs:element name="canvas" type="aos:canvas" >
                 <xs:annotation>
-                    <xs:documentation>Canvas where the sequence plays and that gives the elements' organisation.</xs:documentation>
+                    <xs:documentation>Canvas where the sequence plays and that gives the objects' organisation.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -379,7 +379,7 @@
 
     <xs:complexType name="canvas" final="#all" >
         <xs:annotation>
-            <xs:documentation>Canvas where the sequence plays and that gives the elements' organisation.</xs:documentation>
+            <xs:documentation>Canvas where the sequence plays and that gives the objects' organisation.</xs:documentation>
         </xs:annotation>
 
         <xs:all>
@@ -396,9 +396,9 @@
                 </xs:annotation>
             </xs:element>
 
-            <xs:element name="elements" type="aos:list_element" minOccurs="0" >
+            <xs:element name="objects" type="aos:list_object" minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>Elements in this canvas, organized in hierarchical tree.</xs:documentation>
+                    <xs:documentation>Objects in this canvas, organized in hierarchical tree.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -447,7 +447,7 @@
     </xs:complexType>
 
 
-    <!--##### Meta Elements #############################################################-->
+    <!--##### Meta Objects #############################################################-->
 
     <xs:complexType name="author">
         <xs:annotation>
@@ -536,7 +536,7 @@
 
     </xs:complexType>
 
-    <!--##### Library Elements #############################################################-->
+    <!--##### Library Objects #############################################################-->
 
     <xs:simpleType name="resource_type">
         <xs:annotation>
@@ -671,12 +671,12 @@
     </xs:simpleType>
 
 
-    <!--##### Canvas Elements #############################################################-->
+    <!--##### Canvas Objects #############################################################-->
 
     <xs:complexType name="layer" final="#all" >
         <xs:annotation>
             <xs:documentation>
-                A Layer is a way to activate/deactivate a group of unrelated elements.
+                A Layer is a way to activate/deactivate a group of unrelated objects.
                 It can be used for localisation for example (one layer per language with text blocks in it).
             </xs:documentation>
         </xs:annotation>
@@ -687,7 +687,7 @@
 
         <xs:attribute name="id" type="aos:layer_id" use="required" >
             <xs:annotation>
-                <xs:documentation>Id of the Layer, to be used by Elements that are linked to it.</xs:documentation>
+                <xs:documentation>Id of the Layer, to be used by Objects that are linked to it.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
@@ -695,8 +695,8 @@
             <xs:annotation>
                 <xs:documentation>
                     Is this Layer active or deactivated?
-                    When active all the related Elements will apply their state.
-                    If deactivated, all the related Elements will ignore their state and be considered deactivated.
+                    When active all the related Objects will apply their state.
+                    If deactivated, all the related Objects will ignore their state and be considered deactivated.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -715,28 +715,28 @@
     </xs:complexType>
 
 
-    <!--############## Element's components. ###########################"-->
+    <!--############## Object's components. ###########################"-->
 
 
-    <xs:attributeGroup name="attributes_element">
+    <xs:attributeGroup name="attributes_object">
         
-        <xs:attribute name="id" type="aos:element_id" use="required" >
+        <xs:attribute name="id" type="aos:object_id" use="required" >
             <xs:annotation>
-                <xs:documentation>Id of the Element.</xs:documentation>
+                <xs:documentation>Id of the Object.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
         <xs:attribute name="active" type="xs:boolean" default="false" use="optional" >
             <xs:annotation>
-                <xs:documentation>Is this Element currently active or deactivated?</xs:documentation>
+                <xs:documentation>Is this Object currently active or deactivated?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
         <xs:attribute name="resource" type="aos:resource_ref" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    The Resource to use. If no resource is set, the element will not be perceptible.
-                    It still can contain children elements and behave like an invisible group.
+                    The Resource to use. If no resource is set, the object will not be perceptible.
+                    It still can contain children objects and behave like an invisible group.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -744,15 +744,15 @@
         <xs:attribute name="layer" type="aos:layer_ref" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    Id of a Layer to associate with this Element.
-                    If the Layer is deactivated, this element will be too.
+                    Id of a Layer to associate with this Object.
+                    If the Layer is deactivated, this object will be too.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
         
     </xs:attributeGroup>
     
-    <xs:group name="group_common_element">
+    <xs:group name="group_common_object">
  
         <xs:sequence>
             <xs:element name="extension" type="aos:extension" minOccurs="0">
@@ -761,11 +761,11 @@
                 </xs:annotation>
             </xs:element>
 
-            <xs:element name="children" type="aos:list_element" minOccurs="0">
+            <xs:element name="children" type="aos:list_object" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
-                        Elements contained in this one.
-                        The child Elements will have their state relative to their parent.
+                        Objects contained in this one.
+                        The child Objects will have their state relative to their parent.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -774,10 +774,10 @@
 
     </xs:group>
 
-    <xs:complexType name="properties_stream_element">
+    <xs:complexType name="properties_stream_object">
         <xs:annotation>
             <xs:documentation>
-                Stream object representation. Compose elements with stream behaviour.
+                Stream object representation. Compose objects with stream behaviour.
             </xs:documentation>
         </xs:annotation>
 
@@ -807,17 +807,17 @@
 
     </xs:complexType>
 
-    <xs:complexType name="properties_graphic_element">
+    <xs:complexType name="properties_graphic_object">
         <xs:annotation>
             <xs:documentation>
-                Graphic object representation. Compose elements with graphic behaviour.
+                Graphic object representation. Compose objects with graphic behaviour.
             </xs:documentation>
         </xs:annotation>
 
         <xs:all >
             <xs:element name="target" type="aos:box" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Area in the canvas occupied by the element.</xs:documentation>
+                    <xs:documentation>Area in the canvas occupied by the object.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -829,10 +829,10 @@
         </xs:all>
     </xs:complexType>
 
-    <xs:complexType name="properties_interactive_element">
+    <xs:complexType name="properties_interactive_object">
         <xs:annotation>
             <xs:documentation>
-                Interactive object representation. Compose elements with interractive behaviour.
+                Interactive object representation. Compose objects with interractive behaviour.
             </xs:documentation>
         </xs:annotation>
 
@@ -843,41 +843,41 @@
     <!--######################################################################-->
 
     
-    <xs:complexType name="element"  abstract="true" >
+    <xs:complexType name="object_base"  abstract="true" >
         <xs:annotation>
-            <xs:documentation>An Element is a transformed instance of a Resource and can contain other Elements in a hierarchical way.</xs:documentation>
+            <xs:documentation>An Object is a transformed instance of a Resource and can contain other Objects in a hierarchical way.</xs:documentation>
         </xs:annotation>
 
-        <xs:group ref="aos:group_common_element" />
-        <xs:attributeGroup ref="aos:attributes_element" />
+        <xs:group ref="aos:group_common_object" />
+        <xs:attributeGroup ref="aos:attributes_object" />
         
     </xs:complexType>
 
-    <xs:element name="element" type="aos:element" />
-    <xs:element name="unknown" type="aos:element_unknown" substitutionGroup="aos:element" />
-    <xs:element name="sprite" type="aos:element_sprite" substitutionGroup="aos:element" />
-    <xs:element name="video" type="aos:element_video" substitutionGroup="aos:element" />
-    <xs:element name="audio" type="aos:element_audio" substitutionGroup="aos:element" />
-    <xs:element name="interactive" type="aos:element_interactive" substitutionGroup="aos:element" />
+    <xs:element name="object" type="aos:object_base" />
+    <xs:element name="unknown" type="aos:object_unknown" substitutionGroup="aos:object" />
+    <xs:element name="sprite" type="aos:object_sprite" substitutionGroup="aos:object" />
+    <xs:element name="video" type="aos:object_video" substitutionGroup="aos:object" />
+    <xs:element name="audio" type="aos:object_audio" substitutionGroup="aos:object" />
+    <xs:element name="interactive" type="aos:object_interactive" substitutionGroup="aos:object" />
 
-    <xs:complexType name="list_element">
+    <xs:complexType name="list_object">
         <xs:annotation>
-            <xs:documentation>List of Elements.</xs:documentation>
+            <xs:documentation>List of Objects.</xs:documentation>
         </xs:annotation>
 
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="element" type="aos:element" />
+            <xs:element ref="aos:object" />
         </xs:sequence>
 
     </xs:complexType>
 
-    <xs:complexType name="element_unknown" >
+    <xs:complexType name="object_unknown" >
         <xs:annotation>
-            <xs:documentation>An Element is a transformed instance of a Resource and can contain other Elements in a hierarchical way.</xs:documentation>
+            <xs:documentation>An Object is a transformed instance of a Resource and can contain other Objects in a hierarchical way.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:element">
+            <xs:extension base="aos:object_base">
 
                 <xs:attribute name="type" type="xs:string" use="required" />
 
@@ -888,18 +888,18 @@
     
     
 
-    <xs:complexType name="element_sprite" final="#all">
+    <xs:complexType name="object_sprite" final="#all">
         <xs:annotation>
             <xs:documentation>
-                A Sprite is a simple graphic Element.
+                A Sprite is a simple graphic Object.
             </xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:element" >
+            <xs:extension base="aos:object_base" >
 
                 <xs:sequence>
-                    <xs:element name="graphic" type="aos:properties_graphic_element" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
                 </xs:sequence>
 
             </xs:extension>
@@ -907,18 +907,18 @@
 
     </xs:complexType>
 
-    <xs:complexType name="element_audio" final="#all">
+    <xs:complexType name="object_audio" final="#all">
         <xs:annotation>
             <xs:documentation>
-                A Audio element allows to play sounds and music.
+                A Audio object allows to play sounds and music.
             </xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:element" >
+            <xs:extension base="aos:object_base" >
 
                 <xs:sequence>
-                    <xs:element name="stream" type="aos:properties_stream_element" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="stream" type="aos:properties_stream_object" minOccurs="1" maxOccurs="1" />
                 </xs:sequence>
 
             </xs:extension>
@@ -927,19 +927,19 @@
     </xs:complexType>
 
 
-    <xs:complexType name="element_video" final="#all">
+    <xs:complexType name="object_video" final="#all">
         <xs:annotation>
             <xs:documentation>
-                A Video is a graphic Element that diplay a stream of images.
+                A Video is a graphic Object that diplay a stream of images.
             </xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:element" >
+            <xs:extension base="aos:object_base" >
 
                 <xs:sequence>
-                    <xs:element name="graphic" type="aos:properties_graphic_element" minOccurs="1" maxOccurs="1" />
-                    <xs:element name="stream" type="aos:properties_stream_element" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="stream" type="aos:properties_stream_object" minOccurs="1" maxOccurs="1" />
                 </xs:sequence>
 
             </xs:extension>
@@ -947,19 +947,19 @@
 
     </xs:complexType>
 
-    <xs:complexType name="element_interactive" final="#all">
+    <xs:complexType name="object_interactive" final="#all">
         <xs:annotation>
             <xs:documentation>
-                An Interactive object is a graphic Element allowed to interract with the user.
+                An Interactive object is a graphic Object allowed to interract with the user.
             </xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:extension base="aos:element" >
+            <xs:extension base="aos:object_base" >
 
                 <xs:sequence>
-                    <xs:element name="graphic" type="aos:properties_graphic_element" minOccurs="1" maxOccurs="1" />
-                    <xs:element name="interaction" type="aos:properties_interactive_element" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="interaction" type="aos:properties_interactive_object" minOccurs="1" maxOccurs="1" />
                 </xs:sequence>
 
             </xs:extension>
@@ -967,7 +967,7 @@
 
     </xs:complexType>
 
-    <!--##### Thread Elements #############################################################-->
+    <!--##### Thread Objects #############################################################-->
 
     <xs:complexType name="stage" final="#all" >
         <xs:annotation>
@@ -1014,7 +1014,7 @@
 
     <xs:complexType name="move" final="#all" >
         <xs:annotation>
-            <xs:documentation>A Move is a set of Changes between two Stages applied to Elements in the Canvas.</xs:documentation>
+            <xs:documentation>A Move is a set of Changes between two Stages applied to Objects in the Canvas.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1078,7 +1078,7 @@
     <xs:complexType name="change" abstract="true">
         <xs:annotation>
             <xs:documentation>
-                A Change is a set of transformations (geometric or not) that will apply to an Element.
+                A Change is a set of transformations (geometric or not) that will apply to an Object.
                 A Change can be a transform, activate, deactivate, switch or any other interpreter-specific change.
                 The "change" tag is used only when the change type is not identified.
             </xs:documentation>
@@ -1088,7 +1088,7 @@
 
         <!--TODO : documentation is missing-->
         <xs:attribute name="type" type="aos:change_type"  default="unknown" />
-        <xs:attribute name="element" type="aos:element_ref"  use="required" />
+        <xs:attribute name="object" type="aos:object_ref"  use="required" />
     </xs:complexType>
 
     <xs:simpleType name="generic_change_type">
@@ -1141,26 +1141,26 @@
 
                 <xs:element name="activate" type="aos:activate" >
                     <xs:annotation>
-                        <xs:documentation>Change that will activate an element or do nothing if already activated.</xs:documentation>
+                        <xs:documentation>Change that will activate an object or do nothing if already activated.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
 
                 <xs:element name="deactivate" type="aos:deactivate" >
                     <xs:annotation>
-                        <xs:documentation>Change that will deactivate an element or do nothing if already deactivated.</xs:documentation>
+                        <xs:documentation>Change that will deactivate an object or do nothing if already deactivated.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
 
                 <xs:element name="switch" type="aos:switch" >
                     <xs:annotation>
-                        <xs:documentation>Change that will activate the element if deactivated or deactivate it if activated.</xs:documentation>
+                        <xs:documentation>Change that will activate the object if deactivated or deactivate it if activated.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
 
                 <xs:element name="transform" type="aos:transform" >
                     <xs:annotation>
                         <xs:documentation>
-                            Change that will modify the geometric state of the element
+                            Change that will modify the geometric state of the object
                             by applying one or several geometric transformations.
                         </xs:documentation>
                     </xs:annotation>
@@ -1174,7 +1174,7 @@
 
     <xs:complexType name="activate">
         <xs:annotation>
-            <xs:documentation>Change that will activate an element or do nothing if already activated.</xs:documentation>
+            <xs:documentation>Change that will activate an object or do nothing if already activated.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1187,7 +1187,7 @@
 
     <xs:complexType name="deactivate">
         <xs:annotation>
-            <xs:documentation>Change that will deactivate an element or do nothing if already deactivated.</xs:documentation>
+            <xs:documentation>Change that will deactivate an object or do nothing if already deactivated.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1200,7 +1200,7 @@
 
     <xs:complexType name="switch">
         <xs:annotation>
-            <xs:documentation>Change that will activate the element if deactivated or deactivate it if activated.</xs:documentation>
+            <xs:documentation>Change that will activate the object if deactivated or deactivate it if activated.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1228,7 +1228,7 @@
     <xs:complexType name="transform">
         <xs:annotation>
             <xs:documentation>
-                Change that will modify the geometric state of the element
+                Change that will modify the geometric state of the object
                 by applying one or several geometric transformations.
             </xs:documentation>
         </xs:annotation>
@@ -1241,7 +1241,7 @@
                     <xs:element name="transformation" type="aos:transformation" minOccurs="0" maxOccurs="unbounded" >
                         <xs:annotation>
                             <xs:documentation>
-                                Geometric transformation to apply to the element.
+                                Geometric transformation to apply to the object.
                                 Each transformation will be applied in the specified order.
                             </xs:documentation>
                         </xs:annotation>
@@ -1287,7 +1287,7 @@
 
 
 
-    <!--## Navigation elements ########################-->
+    <!--## Navigation objects ########################-->
 
     <xs:complexType name="navigation" final="#all" >
         <xs:annotation>
@@ -1305,13 +1305,13 @@
 
                 <xs:element name="selection" type="aos:selection" >
                     <xs:annotation>
-                        <xs:documentation>Type of Event that is sent when the player select an Element.</xs:documentation>
+                        <xs:documentation>Type of Event that is sent when the player select an Object.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
 
                 <xs:element name="signal" type="aos:signal" >
                     <xs:annotation>
-                        <xs:documentation>Type of Event that is sent by Elements or player-specific behaviour.</xs:documentation>
+                        <xs:documentation>Type of Event that is sent by Objects or player-specific behaviour.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
 
@@ -1372,7 +1372,7 @@
 
     <xs:complexType name="signal" >
         <xs:annotation>
-            <xs:documentation>A Signal is a type of Event that comes from Elements (or other undefined sources).</xs:documentation>
+            <xs:documentation>A Signal is a type of Event that comes from Objects (or other undefined sources).</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1443,15 +1443,15 @@
 
     <xs:complexType name="selection" >
         <xs:annotation>
-            <xs:documentation>A Selection is an Event triggered when the reader "select" an Element in the Sequence.</xs:documentation>
+            <xs:documentation>A Selection is an Event triggered when the reader "select" an Object in the Sequence.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
             <xs:extension base="aos:selection_base" >
 
-                <xs:attribute name="element" type="aos:element_ref" use="required" >
+                <xs:attribute name="object" type="aos:object_ref" use="required" >
                     <xs:annotation>
-                        <xs:documentation>Id of the Element that have to be selected to trigger this Event.</xs:documentation>
+                        <xs:documentation>Id of the Object that have to be selected to trigger this Event.</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
 
@@ -1538,9 +1538,9 @@
 
     </xs:simpleType>
 
-    <xs:simpleType name="element_id">
+    <xs:simpleType name="object_id">
         <xs:annotation>
-            <xs:documentation>Element Id type.</xs:documentation>
+            <xs:documentation>Object Id type.</xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="aos:unique_id" />
@@ -1658,27 +1658,27 @@
     </xs:simpleType>
 
 
-    <!--# Elements ##-->
+    <!--# Objects ##-->
 
-    <xs:simpleType name="target_element_ref">
+    <xs:simpleType name="target_object_ref">
         <xs:annotation>
-            <xs:documentation>Reference to an Element.</xs:documentation>
+            <xs:documentation>Reference to an Object.</xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="aos:unique_ref" />
 
     </xs:simpleType>
 
-    <xs:simpleType name="special_element_ref">
+    <xs:simpleType name="special_object_ref">
         <xs:annotation>
-            <xs:documentation> Reference to one or more elements automatically found via the choosen search logic. </xs:documentation>
+            <xs:documentation> Reference to one or more objects automatically found via the choosen search logic. </xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string" >
 
             <xs:enumeration value="#all" >
                 <xs:annotation>
-                    <xs:documentation>#all : All elements in the canvas.</xs:documentation>
+                    <xs:documentation>#all : All objects in the canvas.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
@@ -1686,12 +1686,12 @@
 
     </xs:simpleType>
 
-    <xs:simpleType name="element_ref">
+    <xs:simpleType name="object_ref">
         <xs:annotation>
-            <xs:documentation>Reference to a specific element or to an autmatic find of one or more references.</xs:documentation>
+            <xs:documentation>Reference to a specific object or to an autmatic find of one or more references.</xs:documentation>
         </xs:annotation>
 
-        <xs:union memberTypes="aos:target_element_ref aos:special_element_ref" />
+        <xs:union memberTypes="aos:target_object_ref aos:special_object_ref" />
 
     </xs:simpleType>
 

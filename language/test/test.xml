@@ -26,34 +26,42 @@
             <layer id="fr" />
             <layer id="en" />
         </layers>
-        <elements>
+        <objects>
             <sprite id="left_screen" >
                 <children>
-                    <element id="test_1">
-
-                    </element>
+                    <sprite id="test_1">
+                        <graphic>
+                        </graphic>
+                    </sprite>
                 </children>
+
+                <graphic>
+                </graphic>
             </sprite>
-            <element id="right_screen" >
-            </element>
+            <sprite id="right_screen" >
+                <graphic>
+                </graphic>
+            </sprite>
 
-            <element id="perso_1" active="true" resource="res_perso_1" >
+            <sprite id="perso_1" active="true" resource="res_perso_1" >
+                <graphic>
+                </graphic>
+            </sprite>
 
-            </element>
+            <sprite id="random">
+                <graphic>
+                </graphic>
+            </sprite>
 
-            <element>
-                
-            </element>
-
-        </elements>
+        </objects>
 
     </canvas>
 
     <thread begin="stage_0">
         <navigation>
 
-            <selection element="right_screen" move="#next"/>
-            <selection element="left_screen" move="#previous"/>
+            <selection object="right_screen" move="#next"/>
+            <selection object="left_screen" move="#previous"/>
 
             <input key="KEY_J" value="down" move="#previous" />
             <input key="KEY_K" value="down" move="#next" />
@@ -68,7 +76,7 @@
             <stage id="stage_1"></stage>
             <stage id="stage_2">
                 <navigation>
-                    <selection element="perso_1" move="stage_3a" />
+                    <selection object="perso_1" move="stage_3a" />
                 </navigation>
             </stage>
             <stage id="stage_3a"></stage>
@@ -78,7 +86,7 @@
         <moves>
             <move id="move_0_1" from="stage_0" to="stage_1">
 
-                <transform element="#all" >
+                <transform object="#all" >
                     <effects>
                         <effect name="fade">
                             <test>Some dirty code you know what!</test>
@@ -98,7 +106,7 @@
                     </transformation>
                 </transform>
 
-                <deactivate element="perso_1" />
+                <deactivate object="perso_1" />
 
                 <extension>
                     This is for test.
@@ -106,13 +114,13 @@
 
             </move>
             <move id="move_1_2" from="stage_1" to="stage_2">
-                <deactivate element="perso_1" />
+                <deactivate object="perso_1" />
             </move>
             <move id="move_2_3a" from="stage_2" to="stage_3a">
-                <switch element="perso_1" />
+                <switch object="perso_1" />
             </move>
             <move id="move_2_3b" from="stage_2" to="stage_3b">
-                <transform element="perso_1" >
+                <transform object="perso_1" >
                     <transformation referential="absolute">
                         <translation>
                             <x>123</x>
