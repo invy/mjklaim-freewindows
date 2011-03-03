@@ -1307,7 +1307,7 @@
     <xs:element name="event"        type="aos:event" />
     <xs:element name="input"        type="aos:event_input"  substitutionGroup="aos:event" />
     <xs:element name="signal"       type="aos:event_signal" substitutionGroup="aos:event" />
-    <xs:element name="selection"    type="aos:event_input"  substitutionGroup="aos:event" />
+    <xs:element name="selection"    type="aos:event_selection"  substitutionGroup="aos:event" />
     
     <xs:simpleType name="event_type" >
         <xs:annotation>
