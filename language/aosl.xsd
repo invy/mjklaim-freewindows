@@ -800,12 +800,45 @@
         <xs:attribute name="loop" type="xs:boolean" default="false" >
             <xs:annotation>
                 <xs:documentation>
-                    End position in the stream source.
+                    True if the stream have to loop, false to stop once the end is reached.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="control" type="aos:stream_control" default="none" >
+            <xs:annotation>
+                <xs:documentation>
+                     Tells if the stream should be controllable by the user, 
+                     involving some kind of player-defined interface.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="activation" type="aos:stream_activation" default="reset" >
+            <xs:annotation>
+                <xs:documentation>
+                    Tells if the stream will be reset at each activation, 
+                    or will just continue where it was when it was deactivated.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
     </xs:complexType>
+
+    <xs:simpleType name="stream_control" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="user" />
+            <xs:enumeration value="none" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stream_activation" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="reset" />
+            <xs:enumeration value="continue" />
+        </xs:restriction>
+    </xs:simpleType>
+
 
     <xs:complexType name="properties_graphic_object">
         <xs:annotation>
