@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<sequence xmlns="http://artofsequence.org/lang/1.x"
+<sequence xmlns="http://artofsequence.org/aosl/1.x"
           angles="degree"
           >
     <meta>
@@ -27,6 +27,9 @@
             <layer id="en" />
         </layers>
         <objects>
+            <text id="wtf">
+                
+            </text>
             <sprite id="left_screen" >
                 <children>
                     <sprite id="test_1">

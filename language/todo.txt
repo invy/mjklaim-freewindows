@@ -28,6 +28,23 @@
 7. Check that it's not possible to pass vectors to attributes instead of objects 
 
 8. Add coordinate system information (or define one).
+  - x :
+    - origin : left, right, center
+    - positive : right, left
+  - y :
+    - origin : top, bottom, center
+    - positive : up, down
+  - z :
+    - origin : surface
+    - positive : forward, backward
+
+Default :
+    x( origin=left, positive=right )
+    y( origin=top, positive=down )
+    z( origin=surface, positive=forward )
+    
+    
+
 
 UPDATE COMMENTS AND ANNOTATIONS!!!
 
