@@ -27,8 +27,9 @@
             <layer id="en" />
         </layers>
         <objects>
-            <text id="wtf">
-                
+            <text id="wtf"  >
+                <graphics />
+                <source>http://test.txt</source>
             </text>
             <sprite id="left_screen" >
                 <children>

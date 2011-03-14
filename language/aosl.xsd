@@ -648,7 +648,7 @@
             <xs:annotation>
                 <xs:documentation>URI where is located the file containing the informations of the library.</xs:documentation>
             </xs:annotation>
-            <xs:extension base="xs:anyURI" />
+            <xs:extension base="aos:source_uri" />
         </xs:simpleContent>
 
     </xs:complexType>
@@ -664,13 +664,7 @@
 
     </xs:complexType>
 
-    <xs:simpleType name="library_uri">
-        <xs:annotation>
-            <xs:documentation>URI of a library file (xml file with Library definition).</xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:anyURI" />
-    </xs:simpleType>
-
+    
 
     <!--##### Canvas Objects #############################################################-->
 
@@ -889,7 +883,7 @@
         <xs:union memberTypes="aos:text_format_generic aos:text_format_specific" />
     </xs:simpleType>
 
-    <xs:complexType name="text_source" mixed="true" >
+    <xs:complexType name="text_inline" mixed="true" >
         <xs:annotation>
             <xs:documentation>
                 Text data 
@@ -901,6 +895,14 @@
         
     </xs:complexType>
 
+    <xs:complexType name="text_include" mixed="true">
+
+        <xs:attribute name="source" type="aos:source_uri" use="required" />
+        <xs:attribute name="format" type="aos:text_format" use="required" />
+            
+    </xs:complexType>
+    
+    
 
 
     <!--######################################################################-->
@@ -1043,6 +1045,10 @@
 
                 <xs:sequence>
                     <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
+                    <xs:choice minOccurs="1" maxOccurs="1" >
+                        <xs:element name="source" type="aos:text_inline" />
+                        <xs:element name="include" type="aos:text_include" />
+                    </xs:choice>
                 </xs:sequence>
 
             </xs:extension>
