@@ -639,7 +639,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="include">
+    <xs:complexType name="include_library">
         <xs:annotation>
             <xs:documentation>Include an external librarie's resources.</xs:documentation>
         </xs:annotation>
@@ -659,7 +659,7 @@
         </xs:annotation>
 
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="include" type="aos:include" />
+            <xs:element name="include" type="aos:include_library" />
         </xs:sequence>
 
     </xs:complexType>
