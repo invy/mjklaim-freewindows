@@ -930,7 +930,7 @@
     <xs:element name="video" type="aos:object_video" substitutionGroup="aos:object" />
     <xs:element name="audio" type="aos:object_audio" substitutionGroup="aos:object" />
     <xs:element name="interactive" type="aos:object_interactive" substitutionGroup="aos:object" />
-    <xs:element name="text" type="aos:object_text" substitutionGroup="aos:text" />
+    <xs:element name="text" type="aos:object_text" substitutionGroup="aos:object" />
 
     <xs:complexType name="list_object">
         <xs:annotation>
