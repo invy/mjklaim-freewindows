@@ -639,7 +639,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="include_library">
+    <xs:complexType name="library_include">
         <xs:annotation>
             <xs:documentation>Include an external librarie's resources.</xs:documentation>
         </xs:annotation>
@@ -659,7 +659,7 @@
         </xs:annotation>
 
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="include" type="aos:include_library" />
+            <xs:element name="include" type="aos:library_include" />
         </xs:sequence>
 
     </xs:complexType>
@@ -897,8 +897,14 @@
 
     <xs:complexType name="text_include" mixed="true">
 
-        <xs:attribute name="source" type="aos:source_uri" use="required" />
-        <xs:attribute name="format" type="aos:text_format" use="required" />
+        <xs:simpleContent>
+            <xs:annotation>
+                <xs:documentation>URI where is located the file containing the informations of the library.</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="aos:source_uri">
+                <xs:attribute name="format" type="aos:text_format" use="required" />                
+            </xs:extension>
+        </xs:simpleContent>
             
     </xs:complexType>
     
