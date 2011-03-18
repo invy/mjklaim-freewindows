@@ -263,7 +263,22 @@
         <xs:anyAttribute />
 
     </xs:complexType>
-    
+
+    <xs:simpleType name="name">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([a-zA-Z0-9_])+" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="property" mixed="true" >
+        <xs:sequence>
+            <xs:element name="property" type="aos:property" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+
+        <xs:attribute name="name" type="aos:name"  use="required" />
+    </xs:complexType>
+
+
 
     <!--##### Root Objects #############################################################-->
 
@@ -418,6 +433,14 @@
         </xs:annotation>
 
         <xs:all minOccurs="1" >
+
+            <xs:element name="properties" type="aos:property" >
+                <xs:annotation>
+                    <xs:documentation>
+                    Initial custom properties available through the playing of this Sequence.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
 
             <xs:element name="navigation" type="aos:navigation"  minOccurs="0" >
                 <xs:annotation>
@@ -664,7 +687,7 @@
 
     </xs:complexType>
 
-    
+
 
     <!--##### Canvas Objects #############################################################-->
 
@@ -750,6 +773,13 @@
     <xs:group name="group_common_object">
 
         <xs:sequence>
+
+            <xs:element name="properties" type="aos:property" minOccurs="0" maxOccurs="1" >
+                <xs:annotation>
+                    <xs:documentation></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
             <xs:element name="extension" type="aos:extension" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Interpreter-related additional informations.</xs:documentation>
@@ -803,8 +833,8 @@
         <xs:attribute name="control" type="aos:stream_control" default="none" >
             <xs:annotation>
                 <xs:documentation>
-                     Tells if the stream should be controllable by the user, 
-                     involving some kind of player-defined interface.
+                    Tells if the stream should be controllable by the user,
+                    involving some kind of player-defined interface.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -812,7 +842,7 @@
         <xs:attribute name="activation" type="aos:stream_activation" default="reset" >
             <xs:annotation>
                 <xs:documentation>
-                    Tells if the stream will be reset at each activation, 
+                    Tells if the stream will be reset at each activation,
                     or will just continue where it was when it was deactivated.
                 </xs:documentation>
             </xs:annotation>
@@ -886,13 +916,13 @@
     <xs:complexType name="text_inline" mixed="true" >
         <xs:annotation>
             <xs:documentation>
-                Text data 
+                Text data
             </xs:documentation>
         </xs:annotation>
 
 
         <xs:attribute name="format" type="aos:text_format" use="required" />
-        
+
     </xs:complexType>
 
     <xs:complexType name="text_include" mixed="true">
@@ -902,13 +932,13 @@
                 <xs:documentation>URI where is located the file containing the informations of the library.</xs:documentation>
             </xs:annotation>
             <xs:extension base="aos:source_uri">
-                <xs:attribute name="format" type="aos:text_format" use="required" />                
+                <xs:attribute name="format" type="aos:text_format" use="required" />
             </xs:extension>
         </xs:simpleContent>
-            
+
     </xs:complexType>
-    
-    
+
+
 
 
     <!--######################################################################-->
@@ -1224,7 +1254,7 @@
     <xs:element name="deactivate"   type="aos:change_deactivate"    substitutionGroup="aos:change" />
     <xs:element name="switch"       type="aos:change_switch"        substitutionGroup="aos:change" />
     <xs:element name="transform"    type="aos:change_transform"     substitutionGroup="aos:change" />
-    
+
     <xs:complexType name="list_change" >
         <xs:annotation>
             <xs:documentation>List of changes.</xs:documentation>
@@ -1403,7 +1433,7 @@
     <xs:element name="input"        type="aos:event_input"  substitutionGroup="aos:event" />
     <xs:element name="signal"       type="aos:event_signal" substitutionGroup="aos:event" />
     <xs:element name="selection"    type="aos:event_selection"  substitutionGroup="aos:event" />
-    
+
     <xs:simpleType name="event_type" >
         <xs:annotation>
             <xs:documentation>Types of events.</xs:documentation>
