@@ -38,7 +38,7 @@
                 Might be a percentile value of the whole stream or an absolute time in seconds/
             </xs:documentation>
         </xs:annotation>
-        <xs:union memberTypes="aos:stream_time_unit aos:percent_value" />
+        <xs:union memberTypes="aos:time_unit aos:percent_value" />
     </xs:simpleType>
 
     <xs:simpleType name="percent_value" >
@@ -50,9 +50,9 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="stream_time_unit">
+    <xs:simpleType name="time_unit">
         <xs:annotation>
-            <xs:documentation>Seconds in a stream</xs:documentation>
+            <xs:documentation>Time in seconds.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:double" />
 
@@ -278,6 +278,28 @@
         <xs:attribute name="name" type="aos:name"  use="required" />
     </xs:complexType>
 
+    <xs:simpleType name="control" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="user" />
+            <xs:enumeration value="none" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="activation" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="reset" />
+            <xs:enumeration value="continue" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="script" mixed="true" >
+        <xs:attribute name="lang" type="aos:name" use="required" />
+        <xs:attribute name="activation" type="aos:activation" default="reset" />
+        <xs:attribute name="loop" type="xs:boolean" default="false" />
+        <xs:attribute name="interval" type="aos:time_unit" default="0" />
+        <xs:attribute name="source" type="xs:anyURI" use="optional" />
+    </xs:complexType>
 
 
     <!--##### Root Objects #############################################################-->
@@ -437,7 +459,7 @@
             <xs:element name="properties" type="aos:property" >
                 <xs:annotation>
                     <xs:documentation>
-                    Initial custom properties available through the playing of this Sequence.
+                        Initial custom properties available through the playing of this Sequence.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -779,7 +801,7 @@
                     <xs:documentation></xs:documentation>
                 </xs:annotation>
             </xs:element>
-            
+
             <xs:element name="extension" type="aos:extension" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Interpreter-related additional informations.</xs:documentation>
@@ -800,6 +822,7 @@
     </xs:group>
 
     <xs:complexType name="properties_stream_object">
+
         <xs:annotation>
             <xs:documentation>
                 Stream object representation. Compose objects with stream behaviour.
@@ -830,7 +853,7 @@
             </xs:annotation>
         </xs:attribute>
 
-        <xs:attribute name="control" type="aos:stream_control" default="none" >
+        <xs:attribute name="control" type="aos:control" default="none" >
             <xs:annotation>
                 <xs:documentation>
                     Tells if the stream should be controllable by the user,
@@ -839,7 +862,7 @@
             </xs:annotation>
         </xs:attribute>
 
-        <xs:attribute name="activation" type="aos:stream_activation" default="reset" >
+        <xs:attribute name="activation" type="aos:activation" default="reset" >
             <xs:annotation>
                 <xs:documentation>
                     Tells if the stream will be reset at each activation,
@@ -850,19 +873,6 @@
 
     </xs:complexType>
 
-    <xs:simpleType name="stream_control" >
-        <xs:restriction base="xs:string" >
-            <xs:enumeration value="user" />
-            <xs:enumeration value="none" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="stream_activation" >
-        <xs:restriction base="xs:string" >
-            <xs:enumeration value="reset" />
-            <xs:enumeration value="continue" />
-        </xs:restriction>
-    </xs:simpleType>
 
 
     <xs:complexType name="properties_graphic_object">
@@ -893,6 +903,10 @@
                 Interactive object representation. Compose objects with interractive behaviour.
             </xs:documentation>
         </xs:annotation>
+
+        <xs:sequence>
+            <xs:element name="script" type="aos:script" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
 
     </xs:complexType>
 
@@ -1110,6 +1124,15 @@
                 </xs:annotation>
             </xs:element>
 
+            <xs:element name="script" type="aos:script" minOccurs="0" >
+                <xs:annotation>
+                    <xs:documentation>
+                        Script to execute when we reach this stage.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+
             <xs:element name="extension" type="aos:extension" minOccurs="0" >
                 <xs:annotation>
                     <xs:documentation>Interpreter-related additional informations.</xs:documentation>
@@ -1190,13 +1213,14 @@
 
     </xs:complexType>
 
-    <!--TODO : review this, I think it's fucked up-->
+
     <xs:group name="group_change_extensions">
         <xs:sequence>
-            <xs:choice>
-                <xs:element name="effects" type="aos:list_effect" minOccurs="0" />
-                <xs:element name="extension" type="aos:extension" minOccurs="0" />
-            </xs:choice>
+
+            <xs:element name="effects" type="aos:list_effect" minOccurs="0" maxOccurs="1" />
+            <xs:element name="script" type="aos:script" minOccurs="0" maxOccurs="1" />
+            <xs:element name="extension" type="aos:extension" minOccurs="0" maxOccurs="1" />
+
         </xs:sequence>
     </xs:group>
 

@@ -1,21 +1,10 @@
 ﻿Changes to AOSL 1.0 Draft-2 :
 -----------------------------
 
-    1.3. remove "types names" infos - no need?
     
 
-2. allow custom properties
-    2.1. <property> object type : composite
-    2.2. allow <property> a object in <object> that needs custom informations
     
-3. <text>
-    3.1. Define basic simplist <text> that have is visual 
-    3.2. Define basic properties, allow extension of those
     
-4. Split <object> objects into mixins of:
-    4.3. interactive properties (run, etc.)
-        - scripts
-    4.4. combine those to create new <object> subtypes without any inheritance 
     
 5. Scripts
     5.1. Create <script> object type.
@@ -44,7 +33,9 @@ Default :
     z( origin=surface, positive=forward )
     
     
-
+ 9. Fix Objects :
+    9.1. The object's resources have to be forced for almost all object types
+    9.2. Maybe have a separate element type for object groups? or only for sprites? Or any other solution?
 
 UPDATE COMMENTS AND ANNOTATIONS!!!
 
@@ -53,6 +44,16 @@ UPDATE COMMENTS AND ANNOTATIONS!!!
 1. no inheritance:
     1.1. <object> sub types
     1.2. <change> sub types
+    1.3. remove "types names" infos - no need?
+
+2. allow custom properties
+    2.1. <property> object type : composite
+    2.2. allow <property> a object in <object> that needs custom informations
+
+3. <text>
+    3.1. Define basic simplist <text> that have is visual 
+    3.2. Define basic properties, allow extension of those
+
 
     4.1. graphical properties
         - target space/area/box
@@ -63,3 +64,7 @@ UPDATE COMMENTS AND ANNOTATIONS!!!
         - control : user or none?
         - loop?
         - activation : reset or continue?
+4. Split <object> objects into mixins of:
+    4.3. interactive properties (run, etc.)
+        - scripts
+    4.4. combine those to create new <object> subtypes without any inheritance 
