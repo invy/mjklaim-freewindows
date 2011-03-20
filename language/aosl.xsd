@@ -293,7 +293,7 @@
     </xs:simpleType>
 
 
-    <xs:complexType name="script" mixed="true" >
+    <xs:complexType name="script" mixed="true"  >
         <xs:attribute name="lang" type="aos:name" use="required" />
         <xs:attribute name="activation" type="aos:activation" default="reset" />
         <xs:attribute name="loop" type="xs:boolean" default="false" />
@@ -456,7 +456,7 @@
 
         <xs:all minOccurs="1" >
 
-            <xs:element name="properties" type="aos:property" >
+            <xs:element name="properties" type="aos:property" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         Initial custom properties available through the playing of this Sequence.
@@ -926,7 +926,7 @@
     <xs:simpleType name="text_format">
         <xs:union memberTypes="aos:text_format_generic aos:text_format_specific" />
     </xs:simpleType>
-
+    
     <xs:complexType name="text_inline" mixed="true" >
         <xs:annotation>
             <xs:documentation>
