@@ -1,14 +1,6 @@
 ﻿Changes to AOSL 1.0 Draft-2 :
 -----------------------------
 
-    
-
-    
-    
-    
-5. Scripts
-    5.1. Create <script> object type.
-    5.2. Add <script> in relevant objects.
         
 6. Add tests!
     5.1. basic tests for each feature?
@@ -68,3 +60,7 @@ UPDATE COMMENTS AND ANNOTATIONS!!!
     4.3. interactive properties (run, etc.)
         - scripts
     4.4. combine those to create new <object> subtypes without any inheritance 
+
+5. Scripts
+    5.1. Create <script> object type.
+    5.2. Add <script> in relevant objects.
