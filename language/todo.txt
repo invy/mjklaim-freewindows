@@ -31,6 +31,8 @@ Default :
 
 UPDATE COMMENTS AND ANNOTATIONS!!!
 
+ 10. Generate documentation.
+
 ------- DONE : -----------------------------------------------------------------------------
 
 1. no inheritance:
