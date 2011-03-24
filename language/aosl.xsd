@@ -115,11 +115,11 @@
             <xs:documentation>Vector of space units used for spatial representations.</xs:documentation>
         </xs:annotation>
 
-        <xs:all>
+        <xs:sequence>
             <xs:element name="x" type="aos:space_unit" default="0.0" minOccurs="0" />
             <xs:element name="y" type="aos:space_unit" default="0.0" minOccurs="0" />
             <xs:element name="z" type="aos:space_unit" default="0.0" minOccurs="0" />
-        </xs:all>
+        </xs:sequence>
 
     </xs:complexType>
 
@@ -241,6 +241,85 @@
 
     </xs:simpleType>
 
+    <xs:simpleType name="axis_origin_x" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="left" />
+            <xs:enumeration value="right" />
+            <xs:enumeration value="center" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="axis_positive_x" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="left" />
+            <xs:enumeration value="right" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="axis_x">
+        <xs:attribute name="origin" type="aos:axis_origin_x" default="left" />
+        <xs:attribute name="positive" type="aos:axis_positive_x" default="right" />
+    </xs:complexType>
+
+    <xs:simpleType name="axis_origin_y" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="top" />
+            <xs:enumeration value="bottom" />
+            <xs:enumeration value="center" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="axis_positive_y" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="up" />
+            <xs:enumeration value="down" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="axis_y">
+        <xs:attribute name="origin" type="aos:axis_origin_y" default="top" />
+        <xs:attribute name="positive" type="aos:axis_positive_y" default="down" />
+    </xs:complexType>
+
+    <xs:simpleType name="axis_origin_z" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="surface" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="axis_positive_z" >
+        <xs:restriction base="xs:string" >
+            <xs:enumeration value="forward" />
+            <xs:enumeration value="backward" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="axis_z">
+        <xs:attribute name="origin" type="aos:axis_origin_z" default="surface"  />
+        <xs:attribute name="positive" type="aos:axis_positive_z" default="backward" />
+    </xs:complexType>
+
+    <xs:complexType name="coordinate_system" final="#all">
+
+        <xs:sequence >
+            <xs:element name="xaxis" type="aos:axis_x" />
+            <xs:element name="yaxis" type="aos:axis_y" />
+            <xs:element name="zaxis" type="aos:axis_z" />
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:element name="default_coordinate_system" type="aos:coordinate_system" />
+
+    <xs:complexType name="graphic_area">
+        <xs:complexContent>
+            <xs:extension base="aos:vector">
+                <xs:sequence>
+                    <xs:element name="system" type="aos:coordinate_system" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
 
     <xs:simpleType name="source_uri">
         <xs:annotation>
@@ -341,11 +420,7 @@
 
         </xs:all>
 
-        <xs:attribute name="angles" type="aos:angle_type" default="degree" >
-            <xs:annotation>
-                <xs:documentation>Angle type used for all angle values where default angle type is used or no type is specified.</xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
+
 
     </xs:complexType>
 
@@ -422,7 +497,7 @@
 
         <xs:all>
 
-            <xs:element name="area" type="aos:vector" minOccurs="1" >
+            <xs:element name="area" type="aos:graphic_area" minOccurs="1" >
                 <xs:annotation>
                     <xs:documentation>Virtual dimensions of the canvas (used as referential for all coordinates/sizes : the final display could be bigger or lower).</xs:documentation>
                 </xs:annotation>
@@ -441,6 +516,12 @@
             </xs:element>
 
         </xs:all>
+
+        <xs:attribute name="angles" type="aos:angle_type" default="degree" >
+            <xs:annotation>
+                <xs:documentation>Angle type used for all angle values where default angle type is used or no type is specified.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
 
     </xs:complexType>
 
@@ -926,7 +1007,7 @@
     <xs:simpleType name="text_format">
         <xs:union memberTypes="aos:text_format_generic aos:text_format_specific" />
     </xs:simpleType>
-    
+
     <xs:complexType name="text_inline" mixed="true" >
         <xs:annotation>
             <xs:documentation>
