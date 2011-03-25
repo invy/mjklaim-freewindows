@@ -26,10 +26,10 @@
 
 #ifdef AOSLCPP_SOURCE
 ///Import / Export of dynamic lib functions/classes
-#define AOSLCPP_API AOSCPP_DllExport
+#define AOSLCPP_API AOSLCPP_DllExport
 #else
 ///Import / Export of dynamic lib functions/classes
-#define AOSLCPP_API AOSCPP_DllImport
+#define AOSLCPP_API AOSLCPP_DllExport
 #endif
 
 #endif
