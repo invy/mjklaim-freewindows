@@ -29,7 +29,7 @@
 #define AOSLCPP_API AOSLCPP_DllExport
 #else
 ///Import / Export of dynamic lib functions/classes
-#define AOSLCPP_API AOSLCPP_DllExport
+#define AOSLCPP_API AOSLCPP_DllImport
 #endif
 
 #endif
