@@ -6,11 +6,15 @@
     5.1. basic tests for each feature?
     5.2. A (full) demo sequence using all features together.
   
+
  
 
 UPDATE COMMENTS AND ANNOTATIONS!!!
 
  10. Generate documentation.
+ 
+ 11. Find a way to have only one root object, if possible.
+
 
 ------- DONE : -----------------------------------------------------------------------------
 

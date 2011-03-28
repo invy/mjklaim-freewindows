@@ -35,7 +35,7 @@
         <xs:annotation>
             <xs:documentation>
                 Unit to define a point or a length in the stream.
-                Might be a percentile value of the whole stream or an absolute time in seconds/
+                Might be a percentile value of the whole stream or an absolute time in seconds.
             </xs:documentation>
         </xs:annotation>
         <xs:union memberTypes="aos:time_unit aos:percent_value" />
@@ -45,15 +45,18 @@
         <xs:annotation>
             <xs:documentation>Relative percentile value.</xs:documentation>
         </xs:annotation>
+        
         <xs:restriction base="xs:string">
             <xs:pattern value="\d(.\d*)*%" />
         </xs:restriction>
+        
     </xs:simpleType>
 
     <xs:simpleType name="time_unit">
         <xs:annotation>
-            <xs:documentation>Time in seconds.</xs:documentation>
+            <xs:documentation>Time value in seconds.</xs:documentation>
         </xs:annotation>
+        
         <xs:restriction base="xs:double" />
 
     </xs:simpleType>
@@ -67,9 +70,7 @@
             </xs:documentation>
         </xs:annotation>
 
-        <xs:restriction base="xs:double" >
-            
-        </xs:restriction>
+        <xs:restriction base="xs:double" />
         
     </xs:simpleType>
 
@@ -94,7 +95,7 @@
 
             <xs:enumeration value="default" >
                 <xs:annotation>
-                    <xs:documentation>Angle using the sequence-wide default angle type.</xs:documentation>
+                    <xs:documentation>Angle using the canvas-wide default angle type.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
@@ -107,12 +108,6 @@
             <xs:documentation>Vector of space units used for spatial representations.</xs:documentation>
         </xs:annotation>
 
-        <!--<xs:sequence>
-            <xs:element name="x" type="aos:space_unit" default="0.0" minOccurs="0" />
-            <xs:element name="y" type="aos:space_unit" default="0.0" minOccurs="0" />
-            <xs:element name="z" type="aos:space_unit" default="0.0" minOccurs="0" />
-        </xs:sequence>-->
-        
         <xs:attribute name="x" type="aos:space_unit" default="0.0" />
         <xs:attribute name="y" type="aos:space_unit" default="0.0" />
         <xs:attribute name="z" type="aos:space_unit" default="0.0" />
@@ -123,38 +118,57 @@
         <xs:annotation>
             <xs:documentation>Rotation representation. </xs:documentation>
         </xs:annotation>
-        <!--<xs:all>
-            <xs:element name="yaw" type="aos:angle" default="0.0" minOccurs="0" />
-            <xs:element name="pitch" type="aos:angle" default="0.0" minOccurs="0" />
-            <xs:element name="roll" type="aos:angle" default="0.0" minOccurs="0" />
-        </xs:all>-->
-
+        
         <xs:attribute name="yaw" type="aos:angle" default="0.0" />
         <xs:attribute name="pitch" type="aos:angle" default="0.0" />
         <xs:attribute name="roll" type="aos:angle" default="0.0" />
 
     </xs:complexType>
 
-
     <xs:complexType name="position">
         <xs:annotation>
             <xs:documentation> A position in canvas space.</xs:documentation>
         </xs:annotation>
+
         <xs:complexContent>
             <xs:extension base="aos:vector" />
         </xs:complexContent>
+        
     </xs:complexType>
 
     <xs:complexType name="box">
         <xs:annotation>
             <xs:documentation>Box in canvas space.</xs:documentation>
         </xs:annotation>
+        
         <xs:all>
-            <xs:element name="position" type="aos:position" />
-            <xs:element name="size" type="aos:vector" />
-            <xs:element name="center" type="aos:position" />
-            <xs:element name="orientation" type="aos:rotation" />
+            
+            <xs:element name="position" type="aos:position">
+                <xs:annotation>
+                    <xs:documentation>Position of the box's origin in canvas space.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <xs:element name="size" type="aos:vector" >
+                <xs:annotation>
+                    <xs:documentation>Size of the box.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="center" type="aos:position" >
+                <xs:annotation>
+                    <xs:documentation>Center of the rotation applied to this box, in box space.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="orientation" type="aos:rotation" >
+                <xs:annotation>
+                    <xs:documentation>Orientation of the box. The rotation is relative to the center of the box.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
         </xs:all>
+        
     </xs:complexType>
 
     <xs:complexType name="translation">
