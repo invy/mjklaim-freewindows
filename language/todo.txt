@@ -6,7 +6,7 @@
     5.1. basic tests for each feature?
     5.2. A (full) demo sequence using all features together.
   
-7. Check that it's not possible to pass vectors to attributes instead of objects 
+
     
  9. Fix Objects :
     9.1. The object's resources have to be forced for almost all object types
@@ -49,6 +49,8 @@ UPDATE COMMENTS AND ANNOTATIONS!!!
 5. Scripts
     5.1. Create <script> object type.
     5.2. Add <script> in relevant objects.
+
+7. Check that it's not possible to pass vectors to attributes instead of objects 
 
 8. Add coordinate system information (or define one).
   - x :
