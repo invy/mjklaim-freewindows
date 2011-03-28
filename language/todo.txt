@@ -6,11 +6,7 @@
     5.1. basic tests for each feature?
     5.2. A (full) demo sequence using all features together.
   
-
-    
- 9. Fix Objects :
-    9.1. The object's resources have to be forced for almost all object types
-    9.2. Maybe have a separate element type for object groups? or only for sprites? Or any other solution?
+ 
 
 UPDATE COMMENTS AND ANNOTATIONS!!!
 
@@ -67,3 +63,7 @@ Default :
     x( origin=left, positive=right )
     y( origin=top, positive=down )
     z( origin=surface, positive=forward )
+
+9. Fix Objects :
+    9.1. The object's resources have to be forced for almost all object types  - NO! Group system.
+    9.2. Maybe have a separate element type for object groups? or only for sprites? Or any other solution? - NO! Let the user choose the relationships!
