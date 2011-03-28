@@ -175,18 +175,22 @@
         <xs:annotation>
             <xs:documentation>Translation representation.</xs:documentation>
         </xs:annotation>
+        
         <xs:complexContent>
             <xs:extension base="aos:vector" />
         </xs:complexContent>
+
     </xs:complexType>
 
     <xs:complexType name="scale">
         <xs:annotation>
             <xs:documentation>Scale representation.</xs:documentation>
         </xs:annotation>
+        
         <xs:complexContent>
             <xs:extension base="aos:vector" />
         </xs:complexContent>
+        
     </xs:complexType>
 
     <xs:complexType name="transformation">
@@ -225,8 +229,9 @@
         <xs:attribute name="referential" type="aos:referential" default="relative" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    The referential says if the transformation is applied to the current object's position
-                    or is done on the origin and should be set as the new position of the object.
+                    The referential says if :
+                     1. the transformation is applied to the current object's position
+                     2. OR is done on the origin and should be set as the new position of the object.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -257,6 +262,7 @@
     </xs:simpleType>
 
     <xs:simpleType name="axis_origin_x" >
+        
         <xs:restriction base="xs:string" >
             <xs:enumeration value="left" />
             <xs:enumeration value="right" />
