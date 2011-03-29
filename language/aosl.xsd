@@ -195,32 +195,32 @@
 
     <xs:complexType name="transformation">
         <xs:annotation>
-            <xs:documentation>Geometric transformation in canvas space. The referential says if it's a transformation or a position set.</xs:documentation>
+            <xs:documentation>Geometric transformation in canvas space. The referential says if it's absolute or relative to the original object position.</xs:documentation>
         </xs:annotation>
 
         <xs:all>
 
             <xs:element name="translation" type="aos:translation" minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation>Translation to apply or final position.</xs:documentation>
+                    <xs:documentation>Translation to apply.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="scale" type="aos:scale"  minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation>Scale to apply or to set.</xs:documentation>
+                    <xs:documentation>Scale to apply.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="rotation" type="aos:rotation"  minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation>Rotation to apply or orientation to set.</xs:documentation>
+                    <xs:documentation>Rotation to apply, relative to the center point.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="center" type="aos:position" minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation>Center point to use.</xs:documentation>
+                    <xs:documentation>Center point in object space to used to apply rotations.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -229,8 +229,7 @@
         <xs:attribute name="referential" type="aos:referential" default="relative" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    The referential says if :
-                     1. the transformation is applied to the current object's position
+                    The referential says if the transformation is applied to the current object's position
                      2. OR is done on the origin and should be set as the new position of the object.
                 </xs:documentation>
             </xs:annotation>
@@ -457,29 +456,61 @@
     </xs:complexType>
 
     <xs:complexType name="coordinate_system" final="#all">
-
+        <xs:annotation>
+            <xs:documentation>
+                Coordinate system configuration for graphic space.
+            </xs:documentation>
+        </xs:annotation>
+        
         <xs:sequence >
-            <xs:element name="xaxis" type="aos:axis_x" />
-            <xs:element name="yaxis" type="aos:axis_y" />
-            <xs:element name="zaxis" type="aos:axis_z" />
+
+            <xs:element name="xaxis" type="aos:axis_x">
+                <xs:annotation>
+                    <xs:documentation>Configuration of the horizontal x-axis.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="yaxis" type="aos:axis_y">
+                <xs:annotation>
+                    <xs:documentation>Configuration of the vertical y-axis.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="zaxis" type="aos:axis_z">
+                <xs:annotation>
+                    <xs:documentation>Configuration of the depth z-axis.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
         </xs:sequence>
 
     </xs:complexType>
 
 
     <xs:complexType name="graphic_area">
+        <xs:annotation>
+            <xs:documentation>Configuration of a finite graphic space area.</xs:documentation>
+        </xs:annotation>
+        
         <xs:complexContent>
             <xs:extension base="aos:vector">
+                
                 <xs:sequence>
-                    <xs:element name="system" type="aos:coordinate_system" minOccurs="0" />
+                    <xs:element name="system" type="aos:coordinate_system" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Coordinate system to use in this graphic space.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                 </xs:sequence>
+                
             </xs:extension>
         </xs:complexContent>
+        
     </xs:complexType>
 
     <xs:simpleType name="source_uri">
         <xs:annotation>
-            <xs:documentation>URI of a resource: local file, url, etc.</xs:documentation>
+            <xs:documentation>URI of a resource: local file, http accessed file, etc.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:anyURI" />
     </xs:simpleType>
