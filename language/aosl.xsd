@@ -516,10 +516,9 @@
     </xs:simpleType>
 
 
-
     <xs:complexType name="extension" mixed="true" >
         <xs:annotation>
-            <xs:documentation>Free space of the language that allow for extension to add player-specific informations or new non-standard language features.</xs:documentation>
+            <xs:documentation>Free node that allow for extension to add player-specific informations or new non-standard language features.</xs:documentation>
         </xs:annotation>
 
         <xs:sequence>
@@ -531,27 +530,53 @@
     </xs:complexType>
 
     <xs:simpleType name="name">
+        <xs:annotation>
+            <xs:documentation>Type for allowed names' syntax.</xs:documentation>
+        </xs:annotation>
+        
         <xs:restriction base="xs:string">
             <xs:pattern value="([a-zA-Z0-9_])+" />
         </xs:restriction>
+        
     </xs:simpleType>
 
-    <xs:complexType name="property" mixed="true" >
+    <xs:complexType name="property" mixed="true" final="#all" >
+        <xs:annotation>
+            <xs:documentation>
+                Properties are key/value informations that can be organized in tree structures.
+                They are used to embedd hierarchical custom data in objects.
+                Properties can contain a value and other properties.
+            </xs:documentation>
+        </xs:annotation>
+        
         <xs:sequence>
-            <xs:element name="property" type="aos:property" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="property" type="aos:property" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>A child property of this property.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
 
-        <xs:attribute name="name" type="aos:name"  use="required" />
+        <xs:attribute name="name" type="aos:name"  use="required">
+            <xs:annotation>
+                <xs:documentation>Name of this property instance.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
     </xs:complexType>
 
-    <xs:simpleType name="control" >
+    <xs:simpleType name="control" final="#all" >
+        <xs:annotation>
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+        
         <xs:restriction base="xs:string" >
             <xs:enumeration value="user" />
             <xs:enumeration value="none" />
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="activation" >
+    <xs:simpleType name="activation" final="#all" >
         <xs:restriction base="xs:string" >
             <xs:enumeration value="reset" />
             <xs:enumeration value="continue" />
