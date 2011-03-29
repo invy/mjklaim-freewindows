@@ -261,63 +261,199 @@
 
     </xs:simpleType>
 
-    <xs:simpleType name="axis_origin_x" >
+    <xs:simpleType name="axis_origin_x" final="#all">
+        <xs:annotation>
+            <xs:documentation>Position of the horizontal x-axis origin in graphic space.</xs:documentation>
+        </xs:annotation>
         
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="left" />
-            <xs:enumeration value="right" />
-            <xs:enumeration value="center" />
+            
+            <xs:enumeration value="left" >
+                <xs:annotation>
+                    <xs:documentation>The origin of the x-axis is the left border of the display.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="right">
+                <xs:annotation>
+                    <xs:documentation>The origin of the x-axis is the right border of the display.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="center" >
+                <xs:annotation>
+                    <xs:documentation>The origin of the x-axs is the horizontal center of the display.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="axis_positive_x" >
+    <xs:simpleType name="axis_positive_x" final="#all">
+        <xs:annotation>
+            <xs:documentation>The side of the x-axis where the x values are positive, relative to the origin point.</xs:documentation>
+        </xs:annotation>
+        
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="left" />
-            <xs:enumeration value="right" />
+
+            <xs:enumeration value="left" >
+                <xs:annotation>
+                    <xs:documentation>The x-axis positive values are on the left of the display from the origin point.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="right" >
+                <xs:annotation>
+                    <xs:documentation>The x-axis positive values are on the right of the display from the origin point.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="axis_x">
-        <xs:attribute name="origin" type="aos:axis_origin_x" default="left" />
-        <xs:attribute name="positive" type="aos:axis_positive_x" default="right" />
+    <xs:complexType name="axis_x" final="#all">
+        <xs:annotation>
+            <xs:documentation>Configuration of the horizontal x-axis.</xs:documentation>
+        </xs:annotation>
+
+        <xs:attribute name="origin" type="aos:axis_origin_x" default="left" >
+            <xs:annotation>
+                <xs:documentation>Position of the origin of the x-axis in the display.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="positive" type="aos:axis_positive_x" default="right" >
+            <xs:annotation>
+                <xs:documentation>Side of the display where the x values are positive, relative to the x-axis origin.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
     </xs:complexType>
 
-    <xs:simpleType name="axis_origin_y" >
+    <xs:simpleType name="axis_origin_y" final="#all">
+        <xs:annotation>
+            <xs:documentation>Position of the vertical y-axis origin in graphic space.</xs:documentation>
+        </xs:annotation>
+        
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="top" />
-            <xs:enumeration value="bottom" />
-            <xs:enumeration value="center" />
+            
+            <xs:enumeration value="top">
+                <xs:annotation>
+                    <xs:documentation>The origin of the y-axis is the top border of the display.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="bottom" >
+                <xs:annotation>
+                    <xs:documentation>The origin of the y-axis is the bottom border of the display.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="center" >
+                <xs:annotation>
+                    <xs:documentation>The origin of the y-axis is on the vertical center of the display.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="axis_positive_y" >
+    <xs:simpleType name="axis_positive_y" final="#all">
+        <xs:annotation>
+            <xs:documentation>The side of the y-axis where the y values are positive, relative to the origin point.</xs:documentation>
+        </xs:annotation>
+
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="up" />
-            <xs:enumeration value="down" />
+
+            <xs:enumeration value="up">
+                <xs:annotation>
+                    <xs:documentation>The y-axis positive values are on the upper side of the display from the origin point.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="down">
+                <xs:annotation>
+                    <xs:documentation>The y-axis positive values are on the downer side of the display from the origin point.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="axis_y">
-        <xs:attribute name="origin" type="aos:axis_origin_y" default="top" />
-        <xs:attribute name="positive" type="aos:axis_positive_y" default="down" />
+    <xs:complexType name="axis_y" final="#all">
+        <xs:annotation>
+            <xs:documentation>Configuration of the horizontal y-axis.</xs:documentation>
+        </xs:annotation>
+
+        <xs:attribute name="origin" type="aos:axis_origin_y" default="top" >
+            <xs:annotation>
+                <xs:documentation>Position of the origin of the y-axis in the display.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="positive" type="aos:axis_positive_y" default="down" >
+            <xs:annotation>
+                <xs:documentation>Side of the display where the y values are positive, relative to the y-axis origin.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
     </xs:complexType>
 
-    <xs:simpleType name="axis_origin_z" >
+    <xs:simpleType name="axis_origin_z" final="#all">
+        <xs:annotation>
+            <xs:documentation>Position of the depth z-axis origin in graphic space.</xs:documentation>
+        </xs:annotation>
+        
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="surface" />
+            
+            <xs:enumeration value="surface" >
+                <xs:annotation>
+                    <xs:documentation>The origin of the z-axis is the surface of the display.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="axis_positive_z" >
+    <xs:simpleType name="axis_positive_z" final="#all">
+        <xs:annotation>
+            <xs:documentation>The side of the z-axis where the z values are positive, relative to the origin point.</xs:documentation>
+        </xs:annotation>
+        
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="forward" />
-            <xs:enumeration value="backward" />
+
+            <xs:enumeration value="forward">
+                <xs:annotation>
+                    <xs:documentation>The z-axis positive values are forward to the display surface from the origin point.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="backward">
+                <xs:annotation>
+                    <xs:documentation>The z-axis positive values are backward to the display surface from the origin point.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="axis_z">
-        <xs:attribute name="origin" type="aos:axis_origin_z" default="surface"  />
-        <xs:attribute name="positive" type="aos:axis_positive_z" default="backward" />
+    <xs:complexType name="axis_z" final="#all">
+        <xs:annotation>
+            <xs:documentation>Configuration of the depth z-axis.</xs:documentation>
+        </xs:annotation>
+
+        <xs:attribute name="origin" type="aos:axis_origin_z" default="surface">
+            <xs:annotation>
+                <xs:documentation>Position of the origin of the z-axis in the display.</xs:documentation>
+            </xs:annotation>            
+        </xs:attribute>
+
+        <xs:attribute name="positive" type="aos:axis_positive_z" default="backward">
+            <xs:annotation>
+                <xs:documentation>Side of the display where the z values are positive, relative to the z-axis origin.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
     </xs:complexType>
 
     <xs:complexType name="coordinate_system" final="#all">
