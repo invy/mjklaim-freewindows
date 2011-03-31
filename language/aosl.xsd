@@ -20,7 +20,7 @@
            >
 
     <!--The root object for a Sequence.-->
-    <xs:element name="sequence" type="aos:sequence" />
+    <xs:element name="sequence" type="aos:sequence" abstract="false" nillable="false" />
 
     <!--##### Basic types #############################################################-->
 
@@ -1376,13 +1376,13 @@
 
     </xs:complexType>
 
-    <xs:element name="object" type="aos:object" />
-    <xs:element name="unknown" type="aos:object_unknown" substitutionGroup="aos:object" />
-    <xs:element name="sprite" type="aos:object_sprite" substitutionGroup="aos:object" />
-    <xs:element name="video" type="aos:object_video" substitutionGroup="aos:object" />
-    <xs:element name="audio" type="aos:object_audio" substitutionGroup="aos:object" />
-    <xs:element name="interactive" type="aos:object_interactive" substitutionGroup="aos:object" />
-    <xs:element name="text" type="aos:object_text" substitutionGroup="aos:object" />
+    <xs:element name="object"       type="aos:object"               abstract="true" />
+    <xs:element name="unknown"      type="aos:object_unknown"       abstract="true" substitutionGroup="aos:object" />
+    <xs:element name="sprite"       type="aos:object_sprite"        abstract="true" substitutionGroup="aos:object" />
+    <xs:element name="video"        type="aos:object_video"         abstract="true" substitutionGroup="aos:object" />
+    <xs:element name="audio"        type="aos:object_audio"         abstract="true" substitutionGroup="aos:object" />
+    <xs:element name="interactive"  type="aos:object_interactive"   abstract="true" substitutionGroup="aos:object" />
+    <xs:element name="text"         type="aos:object_text"          abstract="true" substitutionGroup="aos:object" />
 
     <xs:complexType name="list_object">
         <xs:annotation>
@@ -1681,11 +1681,11 @@
         <xs:union memberTypes="aos:change_type_generic aos:change_type_specific" />
     </xs:simpleType>
 
-    <xs:element name="change"       type="aos:change" />
-    <xs:element name="activate"     type="aos:change_activate"      substitutionGroup="aos:change" />
-    <xs:element name="deactivate"   type="aos:change_deactivate"    substitutionGroup="aos:change" />
-    <xs:element name="switch"       type="aos:change_switch"        substitutionGroup="aos:change" />
-    <xs:element name="transform"    type="aos:change_transform"     substitutionGroup="aos:change" />
+    <xs:element name="change"       type="aos:change"               abstract="true" />
+    <xs:element name="activate"     type="aos:change_activate"      abstract="true" substitutionGroup="aos:change" />
+    <xs:element name="deactivate"   type="aos:change_deactivate"    abstract="true" substitutionGroup="aos:change" />
+    <xs:element name="switch"       type="aos:change_switch"        abstract="true" substitutionGroup="aos:change" />
+    <xs:element name="transform"    type="aos:change_transform"     abstract="true" substitutionGroup="aos:change" />
 
     <xs:complexType name="list_change" >
         <xs:annotation>
@@ -1861,10 +1861,10 @@
 
     </xs:complexType>
 
-    <xs:element name="event"        type="aos:event" />
-    <xs:element name="input"        type="aos:event_input"  substitutionGroup="aos:event" />
-    <xs:element name="signal"       type="aos:event_signal" substitutionGroup="aos:event" />
-    <xs:element name="selection"    type="aos:event_selection"  substitutionGroup="aos:event" />
+    <xs:element name="event"        type="aos:event"            abstract="true" />
+    <xs:element name="input"        type="aos:event_input"      abstract="true" substitutionGroup="aos:event" />
+    <xs:element name="signal"       type="aos:event_signal"     abstract="true" substitutionGroup="aos:event" />
+    <xs:element name="selection"    type="aos:event_selection"  abstract="true" substitutionGroup="aos:event" />
 
     <xs:simpleType name="event_type" >
         <xs:annotation>
