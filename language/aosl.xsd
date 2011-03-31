@@ -819,9 +819,13 @@
                         Each coordinate will be interpreted as the space to take on each axis, x and y being the surface of the screen.
                         The coordinate system ("screen-coordinate" by default) will define the way the space is related to the display surface
                         of the canvas.
+                        
                         The x and y informations will also allow the player to understand:
                          - the original screen ratio for the sequence
-                         - the original
+                         - the original screen resolution the sequence targeted
+                        
+                        Those informations will allow the player implementation to adapt the sequence to the 
+                        display in a more informed way.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
