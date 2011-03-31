@@ -118,16 +118,30 @@
         <xs:annotation>
             <xs:documentation>Rotation representation. </xs:documentation>
         </xs:annotation>
-        
-        <xs:attribute name="yaw" type="aos:angle" default="0.0" />
-        <xs:attribute name="pitch" type="aos:angle" default="0.0" />
-        <xs:attribute name="roll" type="aos:angle" default="0.0" />
+
+        <xs:attribute name="yaw" type="aos:angle" default="0.0">
+            <xs:annotation>
+                <xs:documentation>Rotation angle aroun the x-axis.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="pitch" type="aos:angle" default="0.0">
+            <xs:annotation>
+                <xs:documentation>Rotation angle aroun the y-axis.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="roll" type="aos:angle" default="0.0">
+            <xs:annotation>
+                <xs:documentation>Rotation angle aroun the z-axis.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
 
     </xs:complexType>
 
     <xs:complexType name="position">
         <xs:annotation>
-            <xs:documentation> A position in canvas space.</xs:documentation>
+            <xs:documentation>A position in graphic space.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -138,7 +152,7 @@
 
     <xs:complexType name="box">
         <xs:annotation>
-            <xs:documentation>Box in canvas space.</xs:documentation>
+            <xs:documentation>Box in graphic space.</xs:documentation>
         </xs:annotation>
         
         <xs:all>
@@ -173,7 +187,7 @@
 
     <xs:complexType name="translation">
         <xs:annotation>
-            <xs:documentation>Translation representation.</xs:documentation>
+            <xs:documentation>Translation representation in graphic space.</xs:documentation>
         </xs:annotation>
         
         <xs:complexContent>
@@ -195,7 +209,7 @@
 
     <xs:complexType name="transformation">
         <xs:annotation>
-            <xs:documentation>Geometric transformation in canvas space. The referential says if it's absolute or relative to the original object position.</xs:documentation>
+            <xs:documentation>Geometric transformation in graphic space. The referential says if it's absolute or relative to the original object position.</xs:documentation>
         </xs:annotation>
 
         <xs:all>
@@ -230,7 +244,7 @@
             <xs:annotation>
                 <xs:documentation>
                     The referential says if the transformation is applied to the current object's position
-                     2. OR is done on the origin and should be set as the new position of the object.
+                     OR is done on the origin and should be set as the new position of the object.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -518,7 +532,7 @@
 
     <xs:complexType name="extension" mixed="true" >
         <xs:annotation>
-            <xs:documentation>Free node that allow for extension to add player-specific informations or new non-standard language features.</xs:documentation>
+            <xs:documentation>Free node that allow for extension to add interpreter-specific informations or new non-standard language features.</xs:documentation>
         </xs:annotation>
 
         <xs:sequence>
@@ -567,29 +581,112 @@
 
     <xs:simpleType name="control" final="#all" >
         <xs:annotation>
-            <xs:documentation></xs:documentation>
+            <xs:documentation>Specification of the source of control of an object.</xs:documentation>
         </xs:annotation>
         
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="user" />
-            <xs:enumeration value="none" />
+
+            <xs:enumeration value="user">
+                <xs:annotation>
+                    <xs:documentation>The player's user will control the object. </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="none">
+                <xs:annotation>
+                    <xs:documentation>No control will be given.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+                
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="activation" final="#all" >
+        <xs:annotation>
+            <xs:documentation>Define what should happen when an object get activated.</xs:documentation>            
+        </xs:annotation>
+        
         <xs:restriction base="xs:string" >
-            <xs:enumeration value="reset" />
-            <xs:enumeration value="continue" />
+
+            <xs:enumeration value="reset">
+                <xs:annotation>
+                    <xs:documentation>The object should reset to it's original state before activation.</xs:documentation>
+                </xs:annotation>    
+            </xs:enumeration>
+
+            <xs:enumeration value="continue">
+                <xs:annotation>
+                    <xs:documentation>The object should continue with it's current/last state on activation.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
 
     <xs:complexType name="script" mixed="true"  >
-        <xs:attribute name="lang" type="aos:name" use="required" />
-        <xs:attribute name="activation" type="aos:activation" default="reset" />
-        <xs:attribute name="loop" type="xs:boolean" default="false" />
-        <xs:attribute name="interval" type="aos:time_unit" default="0" />
-        <xs:attribute name="source" type="xs:anyURI" use="optional" />
+        <xs:annotation>
+            <xs:documentation>
+                A script is code that will be executed when the script's owner get activated.
+                No specific language is required but if the player don't know the script's language it
+                will simply ignore it. That make scripts mostly player-specific.
+                <br/>
+                That said, choice of a default language might occur in a future version of this language.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:attribute name="lang" type="aos:name" use="required" >
+            <xs:annotation>
+                <xs:documentation>
+                    Identifier of the scripting language used.
+                    If the player don't recognize this identifier, it should ignore the whole script.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="activation" type="aos:activation" default="reset">
+            <xs:annotation>
+                <xs:documentation>
+                    Define what should happen when an object get activated :
+                     - reset : all the script's environnement and variables will be reset;
+                     - continue : the script's environnement will be saved 
+                        and the execution process be paused on deactivation and resumed on future activation;
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="loop" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    A looping script will execute it's code to the end then come back to the first instruction,
+                    without only the interval time between each whole script execution.
+                    Looping allow a script to be executed on a regular time frequency, making it
+                    non-blocking.
+                </xs:documentation>
+            </xs:annotation>    
+        </xs:attribute>
+
+        <xs:attribute name="interval" type="aos:time_unit" default="0">
+            <xs:annotation>
+                <xs:documentation>
+                    Time interval between each script execution.
+                    This interval will be effective only if the script is looping.
+                    The first execution don't take account of the interval and should be immediate
+                    when the script is activated.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="source" type="xs:anyURI" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    URI to a script file or other source.
+                    The source's code will be inserted before this script element's code.
+                    Therefore, if this script element don't have inner code but just a source,
+                    only the source script code will be the executed.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
     </xs:complexType>
 
 
