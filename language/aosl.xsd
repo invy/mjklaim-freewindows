@@ -1320,51 +1320,7 @@
 
     </xs:complexType>
 
-    <xs:simpleType name="text_format_generic">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="raw" />
-            <xs:enumeration value="html" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="text_format_specific">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[!]([a-zA-Z0-9_])+" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="text_format">
-        <xs:union memberTypes="aos:text_format_generic aos:text_format_specific" />
-    </xs:simpleType>
-
-    <xs:complexType name="text_inline" mixed="true" >
-        <xs:annotation>
-            <xs:documentation>
-                Text data
-            </xs:documentation>
-        </xs:annotation>
-
-
-        <xs:attribute name="format" type="aos:text_format" use="required" />
-
-    </xs:complexType>
-
-    <xs:complexType name="text_include" mixed="true">
-
-        <xs:simpleContent>
-            <xs:annotation>
-                <xs:documentation>URI where is located the file containing the informations of the library.</xs:documentation>
-            </xs:annotation>
-            <xs:extension base="aos:source_uri">
-                <xs:attribute name="format" type="aos:text_format" use="required" />
-            </xs:extension>
-        </xs:simpleContent>
-
-    </xs:complexType>
-
-
-
-
+    
     <!--######################################################################-->
 
 
@@ -1384,7 +1340,6 @@
     <xs:element name="video"        type="aos:object_video"         substitutionGroup="aos:object" />
     <xs:element name="audio"        type="aos:object_audio"         substitutionGroup="aos:object" />
     <xs:element name="interactive"  type="aos:object_interactive"   substitutionGroup="aos:object" />
-    <xs:element name="text"         type="aos:object_text"          substitutionGroup="aos:object" />
 
     <xs:complexType name="list_object">
         <xs:annotation>
@@ -1493,26 +1448,7 @@
 
     </xs:complexType>
 
-    <xs:complexType name="object_text" final="#all">
-        <xs:annotation>
-            <xs:documentation>
-                A text block.
-            </xs:documentation>
-        </xs:annotation>
-
-        <xs:complexContent>
-            <xs:extension base="aos:object" >
-
-                <xs:sequence>
-                    <xs:element name="graphic" type="aos:properties_graphic_object" minOccurs="1" maxOccurs="1" />
-                    <xs:element name="source" type="aos:text_inline" minOccurs="0" maxOccurs="1" />
-                </xs:sequence>
-
-            </xs:extension>
-        </xs:complexContent>
-
-    </xs:complexType>
-
+    
     <!--##### Thread Objects #############################################################-->
 
     <xs:complexType name="stage" final="#all" >
