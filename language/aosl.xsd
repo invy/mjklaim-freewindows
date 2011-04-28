@@ -832,7 +832,7 @@
 
             <xs:element name="layers" type="aos:list_layer" minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>Layers used in this canvas.</xs:documentation>
+                    <xs:documentation>Layers available in this canvas.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -905,32 +905,32 @@
 
     <xs:complexType name="author">
         <xs:annotation>
-            <xs:documentation>Informations about the author(s) of the sequence.</xs:documentation>
+            <xs:documentation>Informations about an author.</xs:documentation>
         </xs:annotation>
 
         <xs:all>
 
             <xs:element name="name" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Name of the author(s).</xs:documentation>
+                    <xs:documentation>Name of the author.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="about" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Description of the author(s).</xs:documentation>
+                    <xs:documentation>Description of the author or what he/she did in the sequence.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="comments" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Comments from the author(s).</xs:documentation>
+                    <xs:documentation>Comments from the author.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="website" type="xs:anyURI" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Website of the author(s).</xs:documentation>
+                    <xs:documentation>Website of the author.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -944,7 +944,7 @@
             
             <xs:element name="infos" type="aos:extension" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Additional informations about the author(s).</xs:documentation>
+                    <xs:documentation>Additional arbitrary informations about the author.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
