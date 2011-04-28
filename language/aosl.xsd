@@ -741,9 +741,9 @@
 
         <xs:all minOccurs="0">
 
-            <xs:element name="author" type="aos:author" minOccurs="0">
+            <xs:element name="authors" type="aos:list_author" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Informations about the author(s) of the sequence.</xs:documentation>
+                    <xs:documentation>Informations about the authors of the sequence.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -765,9 +765,9 @@
                 </xs:annotation>
             </xs:element>
 
-            <xs:element name="target" type="aos:target" minOccurs="0">
+            <xs:element name="targets" type="aos:list_target" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Informations about and for the original target player of this sequence.</xs:documentation>
+                    <xs:documentation>Informations about and for the originally targetted players this sequence was made for.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -952,9 +952,20 @@
 
     </xs:complexType>
 
+    <xs:complexType name="list_author">
+        <xs:annotation>
+            <xs:documentation>
+                List of authors.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="author" type="aos:author" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="target">
         <xs:annotation>
-            <xs:documentation>Informations about the target player and platform.</xs:documentation>
+            <xs:documentation>Informations about the target player/interpreter and platform.</xs:documentation>
         </xs:annotation>
 
         <xs:all>
@@ -964,13 +975,7 @@
                     <xs:documentation>Target-specific configuration informations.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
-            <xs:element name="website" type="xs:anyURI" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>Website of the target provider.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-
+            
         </xs:all>
 
         <xs:attribute name="player" type="xs:string" >
@@ -989,7 +994,25 @@
             </xs:annotation>
         </xs:attribute>
 
+        <xs:attribute name="website" type="xs:anyURI" use="optional">
+            <xs:annotation>
+                <xs:documentation>Website of the target provider.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
     </xs:complexType>
+
+    <xs:complexType name="list_target">
+        <xs:annotation>
+            <xs:documentation>
+                List of target platforms.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="target" type="aos:target" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
 
     <!--##### Library Objects #############################################################-->
 
