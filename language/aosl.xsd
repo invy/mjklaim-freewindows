@@ -1357,12 +1357,12 @@
 
     </xs:complexType>
 
-    <xs:element name="object"       type="aos:object"               abstract="true" />
-    <xs:element name="unknown"      type="aos:object_unknown"       substitutionGroup="aos:object" />
-    <xs:element name="sprite"       type="aos:object_sprite"        substitutionGroup="aos:object" />
-    <xs:element name="video"        type="aos:object_video"         substitutionGroup="aos:object" />
-    <xs:element name="audio"        type="aos:object_audio"         substitutionGroup="aos:object" />
-    <xs:element name="interactive"  type="aos:object_interactive"   substitutionGroup="aos:object" />
+    <xs:element name="object"           type="aos:object"               abstract="true" />
+    <xs:element name="specialobject"    type="aos:object_special"       substitutionGroup="aos:object" />
+    <xs:element name="sprite"           type="aos:object_sprite"        substitutionGroup="aos:object" />
+    <xs:element name="video"            type="aos:object_video"         substitutionGroup="aos:object" />
+    <xs:element name="audio"            type="aos:object_audio"         substitutionGroup="aos:object" />
+    <xs:element name="interactive"      type="aos:object_interactive"   substitutionGroup="aos:object" />
 
     <xs:complexType name="list_object">
         <xs:annotation>
@@ -1375,14 +1375,14 @@
 
     </xs:complexType>
 
-    <xs:complexType name="object_unknown" >
+    <xs:complexType name="object_special" >
         <xs:annotation>
-            <xs:documentation>An Object is a transformed instance of a Resource and can contain other Objects in a hierarchical way.</xs:documentation>
+            <xs:documentation>A special or specialized Object is undefined but it's definition should be available to the target interpreter.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
             <xs:extension base="aos:object">
-
+                
                 <xs:attribute name="type" type="xs:string" use="required" />
 
             </xs:extension>
@@ -1414,7 +1414,7 @@
     <xs:complexType name="object_audio" final="#all">
         <xs:annotation>
             <xs:documentation>
-                A Audio object allows to play sounds and music.
+                An Audio object allows to play sounds and music.
             </xs:documentation>
         </xs:annotation>
 
@@ -1639,11 +1639,12 @@
         <xs:union memberTypes="aos:change_type_generic aos:change_type_specific" />
     </xs:simpleType>
 
-    <xs:element name="change"       type="aos:change"               abstract="true" />
-    <xs:element name="activate"     type="aos:change_activate"      substitutionGroup="aos:change" />
-    <xs:element name="deactivate"   type="aos:change_deactivate"    substitutionGroup="aos:change" />
-    <xs:element name="switch"       type="aos:change_switch"        substitutionGroup="aos:change" />
-    <xs:element name="transform"    type="aos:change_transform"     substitutionGroup="aos:change" />
+    <xs:element name="change"           type="aos:change"               abstract="true" />
+    <xs:element name="specialchange"   type="aos:change_special"       substitutionGroup="aos:change" />
+    <xs:element name="activate"         type="aos:change_activate"      substitutionGroup="aos:change" />
+    <xs:element name="deactivate"       type="aos:change_deactivate"    substitutionGroup="aos:change" />
+    <xs:element name="switch"           type="aos:change_switch"        substitutionGroup="aos:change" />
+    <xs:element name="transform"        type="aos:change_transform"     substitutionGroup="aos:change" />
 
     <xs:complexType name="list_change" >
         <xs:annotation>
@@ -1663,6 +1664,20 @@
         </xs:sequence>
 
     </xs:complexType>
+
+    <xs:complexType name="change_special">
+        <xs:annotation>
+            <xs:documentation>Special or specialized change that is undefined but witch definition should be available to the target interpreter.</xs:documentation>
+        </xs:annotation>
+
+        <xs:complexContent>
+            <xs:restriction base="aos:change" >
+                <xs:attribute name="type" type="aos:change_type" fixed="activate" />
+            </xs:restriction>
+        </xs:complexContent>
+
+    </xs:complexType>
+
 
     <xs:complexType name="change_activate">
         <xs:annotation>
