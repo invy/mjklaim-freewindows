@@ -1382,9 +1382,7 @@
 
         <xs:complexContent>
             <xs:extension base="aos:object">
-                
                 <xs:attribute name="type" type="xs:string" use="required" />
-
             </xs:extension>
         </xs:complexContent>
 
@@ -1671,9 +1669,7 @@
         </xs:annotation>
 
         <xs:complexContent>
-            <xs:restriction base="aos:change" >
-                <xs:attribute name="type" type="aos:change_type" fixed="activate" />
-            </xs:restriction>
+            <xs:extension base="aos:change" />
         </xs:complexContent>
 
     </xs:complexType>
