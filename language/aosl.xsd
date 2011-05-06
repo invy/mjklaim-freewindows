@@ -817,14 +817,14 @@
                     <xs:documentation>
                         Virtual dimensions of the canvas.
                         Each coordinate will be interpreted as the space to take on each axis, x and y being the surface of the screen.
-                        The coordinate system ("screen-coordinate" by default) will define the way the space is related to the display surface
-                        of the canvas.
-                        
-                        The x and y informations will also allow the player to understand:
-                         - the original screen ratio for the sequence
-                         - the original screen resolution the sequence targeted
-                        
-                        Those informations will allow the player implementation to adapt the sequence to the 
+                        The coordinate system will define the way the space is related to the display surface of the canvas.
+                        By default "screen-space" is used, that have it's origin in top-left of the screen and +x goes on the right, +y to the bottom)
+
+                        The x and y informations will also allow the interpreter to understand:
+                        - the original screen ratio for the sequence
+                        - the original screen resolution the sequence targeted
+
+                        Those informations will allow the player implementation to adapt the sequence to the
                         display in a more informed way.
                     </xs:documentation>
                 </xs:annotation>
@@ -940,7 +940,6 @@
                 </xs:annotation>
                 <!--TODO : add checks to allow only emails.-->
             </xs:element>
-
             
             <xs:element name="infos" type="aos:extension" minOccurs="0">
                 <xs:annotation>
@@ -1599,9 +1598,16 @@
 
         <xs:group ref="aos:group_change_extensions" />
 
-        <!--TODO : documentation is missing-->
-        <xs:attribute name="type" type="aos:change_type"  default="unknown" />
-        <xs:attribute name="object" type="aos:object_ref"  use="required" />
+        <xs:attribute name="type" type="aos:change_type"  default="unknown" >
+            <xs:annotation>
+                <xs:documentation>Name of the type of this Change.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="object" type="aos:object_ref"  use="required">
+            <xs:annotation>
+                <xs:documentation>Object to wich this change applies.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:simpleType name="change_type_generic">
@@ -2133,8 +2139,11 @@
         </xs:annotation>
 
         <xs:restriction base="xs:string">
-            <!--TODO : missing documentation-->
-            <xs:enumeration value="#all" />
+            <xs:enumeration value="#all">
+                <xs:annotation>
+                    <xs:documentation>Represent all the layers. Useful to activate or deactivate all the layers.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
         </xs:restriction>
 
     </xs:simpleType>
