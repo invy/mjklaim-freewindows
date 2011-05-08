@@ -227,13 +227,13 @@
 
             <xs:enumeration value="relative" >
                 <xs:annotation>
-                    <xs:documentation> relative : The transformation should be applied to the current object's position. </xs:documentation>
+                    <xs:documentation>The transformation should be applied to the current object's position. </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
             <xs:enumeration value="absolute" >
                 <xs:annotation>
-                    <xs:documentation> absolute : The transformation should be applied to the origin and the result should be the object's position. </xs:documentation>
+                    <xs:documentation>The transformation should be applied to the origin and the result should be the object's position. </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
