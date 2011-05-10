@@ -1,0 +1,17 @@
+glob:*.log
+glob:tools/aoslcpp/include/aoslcpp/lang/*.hpp
+glob:tools/aoslcpp/include/aoslcpp/lang/*.inl
+glob:tools/aoslcpp/source/lang/*.cpp
+glob:*/CMakeFiles/*
+glob:*.vcxproj
+glob:*.sln
+glob:*.vcxproj.filters
+glob:*.cmake
+glob:*.sdf
+glob:*.suo
+glob:*.opensdf
+glob:*.pdb
+glob:*.dir/*
+glob:*.vcxproj.*
+syntax: glob
+*CMakeCache.txt
