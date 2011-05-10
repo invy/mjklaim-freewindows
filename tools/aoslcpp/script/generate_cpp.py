@@ -107,7 +107,7 @@ move_files( dir_path=AOSCPP_AOSL_SOURCE_PATH, dest_path=AOSCPP_AOSL_INCLUDE_PATH
 
 
 log( "==== AOSL CPP : End ====" )
-log( "See " + GENERATED_LOG_FILENAME + " for the list of generated files." )
+log( "See " + LOG_FILENAME + " for the list of generated files." )
 print("#### Logged in " + LOG_FILENAME + " ####" )
 
 
