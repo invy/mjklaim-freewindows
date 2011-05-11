@@ -1,5 +1,5 @@
 
 
-add_executable( test test.cpp )
-target_link_libraries( test aoslcpp )
+add_executable( test_aoslcpp test.cpp )
+target_link_libraries( test_aoslcpp aoslcpp )
 

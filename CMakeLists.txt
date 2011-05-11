@@ -15,6 +15,7 @@ set( LIBRARY_OUTPUT_PATH "./Build/" )
 project( ArtOfSequence )
 
 
+add_subdirectory( ./common ) # Language files
 add_subdirectory( ./language ) # Language files
 add_subdirectory( ./tools ) # Tools projects
 add_subdirectory( ./players ) # Players projects

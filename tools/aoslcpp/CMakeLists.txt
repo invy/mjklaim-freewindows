@@ -1,12 +1,11 @@
 cmake_minimum_required (VERSION 2.8)
-project( AOSLCPP )
 
 # Important directories :
-set( AOSLCPP_INCLUDE_DIR ./include )
-set( AOSLCPP_SOURCE_DIR ./source )
+set( AOSLCPP_INCLUDE_DIR include )
+set( AOSLCPP_SOURCE_DIR source )
 set( AOSLCPP_HEADER_LANG_DIR ${AOSLCPP_INCLUDE_DIR}/aoslcpp/lang )
 set( AOSLCPP_SOURCE_LANG_DIR ${AOSLCPP_SOURCE_DIR}/lang )
-set( AOSLCPP_SCRIPT_DIR ./script )
+set( AOSLCPP_SCRIPT_DIR script )
 
 #--------------------------------------------
 # Ask the user if he wants us to generate the source code.
@@ -40,10 +39,11 @@ file( GLOB_RECURSE AOSLCPP_LANG_SOURCES
 
 
 # verify that we did get the generated files
-set( AOSLCPP_LANG_ALL_FILES "" )
-list( APPEND AOSLCPP_LANG_ALL_FILES ${AOSLCPP_LANG_HEADERS} )
-list( APPEND AOSLCPP_LANG_ALL_FILES ${AOSLCPP_LANG_INLINES} )
-list( APPEND AOSLCPP_LANG_ALL_FILES ${AOSLCPP_LANG_SOURCES} )
+set( AOSLCPP_LANG_ALL_FILES 
+        ${AOSLCPP_LANG_HEADERS} 
+        ${AOSLCPP_LANG_INLINES}
+        ${AOSLCPP_LANG_SOURCES}
+    )
 list( LENGTH AOSLCPP_LANG_ALL_FILES AOSLCPP_LANG_FILES_COUNT )
 
 message( "Found lang sources count = " ${AOSLCPP_LANG_FILES_COUNT} )
@@ -79,6 +79,7 @@ include_directories( ${AOSLCPP_INCLUDE_DIR} )
 
 # Generate the library
 add_library( aoslcpp SHARED ${AOSLCPP_SOURCES} ${AOSLCPP_HEADERS} )
+
 
 # Add the test projects
 add_subdirectory( ./test )
