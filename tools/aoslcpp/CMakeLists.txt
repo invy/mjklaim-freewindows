@@ -73,13 +73,12 @@ source_group( lang\\headers FILES ${AOSLCPP_LANG_HEADERS} )
 source_group( lang\\headers\\impl FILES ${AOSLCPP_LANG_INLINES} )
 source_group( lang\\sources FILES ${AOSLCPP_LANG_SOURCES} )
 
-
 # Make sure include directory will be available to projects using this lib
 include_directories( ${AOSLCPP_INCLUDE_DIR} )
 
 # Generate the library
 add_library( aoslcpp SHARED ${AOSLCPP_SOURCES} ${AOSLCPP_HEADERS} )
-
+target_link_libraries( aoslcpp libxsd )
 
 # Add the test projects
 add_subdirectory( ./test )
