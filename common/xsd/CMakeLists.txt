@@ -15,7 +15,7 @@ source_group( xsd FILES ${XSD_HEADERS} )
 file( GLOB_RECURSE XSD_SOURCES *.cxx )
 
 # Make sure those files are interpreted as C++ sources
-#set_source_files_properties( ${XSD_HEADERS} ${XSD_SOURCES} PROPERTIES LANGUAGE CXX )
+set_source_files_properties( ${XSD_SOURCES} PROPERTIES LANGUAGE CXX )
 
 # We need to have access to all the headers
 include_directories( ${XSD_INCLUDE_DIR} )
@@ -33,7 +33,10 @@ file( GLOB_RECURSE XERCES_HEADERS ${XERCES_INCLUDE_DIR}/*.h* )
 source_group( xerces\\headers FILES ${XERCES_HEADERS} )
 
 # Sources
-file( GLOB_RECURSE XERCES_SOURCES ${XERCES_SOURCE_DIR}/*.c* )
+file( GLOB_RECURSE XERCES_SOURCES_CPP ${XERCES_SOURCE_DIR}/*.cpp )
+file( GLOB_RECURSE XERCES_SOURCES_C ${XERCES_SOURCE_DIR}/*.c )
+
+set( XERCES_SOURCES ${XERCES_SOURCES_CPP} ${XERCES_SOURCES_C} )
 
 source_group( xerces\\sources FILES ${XERCES_SOURCES} )
 
@@ -52,3 +55,4 @@ add_library( libxsd STATIC
     ${XERCES_HEADERS} ${XERCES_SOURCES}
 )
 
+set_target_properties( libxsd PROPERTIES LINKER_LANGUAGE CXX )
