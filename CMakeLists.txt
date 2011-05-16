@@ -11,8 +11,10 @@ if(WIN32)
   set(CMAKE_SUPPRESS_REGENERATION true)
 endif()
 
-set( EXECUTABLE_OUTPUT_PATH "./Build/" )
-set( LIBRARY_OUTPUT_PATH "./Build/" )
+set( BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Build )
+
+set( EXECUTABLE_OUTPUT_PATH     ${BUILD_DIR} )
+set( LIBRARY_OUTPUT_PATH        ${BUILD_DIR} )
 
 
 add_subdirectory( common ) # Common dependencies files

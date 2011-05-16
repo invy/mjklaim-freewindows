@@ -2,8 +2,8 @@ cmake_minimum_required( VERSION 2.8 )
 
 # We need Qt as GUI library.
 find_package( Qt4 REQUIRED )
-INCLUDE( ${QT_USE_FILE} )
-ADD_DEFINITIONS( ${QT_DEFINITIONS} )
+include( ${QT_USE_FILE} )
+add_definitions( ${QT_DEFINITIONS} )
 
 #####################################################
 # Sub-directories.
