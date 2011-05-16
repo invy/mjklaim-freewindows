@@ -1,6 +1,7 @@
+#include "Application.hpp"
 
-
-int main()
+int main( int arg_count, char** arg_array )
 {
-    return 0;
+    aosd::Application app( arg_count, arg_array );
+    return app.exec();
 }

@@ -16,5 +16,8 @@ glob:*.vcxproj.*
 syntax: glob
 *CMakeCache.txt
 *.cache
-*/moc_*.cxx_parameters
-*/moc_*.cxx.rule
+*/moc_*.cxx*
+*.exe
+*.ilk
+*.ipch
+*.sln.docstates

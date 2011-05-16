@@ -1,16 +1,137 @@
 cmake_minimum_required( VERSION 2.8 )
 
-add_subdirectory( core )
-add_subdirectory( view )
+# We need Qt as GUI library.
+find_package( Qt4 REQUIRED )
+INCLUDE( ${QT_USE_FILE} )
+ADD_DEFINITIONS( ${QT_DEFINITIONS} )
+
+#####################################################
+# Sub-directories.
+
+set( AOSD_CORE_DIR core )
+set( AOSD_VIEW_DIR view )
+set( AOSD_RC_DIR ${AOSD_VIEW_DIR}/rc )
+set( AOSD_UI_DIR ${AOSD_VIEW_DIR}/ui )
+
+#####################################################
+# Header files.
+
+# Application header files.
+set( AOSD_APPLICATION_HEADERS
+    Application.hpp
+)
+
+#-----------------------------------------------------------------
+
+# Core objects header files.
+set( AOSD_CORE_HEADERS
+    ${AOSD_CORE_DIR}/Sequence.hpp
+)
+
+#-----------------------------------------------------------------
+
+# Views header files.
+set( AOSD_VIEW_HEADERS
+    ${AOSD_VIEW_DIR}/MainWindow.hpp
+)
+
+#-----------------------------------------------------------------
+
+# All header files.
+set( AOSD_ALL_HEADERS  
+    ${AOSD_APPLICATION_HEADERS} 
+    ${AOSD_CORE_HEADERS}
+    ${AOSD_VIEW_HEADERS}
+)
+ 
+
+# Header files needs to be processed by Qt's pre-processor to generate Moc files.
+QT4_WRAP_CPP( AOSD_VIEW_HEADERS_MOC ${AOSD_ALL_HEADERS} )
+
+# Group generated files in the same isolated virtual directory.
+source_group( view\\generated\\moc FILES ${AOSD_VIEW_HEADERS_MOC} )
 
 
-set( AOSDESIGNER_SOURCES
+#####################################################
+# Source files.
+
+# Application source files.
+set( AOSD_APPLICATION_SOURCES
     main.cpp
+    Application.cpp
 )
 
-
-add_executable( aosdesigner ${AOSDESIGNER_SOURCES} )
-target_link_libraries( aosdesigner 
-    aosd_core 
-    aosd_view 
+# Views source files.
+set( AOSD_VIEW_SOURCES 
+    ${AOSD_VIEW_DIR}/MainWindow.cpp
 )
+
+#------------------------------------------------------
+
+# Core source files
+set( AOSD_CORE_SOURCES
+    ${AOSD_CORE_DIR}/Sequence.cpp
+)
+
+#------------------------------------------------------
+
+
+
+#####################################################
+# Resource files.
+
+set( AOSD_VIEW_RC
+
+)
+
+# RC files need to be processed by Qt wrapper to generate RC headers.
+QT4_ADD_RESOURCES( AOSD_VIEW_RESOURCES ${AOSD_VIEW_RC} )
+
+# RC files are isolated in a separate virtual directory.
+source_group( view\\rc AOSD_VIEW_RESOURCES )
+
+# Group generated files in the same isolated virtual directory.
+source_group( view\\generated\\rc FILES ${AOSD_VIEW_RESOURCES} )
+
+#####################################################
+# UI files
+
+set( AOSD_VIEW_UI
+
+)
+
+# UI files need to be processed by Qt wrapper to generate UI headers.
+QT4_WRAP_UI( AOSD_VIEW_HEADERS_UI ${AOSD_VIEW_UI} )
+
+# Group all ui files in the same virtual directory.
+source_group( view\\ui AOSD_VIEW_UI )
+# Group generated files in the same isolated virtual directory.
+source_group( view\\generated\\ui FILES ${AOSD_VIEW_HEADERS_UI} )
+
+###################################################
+
+# Additional groups
+source_group( view FILES ${AOSD_VIEW_HEADERS} ${AOSD_VIEW_SOURCES} )
+source_group( core FILES ${AOSD_CORE_HEADERS} ${AOSD_CORE_SOURCES} )
+
+
+####################################################
+# Bind them all together.
+
+# All the compiled sources.
+set( AOSD_ALL_SOURCES
+    ${AOSD_CORE_SOURCES}
+    ${AOSD_APPLICATION_SOURCES}
+    ${AOSD_VIEW_SOURCES}
+    ${AOSD_VIEW_HEADERS_MOC}
+    ${AOSD_VIEW_HEADERS_UI}
+)
+
+# All the files of the project.
+set( AOSD_ALL_FILES ${AOSD_ALL_SOURCES} ${AOSD_ALL_HEADERS} )
+
+add_executable( aosdesigner ${AOSD_ALL_FILES} )
+
+target_link_libraries( aosdesigner ${QT_LIBRARIES} )
+
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
