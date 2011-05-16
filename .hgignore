@@ -21,3 +21,4 @@ syntax: glob
 *.ilk
 *.ipch
 *.sln.docstates
+*.dll
