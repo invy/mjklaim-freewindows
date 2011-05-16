@@ -7,9 +7,9 @@ add_definitions( ${QT_DEFINITIONS} )
 
 #####################################################
 # Sub-directories.
-
-set( AOSD_CORE_DIR core )
-set( AOSD_VIEW_DIR view )
+set( AOSD_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
+set( AOSD_CORE_DIR ${AOSD_DIR}/core )
+set( AOSD_VIEW_DIR ${AOSD_DIR}/view )
 set( AOSD_RC_DIR ${AOSD_VIEW_DIR}/rc )
 set( AOSD_UI_DIR ${AOSD_VIEW_DIR}/ui )
 
@@ -88,7 +88,7 @@ set( AOSD_VIEW_RC
 QT4_ADD_RESOURCES( AOSD_VIEW_RESOURCES ${AOSD_VIEW_RC} )
 
 # RC files are isolated in a separate virtual directory.
-source_group( view\\rc AOSD_VIEW_RESOURCES )
+source_group( view\\rc FILES ${AOSD_VIEW_RESOURCES} )
 
 # Group generated files in the same isolated virtual directory.
 source_group( view\\generated\\rc FILES ${AOSD_VIEW_RESOURCES} )
@@ -97,14 +97,14 @@ source_group( view\\generated\\rc FILES ${AOSD_VIEW_RESOURCES} )
 # UI files
 
 set( AOSD_VIEW_UI
-
+    ${AOSD_UI_DIR}/MainWindow.ui
 )
 
 # UI files need to be processed by Qt wrapper to generate UI headers.
 QT4_WRAP_UI( AOSD_VIEW_HEADERS_UI ${AOSD_VIEW_UI} )
 
 # Group all ui files in the same virtual directory.
-source_group( view\\ui AOSD_VIEW_UI )
+source_group( view\\ui FILES ${AOSD_VIEW_UI} )
 # Group generated files in the same isolated virtual directory.
 source_group( view\\generated\\ui FILES ${AOSD_VIEW_HEADERS_UI} )
 
@@ -113,7 +113,7 @@ source_group( view\\generated\\ui FILES ${AOSD_VIEW_HEADERS_UI} )
 # Additional groups
 source_group( view FILES ${AOSD_VIEW_HEADERS} ${AOSD_VIEW_SOURCES} )
 source_group( core FILES ${AOSD_CORE_HEADERS} ${AOSD_CORE_SOURCES} )
-
+source_group( "" FILES ${AOSD_APPLICATION_HEADERS} ${AOSD_APPLICATION_SOURCES} )
 
 ####################################################
 # Bind them all together.

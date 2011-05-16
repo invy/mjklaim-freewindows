@@ -12,4 +12,9 @@ namespace aosd
         m_main_window->show();
     }
 
+    Application::~Application()
+    {
+        delete m_main_window;
+    }
+
 }

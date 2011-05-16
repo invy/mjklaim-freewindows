@@ -21,14 +21,12 @@ namespace aosd
 
     public:
 
-
         Application( int &argc, char **argv );
-                
-
-
+        ~Application();
+        
     private:
 
-        std::shared_ptr< view::MainWindow > m_main_window;
+        view::MainWindow* m_main_window;
 
     };
 
