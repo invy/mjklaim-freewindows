@@ -24,24 +24,35 @@
 
     <!--##### Basic types #############################################################-->
 
-    <xs:simpleType name="space_unit" >
+    <xs:simpleType name="unit_space" >
         <xs:annotation>
-            <xs:documentation>Base type for canvas space unit.</xs:documentation>
+            <xs:documentation>Type for graphic space units.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:double" />
     </xs:simpleType>
 
-    <xs:simpleType name="stream_unit" >
+    <xs:simpleType name="unit_time">
+        <xs:annotation>
+            <xs:documentation>Time value in seconds.</xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:double" />
+
+    </xs:simpleType>
+
+
+    <xs:simpleType name="unit_stream" >
         <xs:annotation>
             <xs:documentation>
-                Unit to define a point or a length in the stream.
+                Type of value defining a point or a length in the stream.
                 Might be a percentile value of the whole stream or an absolute time in seconds.
             </xs:documentation>
         </xs:annotation>
-        <xs:union memberTypes="aos:time_unit aos:percent_value" />
+        <xs:union memberTypes="aos:unit_time aos:value_percent" />
     </xs:simpleType>
 
-    <xs:simpleType name="percent_value" >
+    
+    <xs:simpleType name="value_percent" >
         <xs:annotation>
             <xs:documentation>Relative percentile value.</xs:documentation>
         </xs:annotation>
@@ -52,19 +63,11 @@
         
     </xs:simpleType>
 
-    <xs:simpleType name="time_unit">
-        <xs:annotation>
-            <xs:documentation>Time value in seconds.</xs:documentation>
-        </xs:annotation>
-        
-        <xs:restriction base="xs:double" />
-
-    </xs:simpleType>
-
+    
     <xs:simpleType name="angle" >
         <xs:annotation>
             <xs:documentation>
-                Base type for angles.
+                Type for angles.
                 Positive value is counter-clock-wise, negative is clock-wise,
                 like on the trigonometric circle.
             </xs:documentation>
@@ -108,15 +111,15 @@
             <xs:documentation>Vector of space units used for spatial representations.</xs:documentation>
         </xs:annotation>
 
-        <xs:attribute name="x" type="aos:space_unit" default="0.0" />
-        <xs:attribute name="y" type="aos:space_unit" default="0.0" />
-        <xs:attribute name="z" type="aos:space_unit" default="0.0" />
+        <xs:attribute name="x" type="aos:unit_space" default="0.0" />
+        <xs:attribute name="y" type="aos:unit_space" default="0.0" />
+        <xs:attribute name="z" type="aos:unit_space" default="0.0" />
 
     </xs:complexType>
 
     <xs:complexType name="rotation" >
         <xs:annotation>
-            <xs:documentation>Rotation representation. </xs:documentation>
+            <xs:documentation>Rotation representation.</xs:documentation>
         </xs:annotation>
 
         <xs:attribute name="yaw" type="aos:angle" default="0.0">
@@ -141,20 +144,25 @@
 
     <xs:complexType name="box">
         <xs:annotation>
-            <xs:documentation>Box in graphic space.</xs:documentation>
+            <xs:documentation>Spatial representation of a box.</xs:documentation>
         </xs:annotation>
         
         <xs:all>
             
             <xs:element name="position" type="aos:vector">
                 <xs:annotation>
-                    <xs:documentation>Position of the box's origin in graphic space.</xs:documentation>
+                    <xs:documentation>
+                        Position of the box's origin in global space.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             
             <xs:element name="size" type="aos:vector" >
                 <xs:annotation>
-                    <xs:documentation>Size of the box.</xs:documentation>
+                    <xs:documentation>
+                        Size of the box.
+                        Each one of the axes value gives the length of the corresponding edges of the box.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -166,7 +174,10 @@
 
             <xs:element name="orientation" type="aos:rotation" >
                 <xs:annotation>
-                    <xs:documentation>Orientation of the box. The rotation is relative to the center of the box.</xs:documentation>
+                    <xs:documentation>
+                        Orientation of the box.
+                        The rotation is relative to the center of the box, in box space.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             
@@ -176,26 +187,29 @@
 
     <xs:complexType name="transformation">
         <xs:annotation>
-            <xs:documentation>Geometric transformation in graphic space. The referential says if it's absolute or relative to the original object position.</xs:documentation>
+            <xs:documentation>
+                Geometric transformation in graphic space. 
+                The referential says if it's absolute or relative to the target object's position.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:all>
 
             <xs:element name="translation" type="aos:vector" minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation>Translation to apply.</xs:documentation>
+                    <xs:documentation>Translation to apply to the object position.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="scale" type="aos:vector"  minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation>Scale to apply.</xs:documentation>
+                    <xs:documentation>Scale to apply to the object's size.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="rotation" type="aos:rotation"  minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation>Rotation to apply, relative to the center point.</xs:documentation>
+                    <xs:documentation>Rotation to apply to the object's orientation, relative to it's the center.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -210,8 +224,8 @@
         <xs:attribute name="referential" type="aos:referential" default="relative" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    The referential says if the transformation is applied to the current object's position
-                     OR is done on the origin and should be set as the new position of the object.
+                    The referential says if the transformation is applied from the current object's state
+                     OR is done from the origin, meaning that this transformation becomes the new state of the object.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -227,13 +241,13 @@
 
             <xs:enumeration value="relative" >
                 <xs:annotation>
-                    <xs:documentation>The transformation should be applied to the current object's position. </xs:documentation>
+                    <xs:documentation>The transformation should be applied from the current object's state. </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
             <xs:enumeration value="absolute" >
                 <xs:annotation>
-                    <xs:documentation>The transformation should be applied to the origin and the result should be the object's position. </xs:documentation>
+                    <xs:documentation>The transformation should be applied from the origin, therefore the transformation becomes the new object's state. </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
@@ -641,7 +655,7 @@
             </xs:annotation>    
         </xs:attribute>
 
-        <xs:attribute name="interval" type="aos:time_unit" default="0">
+        <xs:attribute name="interval" type="aos:unit_time" default="0">
             <xs:annotation>
                 <xs:documentation>
                     Time interval between each script execution.
@@ -1237,7 +1251,7 @@
             </xs:documentation>
         </xs:annotation>
 
-        <xs:attribute name="begin" type="aos:stream_unit" default="0%" >
+        <xs:attribute name="begin" type="aos:unit_stream" default="0%" >
             <xs:annotation>
                 <xs:documentation>
                     Begin position in the stream source.
@@ -1245,7 +1259,7 @@
             </xs:annotation>
         </xs:attribute>
 
-        <xs:attribute name="end" type="aos:stream_unit" default="100%" >
+        <xs:attribute name="end" type="aos:unit_stream" default="100%" >
             <xs:annotation>
                 <xs:documentation>
                     End position in the stream source.
