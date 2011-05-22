@@ -994,7 +994,7 @@
             <xs:annotation>
                 <xs:documentation>
                     Name identifiying the platform that this sequence is made for.
-                    This is to clearly make the difference between a same player being available on
+                    This is to clearly make the difference between a player being available on
                     different platforms and performing differently while bieing having the same code/binary.
                 </xs:documentation>
             </xs:annotation>
