@@ -776,20 +776,24 @@
 
     <xs:complexType name="library" final="#all" >
         <xs:annotation>
-            <xs:documentation>A Library contain informations about a set of Resources that can be used in a Sequence.</xs:documentation>
+            <xs:documentation>The Library contain informations about a set of Resources that can be used in a Sequence.</xs:documentation>
         </xs:annotation>
 
         <xs:all>
 
             <xs:element name="import" type="aos:list_include" minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>External libraries to import.</xs:documentation>
+                    <xs:documentation>
+                        External libraries to import.
+                        Importing a library means getting the resources of the target library and 
+                        putting them in this one.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="resources" type="aos:list_resource" >
                 <xs:annotation>
-                    <xs:documentation>Resources specific to this sequence.</xs:documentation>
+                    <xs:documentation>Resources to load to play this Sequence.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
