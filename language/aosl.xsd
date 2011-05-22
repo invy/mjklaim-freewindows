@@ -1029,7 +1029,7 @@
     <xs:complexType name="list_target">
         <xs:annotation>
             <xs:documentation>
-                List of target platforms.
+                List of target interpreters/players and associated platforms.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
@@ -1042,39 +1042,44 @@
 
     <xs:simpleType name="resource_type">
         <xs:annotation>
-            <xs:documentation> Type of resource, used to help the player and tools to identify the way to use the resource.</xs:documentation>
+            <xs:documentation>Type of resource, used to help the player/interpreter and tools to identify the way to use the resource.</xs:documentation>
         </xs:annotation>
         <xs:union memberTypes="aos:resource_type_generic aos:resource_type_specific" />
     </xs:simpleType>
 
     <xs:simpleType name="resource_type_generic">
         <xs:annotation>
-            <xs:documentation> Predfined generic predefined type of resources that "should" be implemented by any player. </xs:documentation>
+            <xs:documentation>
+                Predefined generic type of resources that "should" be implemented by any player.
+                As generic types, they only describe a general model to manage the associated resource.
+                For some resources, a more specific resource type might be necessary to help the player
+                interpret more correctly the resource data.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string">
 
             <xs:enumeration value="auto" >
                 <xs:annotation>
-                    <xs:documentation>auto : let the interpreter find automatically wich type of resource it is</xs:documentation>
+                    <xs:documentation>Let the interpreter find automatically wich type of resource it is.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
             <xs:enumeration value="image" >
                 <xs:annotation>
-                    <xs:documentation>A static graphic image (no interaction, only graphics)</xs:documentation>
+                    <xs:documentation>A static graphic image (no interaction, only graphics).</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
             <xs:enumeration value="audio" >
                 <xs:annotation>
-                    <xs:documentation>An audio stream resource (playable)</xs:documentation>
+                    <xs:documentation>An audio stream resource.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
             <xs:enumeration value="video" >
                 <xs:annotation>
-                    <xs:documentation>A graphic stream (playable)</xs:documentation>
+                    <xs:documentation>An audio-visual stream resource.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
@@ -1084,11 +1089,6 @@
                 </xs:annotation>
             </xs:enumeration>
 
-            <xs:enumeration value="text" >
-                <xs:annotation>
-                    <xs:documentation>A block of text.</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
             
         </xs:restriction>
 
