@@ -573,7 +573,7 @@
         
     </xs:complexType>
 
-    <xs:simpleType name="control" final="#all" >
+    <xs:simpleType name="controller" final="#all" >
         <xs:annotation>
             <xs:documentation>Specification of the source of control of an object.</xs:documentation>
         </xs:annotation>
@@ -617,10 +617,10 @@
     </xs:simpleType>
 
 
-    <xs:complexType name="script" mixed="true"  >
+    <xs:complexType name="script" mixed="true" >
         <xs:annotation>
             <xs:documentation>
-                A script is code that will be executed when the script's owner get activated.
+                A script is a program that will be executed while the sequence is being played, when the script's owner get activated.
                 No specific language is required but if the player don't know the script's language it
                 will simply ignore it. That make scripts mostly player-specific.
                 
@@ -631,7 +631,7 @@
         <xs:attribute name="lang" type="aos:name" use="required" >
             <xs:annotation>
                 <xs:documentation>
-                    Identifier of the scripting language used.
+                    Identifier of the programming language used.
                     If the player don't recognize this identifier, it should ignore the whole script.
                 </xs:documentation>
             </xs:annotation>
@@ -641,8 +641,8 @@
             <xs:annotation>
                 <xs:documentation>
                     Define what should happen when an object get activated :
-                     - reset : all the script's environnement and variables will be reset;
-                     - continue : the script's environnement will be saved 
+                     - reset : all the script's environnement and variables will be reset to their initial values;
+                     - continue : the script's environnement will be saved
                         and the execution process be paused on deactivation and resumed on future activation;
                 </xs:documentation>
             </xs:annotation>
@@ -652,9 +652,8 @@
             <xs:annotation>
                 <xs:documentation>
                     A looping script will execute it's code to the end then come back to the first instruction,
-                    without only the interval time between each whole script execution.
-                    Looping allow a script to be executed on a regular time frequency, making it
-                    non-blocking.
+                    with only the interval time between each whole script execution and without resetting the execution state.
+                    Looping allow a script to be executed on a regular time frequency, making it non-blocking for the player.
                 </xs:documentation>
             </xs:annotation>    
         </xs:attribute>
@@ -663,9 +662,9 @@
             <xs:annotation>
                 <xs:documentation>
                     Time interval between each script execution.
-                    This interval will be effective only if the script is looping.
+                    This interval will be used only if the script is looping.
                     The first execution don't take account of the interval and should be immediate
-                    when the script is activated.
+                    on script is activation.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -673,8 +672,8 @@
         <xs:attribute name="source" type="xs:anyURI" use="optional">
             <xs:annotation>
                 <xs:documentation>
-                    URI to a script file or other source.
-                    The source's code will be inserted before this script element's code.
+                    URI to a file containing the source code of the script.
+                    The source code will be inserted before any source code written directly in this script element.
                     Therefore, if this script element don't have inner code but just a source,
                     only the source script code will be the executed.
                 </xs:documentation>
@@ -1279,7 +1278,7 @@
             </xs:annotation>
         </xs:attribute>
 
-        <xs:attribute name="control" type="aos:control" default="none" >
+        <xs:attribute name="controller" type="aos:controller" default="none" >
             <xs:annotation>
                 <xs:documentation>
                     Tells if the stream should be controllable by the user,
