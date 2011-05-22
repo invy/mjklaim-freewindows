@@ -920,7 +920,7 @@
 
             <xs:element name="about" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Description of the author or what he/she did in the sequence.</xs:documentation>
+                    <xs:documentation>Description of the author and/or what he/she did in the sequence.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -940,7 +940,6 @@
                 <xs:annotation>
                     <xs:documentation>Email of the author.</xs:documentation>
                 </xs:annotation>
-                <!--TODO : add checks to allow only emails.-->
             </xs:element>
             
             <xs:element name="infos" type="aos:extension" minOccurs="0">
