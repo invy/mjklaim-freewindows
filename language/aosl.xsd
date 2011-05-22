@@ -688,8 +688,8 @@
     <xs:complexType name="sequence" final="#all" >
         <xs:annotation>
             <xs:documentation>
-                The Sequence is the root object.
-                It hold everything that is required to describe the sequence interpreted by the player.
+                Root object representing a sequence.
+                It hold everything that is required to describe the full sequence interpreted by the player.
             </xs:documentation>
         </xs:annotation>
 
@@ -697,10 +697,9 @@
 
             <xs:element name="meta" type="aos:meta" minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>Meta informations about the sequence.</xs:documentation>
+                    <xs:documentation>Additional informations about the sequence.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
 
             <xs:element name="library" type="aos:library" >
                 <xs:annotation>
@@ -729,7 +728,7 @@
 
     <xs:complexType name="meta" final="#all" >
         <xs:annotation>
-            <xs:documentation>Meta informations about the sequence. Can be useful to know more about it.</xs:documentation>
+            <xs:documentation>Additional informations about the sequence.</xs:documentation>
         </xs:annotation>
 
         <xs:all minOccurs="0">
@@ -742,7 +741,7 @@
 
             <xs:element name="description" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Description of the sequence.</xs:documentation>
+                    <xs:documentation>Description of the sequence's content.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -760,13 +759,13 @@
 
             <xs:element name="targets" type="aos:list_target" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Informations about and for the originally targetted players this sequence was made for.</xs:documentation>
+                    <xs:documentation>Informations about the players originally targetted for this sequence and configuration data.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="infos" type="aos:extension" minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>Additional informations about the sequence.</xs:documentation>
+                    <xs:documentation>Additional informations.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
