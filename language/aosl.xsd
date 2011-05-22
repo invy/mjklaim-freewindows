@@ -1085,7 +1085,7 @@
 
             <xs:enumeration value="software" >
                 <xs:annotation>
-                    <xs:documentation>An interactive application.</xs:documentation>
+                    <xs:documentation>An interactive application top embedd.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
@@ -1096,7 +1096,9 @@
 
     <xs:simpleType name="resource_type_specific">
         <xs:annotation>
-            <xs:documentation>Interpreter-specific types of resources</xs:documentation>
+            <xs:documentation>
+                Interpreter-specific types of resources.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string">
@@ -1107,7 +1109,10 @@
 
     <xs:complexType name="resource">
         <xs:annotation>
-            <xs:documentation>A Resource provide the basic data to be used in the sequence.</xs:documentation>
+            <xs:documentation>
+                A Resource provide the address of a file or stream that contain the data to be used in the Sequence.
+                Each Object can be bound to a resource, using it as source data from wich a transformed interpretation can be extracted from.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:simpleContent>
@@ -1115,13 +1120,13 @@
 
                 <xs:attribute name="id" type="aos:resource_id" use="required" >
                     <xs:annotation>
-                        <xs:documentation>Id of the resource.</xs:documentation>
+                        <xs:documentation>Identifier of the resource.</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
 
                 <xs:attribute name="type" type="aos:resource_type" use="optional" default="auto" >
                     <xs:annotation>
-                        <xs:documentation>Type of the resource, automatically guessed by default.</xs:documentation>
+                        <xs:documentation>Type of the resource, automatically guessed by the interpreter by default.</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
 
@@ -1143,12 +1148,15 @@
 
     <xs:complexType name="library_include">
         <xs:annotation>
-            <xs:documentation>Include an external librarie's resources.</xs:documentation>
+            <xs:documentation>
+                Include an external librarie's resources.
+                Including another library means importing each of it's Resources inside this library.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:simpleContent>
             <xs:annotation>
-                <xs:documentation>URI where is located the file containing the informations of the library.</xs:documentation>
+                <xs:documentation>URI where is located the file containing the external Library informations.</xs:documentation>
             </xs:annotation>
             <xs:extension base="aos:source_uri" />
         </xs:simpleContent>
@@ -1174,7 +1182,10 @@
         <xs:annotation>
             <xs:documentation>
                 A Layer is a way to activate/deactivate a group of unrelated objects.
-                It can be used for localisation for example (one layer per language with text blocks in it).
+                It is orthogonal to the hierarchical structure of objects. 
+                An object bound to a layer will be active when both it's parent object and the layer are active,
+                but will be inactive if any one of them is deactivated.
+                It can be used for localisation for example (one layer per language with texts in it).
             </xs:documentation>
         </xs:annotation>
 
