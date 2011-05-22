@@ -482,9 +482,13 @@
     </xs:complexType>
 
 
-    <xs:complexType name="graphic_area">
+    <xs:complexType name="spatial_area">
         <xs:annotation>
-            <xs:documentation>Configuration of a finite graphic space area.</xs:documentation>
+            <xs:documentation>
+                Configuration of a finite graphic space area.
+                The size given for each dimension is used to determine what's to be managed
+                in the space box. If it's a graphical space, it determines the view frustum.
+            </xs:documentation>
         </xs:annotation>
         
         <xs:complexContent>
@@ -802,7 +806,7 @@
 
         <xs:all>
 
-            <xs:element name="area" type="aos:graphic_area" minOccurs="1" >
+            <xs:element name="area" type="aos:spatial_area" minOccurs="1" >
                 <xs:annotation>
                     <xs:documentation>
                         Virtual dimensions of the canvas.
