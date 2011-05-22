@@ -803,7 +803,12 @@
 
     <xs:complexType name="canvas" final="#all" >
         <xs:annotation>
-            <xs:documentation>Canvas where the sequence plays and that gives the objects' organisation.</xs:documentation>
+            <xs:documentation>
+                Canvas where the sequence plays and that gives the objects' organisation.
+                The Canvas is a 3D graphical and audio space. 
+                The depth dimension can be ignored by authors to focus on 2D but should still be
+                managed by players in a way or another to allow authors to exploit it where needed.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:all>
@@ -814,11 +819,11 @@
                         Virtual dimensions of the canvas.
                         Each coordinate will be interpreted as the space to take on each axis, x and y being the surface of the screen.
                         The coordinate system will define the way the space is related to the display surface of the canvas.
-                        By default "screen-space" is used, that have it's origin in top-left of the screen and +x goes on the right, +y to the bottom)
+                        By default "screen-space" is used, that have it's origin in top-left of the screen and +x goes on the right, +y to the bottom.
 
                         The x and y informations will also allow the interpreter to understand:
-                        - the original screen ratio for the sequence
-                        - the original screen resolution the sequence targeted
+                         - the original screen ratio for the sequence
+                         - the original screen resolution the sequence targeted
 
                         Those informations will allow the player implementation to adapt the sequence to the
                         display in a more informed way.
@@ -853,8 +858,8 @@
     <xs:complexType name="thread" final="#all" >
         <xs:annotation>
             <xs:documentation>
-                The Thread describe the structure of the sequence : the relaction between stages.
-                It's made of stages connected by moves, describing what happens when we get from one Stage to another.
+                The Thread describe the structure of the sequence : the relation between the different stages of the sequence.
+                It's made of Stages connected by Moves, describing what should happens when we get from one Stage to another.
             </xs:documentation>
         </xs:annotation>
 
