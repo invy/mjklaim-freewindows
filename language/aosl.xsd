@@ -869,25 +869,26 @@
                 <xs:annotation>
                     <xs:documentation>
                         Initial custom properties available through the playing of this Sequence.
+                        Those properties are available to all scripts and can be used by the interpreter too.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="navigation" type="aos:navigation"  minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>Navigation settings used for the whole sequence. Can be overloaded at each stage.</xs:documentation>
+                    <xs:documentation>Navigation configuration used for the whole sequence. Can be overloaded at each Stage of the Sequence.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="stages" type="aos:list_stage" >
                 <xs:annotation>
-                    <xs:documentation>Stages of this sequence.</xs:documentation>
+                    <xs:documentation>Stages of this Sequence.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="moves" type="aos:list_move" >
                 <xs:annotation>
-                    <xs:documentation>Moves between stages.</xs:documentation>
+                    <xs:documentation>Moves, containing Changes between Stages.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -895,7 +896,7 @@
 
         <xs:attribute name="begin" type="aos:stage_ref" use="required" >
             <xs:annotation>
-                <xs:documentation>The stage to begin the sequence with.</xs:documentation>
+                <xs:documentation>The Stage to begin the Sequence with.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
