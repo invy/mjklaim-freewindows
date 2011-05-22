@@ -972,7 +972,9 @@
 
             <xs:element name="config" type="aos:extension" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Target-specific configuration informations.</xs:documentation>
+                    <xs:documentation>
+                        Target-specific configuration informations.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             
@@ -981,16 +983,20 @@
         <xs:attribute name="player" type="xs:string" >
             <xs:annotation>
                 <xs:documentation>
-                    Name identifiying the player that this sequence is made for.
+                    Name identifiying the player/interpreter that this sequence is made for.
                     Other players can read it too but somme player-specific extensions
-                    will simply be ignored if not interpretable.
+                    will simply be ignored if the interpreter don't implement them.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
         <xs:attribute name="platform" type="xs:string" >
             <xs:annotation>
-                <xs:documentation>Name identifiying the platform that this sequence is made for.</xs:documentation>
+                <xs:documentation>
+                    Name identifiying the platform that this sequence is made for.
+                    This is to clearly make the difference between a same player being available on
+                    different platforms and performing differently while bieing having the same code/binary.
+                </xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
