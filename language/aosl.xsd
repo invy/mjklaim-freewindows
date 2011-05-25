@@ -1881,7 +1881,10 @@
 
     <xs:complexType name="navigation" final="#all" >
         <xs:annotation>
-            <xs:documentation>Navigation informations to use by the player to know when to move from a stage and using wich Move.</xs:documentation>
+            <xs:documentation>
+                Navigation informations are used by the player/interpreter to know how to bind user actions to Moves.
+                
+            </xs:documentation>
         </xs:annotation>
 
         <xs:sequence>
