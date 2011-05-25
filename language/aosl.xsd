@@ -1524,8 +1524,8 @@
     <xs:complexType name="stage" final="#all" >
         <xs:annotation>
             <xs:documentation>
-                A Stage describe a specific state in the path followed by the player when playing the Sequence.
-                It's is a node in the graph that is the Thread.
+                A Stage describe a specific state in the path followed by the player/interpreter when playing the Sequence.
+                A Stage is to a Thread what a vertex is to a graph.
             </xs:documentation>
         </xs:annotation>
 
@@ -1533,7 +1533,10 @@
 
             <xs:element name="navigation" type="aos:navigation" minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>Navigation informations that will overload the Thread navigation informations when we reach this stage.</xs:documentation>
+                    <xs:documentation>
+                        Navigation informations that will overload the Thread navigation informations when we reach this stage.
+                        Setting this stage-specific Navigation is useful for allowing special actions or choices on specific occasions.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -1548,7 +1551,7 @@
 
             <xs:element name="extension" type="aos:extension" minOccurs="0" >
                 <xs:annotation>
-                    <xs:documentation>Interpreter-related additional informations.</xs:documentation>
+                    <xs:documentation>Interpreter-defined additional informations.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -1575,7 +1578,12 @@
 
     <xs:complexType name="move" final="#all" >
         <xs:annotation>
-            <xs:documentation>A Move is a set of Changes between two Stages applied to Objects in the Canvas.</xs:documentation>
+            <xs:documentation>
+                A Move is a set of Changes between two Stages applied to Objects in the Canvas.
+                A Move is to a Thread what an edge is to an oriented graph.
+                There can be as many Moves in a Thread as combinations possibles of a pair of different Stages in the Thread, but no more.
+                Therefore, a Move will contain as many Changes necessaries to apply between two Stages and should be unique for this pair of Stages.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
