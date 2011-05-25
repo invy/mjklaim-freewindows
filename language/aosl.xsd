@@ -1476,7 +1476,7 @@
     <xs:complexType name="object_video" final="#all">
         <xs:annotation>
             <xs:documentation>
-                A Video is a graphic Object that diplay a stream of images.
+                A Video is an audio and graphic Object that diplay a stream of both images and sound.
             </xs:documentation>
         </xs:annotation>
 
@@ -1519,7 +1519,7 @@
     <xs:complexType name="stage" final="#all" >
         <xs:annotation>
             <xs:documentation>
-                A Stage a specific state in the path used when the sequence is player.
+                A Stage is a specific state in the path used when the sequence is player.
                 It's is a node in the graph that is the Thread.
             </xs:documentation>
         </xs:annotation>
