@@ -1759,7 +1759,7 @@
 
     <xs:complexType name="change_activate">
         <xs:annotation>
-            <xs:documentation>Change that will activate an object or do nothing if already activated.</xs:documentation>
+            <xs:documentation>Change that will activate the Object or do nothing if it's already activated.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1772,7 +1772,7 @@
 
     <xs:complexType name="change_deactivate">
         <xs:annotation>
-            <xs:documentation>Change that will deactivate an object or do nothing if already deactivated.</xs:documentation>
+            <xs:documentation>Change that will deactivate an Object or do nothing if it's already deactivated.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1785,7 +1785,7 @@
 
     <xs:complexType name="change_switch">
         <xs:annotation>
-            <xs:documentation>Change that will activate the object if deactivated or deactivate it if activated.</xs:documentation>
+            <xs:documentation>Change that will activate the object if it's deactivated or deactivate it if it's activated.</xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1815,6 +1815,7 @@
             <xs:documentation>
                 Change that will modify the geometric state of the object
                 by applying one or several geometric transformations.
+                This change cannot be applied to Objects that don't have spatial properties.
             </xs:documentation>
         </xs:annotation>
 
@@ -1826,8 +1827,8 @@
                     <xs:element name="transformation" type="aos:transformation" minOccurs="0" maxOccurs="unbounded" >
                         <xs:annotation>
                             <xs:documentation>
-                                Geometric transformation to apply to the object.
-                                Each transformation will be applied in the specified order.
+                                Geometric transformation to apply to the Object.
+                                Each transformation will be applied in the order of appearance in the file.
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
@@ -1842,8 +1843,12 @@
     <xs:complexType name="effect">
         <xs:annotation>
             <xs:documentation>
-                An Effect is a interpreter-specific variation of one of the Change types.
-                For example, a "fade" effect can be applied to activate, deactivate or switch changes (and even on transform).
+                An Effect is a interpreter-specific special interpretation of one of the Change types.
+                For example, a "fade" effect could be applied to activate, deactivate or switch changes (and even on transform).
+                Another example : a "slide" effect could be applied to any Transform.
+                
+                We don't specify effects because of the lack of feedback on usage. 
+                A future version might specify some standard effects that will be expected to be implemented by all standard-compliant interpreters.
             </xs:documentation>
         </xs:annotation>
 
