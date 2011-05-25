@@ -1236,14 +1236,14 @@
 
         <xs:attribute name="active" type="xs:boolean" default="false" use="optional" >
             <xs:annotation>
-                <xs:documentation>Is this Object currently active or deactivated?</xs:documentation>
+                <xs:documentation>Is this Object currently active or unactive?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
         <xs:attribute name="resource" type="aos:resource_ref" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    The Resource to use. If no resource is set, the object will not be perceptible.
+                    The Resource to use. If no resource is set, the object will not be perceptible even if it's a graphic object.
                     It still can contain children objects and behave like an invisible group.
                 </xs:documentation>
             </xs:annotation>
@@ -1252,8 +1252,7 @@
         <xs:attribute name="layer" type="aos:layer_ref" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    Id of a Layer to associate with this Object.
-                    If the Layer is deactivated, this object will be too.
+                    Id of a Layer this Object is bound to.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -1266,13 +1265,16 @@
 
             <xs:element name="properties" type="aos:property" minOccurs="0" maxOccurs="1" >
                 <xs:annotation>
-                    <xs:documentation></xs:documentation>
+                    <xs:documentation>
+                        Custom properties bound to this Object.
+                        The properties should be accessible from scripts.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="extension" type="aos:extension" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Interpreter-related additional informations.</xs:documentation>
+                    <xs:documentation>Interpreter-defined additional informations.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -1280,7 +1282,9 @@
                 <xs:annotation>
                     <xs:documentation>
                         Objects contained in this one.
-                        The child Objects will have their state relative to their parent.
+                        The child Objects will have their state relative to their parent :
+                         - their spatial state if they have some
+                         - if active, the child Object will not be perceived as active if it's parent isn't                        
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1293,7 +1297,7 @@
 
         <xs:annotation>
             <xs:documentation>
-                Stream object representation. Compose objects with stream behaviour.
+                Stream Object representation. Properties for objects with streaming behaviour.
             </xs:documentation>
         </xs:annotation>
 
@@ -1325,7 +1329,7 @@
             <xs:annotation>
                 <xs:documentation>
                     Tells if the stream should be controllable by the user,
-                    involving some kind of player-defined interface.
+                    involving some kind of player-defined interface if required.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -1346,20 +1350,21 @@
     <xs:complexType name="properties_graphic_object">
         <xs:annotation>
             <xs:documentation>
-                Graphic object representation. Compose objects with graphic behaviour.
+                Graphic object representation. Properties for Objects with graphic behaviour.
             </xs:documentation>
         </xs:annotation>
 
         <xs:all >
             <xs:element name="target" type="aos:box" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Area in the canvas occupied by the object.</xs:documentation>
+                    <xs:documentation>Area in the Canvas occupied by the object.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
             <xs:element name="source" type="aos:box" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Area in the resource (if applicable). Useful to use only a part of a resource.</xs:documentation>
+                    <xs:documentation>Area in the Resource (if applicable). Useful to use only a part of a resource, 
+                    for example when having a sprite from a graphic texture.</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:all>
@@ -1368,12 +1373,16 @@
     <xs:complexType name="properties_interactive_object">
         <xs:annotation>
             <xs:documentation>
-                Interactive object representation. Compose objects with interractive behaviour.
+                Interactive object representation. Properties for Objects with interractive behaviour.
             </xs:documentation>
         </xs:annotation>
 
         <xs:sequence>
-            <xs:element name="script" type="aos:script" minOccurs="0" maxOccurs="1" />
+            <xs:element name="script" type="aos:script" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Script to execute when this object is active.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
 
     </xs:complexType>
