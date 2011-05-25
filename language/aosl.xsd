@@ -1459,7 +1459,7 @@
     <xs:complexType name="object_audio" final="#all">
         <xs:annotation>
             <xs:documentation>
-                An Audio object allows to play sounds and music.
+                An Audio object allows to play sounds, music and online audio streams.
             </xs:documentation>
         </xs:annotation>
 
@@ -1500,6 +1500,8 @@
         <xs:annotation>
             <xs:documentation>
                 An Interactive object is a graphic Object allowed to interract with the user.
+                How the interraction happen depends on both the Resource implementation and the interpreter.
+                However, some control is possible by exploiting the script properties.
             </xs:documentation>
         </xs:annotation>
 
