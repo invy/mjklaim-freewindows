@@ -1355,16 +1355,19 @@
         </xs:annotation>
 
         <xs:all >
-            <xs:element name="target" type="aos:box" minOccurs="0">
+            <xs:element name="output" type="aos:box" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Area in the Canvas occupied by the object.</xs:documentation>
+                    <xs:documentation>Area in the Canvas where that the graphic output will occupy.</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
-            <xs:element name="source" type="aos:box" minOccurs="0">
+            <xs:element name="input" type="aos:box" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Area in the Resource (if applicable). Useful to use only a part of a resource, 
-                    for example when having a sprite from a graphic texture.</xs:documentation>
+                    <xs:documentation>
+                        Area in the Resource (if applicable) from wich the graphic input will be extracted. 
+                        Useful to use only a part of a resource, 
+                        for example when having a sprite from a graphic texture.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:all>
