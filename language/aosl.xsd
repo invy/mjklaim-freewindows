@@ -1636,11 +1636,29 @@
 
 
     <xs:group name="group_change_extensions">
+        <xs:annotation>
+            <xs:documentation>Extension properties for Changes.</xs:documentation>
+        </xs:annotation>
+        
         <xs:sequence>
 
-            <xs:element name="effects" type="aos:list_effect" minOccurs="0" maxOccurs="1" />
-            <xs:element name="script" type="aos:script" minOccurs="0" maxOccurs="1" />
-            <xs:element name="extension" type="aos:extension" minOccurs="0" maxOccurs="1" />
+            <xs:element name="effects" type="aos:list_effect" minOccurs="0" maxOccurs="1" >
+                <xs:annotation>
+                    <xs:documentation>Interpreter-defined effects to apply to the Change interpretation.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="script" type="aos:script" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Script to execute when this Change is applied.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="extension" type="aos:extension" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Interpreter-defined additional informations.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
 
         </xs:sequence>
     </xs:group>
@@ -1648,7 +1666,7 @@
     <xs:complexType name="change" abstract="true">
         <xs:annotation>
             <xs:documentation>
-                A Change is a set of transformations (geometric or not) that will apply to an Object.
+                A Change is a set of transformations (geometric or not) that will be applied to an Object.
                 A Change can be a transform, activate, deactivate, switch or any other interpreter-specific change.
                 The "change" tag is used only when the change type is not identified.
             </xs:documentation>
