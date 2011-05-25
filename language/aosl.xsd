@@ -1666,9 +1666,9 @@
     <xs:complexType name="change" abstract="true">
         <xs:annotation>
             <xs:documentation>
-                A Change is a set of transformations (geometric or not) that will be applied to an Object.
+                A Change describe a set of transformations (geometric or not) that will be applied to an Object.
+                Changes are contained in Moves that are applied when going from one Stage to another.
                 A Change can be a transform, activate, deactivate, switch or any other interpreter-specific change.
-                The "change" tag is used only when the change type is not identified.
             </xs:documentation>
         </xs:annotation>
 
@@ -1720,7 +1720,7 @@
     </xs:simpleType>
 
     <xs:element name="change"           type="aos:change"               abstract="true" />
-    <xs:element name="specialchange"   type="aos:change_special"       substitutionGroup="aos:change" />
+    <xs:element name="specialchange"    type="aos:change_special"       substitutionGroup="aos:change" />
     <xs:element name="activate"         type="aos:change_activate"      substitutionGroup="aos:change" />
     <xs:element name="deactivate"       type="aos:change_deactivate"    substitutionGroup="aos:change" />
     <xs:element name="switch"           type="aos:change_switch"        substitutionGroup="aos:change" />
