@@ -1519,7 +1519,7 @@
     <xs:complexType name="stage" final="#all" >
         <xs:annotation>
             <xs:documentation>
-                A Stage is a specific state in the path used when the sequence is player.
+                A Stage describe a specific state in the path followed by the player when playing the Sequence.
                 It's is a node in the graph that is the Thread.
             </xs:documentation>
         </xs:annotation>
