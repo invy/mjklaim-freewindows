@@ -1111,7 +1111,7 @@
         <xs:annotation>
             <xs:documentation>
                 A Resource provide the address of a file or stream that contain the data to be used in the Sequence.
-                Each Object can be bound to a resource, using it as source data from wich a transformed interpretation can be extracted from.
+                Each Object can be bound to a resource, using it as source data from wich a transformed interpretation (Objects) can be extracted from.
             </xs:documentation>
         </xs:annotation>
 
@@ -1181,11 +1181,11 @@
     <xs:complexType name="layer" final="#all" >
         <xs:annotation>
             <xs:documentation>
-                A Layer is a way to activate/deactivate a group of unrelated objects.
-                It is orthogonal to the hierarchical structure of objects. 
+                A Layer is a way to activate and deactivate a group of unrelated objects.
+                It is orthogonal to the hierarchical organisation of Objects.
                 An object bound to a layer will be active when both it's parent object and the layer are active,
                 but will be inactive if any one of them is deactivated.
-                It can be used for localisation for example (one layer per language with texts in it).
+                It can be used for localization (one layer per language with texts in it).
             </xs:documentation>
         </xs:annotation>
 
@@ -1195,16 +1195,16 @@
 
         <xs:attribute name="id" type="aos:layer_id" use="required" >
             <xs:annotation>
-                <xs:documentation>Id of the Layer, to be used by Objects that are linked to it.</xs:documentation>
+                <xs:documentation>Id of the Layer, to be used by Objects that are bound to it.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
 
         <xs:attribute name="active" type="xs:boolean" default="true" use="optional" >
             <xs:annotation>
                 <xs:documentation>
-                    Is this Layer active or deactivated?
-                    When active all the related Objects will apply their state.
-                    If deactivated, all the related Objects will ignore their state and be considered deactivated.
+                    Is this Layer active or unactive?
+                    When active all the bound Objects will be active if their parent is active too.
+                    When unactive all the bound Objects will be unactive, without considering the parent's state.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
