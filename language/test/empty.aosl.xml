@@ -20,6 +20,9 @@
 
     <canvas>
         <area x="800" y="600" z="0" />
+        <objects>
+            
+        </objects>
     </canvas>
 
     <thread begin="stage_0" >
