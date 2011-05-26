@@ -1900,7 +1900,7 @@
 
     <xs:complexType name="event" abstract="true" >
         <xs:annotation>
-            <xs:documentation>The Event specify what happens when some input relative to navigation are triggered.</xs:documentation>
+            <xs:documentation>An Event specify a response to inputs from the user or the player/intepreter.</xs:documentation>
         </xs:annotation>
 
         <xs:attribute name="move" type="aos:move_ref" use="required" >
@@ -1928,22 +1928,42 @@
 
     <xs:simpleType name="event_type" >
         <xs:annotation>
-            <xs:documentation>Types of events.</xs:documentation>
+            <xs:documentation>Types names of possible Events.</xs:documentation>
         </xs:annotation>
 
-        <!--TODO : missing documentation-->
         <xs:restriction base="xs:string">
-            <xs:enumeration value="unknown" />
-            <xs:enumeration value="signal" />
-            <xs:enumeration value="input" />
-            <xs:enumeration value="selection" />
+            
+            <xs:enumeration value="unknown" >
+                <xs:annotation>
+                    <xs:documentation>Unknown Event type, used only if there is no way to determine the type of an Event.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="signal">
+                <xs:annotation>
+                    <xs:documentation>Signal Event type.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="input">
+                <xs:annotation>
+                    <xs:documentation>Input Event type.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+
+            <xs:enumeration value="selection">
+                <xs:annotation>
+                    <xs:documentation>Selection Event type.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            
         </xs:restriction>
 
     </xs:simpleType>
 
-    <xs:complexType name="event_signal_base">
+    <xs:complexType name="event_signal_base" abstract="true">
         <xs:annotation>
-            <xs:documentation>Base type for signal - inheriting from event and setting the type value.</xs:documentation>
+            <xs:documentation>Base type for Signal - inheriting from Event and setting the type value.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:restriction base="aos:event">
@@ -1955,7 +1975,11 @@
 
     <xs:complexType name="event_signal" >
         <xs:annotation>
-            <xs:documentation>A Signal is a type of Event that comes from Objects or other undefined sources.</xs:documentation>
+            <xs:documentation>
+                A Signal is an Event is triggered by scripts or interpreter implementation.
+                It's totally interpreter's implementation defined.
+                It should be used to manage interpreter-specific events and script events.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -1963,7 +1987,10 @@
 
                 <xs:attribute name="source" type="aos:signal_source" use="required" >
                     <xs:annotation>
-                        <xs:documentation>Name of the source of the event.</xs:documentation>
+                        <xs:documentation>
+                            Name of the source of the event.
+                            This information is used by the interpreter in an unspecified way.
+                        </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
 
