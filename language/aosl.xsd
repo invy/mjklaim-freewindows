@@ -2214,7 +2214,7 @@
 
     <xs:simpleType name="special_move_ref">
         <xs:annotation>
-            <xs:documentation> Get automatically the move reference associated with the search logic. </xs:documentation>
+            <xs:documentation> Get automatically a move reference by using a search logic. </xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string">
@@ -2222,15 +2222,15 @@
             <xs:enumeration value="#next" >
                 <xs:annotation>
                     <xs:documentation>
-                        #next : find the next logical move to go to -
-                        valid only if there is only one move possible to continue in the sequence.
+                        Find the next logical move to go to.
+                        Should be usable only if there is only one move possible to continue in the sequence.
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
             <xs:enumeration value="#previous" >
                 <xs:annotation>
-                    <xs:documentation>#previous : get back in the path followed by the player (or do nothing at the first Stage).</xs:documentation>
+                    <xs:documentation>Go back in the path followed by the player (or do nothing at the beginning Stage).</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
 
@@ -2260,7 +2260,7 @@
 
     <xs:simpleType name="special_layer_ref">
         <xs:annotation>
-            <xs:documentation> Reference to one or more layers automatically found via the choosen search logic. </xs:documentation>
+            <xs:documentation>Reference to one or more layers automatically found by using a search logic. </xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string">
@@ -2276,7 +2276,7 @@
 
     <xs:simpleType name="layer_ref">
         <xs:annotation>
-            <xs:documentation>Reference to a Layer or automatically find layers using search logic.</xs:documentation>
+            <xs:documentation>Reference to a Layer or automatically find layers using a search logic.</xs:documentation>
         </xs:annotation>
 
         <xs:union memberTypes="aos:target_layer_ref aos:special_layer_ref" />
@@ -2297,7 +2297,7 @@
 
     <xs:simpleType name="special_object_ref">
         <xs:annotation>
-            <xs:documentation> Reference to one or more objects automatically found via the choosen search logic. </xs:documentation>
+            <xs:documentation>Reference to one or more Objects automatically found using a search logic.</xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string" >
