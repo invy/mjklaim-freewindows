@@ -2014,8 +2014,9 @@
     <xs:complexType name="event_input" >
         <xs:annotation>
             <xs:documentation>
-                An Input is an Event that is triggered by the player, often buttons pushed or other
-                hardware or system related inputs.
+                An Input is an Event that is triggered by the player/interpreter, 
+                most of the time buttons pushed or other hardware or system related inputs.
+                It is useful to make keyboard keys goes to the next or the previous Move/Stage.
             </xs:documentation>
         </xs:annotation>
 
@@ -2024,13 +2025,20 @@
 
                 <xs:attribute name="key" type="aos:input_key" use="required" >
                     <xs:annotation>
-                        <xs:documentation>Key identifiying the input to listen to.</xs:documentation>
+                        <xs:documentation>
+                            Key identifiying the input to listen to.
+                            This information is used by the interpreter in an unspecified way.
+                        </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
 
                 <xs:attribute name="value" type="aos:input_value" use="required" >
                     <xs:annotation>
-                        <xs:documentation>Value of the input to reach to trigger this Event - or a range of values.</xs:documentation>
+                        <xs:documentation>
+                            Value of the input to reach to trigger this Event - or a range of values.
+                            This information is used by the interpreter in an unspecified way.
+                            It allows to fine-tune inputs for a specific intepreter or platform.
+                        </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
 
@@ -2053,7 +2061,12 @@
 
     <xs:complexType name="event_selection" >
         <xs:annotation>
-            <xs:documentation>A Selection is an Event triggered when the reader "select" an Object in the Sequence.</xs:documentation>
+            <xs:documentation>
+                A Selection is an Event triggered when the user "select" an Object in the Sequence.
+                The ways a user can select an Object is defined by the interpreter.
+                On a classic computer, clicking with a mouse on an Object is often intepreted as a selection.
+                On some embedded devices, tapping on the screen on an Object might be a selection too.
+            </xs:documentation>
         </xs:annotation>
 
         <xs:complexContent>
@@ -2072,7 +2085,7 @@
 
     <xs:simpleType name="signal_source">
         <xs:annotation>
-            <xs:documentation>Name of a signal source, interpreted by the player or any other source.</xs:documentation>
+            <xs:documentation>Name of a signal source, interpreted by the player/interpreter in an undefined way.</xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string" />
@@ -2081,7 +2094,7 @@
 
     <xs:simpleType name="input_key">
         <xs:annotation>
-            <xs:documentation>Key identifying an input source managed by the player (like a keyboard or interface buttons).</xs:documentation>
+            <xs:documentation>Key identifying an input source managed by the player/interpreter (like a keyboard or graphic interface buttons).</xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string" />
@@ -2090,7 +2103,7 @@
 
     <xs:simpleType name="input_value">
         <xs:annotation>
-            <xs:documentation>Value representing a state of an input source managed by the player (like a keyboard or interface buttons).</xs:documentation>
+            <xs:documentation>Value representing a state of an input source managed by the player/interpreter (like a keyboard or interface buttons).</xs:documentation>
         </xs:annotation>
 
         <xs:restriction base="xs:string" />
