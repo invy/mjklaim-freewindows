@@ -1883,7 +1883,8 @@
         <xs:annotation>
             <xs:documentation>
                 Navigation informations are used by the player/interpreter to know how to bind user actions to Moves.
-                
+                It hold a set of Events that define responses to events from user input or player/interpreter informations.
+                It can be used for defining the global navigation or more precisely in the context of a specific Stage.
             </xs:documentation>
         </xs:annotation>
 
