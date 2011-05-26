@@ -855,7 +855,7 @@
                 </xs:annotation>
             </xs:element>
 
-            <xs:element name="objects" type="aos:list_object" minOccurs="0" >
+            <xs:element name="objects" type="aos:list_object" >
                 <xs:annotation>
                     <xs:documentation>Objects in this canvas, organized in hierarchical tree.</xs:documentation>
                 </xs:annotation>
@@ -1367,6 +1367,8 @@
                         Area in the Resource (if applicable) from wich the graphic input will be extracted. 
                         Useful to use only a part of a resource, 
                         for example when having a sprite from a graphic texture.
+                        
+                        A null-size input box (0,0,0) - the default value - means the whole resource have to be used.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
