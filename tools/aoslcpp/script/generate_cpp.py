@@ -16,7 +16,10 @@ import re
 import logging
 
 # Name of the log file.
-LOG_FILENAME = 'generate_cpp.log'
+LOG_PATH = 'generate_cpp.log'
+
+# Path of the file where the list of generated files will be written.
+GENERATED_SOURCE_LIST_LOG_PATH = "generate_files.log"
 
 # Path of the XSD file to use to generate the code
 AOSL_XSD_PATH = os.path.abspath( "../../../language/aosl.xsd" )
@@ -86,7 +89,7 @@ def move_files( dir_path, dest_path, regex_pattern ):
     process_files( dir_path, regex_pattern, FileMover( dest_path ), "Moving" )
 
 
-logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+logging.basicConfig(filename=LOG_PATH,level=logging.DEBUG)
 
 log( "==== AOSL CPP : XSD to C++ Code Generation - " " ====" )
 log( "XSD file path = " + os.path.abspath( AOSL_XSD_PATH ) )
@@ -107,7 +110,7 @@ move_files( dir_path=AOSCPP_AOSL_SOURCE_PATH, dest_path=AOSCPP_AOSL_INCLUDE_PATH
 
 
 log( "==== AOSL CPP : End ====" )
-log( "See " + LOG_FILENAME + " for the list of generated files." )
-print("#### Logged in " + LOG_FILENAME + " ####" )
+log( "See " + GENERATED_SOURCE_LIST_LOG_PATH + " for the list of generated files." )
+print("#### Logged in " + LOG_PATH + " ####" )
 
 
