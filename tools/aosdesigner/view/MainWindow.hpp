@@ -29,6 +29,7 @@ namespace view
 
         boost::scoped_ptr<Ui::MainWindow> m_ui;
 
+
     };
 
 

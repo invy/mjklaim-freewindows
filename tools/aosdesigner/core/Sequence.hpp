@@ -5,6 +5,9 @@
 
 namespace aosd
 {
+namespace core
+{
+
 
     class Sequence
     {
@@ -18,6 +21,8 @@ namespace aosd
     };
 
 
+
+}
 }
 
 

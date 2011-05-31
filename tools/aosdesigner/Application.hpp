@@ -2,7 +2,7 @@
 #define __AOSD_APPLICATION_HPP__
 #pragma once
 
-#include <memory>
+#include <boost/scoped_ptr.hpp>
 
 #include <QApplication>
 
@@ -12,7 +12,11 @@ namespace aosd
     {
         class MainWindow;
     }
-
+    namespace core
+    {
+        class Project;
+    }
+    
 
     class Application
         : public QApplication
@@ -23,10 +27,16 @@ namespace aosd
 
         Application( int &argc, char **argv );
         ~Application();
+
+        bool is_project_open() const { return m_project; }
+
+        core::Project& project() { return *m_project; }
+        const core::Project& project()  const { return *m_project; }
         
     private:
 
-        view::MainWindow* m_main_window;
+        boost::scoped_ptr<view::MainWindow> m_main_window;
+        boost::scoped_ptr<core::Project> m_project;
 
     };
 

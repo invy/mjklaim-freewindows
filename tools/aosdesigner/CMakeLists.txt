@@ -25,6 +25,7 @@ set( AOSD_APPLICATION_HEADERS
 
 # Core objects header files.
 set( AOSD_CORE_HEADERS
+    ${AOSD_CORE_DIR}/Project.hpp
     ${AOSD_CORE_DIR}/Sequence.hpp
 )
 
@@ -33,6 +34,7 @@ set( AOSD_CORE_HEADERS
 # Views header files.
 set( AOSD_VIEW_HEADERS
     ${AOSD_VIEW_DIR}/MainWindow.hpp
+    ${AOSD_VIEW_DIR}/ProjectView.hpp
 )
 
 #-----------------------------------------------------------------
@@ -64,13 +66,16 @@ set( AOSD_APPLICATION_SOURCES
 # Views source files.
 set( AOSD_VIEW_SOURCES 
     ${AOSD_VIEW_DIR}/MainWindow.cpp
+    ${AOSD_VIEW_DIR}/ProjectView.cpp
 )
 
 #------------------------------------------------------
 
 # Core source files
 set( AOSD_CORE_SOURCES
+    ${AOSD_CORE_DIR}/Project.cpp
     ${AOSD_CORE_DIR}/Sequence.cpp
+    
 )
 
 #------------------------------------------------------
@@ -134,4 +139,4 @@ add_executable( aosdesigner ${AOSD_ALL_FILES} )
 
 target_link_libraries( aosdesigner ${QT_LIBRARIES} )
 
-include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
+include_directories( ${AOSD_DIR} ${CMAKE_CURRENT_BINARY_DIR} )
