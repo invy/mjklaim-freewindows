@@ -11,7 +11,9 @@ namespace aosd
 { 
 namespace core 
 {
+    /** Contains a set of Sequences and common informations of those sequences.
 
+    */
     class Project
     {
     public:
@@ -21,7 +23,10 @@ namespace core
         
     private:
 
+        /// Sequences for this project
         boost::ptr_vector< Sequence > m_sequences;
+
+
 
     };
 

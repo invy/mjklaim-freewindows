@@ -2,6 +2,8 @@
 
 #include "ui_MainWindow.h"
 
+#include "view/ProjectView.hpp"
+
 namespace aosd
 {
 namespace view
@@ -12,6 +14,9 @@ namespace view
         , m_ui( new Ui::MainWindow )
     {
         m_ui->setupUi( this );
+        
+        addDockWidget( Qt::LeftDockWidgetArea, new ProjectView() );
+
     }
 
 }

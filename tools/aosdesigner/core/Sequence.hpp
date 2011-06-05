@@ -8,7 +8,8 @@ namespace aosd
 namespace core
 {
 
-
+    /** A full Sequence as defined in AOSL.
+    */
     class Sequence
     {
     public:

@@ -15,7 +15,7 @@ namespace aosd
 {
 namespace view
 {
-
+    class ProjectView;
 
     class MainWindow
         : public QMainWindow
@@ -28,7 +28,6 @@ namespace view
     private:
 
         boost::scoped_ptr<Ui::MainWindow> m_ui;
-
 
     };
 
