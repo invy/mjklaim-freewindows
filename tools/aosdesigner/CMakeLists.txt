@@ -26,6 +26,7 @@ set( AOSD_APPLICATION_HEADERS
 
 # Core objects header files.
 set( AOSD_CORE_HEADERS
+    ${AOSD_CORE_DIR}/Context.hpp
     ${AOSD_CORE_DIR}/Project.hpp
     ${AOSD_CORE_DIR}/Sequence.hpp
 )
@@ -84,6 +85,7 @@ set( AOSD_VIEW_SOURCES
 
 # Core source files
 set( AOSD_CORE_SOURCES
+    ${AOSD_CORE_DIR}/Context.cpp
     ${AOSD_CORE_DIR}/Project.cpp
     ${AOSD_CORE_DIR}/Sequence.cpp
     
