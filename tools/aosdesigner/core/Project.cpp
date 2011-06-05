@@ -19,6 +19,7 @@ namespace core
     Project::Project( const bfs::path& from_location )
     {
         // TODO : move that in a separate function!
+        // TODO : THIS IS NOT SAFE!!!!!
         using namespace boost::property_tree;
 
         const auto project_file_path = from_location / FILENAME;
@@ -26,6 +27,7 @@ namespace core
         ptree infos;
         read_info( project_file_path.string(), infos );     
 
+        m_name = infos.get<std::string>( "project.name" );
     }
 
 
