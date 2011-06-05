@@ -19,11 +19,14 @@ namespace core
         like the current project to work on and the open sequence.
     */
     class Context
-        : public util::Singleton< Context >
-        , public QObject
+        : public QObject
+        , public util::Singleton< Context >
     {
         Q_OBJECT
     public:
+
+        Context();
+        ~Context();
         
         /** Create a new empty project and set it as the current project.
             If there was already a project open, it will be closed first.
@@ -37,10 +40,10 @@ namespace core
         void close_project();
         
         /** @return True if there is a project open currently. */
-        bool is_project_open() const { return m_project; }
+        bool is_project_open() const;
 
         /** Current project open for edition. */
-        const Project& project_open() const { return *m_project; }
+        const Project& project_open() const;
         
     signals:
 

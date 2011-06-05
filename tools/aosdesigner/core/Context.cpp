@@ -8,6 +8,17 @@ namespace core
 {
 
 
+    Context::Context()
+        : m_project( nullptr )
+    {
+
+    }
+
+
+    Context::~Context()
+    {
+
+    }
 
     void Context::new_project()
     {
@@ -42,6 +53,16 @@ namespace core
         emit on_project_close( project_open() );
 
         m_project.reset();
+    }
+
+    bool Context::is_project_open() const
+    {
+        return m_project;
+    }
+
+    const Project& Context::project_open() const
+    {
+        return *m_project;
     }
 
 
