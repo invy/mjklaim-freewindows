@@ -10,6 +10,7 @@ add_definitions( ${QT_DEFINITIONS} )
 set( AOSD_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
 set( AOSD_CORE_DIR ${AOSD_DIR}/core )
 set( AOSD_VIEW_DIR ${AOSD_DIR}/view )
+set( AOSD_UTIL_DIR ${AOSD_DIR}/util )
 set( AOSD_RC_DIR ${AOSD_VIEW_DIR}/rc )
 set( AOSD_UI_DIR ${AOSD_VIEW_DIR}/ui )
 
@@ -37,6 +38,15 @@ set( AOSD_VIEW_HEADERS
     ${AOSD_VIEW_DIR}/ProjectView.hpp
 )
 
+
+#-----------------------------------------------------------------
+
+# Utility header files.
+set( AOSD_UTIL_HEADERS
+    ${AOSD_UTIL_DIR}/Singleton.hpp
+)
+
+
 #-----------------------------------------------------------------
 
 # All header files.
@@ -44,6 +54,7 @@ set( AOSD_ALL_HEADERS
     ${AOSD_APPLICATION_HEADERS} 
     ${AOSD_CORE_HEADERS}
     ${AOSD_VIEW_HEADERS}
+    ${AOSD_UTIL_HEADERS}
 )
  
 
@@ -75,6 +86,13 @@ set( AOSD_VIEW_SOURCES
 set( AOSD_CORE_SOURCES
     ${AOSD_CORE_DIR}/Project.cpp
     ${AOSD_CORE_DIR}/Sequence.cpp
+    
+)
+
+#-----------------------------------------------------------------
+
+# Utility source files.
+set( AOSD_UTIL_SOURCES
     
 )
 
@@ -118,6 +136,7 @@ source_group( view\\generated\\ui FILES ${AOSD_VIEW_HEADERS_UI} )
 # Additional groups
 source_group( view FILES ${AOSD_VIEW_HEADERS} ${AOSD_VIEW_SOURCES} )
 source_group( core FILES ${AOSD_CORE_HEADERS} ${AOSD_CORE_SOURCES} )
+source_group( util FILES ${AOSD_UTIL_HEADERS} ${AOSD_UTIL_SOURCES} )
 source_group( "" FILES ${AOSD_APPLICATION_HEADERS} ${AOSD_APPLICATION_SOURCES} )
 
 ####################################################
@@ -130,6 +149,7 @@ set( AOSD_ALL_SOURCES
     ${AOSD_VIEW_SOURCES}
     ${AOSD_VIEW_HEADERS_MOC}
     ${AOSD_VIEW_HEADERS_UI}
+    ${AOSD_UTIL_SOURCES}
 )
 
 # All the files of the project.
