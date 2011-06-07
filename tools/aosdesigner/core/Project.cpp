@@ -14,6 +14,7 @@ namespace core
     {
         m_sequences.push_back( new Sequence() );
         m_name = "No name yet";
+        m_location = "./";
 
     }
 

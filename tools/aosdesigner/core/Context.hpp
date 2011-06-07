@@ -22,7 +22,7 @@ namespace core
         : public QObject
         , public util::Singleton< Context >
     {
-        Q_SIGNAL
+        Q_OBJECT
     public:
 
         Context();
@@ -48,7 +48,7 @@ namespace core
     signals:
 
         /** Signal : a project have been open. */
-        void project_open( const Project& project );
+        void project_open( const core::Project& project );
 
         /** Signal : the currently open project have been modified. */
         void project_changed( const Project& project );
@@ -56,6 +56,7 @@ namespace core
         /** Signal : the currently open project will be closed. */
         void project_closed( const Project& project );
         
+        void a_test( int k );
 
     private:
 
