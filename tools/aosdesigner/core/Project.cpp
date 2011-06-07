@@ -12,7 +12,8 @@ namespace core
 
     Project::Project()
     {
-        m_sequences.push_back( new Sequence() ); 
+        m_sequences.push_back( new Sequence() );
+        m_name = "No name yet";
 
     }
 

@@ -6,11 +6,16 @@
 
 #include <QApplication>
 
+
 namespace aosd
 {
     namespace view
     {
         class MainWindow;
+    }
+    namespace core
+    {
+        class Context;
     }
     
     class Application
@@ -26,7 +31,10 @@ namespace aosd
         
     private:
 
+        boost::scoped_ptr<core::Context> m_context;
+
         boost::scoped_ptr<view::MainWindow> m_main_window;
+        
         
     };
 

@@ -22,7 +22,7 @@ namespace core
         : public QObject
         , public util::Singleton< Context >
     {
-        Q_OBJECT
+        Q_SIGNAL
     public:
 
         Context();
@@ -34,7 +34,7 @@ namespace core
         void new_project();
 
         /** Open a project located at the provided path. */
-        void open_project( const boost::filesystem::path& project_path );
+        void current_project( const boost::filesystem::path& project_path );
         
         /** Close the currently open project. */
         void close_project();
@@ -43,18 +43,18 @@ namespace core
         bool is_project_open() const;
 
         /** Current project open for edition. */
-        const Project& project_open() const;
+        const Project& current_project() const;
         
     signals:
 
         /** Signal : a project have been open. */
-        void on_project_open( const Project& project );
+        void project_open( const Project& project );
 
         /** Signal : the currently open project have been modified. */
-        void on_project_changed( const Project& project );
+        void project_changed( const Project& project );
 
         /** Signal : the currently open project will be closed. */
-        void on_project_close( const Project& project );
+        void project_closed( const Project& project );
         
 
     private:
@@ -63,7 +63,7 @@ namespace core
         boost::scoped_ptr< Project > m_project;
 
         /** Open a project that have been loaded. */
-        void open_project( Project& project );
+        void current_project( Project& project );
 
     };
 

@@ -23,18 +23,18 @@ namespace core
     void Context::new_project()
     {
         auto project = new Project();
-        open_project( *project );
+        current_project( *project );
 
     }
 
-    void Context::open_project( const boost::filesystem::path& project_path )
+    void Context::current_project( const boost::filesystem::path& project_path )
     {
         Q_ASSERT( false ); // not implemented yet
 
-        emit on_project_open( project_open() );
+        current_project( *m_project );
     }
 
-    void Context::open_project( Project& project )
+    void Context::current_project( Project& project )
     {
         Q_CHECK_PTR( &project );
 
@@ -43,16 +43,18 @@ namespace core
 
         m_project.reset( &project );
 
-        emit on_project_open( project_open() );
+        emit project_open( current_project() );
     }
 
     void Context::close_project()
     {
         Q_ASSERT( false ); // not implemented yet
 
-        emit on_project_close( project_open() );
+        // TODO : add here the code to close the project
 
+        emit project_closed( current_project() );
         m_project.reset();
+
     }
 
     bool Context::is_project_open() const
@@ -60,7 +62,7 @@ namespace core
         return m_project;
     }
 
-    const Project& Context::project_open() const
+    const Project& Context::current_project() const
     {
         return *m_project;
     }

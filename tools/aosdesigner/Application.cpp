@@ -8,11 +8,11 @@ namespace aosd
 {
     Application::Application( int &argc, char **argv )
         : QApplication( argc, argv )
+        , m_context( new core::Context() )
         , m_main_window( new view::MainWindow( nullptr ) )
     {
         using namespace aosd::core;
-        Context::create();
-
+        
         // temporary : create an empty project
         Context::instance().new_project();
 
@@ -23,7 +23,7 @@ namespace aosd
     {
         using namespace aosd::core;
 
-        Context::destroy();
+        
     }
 
 }

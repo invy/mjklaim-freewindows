@@ -6,6 +6,11 @@
 
 namespace aosd
 {
+namespace core
+{
+    class Project;
+}
+
 namespace view
 {
 
@@ -20,6 +25,10 @@ namespace view
         
         ProjectView();
         
+    
+    private slots:
+
+        void on_project_open( const core::Project& project );
 
     private:
 
