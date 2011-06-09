@@ -56,8 +56,6 @@ namespace core
         /** Signal : the currently open project will be closed. */
         void project_closed( const Project& project );
         
-        void a_test( int k );
-
     private:
 
         /// The currently open project or null if none.

@@ -24,7 +24,6 @@ namespace core
     {
         auto project = new Project();
         current_project( *project );
-        emit a_test( 42 );
     }
 
     void Context::current_project( const boost::filesystem::path& project_path )

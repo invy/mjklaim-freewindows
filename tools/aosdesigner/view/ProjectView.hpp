@@ -29,8 +29,7 @@ namespace view
     private slots:
 
         void on_project_open( const core::Project& project );
-        void on_test( int k );
-
+        
     private:
 
         
