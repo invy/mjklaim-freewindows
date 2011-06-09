@@ -13,6 +13,11 @@ namespace Ui
 
 namespace aosd
 {
+namespace core
+{
+    class Project;
+}
+
 namespace view
 {
     class ProjectView;
@@ -20,10 +25,14 @@ namespace view
     class MainWindow
         : public QMainWindow
     {
+        Q_OBJECT
     public:
 
         MainWindow(QWidget *parent);
         
+    private slots:
+
+        void on_project_open( const core::Project& project );
 
     private:
 
