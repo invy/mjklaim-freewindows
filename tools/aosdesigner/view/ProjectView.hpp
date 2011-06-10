@@ -2,17 +2,15 @@
 #define __AOSD_VIEW_PROJECTVIEW_HPP__
 #pragma once
 
+#include <boost/scoped_ptr.hpp>
 #include <QDockWidget>
+
 
 namespace aosd
 {
-namespace core
-{
-    class Project;
-}
-
 namespace view
 {
+    class SequenceListView;
 
     /** Display the basic informations about a Project and the Sequences it contains.
         It allows to switch from one Sequence to another.
@@ -28,10 +26,9 @@ namespace view
     
     private slots:
 
-        void on_project_open( const core::Project& project );
-        
     private:
-
+        
+        boost::scoped_ptr<SequenceListView> m_sequence_list;
         
     };
 

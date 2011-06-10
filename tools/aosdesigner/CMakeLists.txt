@@ -37,6 +37,7 @@ set( AOSD_CORE_HEADERS
 set( AOSD_VIEW_HEADERS
     ${AOSD_VIEW_DIR}/MainWindow.hpp
     ${AOSD_VIEW_DIR}/ProjectView.hpp
+    ${AOSD_VIEW_DIR}/SequenceListView.hpp
 )
 
 
@@ -79,6 +80,7 @@ set( AOSD_APPLICATION_SOURCES
 set( AOSD_VIEW_SOURCES 
     ${AOSD_VIEW_DIR}/MainWindow.cpp
     ${AOSD_VIEW_DIR}/ProjectView.cpp
+    ${AOSD_VIEW_DIR}/SequenceListView.cpp
 )
 
 #------------------------------------------------------

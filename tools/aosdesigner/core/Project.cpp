@@ -1,5 +1,7 @@
 #include "core/Project.hpp"
 
+#include <algorithm>
+
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/info_parser.hpp>
 
@@ -59,6 +61,16 @@ namespace core
         const auto project_file_path = filepath / FILENAME;
 
         write_info( project_file_path.string(), infos );
+    }
+
+    void Project::foreach_sequence( const SequenceModifierFunc& func )
+    {
+        std::for_each( m_sequences.begin(), m_sequences.end(), func );
+    }
+
+    void Project::foreach_sequence( const SequenceReaderFunc& func ) const
+    {
+        std::for_each( m_sequences.begin(), m_sequences.end(), func );
     }
 
 

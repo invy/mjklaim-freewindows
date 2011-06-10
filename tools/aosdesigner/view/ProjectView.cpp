@@ -1,8 +1,6 @@
 #include "view/ProjectView.hpp"
 
-
-#include "core/Context.hpp"
-#include "core/Project.hpp"
+#include "view/SequenceListView.hpp"
 
 namespace aosd
 {
@@ -11,14 +9,10 @@ namespace view
 
     ProjectView::ProjectView()
         : QDockWidget( tr("Project") )
+        , m_sequence_list( new SequenceListView() )
     {
-        auto& context = core::Context::instance();
-        connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(on_project_open(const core::Project&)) );
-        
-    }
+        setWidget( m_sequence_list.get() );
 
-    void ProjectView::on_project_open( const core::Project& project )
-    {
     }
 
 }

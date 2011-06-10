@@ -45,6 +45,12 @@ namespace core
 
         const std::string& name() const { return m_name; }
         void change_name( const std::string& new_name );
+
+        typedef std::function< void ( Sequence& sequence )> SequenceModifierFunc;
+        typedef std::function< void ( const Sequence& sequence )> SequenceReaderFunc;
+
+        void foreach_sequence( const SequenceModifierFunc& func );
+        void foreach_sequence( const SequenceReaderFunc& func ) const;
         
     private:
 
