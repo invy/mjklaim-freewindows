@@ -5,6 +5,7 @@
 #include <boost/scoped_ptr.hpp>
 #include <QDockWidget>
 
+class QTabWidget;
 
 namespace aosd
 {
@@ -28,7 +29,7 @@ namespace view
 
     private:
         
-        boost::scoped_ptr<SequenceListView> m_sequence_list;
+        boost::scoped_ptr<QTabWidget> m_tabs;
         
     };
 
