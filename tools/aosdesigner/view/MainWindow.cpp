@@ -8,6 +8,7 @@
 #include "view/LibrariesView.hpp"
 #include "view/ObjectsView.hpp"
 #include "view/CanvasView.hpp"
+#include "view/ThreadView.hpp"
 
 namespace aosd
 {
@@ -26,7 +27,9 @@ namespace view
         addDockWidget( Qt::LeftDockWidgetArea, project_view );
         tabifyDockWidget( project_view, new ObjectsView() );
         addDockWidget( Qt::RightDockWidgetArea, new LibrariesView() );
+        addDockWidget( Qt::BottomDockWidgetArea, new ThreadView() );
         setCentralWidget( new CanvasView() );
+        
         
         auto& context = core::Context::instance();
         connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(on_project_open(const core::Project&)) );
