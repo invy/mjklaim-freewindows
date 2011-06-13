@@ -39,6 +39,7 @@ set( AOSD_VIEW_HEADERS
     ${AOSD_VIEW_DIR}/ProjectView.hpp
     ${AOSD_VIEW_DIR}/SequenceListView.hpp
     ${AOSD_VIEW_DIR}/LibrariesView.hpp
+    ${AOSD_VIEW_DIR}/ChangesView.hpp
     ${AOSD_VIEW_DIR}/ObjectsView.hpp
     ${AOSD_VIEW_DIR}/LayersView.hpp
     ${AOSD_VIEW_DIR}/ThreadView.hpp

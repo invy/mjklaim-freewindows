@@ -6,6 +6,7 @@
 #include "core/Project.hpp"
 #include "view/ProjectView.hpp"
 #include "view/LibrariesView.hpp"
+#include "view/ChangesView.hpp"
 #include "view/ObjectsView.hpp"
 #include "view/LayersView.hpp"
 #include "view/CanvasView.hpp"
@@ -26,6 +27,7 @@ namespace view
 
         auto project_view = new ProjectView();
         addDockWidget( Qt::LeftDockWidgetArea, project_view );
+        tabifyDockWidget( project_view, new ChangesView() );
         tabifyDockWidget( project_view, new ObjectsView() );
         
         auto libraries_view = new LibrariesView();
