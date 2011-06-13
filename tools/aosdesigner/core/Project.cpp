@@ -15,7 +15,7 @@ namespace core
     Project::Project()
     {
         m_sequences.push_back( new Sequence() );
-        m_name = "No name yet";
+        m_name = "Unnamed Project";
         m_location = "./";
 
     }
