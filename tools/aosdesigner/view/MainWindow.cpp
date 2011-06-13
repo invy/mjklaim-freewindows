@@ -5,6 +5,7 @@
 #include "core/Context.hpp"
 #include "core/Project.hpp"
 #include "view/ProjectView.hpp"
+#include "view/LibrariesView.hpp"
 #include "view/CanvasView.hpp"
 
 namespace aosd
@@ -21,7 +22,7 @@ namespace view
         setWindowTitle( tr("Art Of Sequence") );
 
         addDockWidget( Qt::LeftDockWidgetArea, new ProjectView() );
-
+        addDockWidget( Qt::RightDockWidgetArea, new LibrariesView() );
         setCentralWidget( new CanvasView() );
         
         auto& context = core::Context::instance();

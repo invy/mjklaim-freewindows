@@ -38,6 +38,7 @@ set( AOSD_VIEW_HEADERS
     ${AOSD_VIEW_DIR}/MainWindow.hpp
     ${AOSD_VIEW_DIR}/ProjectView.hpp
     ${AOSD_VIEW_DIR}/SequenceListView.hpp
+    ${AOSD_VIEW_DIR}/LibrariesView.hpp
     ${AOSD_VIEW_DIR}/CanvasView.hpp
 )
 
