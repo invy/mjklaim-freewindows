@@ -42,6 +42,7 @@ set( AOSD_VIEW_HEADERS
     ${AOSD_VIEW_DIR}/ChangesView.hpp
     ${AOSD_VIEW_DIR}/ObjectsView.hpp
     ${AOSD_VIEW_DIR}/LayersView.hpp
+    ${AOSD_VIEW_DIR}/ToolboxView.hpp
     ${AOSD_VIEW_DIR}/ThreadView.hpp
     ${AOSD_VIEW_DIR}/CanvasView.hpp
 )

@@ -9,6 +9,7 @@
 #include "view/ChangesView.hpp"
 #include "view/ObjectsView.hpp"
 #include "view/LayersView.hpp"
+#include "view/ToolboxView.hpp"
 #include "view/CanvasView.hpp"
 #include "view/ThreadView.hpp"
 
@@ -33,6 +34,7 @@ namespace view
         auto libraries_view = new LibrariesView();
         addDockWidget( Qt::RightDockWidgetArea, libraries_view );
         tabifyDockWidget( libraries_view, new LayersView() );
+        tabifyDockWidget( libraries_view, new ToolboxView() );
         
         addDockWidget( Qt::BottomDockWidgetArea, new ThreadView() );
         setCentralWidget( new CanvasView() );
