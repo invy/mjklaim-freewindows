@@ -1,7 +1,4 @@
 glob:*.log
-glob:tools/aoslcpp/include/aoslcpp/lang/*.hpp
-glob:tools/aoslcpp/include/aoslcpp/lang/*.inl
-glob:tools/aoslcpp/source/lang/*.cpp
 glob:*/CMakeFiles/*
 glob:*.vcxproj
 glob:*.sln
@@ -23,3 +20,6 @@ syntax: glob
 *.sln.docstates
 *.dll
 */ui_*.h
+tools/aoslcpp/source/lang/*.cpp
+tools/aoslcpp/include/aoslcpp/lang/*.hpp
+tools/aoslcpp/include/aoslcpp/lang/*.inl
