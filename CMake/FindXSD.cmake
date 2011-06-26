@@ -1,91 +1,53 @@
-# - Find CodeSource Xsd
-# This module can be used to find Xsd and it's include path
-# Variables:
-#	XSD_EXECUTABLE
-#	XSD_INCLUDE_DIR
-#	XSD_FOUND
+# Locate Xsd from code synthesis include paths and binary
+# Xsd can be found at http://codesynthesis.com/products/xsd/
+# Original version Written by Frederic Heem, frederic.heem _at_ telsey.it
+# Additions by Joël Lamotte, mjklaim _at_ gmail.com
 
-SET(XSD_FOUND FALSE)
+# This module defines
+# XSD_INCLUDE_DIR, where to find elements.hxx, etc.
+# XSD_EXECUTABLE, where is the xsd compiler
+# XSD_FOUND, If false, don't try to use xsd
 
-if(WIN32)
-	SET(__XSD_NAME xsd.exe)
-else(WIN32)
-	SET(__XSD_NAME xsd)
-endif(WIN32)
+FIND_PATH(XSD_INCLUDE_DIR cxx/parser/elements.hxx
+  $ENV{XSDDIR}/include
+  $ENV{CODESYNTH}/include/xsd
+  /usr/local/include/xsd
+  /usr/include/xsd
+)
 
-if(XSD_INCLUDE_DIR)
-	#in cache already
-	SET(XSD_FOUND TRUE)
-	
-else(XSD_INCLUDE_DIR)
-	
-	find_file(XSD_EXECUTABLE NAMES ${__XSD_NAME}
-	     PATHS
-		 ${XSD_DIR}/bin
-		/usr/bin
-		/usr/local/bin
-	)
+#
+FIND_PROGRAM(XSD_EXECUTABLE 
+  NAMES 
+    xsd
+  PATHS
+	"[HKEY_CURRENT_USER\\xsd\\bin"
+    $ENV{XSDDIR}/bin 
+    /usr/local/bin
+    /usr/bin
+)
 
-	if(XSD_EXECUTABLE)
-		SET(XSD_FOUND TRUE)
-	else(XSD_EXECUTABLE)
-		SET(XSD_EXECUTABLE "xsd-NOTFOUND" CACHE FILE "xsd executable path")
-	endif(XSD_EXECUTABLE)
-	
-	find_path(XSD_INCLUDE_DIR NAMES xsd 
-	    PATHS
-		${XSD_DIR}/include
-		/usr/include
-		/usr/local/include
-	)
+# if the include and the program are found then we have it
+IF(XSD_INCLUDE_DIR)
 
-	if(XSD_INCLUDE_DIR)
-		SET(XSD_FOUND TRUE)
-	else(XSD_INCLUDE_DIR)
-		SET(XSD_INCLUDE_DIR "xsd-include-NOTFOUND" CACHE PATH "xsd include path")
-	endif(XSD_INCLUDE_DIR)
-	
-	
-	
-endif(XSD_INCLUDE_DIR)
-
-FUNCTION(XSD_EXTRACT_OPTIONS _xsd_files _xsd_options)
-	foreach(current_arg ${ARGN})
-		IF(${current_arg} STREQUAL "OPTIONS")
-			SET(_XSD_DOING_OPTIONS TRUE)
-		else(${current_arg} STREQUAL "OPTIONS")
-			if(_XSD_DOING_OPTIONS)
-				SET(_xsd_options_p ${_xsd_options_p} ${current_arg})
-			else(_XSD_DOING_OPTIONS)
-				SET(_xsd_files_p ${_xsd_files_p} ${current_arg})
-			endif(_XSD_DOING_OPTIONS)
-		endif(${current_arg} STREQUAL "OPTIONS")
-	endforeach(current_arg)
-	SET(${_xsd_files} ${_xsd_files_p} PARENT_SCOPE)
-	SET(${_xsd_options} ${_xsd_options_p} PARENT_SCOPE)
-ENDFUNCTION(XSD_EXTRACT_OPTIONS)
+  message( STATUS "Found XSD include dir : " ${XSD_INCLUDE_DIR} )
+  
+  IF(XSD_EXECUTABLE)
+    SET( XSD_FOUND "YES" )
+	message( STATUS "Found XSD binaries : " ${XSD_EXECUTABLE} )
+  ENDIF(XSD_EXECUTABLE)
+  
+ENDIF(XSD_INCLUDE_DIR)
 
 
-FUNCTION(WRAP_XSD XSD_SRCS XSD_INCLUDES OUT_PATH)
-	SET(OUTPUT_DIR  ${CMAKE_CURRENT_BINARY_DIR}/src/xsd)
-	FILE(MAKE_DIRECTORY ${OUTPUT_DIR})
-	SET(${XSD_INCLUDES} ${OUTPUT_DIR} PARENT_SCOPE)
-	XSD_EXTRACT_OPTIONS(xsd_files xsd_options ${ARGN})
-	FOREACH(it ${xsd_files})
-		STRING(REGEX REPLACE ".*/" "" BARE_XSD "${it}" )
-		STRING(REGEX REPLACE ".xsd" ".cpp" SOURCE "${BARE_XSD}" )
-		STRING(REGEX REPLACE ".xsd" ".h" HEADER "${BARE_XSD}" )
-		CONFIGURE_FILE(${it} ${OUT_PATH}/${BARE_XSD} COPY_ONLY)
-		SET(SOURCE ${OUTPUT_DIR}/${SOURCE})
-		SET(HEADER ${OUTPUT_DIR}/${HEADER})
-		ADD_CUSTOM_COMMAND(OUTPUT ${SOURCE} ${HEADER}
-				COMMAND ${XSD_EXECUTABLE} ${xsd_options} "--output-dir" ${OUTPUT_DIR} ${OUT_PATH}/${BARE_XSD}
-				DEPENDS ${it}
-				VERBATIM
-		)
-		set_source_files_properties(${HEADER} PROPERTIES GENERATED TRUE)
-		set_source_files_properties(${SOURCE} PROPERTIES GENERATED TRUE)
-		SET(_XSD_SRCS ${_XSD_SRCS} ${SOURCE} ${HEADER})
-	ENDFOREACH(it)
-	SET(${XSD_SRCS} ${_XSD_SRCS} PARENT_SCOPE)
-ENDFUNCTION(WRAP_XSD)
+find_package( xercesc )
+if( NOT XERCESC_FOUND )
+	message( SEND_ERROR "XSD requires Xerces library, NOT FOUND!" )
+endif()
+
+set( XSD_DEPENDENCIES_LIBRARIES ${XERCESC_LIBRARIES} )
+
+MARK_AS_ADVANCED(
+  XSD_INCLUDE_DIR
+  XSD_DEPENDENCIES_LIBRARIES
+  XSD_EXECUTABLE
+) 
