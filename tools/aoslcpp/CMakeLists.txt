@@ -14,18 +14,6 @@ set( AOSLCPP_HEADER_LANG_DIR ${AOSLCPP_INCLUDE_DIR}/aoslcpp/aosl )
 set( AOSLCPP_SOURCE_LANG_DIR ${AOSLCPP_SOURCE_DIR}/aosl )
 set( AOSLCPP_SCRIPT_DIR script )
 
-#--------------------------------------------
-# Ask the user if he wants us to generate the source code.
-option( AOSLCPP_GENERATE_AOSL_SOURCES "Turn on if you want to generate the AOSL source code." OFF )
-
-if( AOSLCPP_GENERATE_AOSL_SOURCES ) # do we nee to generate the source code from the aosl xsd file?
-	# Generate the source code from the xsd file (see the script)
-	message( "Generating source code for AOSL language..." )
-	execute_process( COMMAND python generate_cpp.py
-					WORKING_DIRECTORY ${AOSLCPP_SCRIPT_DIR}
-	)
-	
-endif()
 
 #--------------------------------------------
 
@@ -53,12 +41,12 @@ set( AOSLCPP_LANG_ALL_FILES
     )
 list( LENGTH AOSLCPP_LANG_ALL_FILES AOSLCPP_LANG_FILES_COUNT )
 
-message( "Found lang sources count = " ${AOSLCPP_LANG_FILES_COUNT} )
+message( "Found AOSLCPP source files count = " ${AOSLCPP_LANG_FILES_COUNT} )
 
 if( ${AOSLCPP_LANG_FILES_COUNT} EQUAL 0 )
 
 	# no lang files found! 
-	message( FATAL_ERROR "Couldn't find AOSL language source files! Use option AOSLCPP_GENERATE_AOSL_SOURCES to generate the sources!" )
+	message( FATAL_ERROR "Couldn't find AOSL language source files! Use scripts to generate the sources!" )
 	
 endif()
 
