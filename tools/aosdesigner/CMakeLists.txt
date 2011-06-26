@@ -71,7 +71,7 @@ set( AOSD_ALL_HEADERS
 QT4_WRAP_CPP( AOSD_VIEW_HEADERS_MOC ${AOSD_ALL_HEADERS} )
 
 # Group generated files in the same isolated virtual directory.
-source_group( view\\generated\\moc FILES ${AOSD_VIEW_HEADERS_MOC} )
+source_group( designer\\view\\generated\\moc FILES ${AOSD_VIEW_HEADERS_MOC} )
 
 
 #####################################################
@@ -122,10 +122,10 @@ set( AOSD_VIEW_RC
 QT4_ADD_RESOURCES( AOSD_VIEW_RESOURCES ${AOSD_VIEW_RC} )
 
 # RC files are isolated in a separate virtual directory.
-source_group( view\\rc FILES ${AOSD_VIEW_RESOURCES} )
+source_group( designer\\view\\rc FILES ${AOSD_VIEW_RESOURCES} )
 
 # Group generated files in the same isolated virtual directory.
-source_group( view\\generated\\rc FILES ${AOSD_VIEW_RESOURCES} )
+source_group( designer\\view\\generated\\rc FILES ${AOSD_VIEW_RESOURCES} )
 
 #####################################################
 # UI files
@@ -138,16 +138,16 @@ set( AOSD_VIEW_UI
 QT4_WRAP_UI( AOSD_VIEW_HEADERS_UI ${AOSD_VIEW_UI} )
 
 # Group all ui files in the same virtual directory.
-source_group( view\\ui FILES ${AOSD_VIEW_UI} )
+source_group( designer\\view\\ui FILES ${AOSD_VIEW_UI} )
 # Group generated files in the same isolated virtual directory.
-source_group( view\\generated\\ui FILES ${AOSD_VIEW_HEADERS_UI} )
+source_group( designer\\view\\generated\\ui FILES ${AOSD_VIEW_HEADERS_UI} )
 
 ###################################################
 
 # Additional groups
-source_group( view FILES ${AOSD_VIEW_HEADERS} ${AOSD_VIEW_SOURCES} )
-source_group( core FILES ${AOSD_CORE_HEADERS} ${AOSD_CORE_SOURCES} )
-source_group( util FILES ${AOSD_UTIL_HEADERS} ${AOSD_UTIL_SOURCES} )
+source_group( designer\\view FILES ${AOSD_VIEW_HEADERS} ${AOSD_VIEW_SOURCES} )
+source_group( designer\\core FILES ${AOSD_CORE_HEADERS} ${AOSD_CORE_SOURCES} )
+source_group( designer\\util FILES ${AOSD_UTIL_HEADERS} ${AOSD_UTIL_SOURCES} )
 source_group( "" FILES ${AOSD_APPLICATION_HEADERS} ${AOSD_APPLICATION_SOURCES} )
 
 ####################################################
