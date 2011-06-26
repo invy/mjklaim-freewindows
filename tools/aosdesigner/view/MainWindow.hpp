@@ -28,7 +28,7 @@ namespace view
         Q_OBJECT
     public:
 
-        MainWindow(QWidget *parent);
+        MainWindow( QWidget* parent );
         
     private slots:
 

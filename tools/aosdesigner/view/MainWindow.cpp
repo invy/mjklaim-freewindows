@@ -18,37 +18,37 @@ namespace aosd
 namespace view
 {
 
-    MainWindow::MainWindow( QWidget *parent )
-        : QMainWindow( parent )
-        , m_ui( new Ui::MainWindow )
-    {
-        m_ui->setupUi( this );
-        
-        setWindowTitle( tr("Art Of Sequence") );
+	MainWindow::MainWindow( QWidget* parent )
+		: QMainWindow( parent )
+		, m_ui( new Ui::MainWindow )
+	{
+		m_ui->setupUi( this );
+		
+		setWindowTitle( tr("Art Of Sequence") );
 
-        auto project_view = new ProjectView();
-        addDockWidget( Qt::LeftDockWidgetArea, project_view );
-        tabifyDockWidget( project_view, new ChangesView() );
-        tabifyDockWidget( project_view, new ObjectsView() );
-        
-        auto libraries_view = new LibrariesView();
-        addDockWidget( Qt::RightDockWidgetArea, libraries_view );
-        tabifyDockWidget( libraries_view, new LayersView() );
-        tabifyDockWidget( libraries_view, new ToolboxView() );
-        
-        addDockWidget( Qt::BottomDockWidgetArea, new ThreadView() );
-        setCentralWidget( new CanvasView() );
-        
-        
-        auto& context = core::Context::instance();
-        connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(on_project_open(const core::Project&)) );
+		auto project_view = new ProjectView();
+		addDockWidget( Qt::LeftDockWidgetArea, project_view );
+		tabifyDockWidget( project_view, new ChangesView() );
+		tabifyDockWidget( project_view, new ObjectsView() );
+		
+		auto libraries_view = new LibrariesView();
+		addDockWidget( Qt::RightDockWidgetArea, libraries_view );
+		tabifyDockWidget( libraries_view, new LayersView() );
+		tabifyDockWidget( libraries_view, new ToolboxView() );
+		
+		addDockWidget( Qt::BottomDockWidgetArea, new ThreadView() );
+		setCentralWidget( new CanvasView() );
+		
+		
+		auto& context = core::Context::instance();
+		connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(on_project_open(const core::Project&)) );
 
-    }
+	}
 
-    void MainWindow::on_project_open( const core::Project& project )
-    {
-        setWindowTitle( tr("Art Of Sequence : ") + QString::fromStdString( project.name() ) );
-    }
+	void MainWindow::on_project_open( const core::Project& project )
+	{
+		setWindowTitle( tr("Art Of Sequence : ") + QString::fromStdString( project.name() ) );
+	}
 
 }
 }
