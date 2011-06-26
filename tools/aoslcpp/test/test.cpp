@@ -6,7 +6,7 @@ int main()
 {
 	std::cout << "Hello, world!";
 	
-	aos::lang::Sequence sequence;
+	aos::Sequence sequence;
 
 	return 0;
 }
