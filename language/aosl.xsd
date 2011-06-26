@@ -19,8 +19,14 @@
            version="1.0-draft2"
            >
 
-    <!--The root object for a Sequence.-->
-    <xs:element name="sequence" type="aos:sequence" abstract="false" nillable="false" />
+	<xs:element name="sequence" type="aos:sequence" abstract="false" nillable="false">
+		<xs:annotation>
+			<xs:documentation>
+				The root element for a Sequence.
+				In a full AOSL file, this should be the only root object.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 
     <!--##### Basic types #############################################################-->
 

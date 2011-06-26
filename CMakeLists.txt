@@ -11,13 +11,14 @@ if(WIN32)
   set(CMAKE_SUPPRESS_REGENERATION true)
 endif()
 
+set( CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake )
+
 set( BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Build )
 
 set( EXECUTABLE_OUTPUT_PATH     ${BUILD_DIR} )
 set( LIBRARY_OUTPUT_PATH        ${BUILD_DIR} )
 
 
-add_subdirectory( common ) # Common dependencies files
 add_subdirectory( language ) # Language files
 add_subdirectory( tools ) # Tools projects
 add_subdirectory( players ) # Players projects

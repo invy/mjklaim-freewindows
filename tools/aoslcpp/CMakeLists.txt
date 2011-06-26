@@ -1,5 +1,12 @@
 cmake_minimum_required (VERSION 2.8)
 
+# Dependencies:
+
+find_package( XSD )
+if( NOT XSD_FOUND )
+	message( SEND_ERROR "AOS Designer requires XSD library, NOT FOUND!" )
+endif()
+
 # Important directories :
 set( AOSLCPP_INCLUDE_DIR include )
 set( AOSLCPP_SOURCE_DIR source )
@@ -73,12 +80,15 @@ source_group( lang\\headers FILES ${AOSLCPP_LANG_HEADERS} )
 source_group( lang\\headers\\impl FILES ${AOSLCPP_LANG_INLINES} )
 source_group( lang\\sources FILES ${AOSLCPP_LANG_SOURCES} )
 
-# Make sure include directory will be available to projects using this lib
-include_directories( ${AOSLCPP_INCLUDE_DIR} )
+# Make sure required include directories will be available for compilation
+include_directories( 
+	${AOSLCPP_INCLUDE_DIR} 
+	${XSD_INCLUDE_DIR} 
+)
 
 # Generate the library
 add_library( aoslcpp SHARED ${AOSLCPP_SOURCES} ${AOSLCPP_HEADERS} )
-target_link_libraries( aoslcpp libxsd )
+target_link_libraries( aoslcpp ${XERCESC_LIBRARY} )
 
 # Add the test projects
 add_subdirectory( ./test )
