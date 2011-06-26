@@ -45,8 +45,8 @@ message( "Found AOSLCPP source files count = " ${AOSLCPP_LANG_FILES_COUNT} )
 
 if( ${AOSLCPP_LANG_FILES_COUNT} EQUAL 0 )
 
-	# no lang files found! 
-	message( FATAL_ERROR "Couldn't find AOSL language source files! Use scripts to generate the sources!" )
+	# no aosl files found! 
+	message( FATAL_ERROR "Couldn't find AOSL aosl source files! Use scripts to generate the sources!" )
 	
 endif()
 
@@ -64,9 +64,9 @@ file( GLOB_RECURSE AOSLCPP_SOURCES
 )
 
 # Make sure the generated code is isolated in a separate virtual folder in IDEs supporting them
-source_group( lang\\headers FILES ${AOSLCPP_LANG_HEADERS} )
-source_group( lang\\headers\\impl FILES ${AOSLCPP_LANG_INLINES} )
-source_group( lang\\sources FILES ${AOSLCPP_LANG_SOURCES} )
+source_group( aosl FILES ${AOSLCPP_LANG_HEADERS}   )
+source_group( aosl\\inline FILES ${AOSLCPP_LANG_INLINES} )
+source_group( aosl\\source FILES ${AOSLCPP_LANG_SOURCES} )
 
 # Make sure required include directories will be available for compilation
 include_directories( 
