@@ -11,7 +11,7 @@
 #include "view/LayersView.hpp"
 #include "view/ToolboxView.hpp"
 #include "view/CanvasView.hpp"
-#include "view/ThreadView.hpp"
+#include "view/StoryView.hpp"
 
 namespace aosd
 {
@@ -36,7 +36,7 @@ namespace view
 		tabifyDockWidget( libraries_view, new LayersView() );
 		tabifyDockWidget( libraries_view, new ToolboxView() );
 		
-		addDockWidget( Qt::BottomDockWidgetArea, new ThreadView() );
+		addDockWidget( Qt::BottomDockWidgetArea, new StoryView() );
 		setCentralWidget( new CanvasView() );
 		
 		

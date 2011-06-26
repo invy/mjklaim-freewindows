@@ -1,5 +1,5 @@
-#ifndef __AOSD_VIEW_THREADVIEW_HPP__
-#define __AOSD_VIEW_THREADVIEW_HPP__
+#ifndef __AOSD_VIEW_STORYVIEW_HPP__
+#define __AOSD_VIEW_STORYVIEW_HPP__
 #pragma once
 
 #include <QGraphicsView>
@@ -10,15 +10,15 @@ namespace aosd
 namespace view
 {
 
-    class ThreadView
+    class StoryView
         : public QDockWidget
     {
         Q_OBJECT
     public:
 
-        ThreadView()
+        StoryView()
         {
-            setWindowTitle( tr("Thread") );
+            setWindowTitle( tr("Story") );
             setWidget( new QGraphicsView() );
         }
 

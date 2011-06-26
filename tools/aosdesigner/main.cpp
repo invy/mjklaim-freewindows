@@ -4,14 +4,13 @@
 
 int main( int arg_count, char** arg_array )
 {
-    std::cout << "Starting AOS Designer ... \n";
+	std::cout << "Starting AOS Designer ... \n";
 
-    aosd::Application app( arg_count, arg_array );
-    auto result = app.exec();
+	aosd::Application app( arg_count, arg_array );
+	auto result = app.exec();
 
-    std::cout << "End of AOS Designer.";
+	std::cout << "End of AOS Designer.";
 
-    std::cin.ignore(); // do that only in debug?
 
-    return result;
+	return result;
 }
