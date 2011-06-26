@@ -166,8 +166,7 @@ set( AOSD_ALL_SOURCES
 # All the files of the project.
 set( AOSD_ALL_FILES ${AOSD_ALL_SOURCES} ${AOSD_ALL_HEADERS} )
 
-add_executable( aosdesigner ${AOSD_ALL_FILES} )
-
-target_link_libraries( aosdesigner ${QT_LIBRARIES} )
-
 include_directories( ${AOSD_DIR} ${CMAKE_CURRENT_BINARY_DIR} )
+
+add_executable( aosdesigner ${AOSD_ALL_FILES} )
+target_link_libraries( aosdesigner ${QT_LIBRARIES} aoslcpp )

@@ -1,5 +1,6 @@
 #include "Sequence.hpp"
 
+#include "aoslcpp/aosl/sequence.hpp"
 
 namespace aosd
 {
