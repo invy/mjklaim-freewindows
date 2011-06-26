@@ -10,8 +10,8 @@ endif()
 # Important directories :
 set( AOSLCPP_INCLUDE_DIR include )
 set( AOSLCPP_SOURCE_DIR source )
-set( AOSLCPP_HEADER_LANG_DIR ${AOSLCPP_INCLUDE_DIR}/aoslcpp/lang )
-set( AOSLCPP_SOURCE_LANG_DIR ${AOSLCPP_SOURCE_DIR}/lang )
+set( AOSLCPP_HEADER_LANG_DIR ${AOSLCPP_INCLUDE_DIR}/aoslcpp/aosl )
+set( AOSLCPP_SOURCE_LANG_DIR ${AOSLCPP_SOURCE_DIR}/aosl )
 set( AOSLCPP_SCRIPT_DIR script )
 
 #--------------------------------------------

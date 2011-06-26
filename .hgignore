@@ -20,7 +20,4 @@ syntax: glob
 *.sln.docstates
 *.dll
 */ui_*.h
-tools/aoslcpp/source/lang/*.cpp
-tools/aoslcpp/include/aoslcpp/lang/*.hpp
-tools/aoslcpp/include/aoslcpp/lang/*.inl
 Build/*
