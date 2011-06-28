@@ -8,8 +8,9 @@ if( NOT XSD_FOUND )
 endif()
 
 # Important directories :
-set( AOSLCPP_INCLUDE_DIR include )
-set( AOSLCPP_SOURCE_DIR source )
+set( AOSLCPP_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
+set( AOSLCPP_INCLUDE_DIR ${AOSLCPP_ROOT_DIR}/include )
+set( AOSLCPP_SOURCE_DIR ${AOSLCPP_ROOT_DIR}/source )
 set( AOSLCPP_HEADER_LANG_DIR ${AOSLCPP_INCLUDE_DIR}/aoslcpp/aosl )
 set( AOSLCPP_SOURCE_LANG_DIR ${AOSLCPP_SOURCE_DIR}/aosl )
 set( AOSLCPP_SCRIPT_DIR script )
@@ -69,10 +70,16 @@ source_group( aosl\\inline FILES ${AOSLCPP_LANG_INLINES} )
 source_group( aosl\\source FILES ${AOSLCPP_LANG_SOURCES} )
 
 # Make sure required include directories will be available for compilation
+set( AOSLCPP_INCLUDE_DIRS
+	${AOSLCPP_INCLUDE_DIR} 
+	${XSD_INCLUDE_DIR} 
+	PARENT_SCOPE
+)
 include_directories( 
 	${AOSLCPP_INCLUDE_DIR} 
 	${XSD_INCLUDE_DIR} 
 )
+
 
 # Generate the library
 add_library( aoslcpp SHARED ${AOSLCPP_SOURCES} ${AOSLCPP_HEADERS} )

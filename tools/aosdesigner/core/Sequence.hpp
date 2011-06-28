@@ -5,7 +5,10 @@
 #include <string>
 #include <memory>
 
-#include "aoslcpp/aosl/sequence_forward.hpp"
+namespace aosl
+{
+	class Sequence;
+}
 
 namespace aosd
 {
@@ -19,6 +22,7 @@ namespace core
 	public:
 
 		Sequence();
+		~Sequence();
 		
 		const std::string& name() const { return m_name; }
 		

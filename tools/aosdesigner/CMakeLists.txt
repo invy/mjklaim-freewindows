@@ -7,103 +7,103 @@ add_definitions( ${QT_DEFINITIONS} )
 
 #####################################################
 # Sub-directories.
-set( AOSD_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
-set( AOSD_CORE_DIR ${AOSD_DIR}/core )
-set( AOSD_VIEW_DIR ${AOSD_DIR}/view )
-set( AOSD_UTIL_DIR ${AOSD_DIR}/util )
-set( AOSD_RC_DIR ${AOSD_VIEW_DIR}/rc )
-set( AOSD_UI_DIR ${AOSD_VIEW_DIR}/ui )
+set( AOSDESIGNER_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
+set( AOSDESIGNER_CORE_DIR ${AOSDESIGNER_ROOT_DIR}/core )
+set( AOSDESIGNER_VIEW_DIR ${AOSDESIGNER_ROOT_DIR}/view )
+set( AOSDESIGNER_UTIL_DIR ${AOSDESIGNER_ROOT_DIR}/util )
+set( AOSDESIGNER_RC_DIR ${AOSDESIGNER_VIEW_DIR}/rc )
+set( AOSDESIGNER_UI_DIR ${AOSDESIGNER_VIEW_DIR}/ui )
 
 #####################################################
 # Header files.
 
 # Application header files.
-set( AOSD_APPLICATION_HEADERS
+set( AOSDESIGNER_APPLICATION_HEADERS
     Application.hpp
 )
 
 #-----------------------------------------------------------------
 
 # Core objects header files.
-set( AOSD_CORE_HEADERS
-    ${AOSD_CORE_DIR}/Context.hpp
-    ${AOSD_CORE_DIR}/Project.hpp
-    ${AOSD_CORE_DIR}/Sequence.hpp
+set( AOSDESIGNER_CORE_HEADERS
+    ${AOSDESIGNER_CORE_DIR}/Context.hpp
+    ${AOSDESIGNER_CORE_DIR}/Project.hpp
+    ${AOSDESIGNER_CORE_DIR}/Sequence.hpp
 )
 
 #-----------------------------------------------------------------
 
 # Views header files.
-set( AOSD_VIEW_HEADERS
-    ${AOSD_VIEW_DIR}/MainWindow.hpp
-    ${AOSD_VIEW_DIR}/ProjectView.hpp
-    ${AOSD_VIEW_DIR}/SequenceListView.hpp
-    ${AOSD_VIEW_DIR}/LibrariesView.hpp
-    ${AOSD_VIEW_DIR}/ChangesView.hpp
-    ${AOSD_VIEW_DIR}/ObjectsView.hpp
-    ${AOSD_VIEW_DIR}/LayersView.hpp
-    ${AOSD_VIEW_DIR}/ToolboxView.hpp
-    ${AOSD_VIEW_DIR}/StoryView.hpp
-    ${AOSD_VIEW_DIR}/CanvasView.hpp
+set( AOSDESIGNER_VIEW_HEADERS
+    ${AOSDESIGNER_VIEW_DIR}/MainWindow.hpp
+    ${AOSDESIGNER_VIEW_DIR}/ProjectView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/SequenceListView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/LibrariesView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/ChangesView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/ObjectsView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/LayersView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/ToolboxView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/StoryView.hpp
+    ${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
 )
 
 
 #-----------------------------------------------------------------
 
 # Utility header files.
-set( AOSD_UTIL_HEADERS
-    ${AOSD_UTIL_DIR}/Singleton.hpp
+set( AOSDESIGNER_UTIL_HEADERS
+    ${AOSDESIGNER_UTIL_DIR}/Singleton.hpp
 )
 
 
 #-----------------------------------------------------------------
 
 # All header files.
-set( AOSD_ALL_HEADERS  
-    ${AOSD_APPLICATION_HEADERS} 
-    ${AOSD_CORE_HEADERS}
-    ${AOSD_VIEW_HEADERS}
-    ${AOSD_UTIL_HEADERS}
+set( AOSDESIGNER_ALL_HEADERS  
+    ${AOSDESIGNER_APPLICATION_HEADERS} 
+    ${AOSDESIGNER_CORE_HEADERS}
+    ${AOSDESIGNER_VIEW_HEADERS}
+    ${AOSDESIGNER_UTIL_HEADERS}
 )
  
 
 # Header files needs to be processed by Qt's pre-processor to generate Moc files.
-QT4_WRAP_CPP( AOSD_VIEW_HEADERS_MOC ${AOSD_ALL_HEADERS} )
+QT4_WRAP_CPP( AOSDESIGNER_VIEW_HEADERS_MOC ${AOSDESIGNER_ALL_HEADERS} )
 
 # Group generated files in the same isolated virtual directory.
-source_group( designer\\view\\generated\\moc FILES ${AOSD_VIEW_HEADERS_MOC} )
+source_group( designer\\view\\generated\\moc FILES ${AOSDESIGNER_VIEW_HEADERS_MOC} )
 
 
 #####################################################
 # Source files.
 
 # Application source files.
-set( AOSD_APPLICATION_SOURCES
+set( AOSDESIGNER_APPLICATION_SOURCES
     main.cpp
     Application.cpp
 )
 
 # Views source files.
-set( AOSD_VIEW_SOURCES 
-    ${AOSD_VIEW_DIR}/MainWindow.cpp
-    ${AOSD_VIEW_DIR}/ProjectView.cpp
-    ${AOSD_VIEW_DIR}/SequenceListView.cpp
+set( AOSDESIGNER_VIEW_SOURCES 
+    ${AOSDESIGNER_VIEW_DIR}/MainWindow.cpp
+    ${AOSDESIGNER_VIEW_DIR}/ProjectView.cpp
+    ${AOSDESIGNER_VIEW_DIR}/SequenceListView.cpp
 )
 
 #------------------------------------------------------
 
 # Core source files
-set( AOSD_CORE_SOURCES
-    ${AOSD_CORE_DIR}/Context.cpp
-    ${AOSD_CORE_DIR}/Project.cpp
-    ${AOSD_CORE_DIR}/Sequence.cpp
+set( AOSDESIGNER_CORE_SOURCES
+    ${AOSDESIGNER_CORE_DIR}/Context.cpp
+    ${AOSDESIGNER_CORE_DIR}/Project.cpp
+    ${AOSDESIGNER_CORE_DIR}/Sequence.cpp
     
 )
 
 #-----------------------------------------------------------------
 
 # Utility source files.
-set( AOSD_UTIL_SOURCES
+set( AOSDESIGNER_UTIL_SOURCES
     
 )
 
@@ -114,59 +114,63 @@ set( AOSD_UTIL_SOURCES
 #####################################################
 # Resource files.
 
-set( AOSD_VIEW_RC
+set( AOSDESIGNER_VIEW_RC
 
 )
 
 # RC files need to be processed by Qt wrapper to generate RC headers.
-QT4_ADD_RESOURCES( AOSD_VIEW_RESOURCES ${AOSD_VIEW_RC} )
+QT4_ADD_RESOURCES( AOSDESIGNER_VIEW_RESOURCES ${AOSDESIGNER_VIEW_RC} )
 
 # RC files are isolated in a separate virtual directory.
-source_group( designer\\view\\rc FILES ${AOSD_VIEW_RESOURCES} )
+source_group( designer\\view\\rc FILES ${AOSDESIGNER_VIEW_RESOURCES} )
 
 # Group generated files in the same isolated virtual directory.
-source_group( designer\\view\\generated\\rc FILES ${AOSD_VIEW_RESOURCES} )
+source_group( designer\\view\\generated\\rc FILES ${AOSDESIGNER_VIEW_RESOURCES} )
 
 #####################################################
 # UI files
 
-set( AOSD_VIEW_UI
-    ${AOSD_UI_DIR}/MainWindow.ui
+set( AOSDESIGNER_VIEW_UI
+    ${AOSDESIGNER_UI_DIR}/MainWindow.ui
 )
 
 # UI files need to be processed by Qt wrapper to generate UI headers.
-QT4_WRAP_UI( AOSD_VIEW_HEADERS_UI ${AOSD_VIEW_UI} )
+QT4_WRAP_UI( AOSDESIGNER_VIEW_HEADERS_UI ${AOSDESIGNER_VIEW_UI} )
 
 # Group all ui files in the same virtual directory.
-source_group( designer\\view\\ui FILES ${AOSD_VIEW_UI} )
+source_group( designer\\view\\ui FILES ${AOSDESIGNER_VIEW_UI} )
 # Group generated files in the same isolated virtual directory.
-source_group( designer\\view\\generated\\ui FILES ${AOSD_VIEW_HEADERS_UI} )
+source_group( designer\\view\\generated\\ui FILES ${AOSDESIGNER_VIEW_HEADERS_UI} )
 
 ###################################################
 
 # Additional groups
-source_group( designer\\view FILES ${AOSD_VIEW_HEADERS} ${AOSD_VIEW_SOURCES} )
-source_group( designer\\core FILES ${AOSD_CORE_HEADERS} ${AOSD_CORE_SOURCES} )
-source_group( designer\\util FILES ${AOSD_UTIL_HEADERS} ${AOSD_UTIL_SOURCES} )
-source_group( "" FILES ${AOSD_APPLICATION_HEADERS} ${AOSD_APPLICATION_SOURCES} )
+source_group( designer\\view FILES ${AOSDESIGNER_VIEW_HEADERS} ${AOSDESIGNER_VIEW_SOURCES} )
+source_group( designer\\core FILES ${AOSDESIGNER_CORE_HEADERS} ${AOSDESIGNER_CORE_SOURCES} )
+source_group( designer\\util FILES ${AOSDESIGNER_UTIL_HEADERS} ${AOSDESIGNER_UTIL_SOURCES} )
+source_group( "" FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICATION_SOURCES} )
 
 ####################################################
 # Bind them all together.
 
 # All the compiled sources.
-set( AOSD_ALL_SOURCES
-    ${AOSD_CORE_SOURCES}
-    ${AOSD_APPLICATION_SOURCES}
-    ${AOSD_VIEW_SOURCES}
-    ${AOSD_VIEW_HEADERS_MOC}
-    ${AOSD_VIEW_HEADERS_UI}
-    ${AOSD_UTIL_SOURCES}
+set( AOSDESIGNER_ALL_SOURCES
+    ${AOSDESIGNER_CORE_SOURCES}
+    ${AOSDESIGNER_APPLICATION_SOURCES}
+    ${AOSDESIGNER_VIEW_SOURCES}
+    ${AOSDESIGNER_VIEW_HEADERS_MOC}
+    ${AOSDESIGNER_VIEW_HEADERS_UI}
+    ${AOSDESIGNER_UTIL_SOURCES}
 )
 
 # All the files of the project.
-set( AOSD_ALL_FILES ${AOSD_ALL_SOURCES} ${AOSD_ALL_HEADERS} )
+set( AOSDESIGNER_ALL_FILES ${AOSDESIGNER_ALL_SOURCES} ${AOSDESIGNER_ALL_HEADERS} )
 
-include_directories( ${AOSD_DIR} ${CMAKE_CURRENT_BINARY_DIR} )
+include_directories( 
+	${AOSDESIGNER_ROOT_DIR} 
+	${CMAKE_CURRENT_BINARY_DIR} 
+	${AOSLCPP_INCLUDE_DIRS}
+)
 
-add_executable( aosdesigner ${AOSD_ALL_FILES} )
+add_executable( aosdesigner ${AOSDESIGNER_ALL_FILES} )
 target_link_libraries( aosdesigner ${QT_LIBRARIES} aoslcpp )

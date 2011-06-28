@@ -6,11 +6,18 @@ namespace aosd
 {
 namespace core
 {
-    Sequence::Sequence()
-        : m_name( "Test Sequence" )
-    {
+	Sequence::Sequence()
+		: m_name( "Test Sequence" )
+		, m_sequence( new aosl::Sequence )
+	{
+		
+	}
 
-    }
+	Sequence::~Sequence()
+	{
+
+	}
+
 
 }
 }
