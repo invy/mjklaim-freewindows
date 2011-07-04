@@ -44,6 +44,7 @@ set( AOSDESIGNER_VIEW_HEADERS
     ${AOSDESIGNER_VIEW_DIR}/LayersView.hpp
     ${AOSDESIGNER_VIEW_DIR}/ToolboxView.hpp
     ${AOSDESIGNER_VIEW_DIR}/StoryView.hpp
+	${AOSDESIGNER_VIEW_DIR}/LogView.hpp
     ${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
 )
 

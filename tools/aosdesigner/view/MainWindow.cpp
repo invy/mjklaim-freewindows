@@ -12,6 +12,7 @@
 #include "view/ToolboxView.hpp"
 #include "view/CanvasView.hpp"
 #include "view/StoryView.hpp"
+#include "view/LogView.hpp"
 
 namespace aosd
 {
@@ -36,7 +37,10 @@ namespace view
 		tabifyDockWidget( libraries_view, new LayersView() );
 		tabifyDockWidget( libraries_view, new ToolboxView() );
 		
-		addDockWidget( Qt::BottomDockWidgetArea, new StoryView() );
+		auto story_view = new StoryView();
+		addDockWidget( Qt::BottomDockWidgetArea, story_view );
+		tabifyDockWidget( story_view, new LogView() );
+
 		setCentralWidget( new CanvasView() );
 		
 		
