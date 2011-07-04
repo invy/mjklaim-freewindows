@@ -81,7 +81,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Spatial_area: public ::aosl::Vector
+  class Spatial_area: public ::aosl::Vector
   {
     public:
     /**
@@ -237,11 +237,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Spatial_area&, const Spatial_area&);
 
-  AOSLCPP_API
   bool
   operator!= (const Spatial_area&, const Spatial_area&);
 }
@@ -259,7 +257,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Spatial_area&);
 }
@@ -284,7 +281,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Spatial_area&);
 }

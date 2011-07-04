@@ -78,7 +78,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Event: public ::xml_schema::Type
+  class Event: public ::xml_schema::Type
   {
     public:
     /**
@@ -319,11 +319,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Event&, const Event&);
 
-  AOSLCPP_API
   bool
   operator!= (const Event&, const Event&);
 }
@@ -342,7 +340,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Event&);
 }
@@ -367,7 +364,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Event&);
 }

@@ -91,7 +91,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Canvas: public ::xml_schema::Type
+  class Canvas: public ::xml_schema::Type
   {
     public:
     /**
@@ -509,11 +509,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Canvas&, const Canvas&);
 
-  AOSLCPP_API
   bool
   operator!= (const Canvas&, const Canvas&);
 }
@@ -538,7 +536,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Canvas&);
 }
@@ -563,7 +560,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Canvas&);
 }

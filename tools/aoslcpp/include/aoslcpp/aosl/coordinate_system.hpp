@@ -81,7 +81,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Coordinate_system: public ::xml_schema::Type
+  class Coordinate_system: public ::xml_schema::Type
   {
     public:
     /**
@@ -396,11 +396,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Coordinate_system&, const Coordinate_system&);
 
-  AOSLCPP_API
   bool
   operator!= (const Coordinate_system&, const Coordinate_system&);
 }
@@ -422,7 +420,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Coordinate_system&);
 }
@@ -447,7 +444,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Coordinate_system&);
 }

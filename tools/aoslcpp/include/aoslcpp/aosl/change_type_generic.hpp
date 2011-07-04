@@ -68,7 +68,7 @@ namespace aosl
    *
    * Types of the generic changes that should be implemented in all
   players. */
-  class AOSLCPP_API Change_type_generic: public ::xml_schema::String
+  class Change_type_generic: public ::xml_schema::String
   {
     public:
 
@@ -229,11 +229,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Change_type_generic::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Change_type_generic&);
 }
@@ -258,15 +256,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Change_type_generic&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Change_type_generic&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Change_type_generic&);

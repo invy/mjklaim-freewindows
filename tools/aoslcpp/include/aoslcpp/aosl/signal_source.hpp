@@ -70,7 +70,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Signal_source: public ::xml_schema::String
+  class Signal_source: public ::xml_schema::String
   {
     public:
     /**
@@ -186,7 +186,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Signal_source&);
 }
@@ -211,15 +210,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Signal_source&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Signal_source&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Signal_source&);

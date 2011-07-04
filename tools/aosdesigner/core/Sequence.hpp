@@ -10,6 +10,7 @@ namespace aosl
 	class Sequence;
 }
 
+
 namespace aosd
 {
 namespace core

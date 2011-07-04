@@ -73,7 +73,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API List_resource: public ::xml_schema::Type
+  class List_resource: public ::xml_schema::Type
   {
     public:
     /**
@@ -215,11 +215,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const List_resource&, const List_resource&);
 
-  AOSLCPP_API
   bool
   operator!= (const List_resource&, const List_resource&);
 }
@@ -235,7 +233,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const List_resource&);
 }
@@ -260,7 +257,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const List_resource&);
 }

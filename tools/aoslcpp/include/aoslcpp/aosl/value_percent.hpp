@@ -69,7 +69,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Value_percent: public ::xml_schema::String
+  class Value_percent: public ::xml_schema::String
   {
     public:
     /**
@@ -185,7 +185,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Value_percent&);
 }
@@ -210,15 +209,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Value_percent&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Value_percent&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Value_percent&);

@@ -69,7 +69,7 @@ namespace aosl
    * Reference to one or more Objects automatically found using a search
    * logic.
    */
-  class AOSLCPP_API Special_object_ref: public ::xml_schema::String
+  class Special_object_ref: public ::xml_schema::String
   {
     public:
 
@@ -229,11 +229,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Special_object_ref::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Special_object_ref&);
 }
@@ -258,15 +256,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Special_object_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Special_object_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Special_object_ref&);

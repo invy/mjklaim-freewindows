@@ -68,7 +68,7 @@ namespace aosl
    *
    * Type of angle.
    */
-  class AOSLCPP_API Angle_type: public ::xml_schema::String
+  class Angle_type: public ::xml_schema::String
   {
     public:
 
@@ -236,11 +236,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Angle_type::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Angle_type&);
 }
@@ -265,15 +263,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Angle_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Angle_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Angle_type&);

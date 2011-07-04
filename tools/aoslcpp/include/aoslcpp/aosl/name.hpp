@@ -69,7 +69,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Name: public ::xml_schema::String
+  class Name: public ::xml_schema::String
   {
     public:
     /**
@@ -185,7 +185,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Name&);
 }
@@ -210,15 +209,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Name&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Name&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Name&);

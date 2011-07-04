@@ -69,7 +69,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Email: public ::xml_schema::String
+  class Email: public ::xml_schema::String
   {
     public:
     /**
@@ -185,7 +185,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Email&);
 }
@@ -210,15 +209,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Email&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Email&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Email&);

@@ -72,7 +72,7 @@ namespace aosl
    * Might be a percentile value of the whole stream or an absolute time in
    * seconds.
    */
-  class AOSLCPP_API Unit_stream: public ::xml_schema::String
+  class Unit_stream: public ::xml_schema::String
   {
     public:
 
@@ -174,7 +174,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Unit_stream&);
 }
@@ -199,15 +198,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Unit_stream&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Unit_stream&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Unit_stream&);

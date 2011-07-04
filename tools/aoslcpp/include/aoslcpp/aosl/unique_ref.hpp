@@ -69,7 +69,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Unique_ref: public ::xml_schema::Idref
+  class Unique_ref: public ::xml_schema::Idref
   {
     public:
     /**
@@ -175,7 +175,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Unique_ref&);
 }
@@ -200,15 +199,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Unique_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Unique_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Unique_ref&);

@@ -74,7 +74,7 @@ namespace aosl
    * to help the player
    * interpret more correctly the resource data.
    */
-  class AOSLCPP_API Resource_type_generic: public ::xml_schema::String
+  class Resource_type_generic: public ::xml_schema::String
   {
     public:
 
@@ -250,11 +250,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Resource_type_generic::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Resource_type_generic&);
 }
@@ -279,15 +277,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Resource_type_generic&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Resource_type_generic&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Resource_type_generic&);

@@ -73,7 +73,7 @@ namespace aosl
   value. *
    * @nosubgrouping
    */
-  class AOSLCPP_API Event_input_base: public ::aosl::Event
+  class Event_input_base: public ::aosl::Event
   {
     public:
     /**
@@ -155,7 +155,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Event_input_base&);
 }
@@ -180,7 +179,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Event_input_base&);
 }

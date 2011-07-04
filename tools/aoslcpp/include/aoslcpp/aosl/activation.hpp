@@ -68,7 +68,7 @@ namespace aosl
    *
    * Define what should happen when an object get activated.
    */
-  class AOSLCPP_API Activation: public ::xml_schema::String
+  class Activation: public ::xml_schema::String
   {
     public:
 
@@ -232,11 +232,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Activation::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Activation&);
 }
@@ -261,15 +259,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Activation&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Activation&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Activation&);

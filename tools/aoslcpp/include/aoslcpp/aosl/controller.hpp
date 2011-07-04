@@ -68,7 +68,7 @@ namespace aosl
    *
    * Specification of the source of control of an object.
    */
-  class AOSLCPP_API Controller: public ::xml_schema::String
+  class Controller: public ::xml_schema::String
   {
     public:
 
@@ -232,11 +232,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Controller::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Controller&);
 }
@@ -261,15 +259,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Controller&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Controller&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Controller&);

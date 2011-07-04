@@ -73,7 +73,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API List_change: public ::xml_schema::Type
+  class List_change: public ::xml_schema::Type
   {
     public:
     /**
@@ -217,11 +217,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const List_change&, const List_change&);
 
-  AOSLCPP_API
   bool
   operator!= (const List_change&, const List_change&);
 }
@@ -237,7 +235,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const List_change&);
 }
@@ -262,7 +259,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const List_change&);
 }

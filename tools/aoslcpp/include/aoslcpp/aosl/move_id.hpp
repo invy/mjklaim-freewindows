@@ -73,7 +73,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Move_id: public ::aosl::Unique_id
+  class Move_id: public ::aosl::Unique_id
   {
     public:
     /**
@@ -181,7 +181,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Move_id&);
 }
@@ -206,15 +205,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Move_id&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Move_id&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Move_id&);

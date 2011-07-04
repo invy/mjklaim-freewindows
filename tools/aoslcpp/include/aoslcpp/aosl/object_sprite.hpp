@@ -77,7 +77,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Object_sprite: public ::aosl::Object
+  class Object_sprite: public ::aosl::Object
   {
     public:
     /**
@@ -244,11 +244,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Object_sprite&, const Object_sprite&);
 
-  AOSLCPP_API
   bool
   operator!= (const Object_sprite&, const Object_sprite&);
 }
@@ -266,7 +264,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Object_sprite&);
 }
@@ -291,7 +288,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Object_sprite&);
 }

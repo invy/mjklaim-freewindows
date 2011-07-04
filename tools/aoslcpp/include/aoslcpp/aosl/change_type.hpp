@@ -70,7 +70,7 @@ namespace aosl
    *
    * Type of generic change or interpreter-specific change.
    */
-  class AOSLCPP_API Change_type: public ::xml_schema::String
+  class Change_type: public ::xml_schema::String
   {
     public:
 
@@ -172,7 +172,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Change_type&);
 }
@@ -197,15 +196,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Change_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Change_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Change_type&);

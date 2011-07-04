@@ -85,7 +85,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Meta: public ::xml_schema::Type
+  class Meta: public ::xml_schema::Type
   {
     public:
     /**
@@ -717,11 +717,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Meta&, const Meta&);
 
-  AOSLCPP_API
   bool
   operator!= (const Meta&, const Meta&);
 }
@@ -746,7 +744,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Meta&);
 }
@@ -771,7 +768,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Meta&);
 }

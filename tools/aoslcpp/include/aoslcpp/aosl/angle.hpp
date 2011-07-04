@@ -71,7 +71,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Angle: public ::xsd::cxx::tree::fundamental_base< ::xml_schema::Double, char, ::xml_schema::SimpleType, ::xsd::cxx::tree::schema_type::double_ >
+  class Angle: public ::xsd::cxx::tree::fundamental_base< ::xml_schema::Double, char, ::xml_schema::SimpleType, ::xsd::cxx::tree::schema_type::double_ >
   {
     public:
     /**
@@ -177,7 +177,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Angle&);
 }
@@ -202,15 +201,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Angle&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Angle&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Angle&);

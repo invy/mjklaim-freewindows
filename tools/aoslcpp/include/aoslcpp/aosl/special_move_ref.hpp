@@ -68,7 +68,7 @@ namespace aosl
    *
    * Get automatically a move reference by using a search logic.
    */
-  class AOSLCPP_API Special_move_ref: public ::xml_schema::String
+  class Special_move_ref: public ::xml_schema::String
   {
     public:
 
@@ -235,11 +235,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Special_move_ref::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Special_move_ref&);
 }
@@ -264,15 +262,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Special_move_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Special_move_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Special_move_ref&);

@@ -70,7 +70,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Extension: public ::xml_schema::Type
+  class Extension: public ::xml_schema::Type
   {
     public:
     /**
@@ -284,11 +284,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Extension&, const Extension&);
 
-  AOSLCPP_API
   bool
   operator!= (const Extension&, const Extension&);
 }
@@ -301,7 +299,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Extension&);
 }
@@ -326,7 +323,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Extension&);
 }

@@ -77,7 +77,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Effect: public ::xml_schema::Type
+  class Effect: public ::xml_schema::Type
   {
     public:
     /**
@@ -316,11 +316,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Effect&, const Effect&);
 
-  AOSLCPP_API
   bool
   operator!= (const Effect&, const Effect&);
 }
@@ -333,7 +331,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Effect&);
 }
@@ -358,7 +355,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Effect&);
 }

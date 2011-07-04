@@ -82,7 +82,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Properties_stream_object: public ::xml_schema::Type
+  class Properties_stream_object: public ::xml_schema::Type
   {
     public:
     /**
@@ -547,11 +547,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Properties_stream_object&, const Properties_stream_object&);
 
-  AOSLCPP_API
   bool
   operator!= (const Properties_stream_object&, const Properties_stream_object&);
 }
@@ -573,7 +571,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Properties_stream_object&);
 }
@@ -598,7 +595,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Properties_stream_object&);
 }

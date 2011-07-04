@@ -74,7 +74,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Change_transform_base: public ::aosl::Change
+  class Change_transform_base: public ::aosl::Change
   {
     public:
     /**
@@ -156,7 +156,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Change_transform_base&);
 }
@@ -181,7 +180,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Change_transform_base&);
 }

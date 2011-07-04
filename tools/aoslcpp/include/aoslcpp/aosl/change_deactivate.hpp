@@ -74,7 +74,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Change_deactivate: public ::aosl::Change
+  class Change_deactivate: public ::aosl::Change
   {
     public:
     /**
@@ -156,7 +156,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Change_deactivate&);
 }
@@ -181,7 +180,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Change_deactivate&);
 }

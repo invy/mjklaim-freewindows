@@ -73,7 +73,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Rotation: public ::xml_schema::Type
+  class Rotation: public ::xml_schema::Type
   {
     public:
     /**
@@ -390,11 +390,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Rotation&, const Rotation&);
 
-  AOSLCPP_API
   bool
   operator!= (const Rotation&, const Rotation&);
 }
@@ -410,7 +408,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Rotation&);
 }
@@ -435,7 +432,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Rotation&);
 }

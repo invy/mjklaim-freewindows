@@ -83,7 +83,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Event_selection: public ::aosl::Event_selection_base
+  class Event_selection: public ::aosl::Event_selection_base
   {
     public:
     /**
@@ -241,11 +241,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Event_selection&, const Event_selection&);
 
-  AOSLCPP_API
   bool
   operator!= (const Event_selection&, const Event_selection&);
 }
@@ -263,7 +261,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Event_selection&);
 }
@@ -288,7 +285,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Event_selection&);
 }

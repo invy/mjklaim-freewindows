@@ -84,7 +84,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Resource: public ::aosl::Source_uri
+  class Resource: public ::aosl::Source_uri
   {
     public:
     /**
@@ -325,11 +325,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Resource&, const Resource&);
 
-  AOSLCPP_API
   bool
   operator!= (const Resource&, const Resource&);
 }
@@ -350,7 +348,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Resource&);
 }
@@ -375,7 +372,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Resource&);
 }

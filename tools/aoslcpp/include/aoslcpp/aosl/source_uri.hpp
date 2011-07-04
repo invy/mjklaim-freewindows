@@ -69,7 +69,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Source_uri: public ::xml_schema::Uri
+  class Source_uri: public ::xml_schema::Uri
   {
     public:
     /**
@@ -175,7 +175,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Source_uri&);
 }
@@ -200,15 +199,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Source_uri&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Source_uri&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Source_uri&);

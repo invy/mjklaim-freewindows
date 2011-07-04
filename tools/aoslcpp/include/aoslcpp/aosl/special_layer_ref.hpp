@@ -69,7 +69,7 @@ namespace aosl
    * Reference to one or more layers automatically found by using a search
    * logic.
    */
-  class AOSLCPP_API Special_layer_ref: public ::xml_schema::String
+  class Special_layer_ref: public ::xml_schema::String
   {
     public:
 
@@ -230,11 +230,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Special_layer_ref::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Special_layer_ref&);
 }
@@ -259,15 +257,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Special_layer_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Special_layer_ref&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Special_layer_ref&);

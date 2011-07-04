@@ -77,7 +77,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Axis_x: public ::xml_schema::Type
+  class Axis_x: public ::xml_schema::Type
   {
     public:
     /**
@@ -319,11 +319,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Axis_x&, const Axis_x&);
 
-  AOSLCPP_API
   bool
   operator!= (const Axis_x&, const Axis_x&);
 }
@@ -342,7 +340,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Axis_x&);
 }
@@ -367,7 +364,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Axis_x&);
 }

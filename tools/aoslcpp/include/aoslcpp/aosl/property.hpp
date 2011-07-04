@@ -80,7 +80,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Property: public ::xml_schema::Type
+  class Property: public ::xml_schema::Type
   {
     public:
     /**
@@ -304,11 +304,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Property&, const Property&);
 
-  AOSLCPP_API
   bool
   operator!= (const Property&, const Property&);
 }
@@ -327,7 +325,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Property&);
 }
@@ -352,7 +349,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Property&);
 }

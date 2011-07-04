@@ -85,7 +85,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Object_interactive: public ::aosl::Object
+  class Object_interactive: public ::aosl::Object
   {
     public:
     /**
@@ -324,11 +324,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Object_interactive&, const Object_interactive&);
 
-  AOSLCPP_API
   bool
   operator!= (const Object_interactive&, const Object_interactive&);
 }
@@ -349,7 +347,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Object_interactive&);
 }
@@ -374,7 +371,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Object_interactive&);
 }

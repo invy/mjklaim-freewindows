@@ -82,7 +82,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Object_video: public ::aosl::Object
+  class Object_video: public ::aosl::Object
   {
     public:
     /**
@@ -321,11 +321,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Object_video&, const Object_video&);
 
-  AOSLCPP_API
   bool
   operator!= (const Object_video&, const Object_video&);
 }
@@ -346,7 +344,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Object_video&);
 }
@@ -371,7 +368,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Object_video&);
 }

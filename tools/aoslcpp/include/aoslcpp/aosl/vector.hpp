@@ -73,7 +73,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Vector: public ::xml_schema::Type
+  class Vector: public ::xml_schema::Type
   {
     public:
     /**
@@ -384,11 +384,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Vector&, const Vector&);
 
-  AOSLCPP_API
   bool
   operator!= (const Vector&, const Vector&);
 }
@@ -404,7 +402,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Vector&);
 }
@@ -429,7 +426,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Vector&);
 }

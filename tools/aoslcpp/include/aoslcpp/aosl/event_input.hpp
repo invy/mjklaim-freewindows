@@ -85,7 +85,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Event_input: public ::aosl::Event_input_base
+  class Event_input: public ::aosl::Event_input_base
   {
     public:
     /**
@@ -320,11 +320,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Event_input&, const Event_input&);
 
-  AOSLCPP_API
   bool
   operator!= (const Event_input&, const Event_input&);
 }
@@ -345,7 +343,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Event_input&);
 }
@@ -370,7 +367,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Event_input&);
 }

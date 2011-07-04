@@ -68,7 +68,7 @@ namespace aosl
    *
    * Referential of a transformation.
    */
-  class AOSLCPP_API Referential: public ::xml_schema::String
+  class Referential: public ::xml_schema::String
   {
     public:
 
@@ -233,11 +233,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Referential::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Referential&);
 }
@@ -262,15 +260,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Referential&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Referential&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Referential&);

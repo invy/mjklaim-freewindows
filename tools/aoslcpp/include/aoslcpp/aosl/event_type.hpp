@@ -68,7 +68,7 @@ namespace aosl
    *
    * Types names of possible Events.
    */
-  class AOSLCPP_API Event_type: public ::xml_schema::String
+  class Event_type: public ::xml_schema::String
   {
     public:
 
@@ -241,11 +241,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Event_type::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Event_type&);
 }
@@ -270,15 +268,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Event_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Event_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Event_type&);

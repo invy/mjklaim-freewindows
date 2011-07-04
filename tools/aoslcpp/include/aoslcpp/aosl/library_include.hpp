@@ -75,7 +75,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Library_include: public ::aosl::Source_uri
+  class Library_include: public ::aosl::Source_uri
   {
     public:
     /**
@@ -183,7 +183,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Library_include&);
 }
@@ -208,15 +207,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Library_include&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Library_include&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Library_include&);

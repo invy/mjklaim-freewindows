@@ -87,7 +87,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Sequence: public ::xml_schema::Type
+  class Sequence: public ::xml_schema::Type
   {
     public:
     /**
@@ -482,11 +482,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Sequence&, const Sequence&);
 
-  AOSLCPP_API
   bool
   operator!= (const Sequence&, const Sequence&);
 }
@@ -511,7 +509,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Sequence&);
 }
@@ -536,7 +533,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Sequence&);
 }

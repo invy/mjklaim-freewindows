@@ -73,7 +73,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Target: public ::xml_schema::Type
+  class Target: public ::xml_schema::Type
   {
     public:
     /**
@@ -473,11 +473,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Target&, const Target&);
 
-  AOSLCPP_API
   bool
   operator!= (const Target&, const Target&);
 }
@@ -493,7 +491,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Target&);
 }
@@ -518,7 +515,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Target&);
 }

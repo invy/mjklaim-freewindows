@@ -88,7 +88,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Script: public ::xml_schema::Type
+  class Script: public ::xml_schema::Type
   {
     public:
     /**
@@ -565,11 +565,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Script&, const Script&);
 
-  AOSLCPP_API
   bool
   operator!= (const Script&, const Script&);
 }
@@ -591,7 +589,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Script&);
 }
@@ -616,7 +613,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Script&);
 }

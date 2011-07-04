@@ -84,7 +84,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Layer: public ::xml_schema::Type
+  class Layer: public ::xml_schema::Type
   {
     public:
     /**
@@ -380,11 +380,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Layer&, const Layer&);
 
-  AOSLCPP_API
   bool
   operator!= (const Layer&, const Layer&);
 }
@@ -403,7 +401,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Layer&);
 }
@@ -428,7 +425,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Layer&);
 }

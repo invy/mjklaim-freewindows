@@ -73,7 +73,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Layer_id: public ::aosl::Unique_id
+  class Layer_id: public ::aosl::Unique_id
   {
     public:
     /**
@@ -181,7 +181,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Layer_id&);
 }
@@ -206,15 +205,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Layer_id&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Layer_id&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Layer_id&);

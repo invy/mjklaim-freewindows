@@ -71,7 +71,7 @@ namespace aosl
    * Type of resource, used to help the player/interpreter and tools to
    * identify the way to use the resource.
    */
-  class AOSLCPP_API Resource_type: public ::xml_schema::String
+  class Resource_type: public ::xml_schema::String
   {
     public:
 
@@ -173,7 +173,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Resource_type&);
 }
@@ -198,15 +197,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Resource_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Resource_type&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Resource_type&);

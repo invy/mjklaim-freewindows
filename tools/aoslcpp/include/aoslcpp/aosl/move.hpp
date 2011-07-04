@@ -91,7 +91,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Move: public ::aosl::List_change
+  class Move: public ::aosl::List_change
   {
     public:
     /**
@@ -479,11 +479,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Move&, const Move&);
 
-  AOSLCPP_API
   bool
   operator!= (const Move&, const Move&);
 }
@@ -507,7 +505,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Move&);
 }
@@ -532,7 +529,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Move&);
 }

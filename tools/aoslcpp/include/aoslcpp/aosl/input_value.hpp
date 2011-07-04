@@ -70,7 +70,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Input_value: public ::xml_schema::String
+  class Input_value: public ::xml_schema::String
   {
     public:
     /**
@@ -186,7 +186,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Input_value&);
 }
@@ -211,15 +210,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Input_value&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Input_value&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Input_value&);

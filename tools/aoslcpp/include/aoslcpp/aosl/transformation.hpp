@@ -83,7 +83,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Transformation: public ::xml_schema::Type
+  class Transformation: public ::xml_schema::Type
   {
     public:
     /**
@@ -562,11 +562,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Transformation&, const Transformation&);
 
-  AOSLCPP_API
   bool
   operator!= (const Transformation&, const Transformation&);
 }
@@ -588,7 +586,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Transformation&);
 }
@@ -613,7 +610,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Transformation&);
 }

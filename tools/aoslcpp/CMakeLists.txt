@@ -82,7 +82,7 @@ include_directories(
 
 
 # Generate the library
-add_library( aoslcpp SHARED ${AOSLCPP_SOURCES} ${AOSLCPP_HEADERS} )
+add_library( aoslcpp STATIC ${AOSLCPP_SOURCES} ${AOSLCPP_HEADERS} )
 target_link_libraries( aoslcpp ${XERCESC_LIBRARY} )
 
 # Add the test projects

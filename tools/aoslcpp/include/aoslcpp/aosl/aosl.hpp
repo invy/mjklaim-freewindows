@@ -736,7 +736,6 @@ namespace aosl
    *
    * This function uses exceptions to report parsing errors.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (const ::std::string& uri,
                   ::xml_schema::Flags f = 0,
@@ -753,7 +752,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (const ::std::string& uri,
                   ::xml_schema::ErrorHandler& eh,
@@ -772,7 +770,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (const ::std::string& uri,
                   ::xercesc::DOMErrorHandler& eh,
@@ -789,7 +786,6 @@ namespace aosl
    *
    * This function uses exceptions to report parsing errors.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::std::istream& is,
                   ::xml_schema::Flags f = 0,
@@ -806,7 +802,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::std::istream& is,
                   ::xml_schema::ErrorHandler& eh,
@@ -825,7 +820,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::std::istream& is,
                   ::xercesc::DOMErrorHandler& eh,
@@ -846,7 +840,6 @@ namespace aosl
    *
    * This function uses exceptions to report parsing errors.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::std::istream& is,
                   const ::std::string& id,
@@ -869,7 +862,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::std::istream& is,
                   const ::std::string& id,
@@ -893,7 +885,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::std::istream& is,
                   const ::std::string& id,
@@ -911,7 +902,6 @@ namespace aosl
    *
    * This function uses exceptions to report parsing errors.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::xercesc::InputSource& is,
                   ::xml_schema::Flags f = 0,
@@ -928,7 +918,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::xercesc::InputSource& is,
                   ::xml_schema::ErrorHandler& eh,
@@ -947,7 +936,6 @@ namespace aosl
    *
    * This function reports parsing errors by calling the error handler.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::xercesc::InputSource& is,
                   ::xercesc::DOMErrorHandler& eh,
@@ -962,7 +950,6 @@ namespace aosl
    * @param p Parsing properties. 
    * @return A pointer to the root of the object model.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (const ::xercesc::DOMDocument& d,
                   ::xml_schema::Flags f = 0,
@@ -980,7 +967,6 @@ namespace aosl
    * own_dom parsing flags to assign ownership of the DOM document
    * to the object model.
    */
-  AOSLCPP_API
   ::std::auto_ptr< ::aosl::Sequence >
   parse_sequence (::xml_schema::dom::auto_ptr< ::xercesc::DOMDocument >& d,
                   ::xml_schema::Flags f = 0,
@@ -1018,7 +1004,6 @@ namespace aosl
    *
    * This function uses exceptions to report serialization errors.
    */
-  AOSLCPP_API
   void
   serialize_sequence (::std::ostream& os,
                       const ::aosl::Sequence& x, 
@@ -1039,7 +1024,6 @@ namespace aosl
    * This function reports serialization errors by calling the error
    * handler.
    */
-  AOSLCPP_API
   void
   serialize_sequence (::std::ostream& os,
                       const ::aosl::Sequence& x, 
@@ -1062,7 +1046,6 @@ namespace aosl
    * This function reports serialization errors by calling the error
    * handler.
    */
-  AOSLCPP_API
   void
   serialize_sequence (::std::ostream& os,
                       const ::aosl::Sequence& x, 
@@ -1082,7 +1065,6 @@ namespace aosl
    *
    * This function uses exceptions to report serialization errors.
    */
-  AOSLCPP_API
   void
   serialize_sequence (::xercesc::XMLFormatTarget& ft,
                       const ::aosl::Sequence& x, 
@@ -1104,7 +1086,6 @@ namespace aosl
    * This function reports serialization errors by calling the error
    * handler.
    */
-  AOSLCPP_API
   void
   serialize_sequence (::xercesc::XMLFormatTarget& ft,
                       const ::aosl::Sequence& x, 
@@ -1127,7 +1108,6 @@ namespace aosl
    * This function reports serialization errors by calling the error
    * handler.
    */
-  AOSLCPP_API
   void
   serialize_sequence (::xercesc::XMLFormatTarget& ft,
                       const ::aosl::Sequence& x, 
@@ -1147,7 +1127,6 @@ namespace aosl
    * with the correct root element as well as set the necessary
    * namespace mapping attributes.
    */
-  AOSLCPP_API
   void
   serialize_sequence (::xercesc::DOMDocument& d,
                       const ::aosl::Sequence& x,
@@ -1161,7 +1140,6 @@ namespace aosl
    * @param f Serialization flags.
    * @return A pointer to the new Xerces-C++ DOM document.
    */
-  AOSLCPP_API
   ::xml_schema::dom::auto_ptr< ::xercesc::DOMDocument >
   serialize_sequence (const ::aosl::Sequence& x, 
                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),

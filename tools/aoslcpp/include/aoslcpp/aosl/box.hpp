@@ -77,7 +77,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Box: public ::xml_schema::Type
+  class Box: public ::xml_schema::Type
   {
     public:
     /**
@@ -469,11 +469,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Box&, const Box&);
 
-  AOSLCPP_API
   bool
   operator!= (const Box&, const Box&);
 }
@@ -492,7 +490,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Box&);
 }
@@ -517,7 +514,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Box&);
 }

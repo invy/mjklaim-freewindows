@@ -80,7 +80,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Change_transform: public ::aosl::Change_transform_base
+  class Change_transform: public ::aosl::Change_transform_base
   {
     public:
     /**
@@ -234,11 +234,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Change_transform&, const Change_transform&);
 
-  AOSLCPP_API
   bool
   operator!= (const Change_transform&, const Change_transform&);
 }
@@ -256,7 +254,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Change_transform&);
 }
@@ -281,7 +278,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Change_transform&);
 }

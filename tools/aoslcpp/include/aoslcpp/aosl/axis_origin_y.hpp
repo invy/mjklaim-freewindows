@@ -68,7 +68,7 @@ namespace aosl
    *
    * Position of the vertical y-axis origin in graphic space.
    */
-  class AOSLCPP_API Axis_origin_y: public ::xml_schema::String
+  class Axis_origin_y: public ::xml_schema::String
   {
     public:
 
@@ -236,11 +236,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Axis_origin_y::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Axis_origin_y&);
 }
@@ -265,15 +263,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Axis_origin_y&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Axis_origin_y&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Axis_origin_y&);

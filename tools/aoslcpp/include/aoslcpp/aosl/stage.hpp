@@ -87,7 +87,7 @@ namespace aosl
    *
    * @nosubgrouping
    */
-  class AOSLCPP_API Stage: public ::xml_schema::Type
+  class Stage: public ::xml_schema::Type
   {
     public:
     /**
@@ -484,11 +484,9 @@ namespace aosl
     //@endcond
   };
 
-  AOSLCPP_API
   bool
   operator== (const Stage&, const Stage&);
 
-  AOSLCPP_API
   bool
   operator!= (const Stage&, const Stage&);
 }
@@ -513,7 +511,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Stage&);
 }
@@ -538,7 +535,6 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Stage&);
 }

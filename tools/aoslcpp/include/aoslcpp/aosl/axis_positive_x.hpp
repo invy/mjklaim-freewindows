@@ -69,7 +69,7 @@ namespace aosl
    * The side of the x-axis where the x values are positive, relative to
    * the origin point.
    */
-  class AOSLCPP_API Axis_positive_x: public ::xml_schema::String
+  class Axis_positive_x: public ::xml_schema::String
   {
     public:
 
@@ -235,11 +235,9 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, Axis_positive_x::Value);
 
-  AOSLCPP_API
   ::std::ostream&
   operator<< (::std::ostream&, const Axis_positive_x&);
 }
@@ -264,15 +262,12 @@ namespace aosl
 
 namespace aosl
 {
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMElement&, const Axis_positive_x&);
 
-  AOSLCPP_API
   void
   operator<< (::xercesc::DOMAttr&, const Axis_positive_x&);
 
-  AOSLCPP_API
   void
   operator<< (::xml_schema::ListStream&,
               const Axis_positive_x&);
