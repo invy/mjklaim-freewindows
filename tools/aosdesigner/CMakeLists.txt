@@ -9,6 +9,7 @@ add_definitions( ${QT_DEFINITIONS} )
 # Sub-directories.
 set( AOSDESIGNER_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
 set( AOSDESIGNER_CORE_DIR ${AOSDESIGNER_ROOT_DIR}/core )
+set( AOSDESIGNER_STATE_DIR ${AOSDESIGNER_ROOT_DIR}/state )
 set( AOSDESIGNER_VIEW_DIR ${AOSDESIGNER_ROOT_DIR}/view )
 set( AOSDESIGNER_UTIL_DIR ${AOSDESIGNER_ROOT_DIR}/util )
 set( AOSDESIGNER_RC_DIR ${AOSDESIGNER_VIEW_DIR}/rc )
@@ -29,6 +30,13 @@ set( AOSDESIGNER_CORE_HEADERS
     ${AOSDESIGNER_CORE_DIR}/Context.hpp
     ${AOSDESIGNER_CORE_DIR}/Project.hpp
     ${AOSDESIGNER_CORE_DIR}/Sequence.hpp
+)
+
+#-----------------------------------------------------------------
+
+# States header files.
+set( AOSDESIGNER_STATE_HEADERS
+    ${AOSDESIGNER_STATE_DIR}/States.hpp
 )
 
 #-----------------------------------------------------------------
