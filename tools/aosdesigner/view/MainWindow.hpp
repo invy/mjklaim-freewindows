@@ -2,44 +2,48 @@
 #define __AOSD_VIEW_MAINWINDOW_HPP__
 #pragma once
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 
 #include <QMainWindow>
 
 namespace Ui
 {
-    class MainWindow;
+	class MainWindow;
 }
 
 namespace aosd
 {
 namespace core
 {
-    class Project;
+	class Project;
 }
 
 namespace view
 {
-    class ProjectView;
+	class ProjectView;
 
-    class MainWindow
-        : public QMainWindow
-    {
-        Q_OBJECT
-    public:
+	class MainWindow
+		: public QMainWindow
+	{
+		Q_OBJECT
+	public:
 
-        MainWindow( QWidget* parent );
-        
-    private slots:
+		MainWindow( QWidget* parent );
+		~MainWindow();
 
-        void on_project_open( const core::Project& project );
+		void add_central_widget( QWidget& widget, const std::string tab_label );
+		
+	private slots:
 
-    private:
+		void on_project_open( const core::Project& project );
 
-        boost::scoped_ptr<Ui::MainWindow> m_ui;
-        
+	private:
 
-    };
+		std::unique_ptr<Ui::MainWindow> m_ui;
+		std::unique_ptr<QTabWidget> m_central_tabs;
+		
+
+	};
 
 
 }
