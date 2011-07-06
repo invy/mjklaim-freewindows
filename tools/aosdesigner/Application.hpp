@@ -23,6 +23,8 @@ namespace aosd
 		Application( int &argc, char **argv );
 		~Application();
 
+		/** Display the welcome screen in the center of the window. */
+		void show_welcome();
 		
 	private:
 

@@ -57,6 +57,7 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/LogView.hpp
     ${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.hpp
+	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.hpp
 )
 
 
@@ -102,6 +103,7 @@ set( AOSDESIGNER_VIEW_SOURCES
     ${AOSDESIGNER_VIEW_DIR}/ProjectView.cpp
     ${AOSDESIGNER_VIEW_DIR}/SequenceListView.cpp
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
+	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.cpp
 )
 
 #------------------------------------------------------
@@ -136,14 +138,14 @@ set( AOSDESIGNER_UTIL_SOURCES
 # Resource files.
 
 set( AOSDESIGNER_VIEW_RC
-
+	${AOSDESIGNER_RC_DIR}/AOSDesigner.qrc
 )
 
 # RC files need to be processed by Qt wrapper to generate RC headers.
 QT4_ADD_RESOURCES( AOSDESIGNER_VIEW_RESOURCES ${AOSDESIGNER_VIEW_RC} )
 
 # RC files are isolated in a separate virtual directory.
-source_group( designer\\view\\rc FILES ${AOSDESIGNER_VIEW_RESOURCES} )
+source_group( designer\\view\\rc FILES ${AOSDESIGNER_VIEW_RC} )
 
 # Group generated files in the same isolated virtual directory.
 source_group( designer\\view\\generated\\rc FILES ${AOSDESIGNER_VIEW_RESOURCES} )
@@ -153,6 +155,7 @@ source_group( designer\\view\\generated\\rc FILES ${AOSDESIGNER_VIEW_RESOURCES} 
 
 set( AOSDESIGNER_VIEW_UI
     ${AOSDESIGNER_UI_DIR}/MainWindow.ui
+	${AOSDESIGNER_UI_DIR}/WelcomeScreen.ui
 )
 
 # UI files need to be processed by Qt wrapper to generate UI headers.
@@ -183,6 +186,7 @@ set( AOSDESIGNER_ALL_SOURCES
     ${AOSDESIGNER_VIEW_SOURCES}
     ${AOSDESIGNER_VIEW_HEADERS_MOC}
     ${AOSDESIGNER_VIEW_HEADERS_UI}
+	${AOSDESIGNER_VIEW_RESOURCES}
     ${AOSDESIGNER_UTIL_SOURCES}
 )
 

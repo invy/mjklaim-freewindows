@@ -16,6 +16,7 @@
 #include "view/LogView.hpp"
 #include "view/StoryPathView.hpp"
 
+
 namespace aosd
 {
 namespace view
@@ -38,7 +39,7 @@ namespace view
 		
 		setWindowTitle( tr("Art Of Sequence") );
 
-		// setup infrastructure
+		// basic infrastructure
 		setCentralWidget( m_central_tabs.get() );
 
 		// use default views setup 
@@ -46,8 +47,8 @@ namespace view
 		setup_views_default();
 
 		// don't allow edition without something to edit first!
-		close_edition(); 
-		
+		close_edition();
+
 		connect_signals();
 
 	}
@@ -98,13 +99,13 @@ namespace view
 
 	void MainWindow::open_edition()
 	{
-		m_project_view->setVisible(true);
+		/*m_project_view->setVisible(true);
 		m_changes_view->setVisible(true);
 		m_objects_view->setVisible(true);
 		m_libraries_view->setVisible(true);
 		m_layers_view->setVisible(true);
 		m_toolbox_view->setVisible(true);
-
+		*/
 		m_project_view->setEnabled(true);
 		m_changes_view->setEnabled(true);
 		m_objects_view->setEnabled(true);
@@ -120,14 +121,14 @@ namespace view
 		m_edition_mode = false;
 
 		clear_tabs();
-
+		/*
 		m_project_view->setVisible(false);
 		m_changes_view->setVisible(false);
 		m_objects_view->setVisible(false);
 		m_libraries_view->setVisible(false);
 		m_layers_view->setVisible(false);
 		m_toolbox_view->setVisible(false);
-
+		*/
 		m_project_view->setEnabled(false);
 		m_changes_view->setEnabled(false);
 		m_objects_view->setEnabled(false);
@@ -168,6 +169,7 @@ namespace view
 	{
 		m_central_tabs->clear();
 	}
+
 
 }
 }

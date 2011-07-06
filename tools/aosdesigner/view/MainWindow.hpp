@@ -42,9 +42,12 @@ namespace view
 
 		/** Close edition mode : disable all editions views. */
 		void close_edition();
+
 		
+		/** True if we are currently in edition mode, false otherwise. */
 		bool is_edition_mode() const { return m_edition_mode; }
-		
+
+				
 	protected:
 
 		void keyPressEvent( QKeyEvent * );
@@ -70,6 +73,7 @@ namespace view
 		std::unique_ptr<LayersView> m_layers_view;
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
+
 
 		/// Are we in edition mode?
 		bool m_edition_mode;

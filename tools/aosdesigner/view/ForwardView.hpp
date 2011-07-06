@@ -19,6 +19,8 @@ namespace view
 	class ToolboxView;
 	class StoryPathView;
 
+	class WelcomeScreen;
+
 	class MainWindow;
 
 }
