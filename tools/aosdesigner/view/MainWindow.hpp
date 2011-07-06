@@ -34,14 +34,15 @@ namespace view
 		/** Add  astory path view in the central tabs of the window. **/
 		void add_storypath( StoryPathView& storypath );
 
+		/** Clear the tabs currently open in the center of the window. */
+		void clear_tabs();
 		
 		/** Open edition mode : all edition views are open or available. **/
 		void open_edition();
 
 		/** Close edition mode : disable all editions views. */
 		void close_edition();
-
-
+		
 		bool is_edition_mode() const { return m_edition_mode; }
 		
 	protected:

@@ -119,6 +119,8 @@ namespace view
 	{
 		m_edition_mode = false;
 
+		clear_tabs();
+
 		m_project_view->setVisible(false);
 		m_changes_view->setVisible(false);
 		m_objects_view->setVisible(false);
@@ -132,6 +134,7 @@ namespace view
 		m_libraries_view->setEnabled(false);
 		m_layers_view->setEnabled(false);
 		m_toolbox_view->setEnabled(false);
+
 	}
 
 	void MainWindow::keyPressEvent( QKeyEvent* e )
@@ -143,16 +146,27 @@ namespace view
 		{
 			open_edition();
 		}
-		else
+		else if( is_edition_mode()  )
 		{
-			if( e->key() == Qt::Key_C && is_edition_mode() )
+			if( e->key() == Qt::Key_C )
 			{
 				close_edition();
 			}
+			else if ( e->key() == Qt::Key_T && !e->isAutoRepeat() )
+			{
+				auto storypath = new StoryPathView;
+				add_storypath( *storypath );
+			}
+			
 		}
 
 		// END OF THE TEST
 
+	}
+
+	void MainWindow::clear_tabs()
+	{
+		m_central_tabs->clear();
 	}
 
 }

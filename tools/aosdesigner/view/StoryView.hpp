@@ -3,7 +3,7 @@
 #pragma once
 
 #include <QGraphicsView>
-#include <QDockWidget>
+
 
 namespace aosd 
 {
@@ -14,17 +14,12 @@ namespace view
 		and other story manipulations.
 	**/
 	class StoryView
-		: public QDockWidget
+		: public QGraphicsView
 	{
 		Q_OBJECT
 	public:
 
-		StoryView()
-		{
-			setWindowTitle( tr("Story") );
-			setWidget( new QGraphicsView() );
-		}
-
+		
 
 	private:
 
