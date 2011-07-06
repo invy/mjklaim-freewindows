@@ -105,6 +105,13 @@ namespace view
 		m_layers_view->setVisible(true);
 		m_toolbox_view->setVisible(true);
 
+		m_project_view->setEnabled(true);
+		m_changes_view->setEnabled(true);
+		m_objects_view->setEnabled(true);
+		m_libraries_view->setEnabled(true);
+		m_layers_view->setEnabled(true);
+		m_toolbox_view->setEnabled(true);
+
 		m_edition_mode = true;
 	}
 
@@ -118,6 +125,13 @@ namespace view
 		m_libraries_view->setVisible(false);
 		m_layers_view->setVisible(false);
 		m_toolbox_view->setVisible(false);
+
+		m_project_view->setEnabled(false);
+		m_changes_view->setEnabled(false);
+		m_objects_view->setEnabled(false);
+		m_libraries_view->setEnabled(false);
+		m_layers_view->setEnabled(false);
+		m_toolbox_view->setEnabled(false);
 	}
 
 	void MainWindow::keyPressEvent( QKeyEvent* e )
