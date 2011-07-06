@@ -168,7 +168,7 @@ source_group( designer\\view FILES ${AOSDESIGNER_VIEW_HEADERS} ${AOSDESIGNER_VIE
 source_group( designer\\core FILES ${AOSDESIGNER_CORE_HEADERS} ${AOSDESIGNER_CORE_SOURCES} )
 source_group( designer\\state FILES ${AOSDESIGNER_STATE_HEADERS} ${AOSDESIGNER_STATE_SOURCES} )
 source_group( designer\\util FILES ${AOSDESIGNER_UTIL_HEADERS} ${AOSDESIGNER_UTIL_SOURCES} )
-source_group( "" FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICATION_SOURCES} )
+source_group( designer FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICATION_SOURCES} )
 
 ####################################################
 # Bind them all together.
