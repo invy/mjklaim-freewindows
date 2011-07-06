@@ -1,5 +1,5 @@
-#ifndef __AOSD__STATES_HPP__
-#define __AOSD__STATES_HPP__
+#ifndef HGUARD_AOSD__STATES_HPP__
+#define HGUARD_AOSD__STATES_HPP__
 #pragma once
 
 namespace aosd
@@ -7,7 +7,7 @@ namespace aosd
 namespace state
 {
 
-	/** TODO :
+	/* TODO :
 		Add here the state transition table for the major states.
 		
 		States :

@@ -1,5 +1,5 @@
-#ifndef __AOSD_VIEW_SEQUENCELISTVIEW_HPP__
-#define __AOSD_VIEW_SEQUENCELISTVIEW_HPP__
+#ifndef HGUARD_AOSD_VIEW_SEQUENCELISTVIEW_HPP__
+#define HGUARD_AOSD_VIEW_SEQUENCELISTVIEW_HPP__
 #pragma once
 
 #include <utility>
@@ -18,8 +18,8 @@ namespace core
 namespace view
 {
 
-    /** Display the list of Sequences in the currently open project
-        and allow selection of the current Sequence to display.
+    /** Display a list of Sequences in the currently open project.
+        Allows editing, opening, closing and selecting sequences.
     */
     class SequenceListView
         : public QListView

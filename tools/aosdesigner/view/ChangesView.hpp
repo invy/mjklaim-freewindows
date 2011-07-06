@@ -1,5 +1,5 @@
-#ifndef __AOSD_VIEW_CHANGESVIEW_HPP__
-#define __AOSD_VIEW_CHANGESVIEW_HPP__
+#ifndef HGUARD_AOSD_VIEW_CHANGESVIEW_HPP__
+#define HGUARD_AOSD_VIEW_CHANGESVIEW_HPP__
 #pragma once
 
 #include <QDockWidget>
@@ -9,25 +9,26 @@ namespace aosd
 {
 namespace view
 {
+	/** Display lists of changes between the current story stage and the previous one.
+	**/
+	class ChangesView
+		: public QDockWidget
+	{
+		Q_OBJECT
+	public:
 
-    class ChangesView
-        : public QDockWidget
-    {
-        Q_OBJECT
-    public:
-
-        ChangesView()
-        {
-            setWindowTitle( tr("Changes") );
-            setWidget( new QListView() );
-        }
-        
-        
+		ChangesView()
+		{
+			setWindowTitle( tr("Changes") );
+			setWidget( new QListView() );
+		}
+		
+		
 
 
-    private:
+	private:
 
-    };
+	};
 
 
 }

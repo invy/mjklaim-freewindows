@@ -1,5 +1,5 @@
-#ifndef __AOSD_CORE_SEQUENCE_HPP__
-#define __AOSD_CORE_SEQUENCE_HPP__
+#ifndef HGUARD_AOSD_CORE_SEQUENCE_HPP__
+#define HGUARD_AOSD_CORE_SEQUENCE_HPP__
 #pragma once
 
 #include <string>
@@ -25,14 +25,17 @@ namespace core
 		Sequence();
 		~Sequence();
 		
+		/// Name of the Sequence.
 		const std::string& name() const { return m_name; }
 		
 
 
 	private:
 
+		/// Name of this Sequence
 		std::string m_name;
 
+		/// Raw Sequence data.
 		std::unique_ptr< aosl::Sequence > m_sequence;
 
 	};

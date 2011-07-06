@@ -1,5 +1,5 @@
-#ifndef __AOSD_VIEW_OBJECTSVIEW_HPP__
-#define __AOSD_VIEW_OBJECTSVIEW_HPP__
+#ifndef HGUARD_AOSD_VIEW_OBJECTSVIEW_HPP__
+#define HGUARD_AOSD_VIEW_OBJECTSVIEW_HPP__
 #pragma once
 
 #include <QDockWidget>
@@ -9,24 +9,26 @@ namespace aosd
 {
 namespace view
 {
+	/** Display objects in the canvas, separated as active and inactive, at the current stage of the story.
+		Allows editing, adding and removing objects.
+	**/
+	class ObjectsView
+		: public QDockWidget
+	{
+		Q_OBJECT
+	public:
+		
+		ObjectsView()
+		{
+			setWindowTitle( tr("Objects") );
+			
+			setWidget(new QTreeView());
+		}
 
-    class ObjectsView
-        : public QDockWidget
-    {
-        Q_OBJECT
-    public:
-        
-        ObjectsView()
-        {
-            setWindowTitle( tr("Objects") );
-            
-            setWidget(new QTreeView());
-        }
 
+	private:
 
-    private:
-
-    };
+	};
 
 
 }

@@ -1,5 +1,5 @@
-#ifndef __AOSD_VIEW_PROJECTVIEW_HPP__
-#define __AOSD_VIEW_PROJECTVIEW_HPP__
+#ifndef HGUARD_AOSD_VIEW_PROJECTVIEW_HPP__
+#define HGUARD_AOSD_VIEW_PROJECTVIEW_HPP__
 #pragma once
 
 #include <memory>
@@ -15,7 +15,7 @@ namespace view
 	class SequenceListView;
 
 	/** Display the basic informations about a Project and the Sequences it contains.
-		It allows to switch from one Sequence to another.
+		Allows edition of those informations.
 	*/
 	class ProjectView
 		: public QDockWidget
@@ -31,6 +31,7 @@ namespace view
 
 	private:
 		
+		/// Tabs with different views of the informations of this project.
 		std::unique_ptr<QTabWidget> m_tabs;
 		
 	};

@@ -1,5 +1,5 @@
-#ifndef __AOSD_CORE__CONTEXT_HPP__
-#define __AOSD_CORE__CONTEXT_HPP__
+#ifndef HGUARD_AOSD_CORE__CONTEXT_HPP__
+#define HGUARD_AOSD_CORE__CONTEXT_HPP__
 #pragma once
 
 #include <boost/scoped_ptr.hpp>

@@ -1,5 +1,5 @@
-#ifndef __AOSD_VIEW_LAYERSVIEW_HPP__
-#define __AOSD_VIEW_LAYERSVIEW_HPP__
+#ifndef HGUARD_AOSD_VIEW_LAYERSVIEW_HPP__
+#define HGUARD_AOSD_VIEW_LAYERSVIEW_HPP__
 #pragma once
 
 #include <QDockWidget>
@@ -9,23 +9,25 @@ namespace aosd
 {
 namespace view
 {
+	/** Display the layers of a sequence, the associated objects and their state at the current story stage.
+		Allow activating and deactivating layers for the current stage.
+	**/
+	class LayersView
+		: public QDockWidget
+	{
+		Q_OBJECT
+	public:
+		
+		LayersView()
+		{
+			setWindowTitle(tr("Layers"));
+			setWidget( new QTreeView() );
+		}
 
-    class LayersView
-        : public QDockWidget
-    {
-        Q_OBJECT
-    public:
-        
-        LayersView()
-        {
-            setWindowTitle(tr("Layers"));
-            setWidget( new QTreeView() );
-        }
 
+	private:
 
-    private:
-
-    };
+	};
 
 
 }

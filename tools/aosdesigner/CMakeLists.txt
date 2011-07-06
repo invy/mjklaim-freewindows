@@ -27,6 +27,7 @@ set( AOSDESIGNER_APPLICATION_HEADERS
 
 # Core objects header files.
 set( AOSDESIGNER_CORE_HEADERS
+	${AOSDESIGNER_CORE_DIR}/ForwardCore.hpp
     ${AOSDESIGNER_CORE_DIR}/Context.hpp
     ${AOSDESIGNER_CORE_DIR}/Project.hpp
     ${AOSDESIGNER_CORE_DIR}/Sequence.hpp
@@ -43,6 +44,7 @@ set( AOSDESIGNER_STATE_HEADERS
 
 # Views header files.
 set( AOSDESIGNER_VIEW_HEADERS
+	${AOSDESIGNER_VIEW_DIR}/ForwardView.hpp
     ${AOSDESIGNER_VIEW_DIR}/MainWindow.hpp
     ${AOSDESIGNER_VIEW_DIR}/ProjectView.hpp
     ${AOSDESIGNER_VIEW_DIR}/SequenceListView.hpp
@@ -71,6 +73,7 @@ set( AOSDESIGNER_UTIL_HEADERS
 set( AOSDESIGNER_ALL_HEADERS  
     ${AOSDESIGNER_APPLICATION_HEADERS} 
     ${AOSDESIGNER_CORE_HEADERS}
+	${AOSDESIGNER_STATE_HEADERS}
     ${AOSDESIGNER_VIEW_HEADERS}
     ${AOSDESIGNER_UTIL_HEADERS}
 )
@@ -107,6 +110,13 @@ set( AOSDESIGNER_CORE_SOURCES
     ${AOSDESIGNER_CORE_DIR}/Project.cpp
     ${AOSDESIGNER_CORE_DIR}/Sequence.cpp
     
+)
+
+#------------------------------------------------------
+
+# States source files
+set( AOSDESIGNER_STATE_SOURCES
+	# Add states source files here
 )
 
 #-----------------------------------------------------------------
@@ -156,6 +166,7 @@ source_group( designer\\view\\generated\\ui FILES ${AOSDESIGNER_VIEW_HEADERS_UI}
 # Additional groups
 source_group( designer\\view FILES ${AOSDESIGNER_VIEW_HEADERS} ${AOSDESIGNER_VIEW_SOURCES} )
 source_group( designer\\core FILES ${AOSDESIGNER_CORE_HEADERS} ${AOSDESIGNER_CORE_SOURCES} )
+source_group( designer\\state FILES ${AOSDESIGNER_STATE_HEADERS} ${AOSDESIGNER_STATE_SOURCES} )
 source_group( designer\\util FILES ${AOSDESIGNER_UTIL_HEADERS} ${AOSDESIGNER_UTIL_SOURCES} )
 source_group( "" FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICATION_SOURCES} )
 
@@ -165,6 +176,7 @@ source_group( "" FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICAT
 # All the compiled sources.
 set( AOSDESIGNER_ALL_SOURCES
     ${AOSDESIGNER_CORE_SOURCES}
+	${AOSDESIGNER_STATE_SOURCES}
     ${AOSDESIGNER_APPLICATION_SOURCES}
     ${AOSDESIGNER_VIEW_SOURCES}
     ${AOSDESIGNER_VIEW_HEADERS_MOC}
