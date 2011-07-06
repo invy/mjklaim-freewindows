@@ -8,14 +8,7 @@
 # XSD_EXECUTABLE, where is the xsd compiler
 # XSD_FOUND, If false, don't try to use xsd
 
-FIND_PATH(XSD_INCLUDE_DIR cxx/parser/elements.hxx
-  $ENV{XSDDIR}/include
-  $ENV{CODESYNTH}/include/xsd
-  /usr/local/include/xsd
-  /usr/include/xsd
-)
 
-#
 FIND_PROGRAM(XSD_EXECUTABLE 
   NAMES 
     xsd
@@ -24,7 +17,22 @@ FIND_PROGRAM(XSD_EXECUTABLE
     $ENV{XSDDIR}/bin 
     /usr/local/bin
     /usr/bin
+	
 )
+
+# Poor attempt at getting the correct root dir on windows - change this once cross platform
+string( REPLACE "/bin/xsd.exe" "" XSD_WINDOWS_ROOT_DIR ${XSD_EXECUTABLE} )
+set( XSD_WINDOWS_INCLUDE_DIR ${XSD_WINDOWS_ROOT_DIR}/include )
+
+message( STATUS "Potential XSD root dir for windows : " ${XSD_WINDOWS_ROOT_DIR} )
+
+FIND_PATH(XSD_INCLUDE_DIR xsd/cxx/parser/elements.hxx
+  $ENV{XSDDIR}/include
+  $ENV{CODESYNTH}/include
+  /usr/local/include
+  /usr/include
+  ${XSD_WINDOWS_INCLUDE_DIR}
+  )
 
 # if the include and the program are found then we have it
 IF(XSD_INCLUDE_DIR)

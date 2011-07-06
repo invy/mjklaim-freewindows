@@ -14,8 +14,10 @@
 # Look for a root installation
 FIND_PATH(XERCESC_ROOT_DIR include/xercesc/parsers/SAXParser.hpp
 	/usr
+	"[HKEY_CURRENT_USER\\xsd"
 	$ENV{CODESYNTH}
 	$ENV{XSDDIR}
+	${XSD_WINDOWS_ROOT_DIR}
   DOC "The root of an installed xerces-c installation"
 )
 
