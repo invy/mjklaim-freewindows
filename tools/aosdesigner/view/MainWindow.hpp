@@ -34,7 +34,20 @@ namespace view
 		/** Add  astory path view in the central tabs of the window. **/
 		void add_storypath( StoryPathView& storypath );
 
-				
+		
+		/** Open edition mode : all edition views are open or available. **/
+		void open_edition();
+
+		/** Close edition mode : disable all editions views. */
+		void close_edition();
+
+
+		bool is_edition_mode() const { return m_edition_mode; }
+		
+	protected:
+
+		void keyPressEvent( QKeyEvent * );
+
 	private slots:
 
 		/** Slot : called when a project have been opened. */
@@ -56,7 +69,11 @@ namespace view
 		std::unique_ptr<LayersView> m_layers_view;
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
+
+		/// Are we in edition mode?
+		bool m_edition_mode;
 		
+		/** Connect our slots to signals we want to react to. */
 		void connect_signals();
 
 		/** Setup the views in their default configuration and positions. **/

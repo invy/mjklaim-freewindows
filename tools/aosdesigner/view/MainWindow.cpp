@@ -1,6 +1,7 @@
 #include "MainWindow.hpp"
 
 #include <QTabWidget>
+#include <QKeyEvent>
 
 #include "ui_MainWindow.h"
 
@@ -22,6 +23,7 @@ namespace view
 
 	MainWindow::MainWindow( QWidget* parent )
 		: QMainWindow( parent )
+		, m_edition_mode( false )
 		, m_ui( new Ui::MainWindow )
 		, m_central_tabs( new QTabWidget() )
 		, m_project_view( new ProjectView() )
@@ -42,6 +44,9 @@ namespace view
 		// use default views setup 
 		// TODO : add a way to get a saved view setup
 		setup_views_default();
+
+		// don't allow edition without something to edit first!
+		close_edition(); 
 		
 		connect_signals();
 
@@ -58,11 +63,6 @@ namespace view
 	{
 		setWindowTitle( tr("Art Of Sequence : ") + QString::fromStdString( project.name() ) );
 
-		// TEMPORARY
-		StoryPathView* storypath1 = new StoryPathView;
-		StoryPathView* storypath2 = new StoryPathView;
-		add_storypath( *storypath1 );
-		add_storypath( *storypath2 );
 	}
 
 
@@ -77,7 +77,6 @@ namespace view
 
 	void MainWindow::setup_views_default()
 	{
-
 		addDockWidget( Qt::LeftDockWidgetArea, m_project_view.get() );
 		tabifyDockWidget( m_project_view.get(), m_changes_view.get() );
 		tabifyDockWidget( m_project_view.get(), m_objects_view.get() );
@@ -87,6 +86,7 @@ namespace view
 		tabifyDockWidget( m_libraries_view.get(), m_toolbox_view.get() );
 
 		addDockWidget( Qt::BottomDockWidgetArea, m_log_view.get() );
+		m_log_view->setVisible(false); // don't display it if not needed by the user
 		
 	}
 
@@ -94,6 +94,51 @@ namespace view
 	{
 		auto& context = core::Context::instance();
 		connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(on_project_open(const core::Project&)) );
+	}
+
+	void MainWindow::open_edition()
+	{
+		m_project_view->setVisible(true);
+		m_changes_view->setVisible(true);
+		m_objects_view->setVisible(true);
+		m_libraries_view->setVisible(true);
+		m_layers_view->setVisible(true);
+		m_toolbox_view->setVisible(true);
+
+		m_edition_mode = true;
+	}
+
+	void MainWindow::close_edition()
+	{
+		m_edition_mode = false;
+
+		m_project_view->setVisible(false);
+		m_changes_view->setVisible(false);
+		m_objects_view->setVisible(false);
+		m_libraries_view->setVisible(false);
+		m_layers_view->setVisible(false);
+		m_toolbox_view->setVisible(false);
+	}
+
+	void MainWindow::keyPressEvent( QKeyEvent* e )
+	{
+		assert( e );
+		
+		// THIS IS FOR TEST
+		if( e->key() == Qt::Key_O && !is_edition_mode() )
+		{
+			open_edition();
+		}
+		else
+		{
+			if( e->key() == Qt::Key_C && is_edition_mode() )
+			{
+				close_edition();
+			}
+		}
+
+		// END OF THE TEST
+
 	}
 
 }
