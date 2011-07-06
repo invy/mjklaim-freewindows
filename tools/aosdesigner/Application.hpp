@@ -2,7 +2,7 @@
 #define HGUARD_AOSD_APPLICATION_HPP__
 #pragma once
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include <QApplication>
 
 #include "core/ForwardCore.hpp"
@@ -27,10 +27,10 @@ namespace aosd
 	private:
 
 		/// Current context informations of the application : opened project, opened sequence, etc.
-		boost::scoped_ptr<core::Context> m_context;
+		std::unique_ptr<core::Context> m_context;
 
 		/// Window of the application.
-		boost::scoped_ptr<view::MainWindow> m_main_window;
+		std::unique_ptr<view::MainWindow> m_main_window;
 		
 		
 	};

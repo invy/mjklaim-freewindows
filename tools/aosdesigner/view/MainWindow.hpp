@@ -33,6 +33,7 @@ namespace view
 
 		/** Add a widget in the central part of the window. **/
 		void add_central_widget( QWidget& widget, const std::string tab_label );
+
 				
 	private slots:
 
@@ -46,8 +47,23 @@ namespace view
 
 		/** Tabs at the center of the window. */
 		std::unique_ptr<QTabWidget> m_central_tabs;
-		
 
+		// Components of the edition interface:
+		std::unique_ptr<ProjectView> m_project_view;
+		std::unique_ptr<ChangesView> m_changes_view;
+		std::unique_ptr<ObjectsView> m_objects_view;
+		std::unique_ptr<LibrariesView> m_libraries_view;
+		std::unique_ptr<LayersView> m_layers_view;
+		std::unique_ptr<ToolboxView> m_toolbox_view;
+		std::unique_ptr<StoryView> m_story_view;
+		std::unique_ptr<LogView> m_log_view;
+		std::unique_ptr<CanvasView> m_canvas_view;
+
+		void connect_signals();
+
+		/** Setup the views in their default configuration and positions. **/
+		void setup_views_default();
+		
 	};
 
 
