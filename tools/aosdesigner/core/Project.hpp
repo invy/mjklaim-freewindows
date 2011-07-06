@@ -41,15 +41,15 @@ namespace core
 		const bfs::path& location() const { return m_location; }
 
 		/** Change the project's file location to the provided one. */
-		void change_location( const bfs::path& new_filepath );
+		void relocate( const bfs::path& new_filepath );
 
 		/** Name of the project. */
 		const std::string& name() const { return m_name; }
 
 		/** Change the name of the project. */
-		void change_name( const std::string& new_name );
+		void rename( const std::string& new_name );
 
-		/// Signature for functinos allowed to modify a Sequences.
+		/// Signature for functions allowed to modify a Sequences.
 		typedef std::function< void ( Sequence& sequence )> SequenceModifierFunc;
 		/// Signature for functions only allowed to read Sequences.
 		typedef std::function< void ( const Sequence& sequence )> SequenceReaderFunc;

@@ -35,13 +35,13 @@ namespace core
     }
 
 
-    void Project::change_location( const bfs::path& new_filepath )
+    void Project::relocate( const bfs::path& new_filepath )
     {
         // TODO : add some checks!
         m_location = new_filepath;
     }
 
-    void Project::change_name( const std::string& new_name )
+    void Project::rename( const std::string& new_name )
     {
         // TODO : add some checks!
         m_name = new_name;
