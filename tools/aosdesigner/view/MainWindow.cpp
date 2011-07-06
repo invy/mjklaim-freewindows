@@ -12,9 +12,8 @@
 #include "view/ObjectsView.hpp"
 #include "view/LayersView.hpp"
 #include "view/ToolboxView.hpp"
-#include "view/CanvasView.hpp"
-#include "view/StoryView.hpp"
 #include "view/LogView.hpp"
+#include "view/StoryPathView.hpp"
 
 namespace aosd
 {
@@ -31,9 +30,7 @@ namespace view
 		, m_libraries_view( new LibrariesView() )
 		, m_layers_view( new LayersView() )
 		, m_toolbox_view( new ToolboxView() )
-		, m_story_view( new StoryView() )
 		, m_log_view( new LogView() )
-		, m_canvas_view( new CanvasView() )
 	{
 		m_ui->setupUi( this );
 		
@@ -46,11 +43,8 @@ namespace view
 		// TODO : add a way to get a saved view setup
 		setup_views_default();
 		
-		// TEMPORARY :
-		auto canvas_view = new CanvasView();
-		add_central_widget( *canvas_view, "Canvas" );
-		
 		connect_signals();
+
 	}
 
 
@@ -63,12 +57,23 @@ namespace view
 	void MainWindow::on_project_open( const core::Project& project )
 	{
 		setWindowTitle( tr("Art Of Sequence : ") + QString::fromStdString( project.name() ) );
+
+		// TEMPORARY
+		StoryPathView* storypath1 = new StoryPathView;
+		StoryPathView* storypath2 = new StoryPathView;
+		add_storypath( *storypath1 );
+		add_storypath( *storypath2 );
 	}
 
-	void MainWindow::add_central_widget( QWidget& widget, const std::string tab_label )
+
+	void MainWindow::add_storypath( StoryPathView& storypath )
 	{
-		m_central_tabs->addTab( &widget, QString::fromStdString( tab_label ) );
+		// TEMPORARY :
+		static unsigned long next_idx = 0;
+
+		m_central_tabs->addTab( &storypath, QString( "story path %1" ).arg(++next_idx) );
 	}
+
 
 	void MainWindow::setup_views_default()
 	{
@@ -81,9 +86,8 @@ namespace view
 		tabifyDockWidget( m_libraries_view.get(), m_layers_view.get() );
 		tabifyDockWidget( m_libraries_view.get(), m_toolbox_view.get() );
 
-		addDockWidget( Qt::BottomDockWidgetArea, m_story_view.get() );
-		tabifyDockWidget( m_story_view.get(), m_log_view.get() );
-
+		addDockWidget( Qt::BottomDockWidgetArea, m_log_view.get() );
+		
 	}
 
 	void MainWindow::connect_signals()

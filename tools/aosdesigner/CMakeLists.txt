@@ -56,6 +56,7 @@ set( AOSDESIGNER_VIEW_HEADERS
     ${AOSDESIGNER_VIEW_DIR}/StoryView.hpp
 	${AOSDESIGNER_VIEW_DIR}/LogView.hpp
     ${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
+	${AOSDESIGNER_VIEW_DIR}/StoryPathView.hpp
 )
 
 
@@ -100,6 +101,7 @@ set( AOSDESIGNER_VIEW_SOURCES
     ${AOSDESIGNER_VIEW_DIR}/MainWindow.cpp
     ${AOSDESIGNER_VIEW_DIR}/ProjectView.cpp
     ${AOSDESIGNER_VIEW_DIR}/SequenceListView.cpp
+	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
 )
 
 #------------------------------------------------------

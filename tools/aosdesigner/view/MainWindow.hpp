@@ -31,13 +31,13 @@ namespace view
 		MainWindow( QWidget* parent );
 		~MainWindow();
 
-		/** Add a widget in the central part of the window. **/
-		void add_central_widget( QWidget& widget, const std::string tab_label );
+		/** Add  astory path view in the central tabs of the window. **/
+		void add_storypath( StoryPathView& storypath );
 
 				
 	private slots:
 
-		/** Slot : called when a project have been openned. */
+		/** Slot : called when a project have been opened. */
 		void on_project_open( const core::Project& project );
 
 	private:
@@ -55,15 +55,14 @@ namespace view
 		std::unique_ptr<LibrariesView> m_libraries_view;
 		std::unique_ptr<LayersView> m_layers_view;
 		std::unique_ptr<ToolboxView> m_toolbox_view;
-		std::unique_ptr<StoryView> m_story_view;
 		std::unique_ptr<LogView> m_log_view;
-		std::unique_ptr<CanvasView> m_canvas_view;
-
+		
 		void connect_signals();
 
 		/** Setup the views in their default configuration and positions. **/
 		void setup_views_default();
 		
+
 	};
 
 
