@@ -18,7 +18,7 @@
 // Begin prologue.
 //
 
-#include <aoslcpp/common.h>
+#include <aoslcpp/common.hpp>
 
 //
 // End prologue.
