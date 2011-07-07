@@ -38,6 +38,8 @@ set( AOSDESIGNER_CORE_HEADERS
 # States header files.
 set( AOSDESIGNER_STATE_HEADERS
     ${AOSDESIGNER_STATE_DIR}/States.hpp
+	${AOSDESIGNER_STATE_DIR}/Events.hpp
+	${AOSDESIGNER_STATE_DIR}/DesignerStateMachine.hpp
 )
 
 #-----------------------------------------------------------------
@@ -120,7 +122,7 @@ set( AOSDESIGNER_CORE_SOURCES
 
 # States source files
 set( AOSDESIGNER_STATE_SOURCES
-	# Add states source files here
+	${AOSDESIGNER_STATE_DIR}/DesignerStateMachine.cpp
 )
 
 #-----------------------------------------------------------------

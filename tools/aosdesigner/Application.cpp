@@ -20,6 +20,8 @@ namespace aosd
 		m_main_window->show();
 		show_welcome(); // TODO : replace this by entering a state machine
 		m_main_window->open_edition();
+
+		m_state_machine.start();
 	}
 
 	Application::~Application()

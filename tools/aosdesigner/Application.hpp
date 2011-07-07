@@ -8,6 +8,8 @@
 #include "core/ForwardCore.hpp"
 #include "view/ForwardView.hpp"
 
+#include "state/DesignerStateMachine.hpp"
+
 
 namespace aosd
 {
@@ -34,7 +36,7 @@ namespace aosd
 		/// Window of the application.
 		std::unique_ptr<view::MainWindow> m_main_window;
 		
-		
+		DesignerStateMachine m_state_machine;
 	};
 
 
