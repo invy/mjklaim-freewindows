@@ -40,6 +40,9 @@ set( AOSDESIGNER_STATE_HEADERS
     ${AOSDESIGNER_STATE_DIR}/States.hpp
 	${AOSDESIGNER_STATE_DIR}/Events.hpp
 	${AOSDESIGNER_STATE_DIR}/DesignerStateMachine.hpp
+	${AOSDESIGNER_STATE_DIR}/Welcome.hpp
+	${AOSDESIGNER_STATE_DIR}/EditingProject.hpp
+	${AOSDESIGNER_STATE_DIR}/Idle.hpp
 )
 
 #-----------------------------------------------------------------
@@ -75,19 +78,26 @@ set( AOSDESIGNER_UTIL_HEADERS
 
 # All header files.
 set( AOSDESIGNER_ALL_HEADERS  
-    ${AOSDESIGNER_APPLICATION_HEADERS} 
+    ${AOSDESIGNER_APPLICATION_HEADERS}
     ${AOSDESIGNER_CORE_HEADERS}
 	${AOSDESIGNER_STATE_HEADERS}
     ${AOSDESIGNER_VIEW_HEADERS}
     ${AOSDESIGNER_UTIL_HEADERS}
 )
+
+# Headers that depends on QObject
+set( AOSDESIGNER_QOBJECT_HEADERS
+	${AOSDESIGNER_APPLICATION_HEADERS}
+	${AOSDESIGNER_CORE_HEADERS}
+	${AOSDESIGNER_VIEW_HEADERS}
+)
  
 
 # Header files needs to be processed by Qt's pre-processor to generate Moc files.
-QT4_WRAP_CPP( AOSDESIGNER_VIEW_HEADERS_MOC ${AOSDESIGNER_ALL_HEADERS} )
+QT4_WRAP_CPP( AOSDESIGNER_QOBJECT_HEADERS_MOC ${AOSDESIGNER_QOBJECT_HEADERS} )
 
 # Group generated files in the same isolated virtual directory.
-source_group( designer\\view\\generated\\moc FILES ${AOSDESIGNER_VIEW_HEADERS_MOC} )
+source_group( generated\\moc FILES ${AOSDESIGNER_QOBJECT_HEADERS_MOC} )
 
 
 #####################################################
@@ -123,6 +133,9 @@ set( AOSDESIGNER_CORE_SOURCES
 # States source files
 set( AOSDESIGNER_STATE_SOURCES
 	${AOSDESIGNER_STATE_DIR}/DesignerStateMachine.cpp
+	${AOSDESIGNER_STATE_DIR}/EditingProject.cpp
+	${AOSDESIGNER_STATE_DIR}/Welcome.cpp
+	${AOSDESIGNER_STATE_DIR}/Idle.cpp
 )
 
 #-----------------------------------------------------------------
@@ -186,7 +199,7 @@ set( AOSDESIGNER_ALL_SOURCES
 	${AOSDESIGNER_STATE_SOURCES}
     ${AOSDESIGNER_APPLICATION_SOURCES}
     ${AOSDESIGNER_VIEW_SOURCES}
-    ${AOSDESIGNER_VIEW_HEADERS_MOC}
+    ${AOSDESIGNER_QOBJECT_HEADERS_MOC}
     ${AOSDESIGNER_VIEW_HEADERS_UI}
 	${AOSDESIGNER_VIEW_RESOURCES}
     ${AOSDESIGNER_UTIL_SOURCES}
