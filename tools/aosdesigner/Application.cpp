@@ -2,7 +2,6 @@
 
 #include "core/Context.hpp"
 #include "view/MainWindow.hpp"
-#include "view/WelcomeScreen.hpp"
 
 
 namespace aosd
@@ -33,8 +32,7 @@ namespace aosd
 	void Application::show_welcome()
 	{
 		
-		auto welcome_screen = new view::WelcomeScreen();
-		welcome_screen->exec();
+		
 	}
 
 }

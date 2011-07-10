@@ -36,7 +36,7 @@ namespace aosd
 		/// Window of the application.
 		std::unique_ptr<view::MainWindow> m_main_window;
 		
-		DesignerStateMachine m_state_machine;
+		state::DesignerStateMachine m_state_machine;
 	};
 
 

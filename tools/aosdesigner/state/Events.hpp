@@ -11,7 +11,7 @@ namespace state
 	namespace event
 	{
 		struct open_project{};
-		struct close_project{};
+		struct closed_project{};
 	}
 
 

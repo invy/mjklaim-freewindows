@@ -21,7 +21,9 @@ namespace state
 
 			struct transition_table : public boost::mpl::vector
 			<
-				_row< Welcome,	event::open_project,	EditingProject >
+				_row< Welcome			, event::open_project		, EditingProject	>
+			,	_row< EditingProject	, event::closed_project		, Idle				>
+			,	_row< Idle				, event::open_project		, EditingProject	>
 			>
 			{};
 
