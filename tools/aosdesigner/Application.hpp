@@ -8,11 +8,10 @@
 #include "core/ForwardCore.hpp"
 #include "view/ForwardView.hpp"
 
-#include "state/DesignerStateMachine.hpp"
-
-
 namespace aosd
 {
+	namespace state{ class DesignerStateMachine; }
+
 	/** Application object, provided to Qt to be run and managing the whole state.
 	**/
 	class Application
@@ -36,7 +35,7 @@ namespace aosd
 		/// Window of the application.
 		std::unique_ptr<view::MainWindow> m_main_window;
 		
-		state::DesignerStateMachine m_state_machine;
+		std::unique_ptr<state::DesignerStateMachine> m_state_machine;
 	};
 
 

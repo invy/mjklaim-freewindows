@@ -2,7 +2,7 @@
 
 #include "core/Context.hpp"
 #include "view/MainWindow.hpp"
-
+#include "state/DesignerStateMachine.hpp"
 
 namespace aosd
 {
@@ -10,17 +10,14 @@ namespace aosd
 		: QApplication( argc, argv )
 		, m_context( new core::Context() )
 		, m_main_window( new view::MainWindow( nullptr ) )
+		, m_state_machine( new state::DesignerStateMachine() )
 	{
 		using namespace aosd::core;
 
 		// temporary : create an empty project
 		Context::instance().new_project();
 
-		m_main_window->show();
-		show_welcome(); // TODO : replace this by entering a state machine
-		m_main_window->open_edition();
-
-		m_state_machine.start();
+		m_state_machine->start();
 	}
 
 	Application::~Application()

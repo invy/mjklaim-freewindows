@@ -2,6 +2,8 @@
 #define HGUARD_AOSD_STATE_EDITINGPROJECT_HPP__
 #pragma once
 
+#include "Events.hpp"
+
 #include <boost/msm/front/states.hpp>
 
 namespace aosd
@@ -12,7 +14,6 @@ namespace state
 		: public boost::msm::front::state<>
 	{
 	public:
-		
 		
 
 	private:
