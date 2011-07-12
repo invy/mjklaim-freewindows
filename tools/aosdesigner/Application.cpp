@@ -26,10 +26,4 @@ namespace aosd
 	}
 
 
-	void Application::show_welcome()
-	{
-		
-		
-	}
-
 }

@@ -37,7 +37,6 @@ set( AOSDESIGNER_CORE_HEADERS
 
 # States header files.
 set( AOSDESIGNER_STATE_HEADERS
-    ${AOSDESIGNER_STATE_DIR}/States.hpp
 	${AOSDESIGNER_STATE_DIR}/Events.hpp
 	${AOSDESIGNER_STATE_DIR}/DesignerStateMachine.hpp
 	${AOSDESIGNER_STATE_DIR}/Welcome.hpp

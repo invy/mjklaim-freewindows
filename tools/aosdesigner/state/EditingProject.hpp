@@ -10,11 +10,20 @@ namespace aosd
 {
 namespace state
 {
+	class DesignerStateMachine;
+
 	class EditingProject
 		: public boost::msm::front::state<>
 	{
 	public:
 		
+		template< class EventType, class FSM >
+		void on_entry( const EventType& event, FSM& statemachine )
+		{
+
+		}
+
+		void on_exit();
 
 	private:
 

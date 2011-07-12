@@ -24,9 +24,6 @@ namespace aosd
 		Application( int &argc, char **argv );
 		~Application();
 
-		/** Display the welcome screen in the center of the window. */
-		void show_welcome();
-		
 	private:
 
 		/// Current context informations of the application : opened project, opened sequence, etc.
