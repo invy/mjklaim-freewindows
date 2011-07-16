@@ -156,8 +156,14 @@ namespace view
 
 	void MainWindow::create_menus()
 	{
+		// THINK : maybe move all that in designer_actions ?
 		auto menu_designer = menuBar()->addMenu(tr("&Designer"));
-		m_designer_actions->for_each_action( [&]( QAction* action ){ menu_designer->addAction(action); } );
+		
+		menu_designer->addAction( &m_designer_actions->new_project() );
+		menu_designer->addAction( &m_designer_actions->open_project() );
+		menu_designer->addAction( &m_designer_actions->close_project() );
+		menu_designer->addSeparator();
+		menu_designer->addAction( &m_designer_actions->quit() );
 
 	}
 

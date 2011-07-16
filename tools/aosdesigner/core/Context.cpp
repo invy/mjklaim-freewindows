@@ -28,11 +28,12 @@ namespace core
 
 	void Context::open_project()
 	{
-		Q_ASSERT( false ); // not implemented yet
 		// TODO : ask the directory where the project should be
+
+		if( is_project_open() )
+			close_project();
 		// TODO : create the project when we got the directory
 
-		open_project( *m_project );
 	}
 
 	void Context::open_project( Project& project )

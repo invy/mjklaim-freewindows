@@ -24,6 +24,10 @@ namespace view
 		const QAction& close_project() const { return m_close_project; }
 	
 
+		QAction& quit() { return m_quit; }
+		QAction& new_project() { return m_new_project; }
+		QAction& open_project() { return m_open_project; }
+		QAction& close_project() { return m_close_project; }
 	
 	private:
 
