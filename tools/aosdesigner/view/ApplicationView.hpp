@@ -30,6 +30,7 @@ namespace view
 
 		void show_main_window();
 
+		
 	private slots:
 
 		void on_ready();
@@ -37,9 +38,10 @@ namespace view
 	private:
 
 		/// Window of the application.
-		std::unique_ptr<view::MainWindow> m_main_window;
-
+		std::unique_ptr<MainWindow> m_main_window;
+		
 		Callback m_on_ready;
+
 		
 	};
 

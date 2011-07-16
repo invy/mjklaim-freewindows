@@ -21,6 +21,8 @@ namespace view
 
 	class WelcomeScreen;
 
+	class DesignerActions;
+
 	class ApplicationView;
 	class MainWindow;
 

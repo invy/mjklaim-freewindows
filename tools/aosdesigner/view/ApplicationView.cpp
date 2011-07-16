@@ -4,6 +4,7 @@
 
 #include "view/WelcomeScreen.hpp"
 #include "view/MainWindow.hpp"
+#include "view/DesignerActions.hpp"
 
 namespace aosd
 {

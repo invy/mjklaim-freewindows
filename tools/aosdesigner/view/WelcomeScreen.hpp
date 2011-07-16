@@ -23,6 +23,10 @@ namespace view
 		WelcomeScreen();
 		~WelcomeScreen();
 	
+	private slots:
+
+		void on_pushed_new_project();
+		void on_pushed_open_project();
 
 	private:
 

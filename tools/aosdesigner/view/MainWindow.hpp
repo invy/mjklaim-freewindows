@@ -74,6 +74,8 @@ namespace view
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
 
+		// Actions:
+		std::unique_ptr<DesignerActions> m_designer_actions;
 
 		/// Are we in edition mode?
 		bool m_edition_mode;
@@ -84,6 +86,8 @@ namespace view
 		/** Setup the views in their default configuration and positions. **/
 		void setup_views_default();
 		
+		/** Create the menus from the actions. */
+		void create_menus();
 
 	};
 

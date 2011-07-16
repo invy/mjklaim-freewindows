@@ -64,6 +64,8 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.hpp
 	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.hpp
 	${AOSDESIGNER_VIEW_DIR}/DialogPrompt.hpp
+	${AOSDESIGNER_VIEW_DIR}/ActionsProvider.hpp
+	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
 )
 
 
@@ -119,6 +121,7 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
 	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.cpp
 	${AOSDESIGNER_VIEW_DIR}/DialogPrompt.cpp
+	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp
 )
 
 #------------------------------------------------------

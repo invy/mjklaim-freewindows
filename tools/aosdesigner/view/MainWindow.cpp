@@ -15,7 +15,7 @@
 #include "view/ToolboxView.hpp"
 #include "view/LogView.hpp"
 #include "view/StoryPathView.hpp"
-
+#include "view/DesignerActions.hpp"
 
 namespace aosd
 {
@@ -34,6 +34,7 @@ namespace view
 		, m_layers_view( new LayersView() )
 		, m_toolbox_view( new ToolboxView() )
 		, m_log_view( new LogView() )
+		, m_designer_actions( new DesignerActions() )
 	{
 		m_ui->setupUi( this );
 		
@@ -45,6 +46,7 @@ namespace view
 		// use default views setup 
 		// TODO : add a way to get a saved view setup
 		setup_views_default();
+		create_menus();
 
 		// don't allow edition without something to edit first!
 		close_edition();
@@ -168,6 +170,13 @@ namespace view
 	void MainWindow::clear_tabs()
 	{
 		m_central_tabs->clear();
+	}
+
+	void MainWindow::create_menus()
+	{
+		auto menu_designer = menuBar()->addMenu(tr("&Designer"));
+		m_designer_actions->for_each_action( [&]( QAction* action ){ menu_designer->addAction(action); } );
+
 	}
 
 
