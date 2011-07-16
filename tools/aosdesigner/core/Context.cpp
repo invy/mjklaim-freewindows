@@ -8,63 +8,66 @@ namespace core
 {
 
 
-    Context::Context()
-        : m_project( nullptr )
-    {
+	Context::Context()
+		: m_project( nullptr )
+	{
 
-    }
+	}
 
 
-    Context::~Context()
-    {
+	Context::~Context()
+	{
 
-    }
+	}
 
-    void Context::new_project()
-    {
-        auto project = new Project();
-        current_project( *project );
-    }
+	void Context::new_project()
+	{
+		auto project = new Project();
+		open_project( *project );
+	}
 
-    void Context::current_project( const boost::filesystem::path& project_path )
-    {
-        Q_ASSERT( false ); // not implemented yet
+	void Context::open_project()
+	{
+		Q_ASSERT( false ); // not implemented yet
+		// TODO : ask the directory where the project should be
+		// TODO : create the project when we got the directory
 
-        current_project( *m_project );
-    }
+		open_project( *m_project );
+	}
 
-    void Context::current_project( Project& project )
-    {
-        Q_CHECK_PTR( &project );
+	void Context::open_project( Project& project )
+	{
+		Q_CHECK_PTR( &project );
 
-        if( m_project )
-            close_project();
+		if( m_project )
+			close_project();
 
-        m_project.reset( &project );
+		m_project.reset( &project );
 
-        emit project_open( current_project() );
-    }
+		emit project_open( current_project() );
+	}
 
-    void Context::close_project()
-    {
-        Q_ASSERT( false ); // not implemented yet
+	void Context::close_project()
+	{
+		if( is_project_open() )
+		{
+			// TODO : add here closing code
 
-        // TODO : add here the code to close the project
+			emit project_closed( current_project() );
+			m_project.reset();
+		}
+		
+	}
 
-        emit project_closed( current_project() );
-        m_project.reset();
+	bool Context::is_project_open() const
+	{
+		return m_project;
+	}
 
-    }
-
-    bool Context::is_project_open() const
-    {
-        return m_project;
-    }
-
-    const Project& Context::current_project() const
-    {
-        return *m_project;
-    }
+	const Project& Context::current_project() const
+	{
+		return *m_project;
+	}
 
 
 }

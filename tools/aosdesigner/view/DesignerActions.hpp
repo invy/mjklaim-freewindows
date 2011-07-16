@@ -13,22 +13,25 @@ namespace view
 	class DesignerActions
 		: public ActionsProvider
 	{
+		Q_OBJECT
 	public:
 
 		DesignerActions();
 
 		const QAction& quit() const { return m_quit; }
-		/*QAction& new_project() { return m_new_project; }
-		QAction& open_project() { return m_open_project; }
-		QAction& close_project() { return m_close_project; }
-	*/
+		const QAction& new_project() const { return m_new_project; }
+		const QAction& open_project() const { return m_open_project; }
+		const QAction& close_project() const { return m_close_project; }
+	
+
+	
 	private:
 
 		QAction m_quit;
-		/*QAction m_new_project;
+		QAction m_new_project;
 		QAction m_open_project;
 		QAction m_close_project;
-		*/
+		
 	};
 
 }

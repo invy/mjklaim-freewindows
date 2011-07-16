@@ -54,6 +54,9 @@ namespace view
 		/** Slot : called when a project have been opened. */
 		void on_project_open( const core::Project& project );
 
+		/** Slot : called when a project have been closed. */
+		void on_project_closed( const core::Project& project );
+
 	private:
 
 		/** UI file defining the window look. */
