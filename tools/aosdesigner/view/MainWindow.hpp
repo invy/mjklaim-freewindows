@@ -28,7 +28,7 @@ namespace view
 		Q_OBJECT
 	public:
 
-		MainWindow( QWidget* parent );
+		MainWindow();
 		~MainWindow();
 
 		/** Add  astory path view in the central tabs of the window. **/

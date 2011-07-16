@@ -21,7 +21,9 @@ namespace view
 
 	class WelcomeScreen;
 
+	class ApplicationView;
 	class MainWindow;
+
 
 }
 }

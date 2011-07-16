@@ -1,28 +1,36 @@
 #include "Application.hpp"
 
 #include "core/Context.hpp"
-#include "view/MainWindow.hpp"
-#include "state/DesignerStateMachine.hpp"
+#include "view/ApplicationView.hpp"
+#include "view/DialogPrompt.hpp"
 
 namespace aosd
 {
 	Application::Application( int &argc, char **argv )
-		: QApplication( argc, argv )
-		, m_context( new core::Context() )
-		, m_main_window( new view::MainWindow( nullptr ) )
-		, m_state_machine( new state::DesignerStateMachine() )
+		: m_context( new core::Context() )
+		, m_view( new view::ApplicationView( argc, argv ) )
 	{
-		using namespace aosd::core;
-
-		// temporary : create an empty project
-		Context::instance().new_project();
-
-		m_state_machine->start();
+		
 	}
 
 	Application::~Application()
 	{
 		
+	}
+
+	int Application::run()
+	{
+		return m_view->run( [&](){ start(); } );
+	}
+
+	void Application::exit()
+	{
+		m_view->exit();
+	}
+
+	void Application::start()
+	{
+		view::show_welcome_screen();
 	}
 
 

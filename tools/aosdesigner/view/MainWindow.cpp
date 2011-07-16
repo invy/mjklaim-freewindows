@@ -22,8 +22,8 @@ namespace aosd
 namespace view
 {
 
-	MainWindow::MainWindow( QWidget* parent )
-		: QMainWindow( parent )
+	MainWindow::MainWindow()
+		: QMainWindow( nullptr )
 		, m_edition_mode( false )
 		, m_ui( new Ui::MainWindow )
 		, m_central_tabs( new QTabWidget() )

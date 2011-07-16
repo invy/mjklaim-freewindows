@@ -3,36 +3,38 @@
 #pragma once
 
 #include <memory>
-#include <QApplication>
-
-#include "core/ForwardCore.hpp"
-#include "view/ForwardView.hpp"
+#include "util/Singleton.hpp"
 
 namespace aosd
 {
-	namespace state{ class DesignerStateMachine; }
+	namespace core{ class Context; }
+	namespace view{ class ApplicationView; }
 
-	/** Application object, provided to Qt to be run and managing the whole state.
+	/** Root object of this application.
 	**/
 	class Application
-		: public QApplication
+		: public util::Singleton<Application>
 	{
-		Q_OBJECT
-
 	public:
 
 		Application( int &argc, char **argv );
 		~Application();
 
+		int run();
+		void exit();
+
 	private:
 
+		
 		/// Current context informations of the application : opened project, opened sequence, etc.
 		std::unique_ptr<core::Context> m_context;
-
-		/// Window of the application.
-		std::unique_ptr<view::MainWindow> m_main_window;
 		
-		std::unique_ptr<state::DesignerStateMachine> m_state_machine;
+		/// Application view.
+		std::unique_ptr<view::ApplicationView> m_view;
+
+
+		void start();
+		
 	};
 
 

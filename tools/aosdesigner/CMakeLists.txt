@@ -49,6 +49,7 @@ set( AOSDESIGNER_STATE_HEADERS
 # Views header files.
 set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/ForwardView.hpp
+	${AOSDESIGNER_VIEW_DIR}/ApplicationView.hpp
     ${AOSDESIGNER_VIEW_DIR}/MainWindow.hpp
     ${AOSDESIGNER_VIEW_DIR}/ProjectView.hpp
     ${AOSDESIGNER_VIEW_DIR}/SequenceListView.hpp
@@ -62,6 +63,7 @@ set( AOSDESIGNER_VIEW_HEADERS
     ${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.hpp
 	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.hpp
+	${AOSDESIGNER_VIEW_DIR}/DialogPrompt.hpp
 )
 
 
@@ -110,11 +112,13 @@ set( AOSDESIGNER_APPLICATION_SOURCES
 
 # Views source files.
 set( AOSDESIGNER_VIEW_SOURCES 
-    ${AOSDESIGNER_VIEW_DIR}/MainWindow.cpp
+    ${AOSDESIGNER_VIEW_DIR}/ApplicationView.cpp
+	${AOSDESIGNER_VIEW_DIR}/MainWindow.cpp
     ${AOSDESIGNER_VIEW_DIR}/ProjectView.cpp
     ${AOSDESIGNER_VIEW_DIR}/SequenceListView.cpp
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
 	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.cpp
+	${AOSDESIGNER_VIEW_DIR}/DialogPrompt.cpp
 )
 
 #------------------------------------------------------
