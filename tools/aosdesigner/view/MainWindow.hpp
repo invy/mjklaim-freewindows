@@ -48,9 +48,6 @@ namespace view
 		bool is_edition_mode() const { return m_edition_mode; }
 
 				
-	protected:
-
-		void keyPressEvent( QKeyEvent * );
 
 	private slots:
 

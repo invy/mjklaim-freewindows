@@ -140,32 +140,6 @@ namespace view
 
 	}
 
-	void MainWindow::keyPressEvent( QKeyEvent* e )
-	{
-		assert( e );
-		
-		// THIS IS FOR TEST
-		if( e->key() == Qt::Key_O && !is_edition_mode() )
-		{
-			open_edition();
-		}
-		else if( is_edition_mode()  )
-		{
-			if( e->key() == Qt::Key_C )
-			{
-				close_edition();
-			}
-			else if ( e->key() == Qt::Key_T && !e->isAutoRepeat() )
-			{
-				auto storypath = new StoryPathView;
-				add_storypath( *storypath );
-			}
-			
-		}
-
-		// END OF THE TEST
-
-	}
 
 	void MainWindow::clear_tabs()
 	{
