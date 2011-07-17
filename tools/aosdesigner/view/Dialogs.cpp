@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "view/WelcomeScreen.hpp"
+#include "view/NewProjectDialog.hpp"
 
 namespace aosd
 {
@@ -32,6 +33,12 @@ namespace view
 														, QString::fromStdString( default_path.string() )
 														, QObject::tr( "AOS Designer Project (*.aosp)" )
 														).toStdString() );
+	}
+
+	void request_new_project_infos()
+	{
+		auto dialog = new NewProjectDialog();
+		dialog->exec();
 	}
 
 

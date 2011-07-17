@@ -24,11 +24,17 @@ namespace core
 
 	void Context::new_project()
 	{
-		auto project_path = view::request_new_project_path();
+		view::request_new_project_infos();
 		
+		boost::filesystem::path project_path;
+
 		if( !project_path.empty() )
 		{
 			auto project = new Project();
+
+			project->relocate( project_path );
+			project->save();
+
 			open_project( *project );
 		}
 		
