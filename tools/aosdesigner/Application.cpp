@@ -2,7 +2,7 @@
 
 #include "core/Context.hpp"
 #include "view/ApplicationView.hpp"
-#include "view/DialogPrompt.hpp"
+#include "view/Dialogs.hpp"
 
 namespace aosd
 {

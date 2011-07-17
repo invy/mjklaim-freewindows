@@ -41,11 +41,10 @@ namespace core
 			If there was already a project open, it will be closed first.
 		*/
 		void new_project();
-
-		
+				
 		/** Close the currently open project. */
 		void close_project();
-				
+		
 		/** Open a project by asking it's location to the user. */
 		void open_project();
 		

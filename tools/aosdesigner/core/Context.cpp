@@ -2,6 +2,8 @@
 
 #include "Project.hpp"
 
+#include "view/Dialogs.hpp"
+
 namespace aosd
 {
 namespace core
@@ -22,18 +24,32 @@ namespace core
 
 	void Context::new_project()
 	{
-		auto project = new Project();
-		open_project( *project );
+		auto project_path = view::request_new_project_path();
+		
+		if( !project_path.empty() )
+		{
+			auto project = new Project();
+			open_project( *project );
+		}
+		
 	}
 
 	void Context::open_project()
 	{
-		// TODO : ask the directory where the project should be
+		if( is_project_open() ) 
+			close_project(); // TODO : don't continue if the close failed!
 
-		if( is_project_open() )
-			close_project();
-		// TODO : create the project when we got the directory
+		auto project_path = view::request_project_path();
 
+		if( !project_path.empty() )
+		{
+			
+			// TODO : create the project when we got the directory
+
+		}
+
+		// THINK : do something else if it failed?
+		
 	}
 
 	void Context::open_project( Project& project )
