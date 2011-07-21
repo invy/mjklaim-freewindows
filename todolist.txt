@@ -1,0 +1,49 @@
+TODOLIST
+========
+
+Legend: 
+ - something that have to be done
+ * (klaim) work in progress by klaim
+
+AOSL
+----
+
+ - add heavy documentation in the xsd file
+ - use xs3p to generate the documentation from the xsd file
+
+CMAKE
+-----
+
+ - make sure Boost (1.47 min) is an available dependency
+ - dependency binaries should be copied to the build repositories 
+
+AOSLCPP
+-------
+
+
+AOS Designer
+------------
+
+ * (klaim) create a new project
+ - save the current project
+ - open and load a project
+ - project properties edition
+ 
+ - Story view:
+  - generate a graphic view of the story from a raw Sequence
+  - save/load the graphic view informations
+  - actions : add, move, remove stage
+  - actions : add, move, remove move
+  
+ - Libraries view:
+  - setup project's library system (library shared with all the project's sequences)
+  - view all libraries content (all resources)
+  - actions : add, remove, edit resources
+  - drag'n'drop resources from file to library/designer
+  - drag'n'drop resources from library to canvas
+  
+ - 
+  
+ - Objects view:
+  - list objects in the current
+ 

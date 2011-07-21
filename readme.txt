@@ -1,4 +1,4 @@
-** Art Of Sequence **
+﻿** Art Of Sequence **
 *********************
 
 Description :
