@@ -1,0 +1,25 @@
+glob:*.log
+glob:*/CMakeFiles/*
+glob:*.vcxproj
+glob:*.sln
+glob:*.vcxproj.filters
+glob:*.cmake
+glob:*.sdf
+glob:*.suo
+glob:*.opensdf
+glob:*.pdb
+glob:*.dir/*
+glob:*.vcxproj.*
+syntax: glob
+*CMakeCache.txt
+*.cache
+*/moc_*.cxx*
+*.exe
+*.ilk
+*.ipch
+*.sln.docstates
+*.dll
+*/ui_*.h
+Build/*
+CMakeFiles/*
+*/qrc_*
