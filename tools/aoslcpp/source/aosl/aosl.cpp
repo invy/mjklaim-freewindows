@@ -44,117 +44,117 @@ namespace aosl
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Object_special >
   _xsd_specialobject_element_factory_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "specialobject",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Object_sprite >
   _xsd_sprite_element_factory_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "sprite",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Object_video >
   _xsd_video_element_factory_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "video",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Object_audio >
   _xsd_audio_element_factory_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "audio",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Object_interactive >
   _xsd_interactive_element_factory_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "interactive",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Change_special >
   _xsd_specialchange_element_factory_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "specialchange",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Change_activate >
   _xsd_activate_element_factory_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "activate",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Change_deactivate >
   _xsd_deactivate_element_factory_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "deactivate",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Change_switch >
   _xsd_switch__element_factory_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "switch",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Change_transform >
   _xsd_transform_element_factory_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "transform",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Event_input >
   _xsd_input_element_factory_init (
     "event",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "input",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Event_signal >
   _xsd_signal_element_factory_init (
     "event",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "signal",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_factory_initializer< 0, char, ::aosl::Event_selection >
   _xsd_selection_element_factory_init (
     "event",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "selection",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <ostream>
@@ -405,7 +405,7 @@ namespace aosl
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "sequence" &&
-        n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+        n.namespace_ () == "artofsequence.org/aosl/1.0")
     {
       ::std::auto_ptr< ::aosl::Sequence > r (
         ::xsd::cxx::tree::traits< ::aosl::Sequence, char >::create (
@@ -417,7 +417,7 @@ namespace aosl
       n.name (),
       n.namespace_ (),
       "sequence",
-      "http://artofsequence.org/aosl/1.x");
+      "artofsequence.org/aosl/1.0");
   }
 
   ::std::auto_ptr< ::aosl::Sequence >
@@ -443,7 +443,7 @@ namespace aosl
                        0);
 
     if (n.name () == "sequence" &&
-        n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+        n.namespace_ () == "artofsequence.org/aosl/1.0")
     {
       ::std::auto_ptr< ::aosl::Sequence > r (
         ::xsd::cxx::tree::traits< ::aosl::Sequence, char >::create (
@@ -455,7 +455,7 @@ namespace aosl
       n.name (),
       n.namespace_ (),
       "sequence",
-      "http://artofsequence.org/aosl/1.x");
+      "artofsequence.org/aosl/1.0");
   }
 }
 
@@ -593,7 +593,7 @@ namespace aosl
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (n.name () == "sequence" &&
-        n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+        n.namespace_ () == "artofsequence.org/aosl/1.0")
     {
       e << s;
     }
@@ -603,7 +603,7 @@ namespace aosl
         n.name (),
         n.namespace_ (),
         "sequence",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -615,7 +615,7 @@ namespace aosl
     ::xml_schema::dom::auto_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
         "sequence",
-        "http://artofsequence.org/aosl/1.x",
+        "artofsequence.org/aosl/1.0",
         m, f));
 
     ::aosl::serialize_sequence (*d, s, f);
@@ -626,117 +626,117 @@ namespace aosl
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Object_special >
   _xsd_specialobject_element_serializer_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "specialobject",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Object_sprite >
   _xsd_sprite_element_serializer_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "sprite",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Object_video >
   _xsd_video_element_serializer_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "video",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Object_audio >
   _xsd_audio_element_serializer_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "audio",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Object_interactive >
   _xsd_interactive_element_serializer_init (
     "object",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "interactive",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Change_special >
   _xsd_specialchange_element_serializer_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "specialchange",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Change_activate >
   _xsd_activate_element_serializer_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "activate",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Change_deactivate >
   _xsd_deactivate_element_serializer_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "deactivate",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Change_switch >
   _xsd_switch__element_serializer_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "switch",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Change_transform >
   _xsd_transform_element_serializer_init (
     "change",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "transform",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Event_input >
   _xsd_input_element_serializer_init (
     "event",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "input",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Event_signal >
   _xsd_signal_element_serializer_init (
     "event",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "signal",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
 
   static
   const ::xsd::cxx::tree::element_serializer_initializer< 0, char, ::aosl::Event_selection >
   _xsd_selection_element_serializer_init (
     "event",
-    "http://artofsequence.org/aosl/1.x",
+    "artofsequence.org/aosl/1.0",
     "selection",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

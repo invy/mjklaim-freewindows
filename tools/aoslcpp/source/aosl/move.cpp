@@ -107,7 +107,7 @@ namespace aosl
 
       // extension
       //
-      if (n.name () == "extension" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "extension" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ExtensionType > r (
           ExtensionTraits::create (i, f, this));
@@ -281,7 +281,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "extension",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.extension ();

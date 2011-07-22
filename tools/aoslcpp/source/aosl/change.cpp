@@ -111,7 +111,7 @@ namespace aosl
 
       // effects
       //
-      if (n.name () == "effects" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "effects" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< EffectsType > r (
           EffectsTraits::create (i, f, this));
@@ -125,7 +125,7 @@ namespace aosl
 
       // script
       //
-      if (n.name () == "script" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "script" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ScriptType > r (
           ScriptTraits::create (i, f, this));
@@ -139,7 +139,7 @@ namespace aosl
 
       // extension
       //
-      if (n.name () == "extension" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "extension" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ExtensionType > r (
           ExtensionTraits::create (i, f, this));
@@ -208,7 +208,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Change >
   _xsd_Change_type_factory_init (
     "change",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Change >
@@ -318,7 +318,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "effects",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.effects ();
@@ -331,7 +331,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "script",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.script ();
@@ -344,7 +344,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "extension",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.extension ();
@@ -377,7 +377,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Change >
   _xsd_Change_type_serializer_init (
     "change",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

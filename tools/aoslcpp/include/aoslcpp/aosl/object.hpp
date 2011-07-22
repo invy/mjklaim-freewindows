@@ -81,7 +81,7 @@
 #endif // XSD_DONT_INCLUDE_INLINE
 
 /**
- * @brief C++ namespace for the %http://artofsequence.org/aosl/1.x
+ * @brief C++ namespace for the %artofsequence.org/aosl/1.0
  * schema namespace.
  */
 namespace aosl

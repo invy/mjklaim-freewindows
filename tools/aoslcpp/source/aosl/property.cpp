@@ -96,7 +96,7 @@ namespace aosl
 
       // property
       //
-      if (n.name () == "property" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "property" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< Property1Type > r (
           Property1Traits::create (i, f, this));
@@ -228,7 +228,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "property",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *b;

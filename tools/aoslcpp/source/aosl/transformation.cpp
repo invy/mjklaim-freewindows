@@ -100,7 +100,7 @@ namespace aosl
 
       // translation
       //
-      if (n.name () == "translation" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "translation" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< TranslationType > r (
           TranslationTraits::create (i, f, this));
@@ -114,7 +114,7 @@ namespace aosl
 
       // scale
       //
-      if (n.name () == "scale" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "scale" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ScaleType > r (
           ScaleTraits::create (i, f, this));
@@ -128,7 +128,7 @@ namespace aosl
 
       // rotation
       //
-      if (n.name () == "rotation" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "rotation" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< RotationType > r (
           RotationTraits::create (i, f, this));
@@ -142,7 +142,7 @@ namespace aosl
 
       // center
       //
-      if (n.name () == "center" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "center" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< CenterType > r (
           CenterTraits::create (i, f, this));
@@ -295,7 +295,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "translation",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.translation ();
@@ -308,7 +308,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "scale",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.scale ();
@@ -321,7 +321,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "rotation",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.rotation ();
@@ -334,7 +334,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "center",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.center ();

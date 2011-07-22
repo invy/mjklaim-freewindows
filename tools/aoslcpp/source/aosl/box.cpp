@@ -120,7 +120,7 @@ namespace aosl
 
       // position
       //
-      if (n.name () == "position" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "position" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< PositionType > r (
           PositionTraits::create (i, f, this));
@@ -134,7 +134,7 @@ namespace aosl
 
       // size
       //
-      if (n.name () == "size" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "size" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< SizeType > r (
           SizeTraits::create (i, f, this));
@@ -148,7 +148,7 @@ namespace aosl
 
       // center
       //
-      if (n.name () == "center" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "center" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< CenterType > r (
           CenterTraits::create (i, f, this));
@@ -162,7 +162,7 @@ namespace aosl
 
       // orientation
       //
-      if (n.name () == "orientation" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "orientation" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< OrientationType > r (
           OrientationTraits::create (i, f, this));
@@ -181,28 +181,28 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "position",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!size_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "size",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!center_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "center",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!orientation_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "orientation",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -301,7 +301,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "position",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.position ();
@@ -313,7 +313,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "size",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.size ();
@@ -325,7 +325,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "center",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.center ();
@@ -337,7 +337,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "orientation",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.orientation ();

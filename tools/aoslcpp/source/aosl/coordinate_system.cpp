@@ -113,7 +113,7 @@ namespace aosl
 
       // xaxis
       //
-      if (n.name () == "xaxis" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "xaxis" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< XaxisType > r (
           XaxisTraits::create (i, f, this));
@@ -127,7 +127,7 @@ namespace aosl
 
       // yaxis
       //
-      if (n.name () == "yaxis" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "yaxis" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< YaxisType > r (
           YaxisTraits::create (i, f, this));
@@ -141,7 +141,7 @@ namespace aosl
 
       // zaxis
       //
-      if (n.name () == "zaxis" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "zaxis" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ZaxisType > r (
           ZaxisTraits::create (i, f, this));
@@ -160,21 +160,21 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "xaxis",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!yaxis_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "yaxis",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!zaxis_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "zaxis",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -269,7 +269,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "xaxis",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.xaxis ();
@@ -281,7 +281,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "yaxis",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.yaxis ();
@@ -293,7 +293,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "zaxis",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.zaxis ();

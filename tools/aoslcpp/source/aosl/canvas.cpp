@@ -119,7 +119,7 @@ namespace aosl
 
       // area
       //
-      if (n.name () == "area" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "area" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< AreaType > r (
           AreaTraits::create (i, f, this));
@@ -133,7 +133,7 @@ namespace aosl
 
       // layers
       //
-      if (n.name () == "layers" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "layers" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< LayersType > r (
           LayersTraits::create (i, f, this));
@@ -147,7 +147,7 @@ namespace aosl
 
       // objects
       //
-      if (n.name () == "objects" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "objects" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ObjectsType > r (
           ObjectsTraits::create (i, f, this));
@@ -166,14 +166,14 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "area",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!objects_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "objects",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     while (p.more_attributes ())
@@ -297,7 +297,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "area",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.area ();
@@ -310,7 +310,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "layers",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.layers ();
@@ -322,7 +322,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "objects",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.objects ();

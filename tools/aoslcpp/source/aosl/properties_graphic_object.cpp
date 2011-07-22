@@ -88,7 +88,7 @@ namespace aosl
 
       // output
       //
-      if (n.name () == "output" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "output" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< OutputType > r (
           OutputTraits::create (i, f, this));
@@ -102,7 +102,7 @@ namespace aosl
 
       // input
       //
-      if (n.name () == "input" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "input" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< InputType > r (
           InputTraits::create (i, f, this));
@@ -214,7 +214,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "output",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.output ();
@@ -227,7 +227,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "input",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.input ();

@@ -87,7 +87,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Change_transform_base >
   _xsd_Change_transform_base_type_factory_init (
     "change_transform_base",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Change_transform_base >
@@ -153,7 +153,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Change_transform_base >
   _xsd_Change_transform_base_type_serializer_init (
     "change_transform_base",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

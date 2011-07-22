@@ -103,7 +103,7 @@ namespace aosl
 
       // graphic
       //
-      if (n.name () == "graphic" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "graphic" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< GraphicType > r (
           GraphicTraits::create (i, f, this));
@@ -122,7 +122,7 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "graphic",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -142,7 +142,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Object_sprite >
   _xsd_Object_sprite_type_factory_init (
     "object_sprite",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Object_sprite >
@@ -229,7 +229,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "graphic",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.graphic ();
@@ -240,7 +240,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Object_sprite >
   _xsd_Object_sprite_type_serializer_init (
     "object_sprite",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

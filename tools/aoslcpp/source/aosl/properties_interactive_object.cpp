@@ -85,7 +85,7 @@ namespace aosl
 
       // script
       //
-      if (n.name () == "script" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "script" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ScriptType > r (
           ScriptTraits::create (i, f, this));
@@ -189,7 +189,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "script",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.script ();

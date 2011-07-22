@@ -85,7 +85,7 @@ namespace aosl
 
       // include
       //
-      if (n.name () == "include" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "include" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< IncludeType > r (
           IncludeTraits::create (i, f, this));
@@ -190,7 +190,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "include",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *b;

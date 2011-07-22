@@ -94,7 +94,7 @@ namespace aosl
 
       // transformation
       //
-      if (n.name () == "transformation" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "transformation" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< TransformationType > r (
           TransformationTraits::create (i, f, this));
@@ -123,7 +123,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Change_transform >
   _xsd_Change_transform_type_factory_init (
     "change_transform",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Change_transform >
@@ -219,7 +219,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "transformation",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *b;
@@ -230,7 +230,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Change_transform >
   _xsd_Change_transform_type_serializer_init (
     "change_transform",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

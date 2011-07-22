@@ -110,7 +110,7 @@ namespace aosl
 
       // graphic
       //
-      if (n.name () == "graphic" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "graphic" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< GraphicType > r (
           GraphicTraits::create (i, f, this));
@@ -124,7 +124,7 @@ namespace aosl
 
       // interaction
       //
-      if (n.name () == "interaction" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "interaction" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< InteractionType > r (
           InteractionTraits::create (i, f, this));
@@ -143,14 +143,14 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "graphic",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!interaction_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "interaction",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -170,7 +170,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Object_interactive >
   _xsd_Object_interactive_type_factory_init (
     "object_interactive",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Object_interactive >
@@ -261,7 +261,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "graphic",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.graphic ();
@@ -273,7 +273,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "interaction",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.interaction ();
@@ -284,7 +284,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Object_interactive >
   _xsd_Object_interactive_type_serializer_init (
     "object_interactive",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

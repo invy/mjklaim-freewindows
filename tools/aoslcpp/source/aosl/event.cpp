@@ -145,7 +145,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Event >
   _xsd_Event_type_factory_init (
     "event",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Event >
@@ -251,7 +251,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Event >
   _xsd_Event_type_serializer_init (
     "event",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

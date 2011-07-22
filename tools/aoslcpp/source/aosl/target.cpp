@@ -94,7 +94,7 @@ namespace aosl
 
       // config
       //
-      if (n.name () == "config" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "config" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ConfigType > r (
           ConfigTraits::create (i, f, this));
@@ -256,7 +256,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "config",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.config ();

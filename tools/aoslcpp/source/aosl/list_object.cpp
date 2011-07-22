@@ -92,7 +92,7 @@ namespace aosl
         ::std::auto_ptr< ::xsd::cxx::tree::type > tmp (
           tfm.create (
             "object",
-            "http://artofsequence.org/aosl/1.x",
+            "artofsequence.org/aosl/1.0",
             &::xsd::cxx::tree::factory_impl< ObjectType >,
             true, true, i, n, f, this));
 
@@ -234,7 +234,7 @@ namespace aosl
           ::xercesc::DOMElement& s (
             ::xsd::cxx::xml::dom::create_element (
               "object",
-              "http://artofsequence.org/aosl/1.x",
+              "artofsequence.org/aosl/1.0",
               e));
 
           s << *b;
@@ -242,7 +242,7 @@ namespace aosl
         else
           tsm.serialize (
             "object",
-            "http://artofsequence.org/aosl/1.x",
+            "artofsequence.org/aosl/1.0",
             true, true, e, *b);
       }
     }

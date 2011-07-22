@@ -103,7 +103,7 @@ namespace aosl
 
       // version
       //
-      if (n.name () == "version" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "version" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< VersionType > r (
           VersionTraits::create (i, f, this));
@@ -117,7 +117,7 @@ namespace aosl
 
       // authors
       //
-      if (n.name () == "authors" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "authors" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< AuthorsType > r (
           AuthorsTraits::create (i, f, this));
@@ -131,7 +131,7 @@ namespace aosl
 
       // description
       //
-      if (n.name () == "description" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "description" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< DescriptionType > r (
           DescriptionTraits::create (i, f, this));
@@ -145,7 +145,7 @@ namespace aosl
 
       // website
       //
-      if (n.name () == "website" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "website" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< WebsiteType > r (
           WebsiteTraits::create (i, f, this));
@@ -159,7 +159,7 @@ namespace aosl
 
       // licence
       //
-      if (n.name () == "licence" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "licence" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< LicenceType > r (
           LicenceTraits::create (i, f, this));
@@ -173,7 +173,7 @@ namespace aosl
 
       // targets
       //
-      if (n.name () == "targets" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "targets" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< TargetsType > r (
           TargetsTraits::create (i, f, this));
@@ -187,7 +187,7 @@ namespace aosl
 
       // infos
       //
-      if (n.name () == "infos" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "infos" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< InfosType > r (
           InfosTraits::create (i, f, this));
@@ -339,7 +339,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "version",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.version ();
@@ -352,7 +352,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "authors",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.authors ();
@@ -365,7 +365,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "description",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.description ();
@@ -378,7 +378,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "website",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.website ();
@@ -391,7 +391,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "licence",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.licence ();
@@ -404,7 +404,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "targets",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.targets ();
@@ -417,7 +417,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "infos",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.infos ();

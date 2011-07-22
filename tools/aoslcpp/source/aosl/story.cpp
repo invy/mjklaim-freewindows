@@ -123,7 +123,7 @@ namespace aosl
 
       // properties
       //
-      if (n.name () == "properties" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "properties" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< PropertiesType > r (
           PropertiesTraits::create (i, f, this));
@@ -137,7 +137,7 @@ namespace aosl
 
       // navigation
       //
-      if (n.name () == "navigation" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "navigation" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< NavigationType > r (
           NavigationTraits::create (i, f, this));
@@ -151,7 +151,7 @@ namespace aosl
 
       // stages
       //
-      if (n.name () == "stages" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "stages" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< StagesType > r (
           StagesTraits::create (i, f, this));
@@ -165,7 +165,7 @@ namespace aosl
 
       // moves
       //
-      if (n.name () == "moves" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "moves" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< MovesType > r (
           MovesTraits::create (i, f, this));
@@ -184,14 +184,14 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "stages",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!moves_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "moves",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     while (p.more_attributes ())
@@ -326,7 +326,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "properties",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.properties ();
@@ -339,7 +339,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "navigation",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.navigation ();
@@ -351,7 +351,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "stages",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.stages ();
@@ -363,7 +363,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "moves",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.moves ();

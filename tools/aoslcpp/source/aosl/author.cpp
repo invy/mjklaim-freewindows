@@ -100,7 +100,7 @@ namespace aosl
 
       // name
       //
-      if (n.name () == "name" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "name" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< NameType > r (
           NameTraits::create (i, f, this));
@@ -114,7 +114,7 @@ namespace aosl
 
       // about
       //
-      if (n.name () == "about" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "about" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< AboutType > r (
           AboutTraits::create (i, f, this));
@@ -128,7 +128,7 @@ namespace aosl
 
       // comments
       //
-      if (n.name () == "comments" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "comments" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< CommentsType > r (
           CommentsTraits::create (i, f, this));
@@ -142,7 +142,7 @@ namespace aosl
 
       // website
       //
-      if (n.name () == "website" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "website" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< WebsiteType > r (
           WebsiteTraits::create (i, f, this));
@@ -156,7 +156,7 @@ namespace aosl
 
       // email
       //
-      if (n.name () == "email" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "email" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< EmailType > r (
           EmailTraits::create (i, f, this));
@@ -170,7 +170,7 @@ namespace aosl
 
       // infos
       //
-      if (n.name () == "infos" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "infos" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< InfosType > r (
           InfosTraits::create (i, f, this));
@@ -314,7 +314,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "name",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.name ();
@@ -327,7 +327,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "about",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.about ();
@@ -340,7 +340,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "comments",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.comments ();
@@ -353,7 +353,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "website",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.website ();
@@ -366,7 +366,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "email",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.email ();
@@ -379,7 +379,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "infos",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.infos ();

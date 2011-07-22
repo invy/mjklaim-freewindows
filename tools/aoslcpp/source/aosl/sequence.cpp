@@ -118,7 +118,7 @@ namespace aosl
 
       // meta
       //
-      if (n.name () == "meta" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "meta" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< MetaType > r (
           MetaTraits::create (i, f, this));
@@ -132,7 +132,7 @@ namespace aosl
 
       // library
       //
-      if (n.name () == "library" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "library" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< LibraryType > r (
           LibraryTraits::create (i, f, this));
@@ -146,7 +146,7 @@ namespace aosl
 
       // canvas
       //
-      if (n.name () == "canvas" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "canvas" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< CanvasType > r (
           CanvasTraits::create (i, f, this));
@@ -160,7 +160,7 @@ namespace aosl
 
       // story
       //
-      if (n.name () == "story" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "story" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< StoryType > r (
           StoryTraits::create (i, f, this));
@@ -179,21 +179,21 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "library",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!canvas_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "canvas",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
 
     if (!story_.present ())
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "story",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -297,7 +297,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "meta",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.meta ();
@@ -309,7 +309,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "library",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.library ();
@@ -321,7 +321,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "canvas",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.canvas ();
@@ -333,7 +333,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "story",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.story ();

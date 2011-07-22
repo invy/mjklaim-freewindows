@@ -103,7 +103,7 @@ namespace aosl
 
       // stream
       //
-      if (n.name () == "stream" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "stream" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< StreamType > r (
           StreamTraits::create (i, f, this));
@@ -122,7 +122,7 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "stream",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -142,7 +142,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Object_audio >
   _xsd_Object_audio_type_factory_init (
     "object_audio",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Object_audio >
@@ -229,7 +229,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "stream",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.stream ();
@@ -240,7 +240,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Object_audio >
   _xsd_Object_audio_type_serializer_init (
     "object_audio",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

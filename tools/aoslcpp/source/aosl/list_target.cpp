@@ -85,7 +85,7 @@ namespace aosl
 
       // target
       //
-      if (n.name () == "target" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "target" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< TargetType > r (
           TargetTraits::create (i, f, this));
@@ -190,7 +190,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "target",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *b;

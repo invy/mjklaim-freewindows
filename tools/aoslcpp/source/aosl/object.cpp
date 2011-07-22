@@ -116,7 +116,7 @@ namespace aosl
 
       // properties
       //
-      if (n.name () == "properties" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "properties" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< PropertiesType > r (
           PropertiesTraits::create (i, f, this));
@@ -130,7 +130,7 @@ namespace aosl
 
       // extension
       //
-      if (n.name () == "extension" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "extension" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ExtensionType > r (
           ExtensionTraits::create (i, f, this));
@@ -144,7 +144,7 @@ namespace aosl
 
       // children
       //
-      if (n.name () == "children" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "children" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ChildrenType > r (
           ChildrenTraits::create (i, f, this));
@@ -228,7 +228,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Object >
   _xsd_Object_type_factory_init (
     "object",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Object >
@@ -354,7 +354,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "properties",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.properties ();
@@ -367,7 +367,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "extension",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.extension ();
@@ -380,7 +380,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "children",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.children ();
@@ -437,7 +437,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Object >
   _xsd_Object_type_serializer_init (
     "object",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

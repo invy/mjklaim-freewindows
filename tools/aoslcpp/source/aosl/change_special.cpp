@@ -87,7 +87,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_factory_initializer< 0, char, Change_special >
   _xsd_Change_special_type_factory_init (
     "change_special",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 
   static
   const ::xsd::cxx::tree::comparison_initializer< 0, char, Change_special >
@@ -153,7 +153,7 @@ namespace aosl
   const ::xsd::cxx::tree::type_serializer_initializer< 0, char, Change_special >
   _xsd_Change_special_type_serializer_init (
     "change_special",
-    "http://artofsequence.org/aosl/1.x");
+    "artofsequence.org/aosl/1.0");
 }
 
 #include <xsd/cxx/post.hxx>

@@ -104,7 +104,7 @@ namespace aosl
 
       // import
       //
-      if (n.name () == "import" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "import" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ImportType > r (
           ImportTraits::create (i, f, this));
@@ -118,7 +118,7 @@ namespace aosl
 
       // resources
       //
-      if (n.name () == "resources" && n.namespace_ () == "http://artofsequence.org/aosl/1.x")
+      if (n.name () == "resources" && n.namespace_ () == "artofsequence.org/aosl/1.0")
       {
         ::std::auto_ptr< ResourcesType > r (
           ResourcesTraits::create (i, f, this));
@@ -137,7 +137,7 @@ namespace aosl
     {
       throw ::xsd::cxx::tree::expected_element< char > (
         "resources",
-        "http://artofsequence.org/aosl/1.x");
+        "artofsequence.org/aosl/1.0");
     }
   }
 
@@ -233,7 +233,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "import",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << *i.import ();
@@ -245,7 +245,7 @@ namespace aosl
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
           "resources",
-          "http://artofsequence.org/aosl/1.x",
+          "artofsequence.org/aosl/1.0",
           e));
 
       s << i.resources ();
