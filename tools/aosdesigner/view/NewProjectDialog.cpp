@@ -72,5 +72,23 @@ namespace view
 		// TODO : check that the filename contains only valid names
 	}
 
+	core::ProjectInfos NewProjectDialog::project_infos()
+	{
+		
+		auto location = m_ui->edit_location->text();
+		auto filename = m_ui->edit_file_name->text();
+		auto name = m_ui->edit_project_name->text();
+
+		core::ProjectInfos infos;
+		if( !( location.isEmpty() || filename.isEmpty() ) )
+		{
+			infos.location = boost::filesystem::path( location.toStdString() ) / filename.toStdString();
+		}
+
+		infos.name = name.toStdString();
+		
+		return infos;
+	}
+
 }
 }

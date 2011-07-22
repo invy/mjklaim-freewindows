@@ -24,6 +24,8 @@ AOSLCPP
 AOS Designer
 ------------
 
+ - move the files in /core in the global application directory
+
  * (klaim) create a new project
  - save the current project
  - open and load a project

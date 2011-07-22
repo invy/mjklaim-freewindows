@@ -35,10 +35,11 @@ namespace view
 														).toStdString() );
 	}
 
-	void request_new_project_infos()
+	core::ProjectInfos request_new_project_infos()
 	{
 		auto dialog = new NewProjectDialog();
 		dialog->exec();
+		return dialog->project_infos();
 	}
 
 

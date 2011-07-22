@@ -4,6 +4,8 @@
 
 #include <boost/filesystem/path.hpp>
 
+#include "core/ProjectInfos.hpp"
+
 namespace aosd
 {
 namespace view
@@ -27,7 +29,7 @@ namespace view
 	void show_welcome_screen();
 
 	/** Show the dialog to create a new project. */
-	void request_new_project_infos();
+	core::ProjectInfos request_new_project_infos();
 
 }
 }

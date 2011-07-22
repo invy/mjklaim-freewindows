@@ -1,7 +1,7 @@
 #include "Context.hpp"
 
-#include "Project.hpp"
 
+#include "Project.hpp"
 #include "view/Dialogs.hpp"
 
 namespace aosd
@@ -22,21 +22,26 @@ namespace core
 
 	}
 
-	void Context::new_project()
+	bool Context::new_project()
 	{
-		view::request_new_project_infos();
+		ProjectInfos infos = view::request_new_project_infos();
 		
-		boost::filesystem::path project_path;
-
-		if( !project_path.empty() )
+		if( is_valid( infos ) )
 		{
-			auto project = new Project();
-
-			project->relocate( project_path );
-			project->save();
-
-			open_project( *project );
+			return new_project( infos );
 		}
+
+		return false;
+	}
+
+	bool Context::new_project( const ProjectInfos& infos )
+	{
+		Q_ASSERT( is_valid(infos) );
+		
+		auto project = new Project( infos );
+		project->save(); // generate the file
+
+		open_project( *project );
 		
 	}
 

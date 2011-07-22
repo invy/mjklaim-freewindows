@@ -3,11 +3,12 @@
 #pragma once
 
 #include <memory>
-#include <boost/filesystem/path.hpp>
-
 #include <QObject>
 
+#include "core/ProjectInfos.hpp"
 #include "util/Singleton.hpp"
+
+
 
 namespace aosd
 {
@@ -37,11 +38,18 @@ namespace core
 
 	public slots:
 
-		/** Create a new empty project and set it as the current project.
+		/** Create a new empty project by asking details to the user and set it as the current project.
 			If there was already a project open, it will be closed first.
+			@return false if the project creation process failed or have been canceled by the user, true otherwise.
 		*/
-		void new_project();
-						
+		bool new_project();
+
+		/** Create a new empty project using the provided informations and set it as the current project.
+			If there was already a project open, it will be closed first.
+			@return false if the project creation process failed, true otherwise.
+		*/
+		bool new_project( const ProjectInfos& infos );
+
 		/** Close the currently open project. */
 		void close_project();
 		

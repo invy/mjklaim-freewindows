@@ -31,6 +31,7 @@ set( AOSDESIGNER_CORE_HEADERS
     ${AOSDESIGNER_CORE_DIR}/Context.hpp
     ${AOSDESIGNER_CORE_DIR}/Project.hpp
     ${AOSDESIGNER_CORE_DIR}/Sequence.hpp
+	${AOSDESIGNER_CORE_DIR}/ProjectInfos.hpp
 )
 
 #-----------------------------------------------------------------
