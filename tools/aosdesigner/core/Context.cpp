@@ -41,29 +41,33 @@ namespace core
 		auto project = new Project( infos );
 		project->save(); // generate the file
 
-		open_project( *project );
-		
+		return open_project( *project );
 	}
 
-	void Context::open_project()
+	bool Context::open_project()
 	{
 		if( is_project_open() ) 
 			close_project(); // TODO : don't continue if the close failed!
 
 		auto project_path = view::request_project_path();
 
-		if( !project_path.empty() )
+		if( project_path.empty() )
+			return false;// THINK : do something else if it failed?
+		try
 		{
-			
-			// TODO : create the project when we got the directory
-
+			auto project = new Project( project_path );
+			open_project( *project );
 		}
-
-		// THINK : do something else if it failed?
-		
+		catch(...) // NOT A GOOD IDEA...BUT OH WELL...
+		{
+			// TODO : ADD LOGGING HERE!!!
+			return false;
+		}
+			
+		return true;
 	}
 
-	void Context::open_project( Project& project )
+	bool Context::open_project( Project& project )
 	{
 		Q_CHECK_PTR( &project );
 
@@ -73,6 +77,7 @@ namespace core
 		m_project.reset( &project );
 
 		emit project_open( current_project() );
+		return true;
 	}
 
 	void Context::close_project()

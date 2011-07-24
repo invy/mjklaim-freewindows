@@ -53,8 +53,10 @@ namespace core
 		/** Close the currently open project. */
 		void close_project();
 		
-		/** Open a project by asking it's location to the user. */
-		void open_project();
+		/** Open a project by asking it's location to the user. 
+			@return false if the project loading process failed or have been canceled by the user, true otherwise.
+		*/
+		bool open_project();
 		
 	signals:
 
@@ -72,8 +74,10 @@ namespace core
 		/// The currently open project or null if none.
 		std::unique_ptr< Project > m_project;
 
-		/** Open a project that have been loaded. */
-		void open_project( Project& project );
+		/** Open a project that have been loaded. 
+			@return false if the project loading process failed or have been canceled by the user, true otherwise.
+		*/
+		bool open_project( Project& project );
 
 	};
 

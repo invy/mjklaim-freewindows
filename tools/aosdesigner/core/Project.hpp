@@ -13,6 +13,7 @@ namespace aosd
 { 
 namespace core 
 {
+	struct ProjectInfos;
 
 	namespace bfs = boost::filesystem;
 
@@ -24,11 +25,11 @@ namespace core
 	public:
 
 		static const std::string FILENAME;
+		
+		/** Create a project from basic informations. */
+		Project( const ProjectInfos& infos );
 
-		/** Create an almost empty project, with only an empty sequence. */
-		Project();
-
-		/** Create a project from a provided project file location. */
+		/** Load a project from a provided project file location. */
 		Project( const bfs::path& from_location );
 		
 		/** Save the project informations and content in the provided location. */
