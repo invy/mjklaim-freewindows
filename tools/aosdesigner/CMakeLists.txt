@@ -20,7 +20,8 @@ set( AOSDESIGNER_UI_DIR ${AOSDESIGNER_VIEW_DIR}/ui )
 
 # Application header files.
 set( AOSDESIGNER_APPLICATION_HEADERS
-    Application.hpp
+    ${AOSDESIGNER_ROOT_DIR}/Application.hpp
+	${AOSDESIGNER_ROOT_DIR}/Paths.hpp
 )
 
 #-----------------------------------------------------------------
@@ -110,8 +111,9 @@ source_group( generated\\moc FILES ${AOSDESIGNER_QOBJECT_HEADERS_MOC} )
 
 # Application source files.
 set( AOSDESIGNER_APPLICATION_SOURCES
-    main.cpp
-    Application.cpp
+    ${AOSDESIGNER_ROOT_DIR}/main.cpp
+    ${AOSDESIGNER_ROOT_DIR}/Application.cpp
+	${AOSDESIGNER_ROOT_DIR}/Paths.cpp
 )
 
 # Views source files.

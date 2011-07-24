@@ -9,7 +9,7 @@ namespace state
 {
 	void Welcome::show_welcome()
 	{
-		auto welcome_screen = new view::WelcomeScreen();
+		std::unique_ptr<view::WelcomeScreen> welcome_screen( new view::WelcomeScreen() );
 		welcome_screen->exec();
 	}
 

@@ -6,13 +6,12 @@
 #include <boost/property_tree/info_parser.hpp>
 
 #include "core/ProjectInfos.hpp"
+#include "Paths.hpp"
 
 namespace aosd
 {
 namespace core
 {
-
-	const std::string Project::FILENAME = "project.info";
 
 	Project::Project( const ProjectInfos& infos )
 		: m_location( infos.location )
