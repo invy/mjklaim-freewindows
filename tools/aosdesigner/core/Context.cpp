@@ -38,10 +38,10 @@ namespace core
 	{
 		Q_ASSERT( is_valid(infos) );
 		
-		auto project = new Project( infos );
+		std::unique_ptr<Project> project( new Project( infos ) );
 		project->save(); // generate the file
 
-		return open_project( *project );
+		return open_project( std::move(project) );
 	}
 
 	bool Context::open_project()
@@ -53,28 +53,29 @@ namespace core
 
 		if( project_path.empty() )
 			return false;// THINK : do something else if it failed?
+
 		try
 		{
-			auto project = new Project( project_path );
-			open_project( *project );
+			open_project( std::unique_ptr<Project>( new Project( project_path ) ) );
 		}
-		catch(...) // NOT A GOOD IDEA...BUT OH WELL...
+		catch( const boost::exception& e )
 		{
 			// TODO : ADD LOGGING HERE!!!
+			__asm int 3;
 			return false;
 		}
 			
 		return true;
 	}
 
-	bool Context::open_project( Project& project )
+	bool Context::open_project( std::unique_ptr<Project>&& project )
 	{
 		Q_CHECK_PTR( &project );
 
 		if( m_project )
 			close_project();
 
-		m_project.reset( &project );
+		m_project.swap( project );
 
 		emit project_open( current_project() );
 		return true;

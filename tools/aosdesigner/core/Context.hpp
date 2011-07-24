@@ -77,7 +77,7 @@ namespace core
 		/** Open a project that have been loaded. 
 			@return false if the project loading process failed or have been canceled by the user, true otherwise.
 		*/
-		bool open_project( Project& project );
+		bool open_project( std::unique_ptr<Project>&& project );
 
 	};
 

@@ -33,10 +33,14 @@ namespace core
 		Project( const bfs::path& from_location );
 		
 		/** Save the project informations and content in the provided location. */
-		void save( const bfs::path& filepath );
+		bool save( const bfs::path& filepath )
+		{
+			relocate(filepath);
+			return save();
+		}
 
 		/** Save the project informations and content in the default location. */
-		void save() { save( m_location ); }
+		bool save();
 
 		/// Path of the file that contain all the project's informations.
 		const bfs::path& location() const { return m_location; }

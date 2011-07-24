@@ -30,13 +30,13 @@ namespace core
 		// TODO : move that in a separate function!
 		// TODO : THIS IS NOT SAFE!!!!!
 		using namespace boost::property_tree;
-
-		const auto project_file_path = from_location / FILENAME;
-
+		
 		ptree infos;
-		read_info( project_file_path.string(), infos );     
+		read_info( from_location.string(), infos );     
 
 		m_name = infos.get<std::string>( "project.name" );
+		m_location = from_location;
+
 	}
 
 
@@ -52,7 +52,7 @@ namespace core
 		m_name = new_name;
 	}
 
-	void Project::save( const bfs::path& filepath )
+	bool Project::save()
 	{
 		using namespace boost::property_tree;
 
@@ -63,7 +63,18 @@ namespace core
 
 		// TODO : add other informations here
 
-		write_info( filepath.string(), infos );
+		try
+		{
+			write_info( m_location.string(), infos );
+		}
+		catch( const boost::exception& e )
+		{
+			// TODO : add logging here
+			__asm int 3;
+			return false;
+		}
+
+		return true;
 	}
 
 	void Project::foreach_sequence( const SequenceModifierFunc& func )
