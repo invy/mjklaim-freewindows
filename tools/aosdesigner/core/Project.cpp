@@ -19,7 +19,6 @@ namespace core
 	Project::Project( const ProjectInfos& infos )
 		: m_location( infos.location )
 		, m_name( infos.name )
-		, m_codename( infos.codename )
 	{
 		assert( is_valid(infos) );
 		
@@ -29,11 +28,9 @@ namespace core
 	}
 
 	Project::Project( const bfs::path& project_file_path )
-		: m_location( project_file_path.parent_path() )
-		, m_codename( boost::replace_all_copy( project_file_path.filename().string(), path::PROJECT_FILE_EXTENSION, "" ) )
+		: m_location( project_file_path )
 	{
-		// TODO : move that in a separate function!
-		// TODO : THIS IS NOT SAFE!!!!!
+		// THINK : move that in a separate function?
 		using namespace boost::property_tree;
 		
 		bfs::ifstream filestream( project_file_path );
@@ -68,18 +65,20 @@ namespace core
 		infos.put( "project.name", name() );
 
 		// TODO : add other informations here
+		// TODO : manage errors differently
 
 		try
 		{
 			namespace bfs = boost::filesystem;
-			if( !bfs::is_directory( m_location ) )
+			const auto directory_path = m_location.parent_path();
+
+			// make sure the directory is available
+			if( !bfs::is_directory( directory_path ) )
 			{
-				bfs::create_directories( m_location );
+				bfs::create_directories( directory_path );
 			}
-
-			const auto project_infos_path = m_location / path::PROJECT_FILE( codename() );
-
-			bfs::ofstream filestream( project_infos_path );
+			
+			bfs::ofstream filestream( m_location );
 
 			write_xml( filestream, infos );
 		}

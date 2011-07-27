@@ -53,10 +53,7 @@ namespace core
 
 		/** Change the name of the project. */
 		void rename( const std::string& new_name );
-
-		/** Codename of the project. This information will never change. */
-		const std::string& codename() const { return m_codename; }
-
+		
 		/// Signature for functions allowed to modify a Sequences.
 		typedef std::function< void ( Sequence& sequence )> SequenceModifierFunc;
 		/// Signature for functions only allowed to read Sequences.
@@ -75,10 +72,7 @@ namespace core
 
 		/// Name of the project.
 		std::string m_name;
-
-		/// Codename of the project. That's the only project's information that will never change.
-		std::string m_codename;
-		
+				
 		/// Path of the file that contain all the project's informations
 		bfs::path m_location;
 

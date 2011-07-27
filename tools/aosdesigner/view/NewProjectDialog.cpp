@@ -93,11 +93,10 @@ namespace view
 		core::ProjectInfos infos;
 		if( !( location.isEmpty() || codename.isEmpty() ) )
 		{
-			infos.location = boost::filesystem::path( location.toStdString() ) / codename.toStdString();
+			infos.location = path::GENERATE_PROJECT_FILE( boost::filesystem::path( location.toStdString() ), codename.toStdString() );
 		}
 
 		infos.name = name.toStdString();
-		infos.codename = codename.toStdString();
 		
 		return infos;
 	}

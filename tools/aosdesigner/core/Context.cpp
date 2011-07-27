@@ -1,5 +1,6 @@
 #include "Context.hpp"
 
+#include <iostream>
 #include <boost/exception/diagnostic_information.hpp>
 
 #include "core/Project.hpp"
