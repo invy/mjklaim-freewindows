@@ -16,17 +16,22 @@ namespace view
 	{
 		m_ui->setupUi( this );
 
-		connect( m_ui->cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
-		connect( m_ui->createButton, SIGNAL(clicked()), this, SLOT(createProject()));
-		connect( m_ui->findLocationButton, SIGNAL(clicked()), this, SLOT(findLocation()) );
+		connect( m_ui->button_cancel, SIGNAL(clicked()), this, SLOT(reject()));
+		connect( m_ui->button_create, SIGNAL(clicked()), this, SLOT(create_project()));
+		connect( m_ui->button_find_location, SIGNAL(clicked()), this, SLOT(find_location()) );
 		
-		connect( m_ui->edit_project_name, SIGNAL(changed()), this, SLOT(updateFileName()) );
-		connect( m_ui->edit_simple_name, SIGNAL(changed()), this, SLOT(checkFileName()) );
+		connect( m_ui->edit_project_name, SIGNAL(textChanged(const QString&)), this, SLOT(update_codename()) );
+		connect( m_ui->edit_codename, SIGNAL(textChanged(const QString&)), this, SLOT(check_codename()) );
+
+		connect( m_ui->edit_codename, SIGNAL(textChanged(const QString&)), this, SLOT(update_project_file()) );
+		connect( m_ui->edit_dir_location, SIGNAL(textChanged(const QString&)), this, SLOT(update_project_file()) );
+
 
 		// set a defaults
 		m_ui->edit_project_name->setText( tr("My Project") );
 		m_ui->edit_dir_location->setText( QString::fromStdString( path::DEFAULT_PROJECTS_DIR.string() ) );
 		
+		m_ui->edit_project_file_location->setReadOnly( true );
 	}
 
 	NewProjectDialog::~NewProjectDialog()
@@ -34,7 +39,7 @@ namespace view
 
 	}
 
-	void NewProjectDialog::findLocation()
+	void NewProjectDialog::find_location()
 	{
 		auto location = request_new_project_path();
 		if( !location.empty() )
@@ -43,7 +48,7 @@ namespace view
 		}
 	}
 
-	void NewProjectDialog::createProject()
+	void NewProjectDialog::create_project()
 	{
 		// TODO : check that the names are filled
 		if( !m_ui->edit_dir_location->text().isEmpty() 
@@ -61,12 +66,13 @@ namespace view
 		
 	}
 
-	void NewProjectDialog::updateFileName()
+	void NewProjectDialog::update_codename()
 	{
 		// TODO : update the filename field with only valid name
+		
 	}
 
-	void NewProjectDialog::checkFileName()
+	void NewProjectDialog::check_codename()
 	{
 		// TODO : check that the filename contains only valid names
 	}
@@ -75,7 +81,7 @@ namespace view
 	{
 		
 		auto location = m_ui->edit_dir_location->text();
-		auto codename = m_ui->edit_simple_name->text();
+		auto codename = m_ui->edit_codename->text();
 		auto name = m_ui->edit_project_name->text();
 
 		core::ProjectInfos infos;
@@ -88,6 +94,21 @@ namespace view
 		infos.codename = codename.toStdString();
 		
 		return infos;
+	}
+
+	void NewProjectDialog::update_project_file()
+	{
+		auto dir_location = m_ui->edit_dir_location->text();
+		auto codename = m_ui->edit_codename->text();
+		if( ! ( dir_location.isEmpty() || codename.isEmpty() )  )
+		{
+			namespace bsf = boost::filesystem;
+			bfs::path directory_path = dir_location.toStdString();
+			bfs::path project_filename = path::PROJECT_FILE( codename.toStdString() );
+			bfs::path project_file_path =  directory_path / codename.toStdString() / project_filename;
+
+			m_ui->edit_project_file_location->setText( QString::fromStdString( project_file_path.string() ) );
+		}
 	}
 
 }

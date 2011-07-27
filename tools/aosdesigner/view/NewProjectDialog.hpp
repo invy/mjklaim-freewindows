@@ -29,11 +29,12 @@ namespace view
 
 	private slots:
 
-		// TODO : rename those to match the naming convetion!!!!
-		void findLocation();
-		void createProject();
-		void updateFileName();
-		void checkFileName();
+		
+		void find_location();
+		void create_project();
+		void update_codename();
+		void check_codename();
+		void update_project_file();
 
 	
 	private:
