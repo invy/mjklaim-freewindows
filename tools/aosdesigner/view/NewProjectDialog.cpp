@@ -3,6 +3,7 @@
 
 #include "ui_NewProjectDialog.h"
 #include "view/Dialogs.hpp"
+#include "Paths.hpp"
 
 namespace aosd
 {
@@ -20,10 +21,11 @@ namespace view
 		connect( m_ui->findLocationButton, SIGNAL(clicked()), this, SLOT(findLocation()) );
 		
 		connect( m_ui->edit_project_name, SIGNAL(changed()), this, SLOT(updateFileName()) );
-		connect( m_ui->edit_file_name, SIGNAL(changed()), this, SLOT(checkFileName()) );
+		connect( m_ui->edit_simple_name, SIGNAL(changed()), this, SLOT(checkFileName()) );
 
-		// set a default name
+		// set a defaults
 		m_ui->edit_project_name->setText( tr("My Project") );
+		m_ui->edit_dir_location->setText( QString::fromStdString( path::DEFAULT_PROJECTS_DIR.string() ) );
 		
 	}
 
@@ -37,19 +39,16 @@ namespace view
 		auto location = request_new_project_path();
 		if( !location.empty() )
 		{
-			if( !m_ui->edit_file_name->text().isEmpty() )
-			{
-				location = location / m_ui->edit_file_name->text().toStdString();
-			}
-			
-			m_ui->edit_location->setText( QString::fromStdString(location.string()) );
+			m_ui->edit_dir_location->setText( QString::fromStdString(location.string()) );
 		}
 	}
 
 	void NewProjectDialog::createProject()
 	{
 		// TODO : check that the names are filled
-		if( !m_ui->edit_file_name->text().isEmpty() && !m_ui->edit_project_name->text().isEmpty() )
+		if( !m_ui->edit_dir_location->text().isEmpty() 
+		&&	!m_ui->edit_project_name->text().isEmpty() 
+		)
 		{
 			// TODO : check that the location is valid
 			// TODO : launch the creation of the project
@@ -75,14 +74,14 @@ namespace view
 	core::ProjectInfos NewProjectDialog::project_infos()
 	{
 		
-		auto location = m_ui->edit_location->text();
-		auto filename = m_ui->edit_file_name->text();
+		auto location = m_ui->edit_dir_location->text();
+		auto simple_name = m_ui->edit_simple_name->text();
 		auto name = m_ui->edit_project_name->text();
 
 		core::ProjectInfos infos;
-		if( !( location.isEmpty() || filename.isEmpty() ) )
+		if( !( location.isEmpty() || simple_name.isEmpty() ) )
 		{
-			infos.location = boost::filesystem::path( location.toStdString() ) / filename.toStdString();
+			infos.location = boost::filesystem::path( location.toStdString() ) / simple_name.toStdString();
 		}
 
 		infos.name = name.toStdString();

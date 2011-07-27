@@ -2,8 +2,11 @@
 
 #include <algorithm>
 
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
 #include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/info_parser.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "core/ProjectInfos.hpp"
 #include "Paths.hpp"
@@ -16,6 +19,7 @@ namespace core
 	Project::Project( const ProjectInfos& infos )
 		: m_location( infos.location )
 		, m_name( infos.name )
+		, m_codename( infos.codename )
 	{
 		assert( is_valid(infos) );
 		
@@ -24,17 +28,20 @@ namespace core
 
 	}
 
-	Project::Project( const bfs::path& from_location )
+	Project::Project( const bfs::path& project_file_path )
+		: m_location( project_file_path.parent_path() )
+		, m_codename( boost::replace_all_copy( project_file_path.filename().string(), path::PROJECT_FILE_EXTENSION, "" ) )
 	{
 		// TODO : move that in a separate function!
 		// TODO : THIS IS NOT SAFE!!!!!
 		using namespace boost::property_tree;
 		
+		bfs::ifstream filestream( project_file_path );
+
 		ptree infos;
-		read_info( from_location.string(), infos );     
+		read_xml( filestream, infos );
 
 		m_name = infos.get<std::string>( "project.name" );
-		m_location = from_location;
 
 	}
 
@@ -64,7 +71,17 @@ namespace core
 
 		try
 		{
-			write_info( m_location.string(), infos );
+			namespace bfs = boost::filesystem;
+			if( !bfs::is_directory( m_location ) )
+			{
+				bfs::create_directories( m_location );
+			}
+
+			const auto project_infos_path = m_location / path::PROJECT_FILE( codename() );
+
+			bfs::ofstream filestream( project_infos_path );
+
+			write_xml( filestream, infos );
 		}
 		catch( const boost::exception& e )
 		{

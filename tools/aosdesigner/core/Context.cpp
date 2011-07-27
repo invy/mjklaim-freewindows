@@ -1,8 +1,11 @@
 #include "Context.hpp"
 
+#include <boost/exception/diagnostic_information.hpp>
 
-#include "Project.hpp"
+#include "core/Project.hpp"
 #include "view/Dialogs.hpp"
+#include "Paths.hpp"
+
 
 namespace aosd
 {
@@ -46,21 +49,27 @@ namespace core
 
 	bool Context::open_project()
 	{
+		auto project_file_path = view::request_project_path();
+
+		if( project_file_path.empty() 
+		||  !( project_file_path.extension() == path::PROJECT_FILE_EXTENSION )
+		)
+		{
+			return false; // THINK : do something else if it failed?
+		}
+
 		if( is_project_open() ) 
 			close_project(); // TODO : don't continue if the close failed!
-
-		auto project_path = view::request_project_path();
-
-		if( project_path.empty() )
-			return false;// THINK : do something else if it failed?
-
+		
 		try
 		{
-			open_project( std::unique_ptr<Project>( new Project( project_path ) ) );
+			open_project( std::unique_ptr<Project>( new Project( project_file_path ) ) );
 		}
 		catch( const boost::exception& e )
 		{
 			// TODO : ADD LOGGING HERE!!!
+			std::cout<< "Error on opening a project : " << boost::diagnostic_information( e ) << std::endl;
+
 			__asm int 3;
 			return false;
 		}

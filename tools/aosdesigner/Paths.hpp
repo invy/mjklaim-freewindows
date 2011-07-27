@@ -2,6 +2,7 @@
 #define HGUARD_AOSD_CORE_PATHS_HPP__
 #pragma once
 
+#include <string>
 #include <boost/filesystem/path.hpp>
 
 namespace aosd
@@ -10,11 +11,20 @@ namespace path
 {
 	namespace bfs = boost::filesystem;
 
+	/// Extension of projects files.
+	extern const std::string PROJECT_FILE_EXTENSION;
+
+	/// Extension of sequence files.
+	extern const std::string SEQUENCE_FILE_EXTENSION;
+
+	/// Extension of meta files.
+	extern const std::string META_FILE_EXTENSION;
+
+	/// Extension of library files.
+	extern const std::string LIBRARY_FILE_EXTENSION;
+
 	/// Default directory to look in when we start looking for project directories.
 	extern const bfs::path DEFAULT_PROJECTS_DIR;
-
-	/// Project infos file, defining the whole project.
-	extern const bfs::path PROJECT_INFO_FILE;
 
 	/// Common library directory where all it's resources will be contained.
 	extern const bfs::path PROJECT_LIBRARY_DIR;
@@ -33,6 +43,9 @@ namespace path
 
 	/// Generate the path of a sequence file definition.
 	bfs::path SEQUENCE_FILE( const std::string& sequence_codename );
+
+	/// Project infos file, defining the whole project.
+	bfs::path PROJECT_FILE( const std::string& project_codename );
 
 }
 }

@@ -16,12 +16,13 @@ namespace core
 	{
 		boost::filesystem::path location;
 		std::string name;
+		std::string codename;
 		
 	};
 
 	inline bool is_valid( const ProjectInfos& infos )
 	{
-		return !( infos.location.empty() || infos.name.empty() );
+		return !( infos.location.empty() || infos.name.empty() || infos.codename.empty() );
 	}
 
 }

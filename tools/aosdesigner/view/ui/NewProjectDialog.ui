@@ -39,12 +39,12 @@ The directory where it is located will be used to contain everything in the Proj
    <item row="2" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>File Name</string>
+      <string>Simplified</string>
      </property>
     </widget>
    </item>
    <item row="2" column="1" colspan="3">
-    <widget class="QLineEdit" name="edit_file_name">
+    <widget class="QLineEdit" name="edit_simple_name">
      <property name="toolTip">
       <string>New project's file name. It should contain only letters, numbers and underscores ( _ ).</string>
      </property>
@@ -61,7 +61,7 @@ The directory where it is located will be used to contain everything in the Proj
     </widget>
    </item>
    <item row="3" column="1" colspan="2">
-    <widget class="QLineEdit" name="edit_location">
+    <widget class="QLineEdit" name="edit_dir_location">
      <property name="toolTip">
       <string>Address of the directory where this project will be located.</string>
      </property>
