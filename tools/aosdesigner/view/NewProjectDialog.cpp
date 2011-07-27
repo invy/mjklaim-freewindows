@@ -75,16 +75,17 @@ namespace view
 	{
 		
 		auto location = m_ui->edit_dir_location->text();
-		auto simple_name = m_ui->edit_simple_name->text();
+		auto codename = m_ui->edit_simple_name->text();
 		auto name = m_ui->edit_project_name->text();
 
 		core::ProjectInfos infos;
-		if( !( location.isEmpty() || simple_name.isEmpty() ) )
+		if( !( location.isEmpty() || codename.isEmpty() ) )
 		{
-			infos.location = boost::filesystem::path( location.toStdString() ) / simple_name.toStdString();
+			infos.location = boost::filesystem::path( location.toStdString() ) / codename.toStdString();
 		}
 
 		infos.name = name.toStdString();
+		infos.codename = codename.toStdString();
 		
 		return infos;
 	}
