@@ -33,7 +33,6 @@ namespace view
 		void find_location();
 		void create_project();
 		void update_codename();
-		void check_codename();
 		void update_project_file();
 
 	

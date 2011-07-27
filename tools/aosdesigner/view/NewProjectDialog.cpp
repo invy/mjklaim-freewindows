@@ -1,5 +1,6 @@
 #include "NewProjectDialog.hpp"
 
+#include <QRegExpValidator>
 
 #include "ui_NewProjectDialog.h"
 #include "view/Dialogs.hpp"
@@ -16,22 +17,26 @@ namespace view
 	{
 		m_ui->setupUi( this );
 
-		connect( m_ui->button_cancel, SIGNAL(clicked()), this, SLOT(reject()));
-		connect( m_ui->button_create, SIGNAL(clicked()), this, SLOT(create_project()));
-		connect( m_ui->button_find_location, SIGNAL(clicked()), this, SLOT(find_location()) );
+		// interactions
+		connect( m_ui->button_cancel			, SIGNAL( clicked() )					, this		, SLOT( reject() )				);
+		connect( m_ui->button_create			, SIGNAL( clicked() )					, this		, SLOT( create_project() )		);
+		connect( m_ui->button_find_location		, SIGNAL( clicked() )					, this		, SLOT( find_location() )		);
 		
-		connect( m_ui->edit_project_name, SIGNAL(textChanged(const QString&)), this, SLOT(update_codename()) );
-		connect( m_ui->edit_codename, SIGNAL(textChanged(const QString&)), this, SLOT(check_codename()) );
+		connect( m_ui->edit_project_name		, SIGNAL( textChanged(const QString&) )	, this		, SLOT( update_codename() )		);
+		connect( m_ui->edit_codename			, SIGNAL( textChanged(const QString&) )	, this		, SLOT( update_project_file() ) );
+		connect( m_ui->edit_dir_location		, SIGNAL( textChanged(const QString&) )	, this		, SLOT( update_project_file() ) );
 
-		connect( m_ui->edit_codename, SIGNAL(textChanged(const QString&)), this, SLOT(update_project_file()) );
-		connect( m_ui->edit_dir_location, SIGNAL(textChanged(const QString&)), this, SLOT(update_project_file()) );
+		// set the validators
+		auto* codename_validator = new QRegExpValidator( QRegExp("[A-Za-z0-9_]+"), nullptr ); // TODO : later, allow any OS valid characters but no spaces.
+		m_ui->edit_codename->setValidator( codename_validator );
 
-
-		// set a defaults
+		// set a default values
 		m_ui->edit_project_name->setText( tr("My Project") );
 		m_ui->edit_dir_location->setText( QString::fromStdString( path::DEFAULT_PROJECTS_DIR.string() ) );
 		
 		m_ui->edit_project_file_location->setReadOnly( true );
+
+
 	}
 
 	NewProjectDialog::~NewProjectDialog()
@@ -68,21 +73,22 @@ namespace view
 
 	void NewProjectDialog::update_codename()
 	{
-		// TODO : update the filename field with only valid name
+		const auto name = m_ui->edit_project_name->text();
+		auto codename = name;
 		
+		codename.replace( QRegExp( "\\s+" ), "_" );
+		codename.replace( QRegExp( "\\W+" ), "" );
+
+		m_ui->edit_codename->setText( codename );
 	}
 
-	void NewProjectDialog::check_codename()
-	{
-		// TODO : check that the filename contains only valid names
-	}
 
 	core::ProjectInfos NewProjectDialog::project_infos()
 	{
 		
-		auto location = m_ui->edit_dir_location->text();
-		auto codename = m_ui->edit_codename->text();
-		auto name = m_ui->edit_project_name->text();
+		const auto location = m_ui->edit_dir_location->text();
+		const auto codename = m_ui->edit_codename->text();
+		const auto name = m_ui->edit_project_name->text();
 
 		core::ProjectInfos infos;
 		if( !( location.isEmpty() || codename.isEmpty() ) )
@@ -104,8 +110,7 @@ namespace view
 		{
 			namespace bsf = boost::filesystem;
 			bfs::path directory_path = dir_location.toStdString();
-			bfs::path project_filename = path::PROJECT_FILE( codename.toStdString() );
-			bfs::path project_file_path =  directory_path / codename.toStdString() / project_filename;
+			bfs::path project_file_path =  path::GENERATE_PROJECT_FILE( directory_path, codename.toStdString() );
 
 			m_ui->edit_project_file_location->setText( QString::fromStdString( project_file_path.string() ) );
 		}
