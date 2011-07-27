@@ -4,6 +4,16 @@ TODOLIST
 Legend: 
  - something that have to be done
  * (klaim) work in progress by klaim
+ ? suggestion, something that might be good to do needs thinking
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+CMAKE
+-----
+
+ - make sure Boost (1.47 min) is an available dependency
+ - dependency binaries should be copied to the build repositories 
+ - (cross-platform) distribution package generation
 
 AOSL
 ----
@@ -11,25 +21,24 @@ AOSL
  - add heavy documentation in the xsd file
  - use xs3p to generate the documentation from the xsd file
 
-CMAKE
------
-
- - make sure Boost (1.47 min) is an available dependency
- - dependency binaries should be copied to the build repositories 
 
 AOSLCPP
 -------
 
-
 AOS Designer
 ------------
 
- - move the files in /core in the global application directory
+ ? move the files in /core in the global application directory (?)
 
  * (klaim) create a new project
- - save the current project
- - open and load a project
+ * (klaim) save the current project
+ * (klaim) open and load a project
  - project properties edition
+ 
+ - add logging macros that output in a file and in the Log view
+ - add assertion macros
+ 
+ - import a sequence from an AOSL file (and ask the user if he wants to import the resources too)
  
  - Story view:
   - generate a graphic view of the story from a raw Sequence
