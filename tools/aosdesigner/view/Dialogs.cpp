@@ -14,6 +14,7 @@ namespace view
 
 	void show_welcome_screen()
 	{
+		// TODO : reuse the dialog instead of re-creating it each time
 		std::unique_ptr<WelcomeScreen> screen( new WelcomeScreen() );
 		screen->exec();
 	}
@@ -45,8 +46,10 @@ namespace view
 	core::ProjectInfos request_new_project_infos()
 	{
 		std::unique_ptr<NewProjectDialog> dialog( new NewProjectDialog() );
-		dialog->exec();
-		return dialog->project_infos();
+		if( dialog->exec() )
+			return dialog->project_infos();
+		else
+			return core::ProjectInfos();
 	}
 
 
