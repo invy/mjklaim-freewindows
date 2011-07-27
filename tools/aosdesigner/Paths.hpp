@@ -47,6 +47,9 @@ namespace path
 	/// Project infos file, defining the whole project.
 	bfs::path PROJECT_FILE( const std::string& project_codename );
 
+	/// Generate a full path of for a (fictive) project file given it's codename and the directory where to find the project's folder.
+	bfs::path GENERATE_PROJECT_FILE( const bfs::path& directory, const std::string& project_codename );
+
 }
 }
 

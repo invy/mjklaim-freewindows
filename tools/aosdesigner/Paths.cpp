@@ -37,6 +37,11 @@ namespace path
 		return project_codename + PROJECT_FILE_EXTENSION;
 	}
 
+	bfs::path GENERATE_PROJECT_FILE( const bfs::path& directory, const std::string& project_codename )
+	{
+		return directory / project_codename / ( project_codename + PROJECT_FILE_EXTENSION );
+	}
+
 
 
 
