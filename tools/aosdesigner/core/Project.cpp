@@ -8,6 +8,8 @@
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/algorithm/string.hpp>
 
+#include "util/Assert.hpp"
+
 #include "core/ProjectInfos.hpp"
 #include "Paths.hpp"
 
@@ -20,16 +22,16 @@ namespace core
 		: m_location( infos.location )
 		, m_name( infos.name )
 	{
-		assert( is_valid(infos) );
-		
-		// THINK : create a default Sequence?
-
-
+		AOSD_ASSERT( is_valid(infos), "Tried to construct a Project with invalid project infos!" );
 	}
 
 	Project::Project( const bfs::path& project_file_path )
 		: m_location( project_file_path )
 	{
+		AOSD_ASSERT( !project_file_path.empty(), "Tried to construct a Project at an empty path!" );
+		// THINK : make it  a throwing test?
+		AOSD_ASSERT( boost::filesystem::exists( project_file_path ), "Tried to construct a Project with a path that don't exist!" ); 
+
 		// THINK : move that in a separate function?
 		using namespace boost::property_tree;
 		

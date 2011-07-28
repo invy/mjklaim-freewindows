@@ -7,6 +7,8 @@
 #include <QObject>
 #include <QAction>
 
+#include "util/Assert.hpp"
+
 namespace aosd
 {
 namespace view
@@ -35,7 +37,7 @@ namespace view
 		/** Register an action in this provider. */
 		void add( QAction& action )
 		{
-			Q_ASSERT( std::find(m_actions.begin(), m_actions.end(), &action) == m_actions.end() );
+			AOSD_ASSERT( std::find(m_actions.begin(), m_actions.end(), &action) == m_actions.end(), "Tried to add an action twice in this action provider!" );
 			m_actions.push_back( &action );
 		}
 	

@@ -4,7 +4,7 @@
 
 #include <boost/noncopyable.hpp>
 
-#include <QtGlobal>
+#include "util/Assert.hpp"
 
 namespace aosd
 {
@@ -21,13 +21,13 @@ namespace util
 
         Singleton()
         {
-            Q_ASSERT( ms_singleton == nullptr );
+            AOSD_ASSERT_NULL( ms_singleton );
             ms_singleton = static_cast<T*>(this);
         }
 
         ~Singleton()
         {
-            Q_ASSERT( ms_singleton != nullptr );
+            AOSD_ASSERT_NOT_NULL( ms_singleton );
             ms_singleton = nullptr;
         }
 
@@ -35,26 +35,26 @@ namespace util
 
         static inline void create()
         {
-            Q_ASSERT( ms_singleton == nullptr );
+            AOSD_ASSERT_NULL( ms_singleton );
             new T();
         }
 
         static inline T& instance()
         {
-            Q_ASSERT( ms_singleton );
+            AOSD_ASSERT_NOT_NULL( ms_singleton );
             return *ms_singleton;
         }
 
         static inline void destroy()
         {
-            Q_ASSERT( ms_singleton );
+            AOSD_ASSERT_NOT_NULL( ms_singleton );
             delete ms_singleton;
             ms_singleton = nullptr;
         }
 
         static inline bool isValid()
         {
-            return ( ms_singleton != nullptr );
+            return ms_singleton;
         }
 
     };

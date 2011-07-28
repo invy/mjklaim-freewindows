@@ -2,6 +2,8 @@
 
 #include <boost/exception/diagnostic_information.hpp>
 
+#include "util/Assert.hpp"
+
 #include "core/Project.hpp"
 #include "view/Dialogs.hpp"
 #include "Paths.hpp"
@@ -39,7 +41,7 @@ namespace core
 
 	bool Context::new_project( const ProjectInfos& infos )
 	{
-		Q_ASSERT( is_valid(infos) );
+		AOSD_ASSERT( is_valid(infos), "Tried to create a new project with invalid informations!" );
 		
 		std::unique_ptr<Project> project( new Project( infos ) );
 		project->save(); // generate the file
@@ -66,7 +68,7 @@ namespace core
 
 	bool Context::open_project( std::unique_ptr<Project>&& project )
 	{
-		Q_CHECK_PTR( &project );
+		AOSD_ASSERT_NOT_NULL( project );
 
 		if( is_project_open() )
 			close_project();

@@ -22,7 +22,7 @@
 		static const bool IS_VS_DEBUGGER_PRESENT = IsDebuggerPresent();
 	}
 
-	#ifdef ERROR
+	#ifdef ERROR // WTF???
 		#undef ERROR
 	#endif
 
@@ -117,16 +117,23 @@ namespace util
 			std::cerr << message << '\n';
 		case( Log::INFO ):
 		case( Log::DEBUG ):
-			std::cout << message << '\n';
-			break;
-		default:
-			throw std::runtime_error( QObject::tr( "ERROR : Unknown logging level!" ).toStdString() );
-		}
-
 		// log into Visual Studio if we are debugging in it
 #if defined( _DEBUG ) && defined( _WIN32 ) // TODO : replace this by something more safe...
-		if( IS_VS_DEBUGGER_PRESENT ) OutputDebugString( (message + "\n").c_str() ); 
+			if( IS_VS_DEBUGGER_PRESENT ) 
+				OutputDebugString( (message + "\n").c_str() ); 
+			else
+				std::cout << message << '\n';
+#else
+			std::cout << message << '\n';
 #endif
+			
+			break;
+
+		default:
+			throw std::runtime_error( QObject::tr( "ERROR : Unknown logging level!" ).toStdString() ); // TODO : replace this exception by custom ones?
+		}
+
+		
 
 		// now we can display to the logging into the log view
 
