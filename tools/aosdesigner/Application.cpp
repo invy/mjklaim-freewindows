@@ -1,6 +1,8 @@
 #include "Application.hpp"
 
+#include "util/Assert.hpp"
 #include "util/Log.hpp"
+
 #include "core/Context.hpp"
 #include "view/ApplicationView.hpp"
 #include "view/Dialogs.hpp"
@@ -13,6 +15,8 @@ namespace aosd
 	{
 		AOSD_LOG << "New AOS Designer session start!";
 		
+		
+
 		// TODO : add version informations to logs 
 	}
 
