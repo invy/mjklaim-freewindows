@@ -22,7 +22,7 @@ LOG_PATH = 'generate_cpp.log'
 GENERATED_SOURCE_LIST_LOG_PATH = "generate_files.log"
 
 # Path of the XSD file to use to generate the code
-AOSL_XSD_PATH = os.path.abspath( "../../../language/aosl.xsd" )
+AOSL_XSD_PATH = os.path.abspath( "../../../aosl/aosl.xsd" )
 
 # Path of the directory where the generated C++ header files have to be installed.
 AOSCPP_AOSL_INCLUDE_PATH = os.path.abspath( "../include/aoslcpp/aosl" )

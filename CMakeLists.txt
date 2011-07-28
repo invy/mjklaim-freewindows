@@ -19,6 +19,6 @@ set( EXECUTABLE_OUTPUT_PATH     ${BUILD_DIR} )
 set( LIBRARY_OUTPUT_PATH        ${BUILD_DIR} )
 
 
-add_subdirectory( language ) # Language files
+add_subdirectory( aosl ) # AOSL files
 add_subdirectory( tools ) # Tools projects
 add_subdirectory( players ) # Players projects
