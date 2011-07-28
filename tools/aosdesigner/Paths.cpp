@@ -18,6 +18,8 @@ namespace path
 	const bfs::path PROJECT_LIBRARY_FILE	= PROJECT_LIBRARY_DIR / "library.aosl";
 	const bfs::path PROJECT_META_FILE		= "./meta.aosl";
 	const bfs::path PROJECT_SEQUENCES_DIR	= "./sequences/";
+
+	const bfs::path LOG_FILE_DIR			= bfs::current_path() / "logs";
 	
 	bfs::path SEQUENCE_DIR( const std::string& sequence_codename )
 	{

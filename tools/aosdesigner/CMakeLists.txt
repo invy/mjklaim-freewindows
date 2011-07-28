@@ -77,6 +77,7 @@ set( AOSDESIGNER_VIEW_HEADERS
 # Utility header files.
 set( AOSDESIGNER_UTIL_HEADERS
     ${AOSDESIGNER_UTIL_DIR}/Singleton.hpp
+	${AOSDESIGNER_UTIL_DIR}/Log.hpp
 )
 
 
@@ -153,7 +154,7 @@ set( AOSDESIGNER_STATE_SOURCES
 
 # Utility source files.
 set( AOSDESIGNER_UTIL_SOURCES
-    
+    ${AOSDESIGNER_UTIL_DIR}/Log.cpp
 )
 
 #------------------------------------------------------

@@ -76,6 +76,7 @@ namespace view
 		const auto name = m_ui->edit_project_name->text();
 		auto codename = name;
 		
+		codename = codename.trimmed();
 		codename.replace( QRegExp( "\\s+" ), "_" );
 		codename.replace( QRegExp( "\\W+" ), "" );
 

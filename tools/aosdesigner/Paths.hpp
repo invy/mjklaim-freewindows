@@ -38,6 +38,9 @@ namespace path
 	/// Directory containing the project's sequences.
 	extern const bfs::path PROJECT_SEQUENCES_DIR;
 
+	/// Directory that will contain the log file(s).
+	extern const bfs::path LOG_FILE_DIR;
+
 	/// Generate the path of a sequence directory.
 	bfs::path SEQUENCE_DIR( const std::string& sequence_codename );
 

@@ -1,6 +1,5 @@
 #include "Context.hpp"
 
-#include <iostream>
 #include <boost/exception/diagnostic_information.hpp>
 
 #include "core/Project.hpp"
@@ -62,27 +61,14 @@ namespace core
 		if( is_project_open() ) 
 			close_project(); // TODO : don't continue if the close failed!
 		
-		try
-		{
-			open_project( std::unique_ptr<Project>( new Project( project_file_path ) ) );
-		}
-		catch( const boost::exception& e )
-		{
-			// TODO : ADD LOGGING HERE!!!
-			std::cout<< "Error on opening a project : " << boost::diagnostic_information( e ) << std::endl;
-
-			__asm int 3;
-			return false;
-		}
-			
-		return true;
+		return open_project( std::unique_ptr<Project>( new Project( project_file_path ) ) );
 	}
 
 	bool Context::open_project( std::unique_ptr<Project>&& project )
 	{
 		Q_CHECK_PTR( &project );
 
-		if( m_project )
+		if( is_project_open() )
 			close_project();
 
 		m_project.swap( project );

@@ -1,16 +1,12 @@
 #include "Application.hpp"
 
-#include <iostream>
+#include "util/Log.hpp"
 
 int main( int arg_count, char** arg_array )
 {
-	std::cout << "Starting AOS Designer ... \n";
-
+	// TODO : add exception handling here
 	aosd::Application app( arg_count, arg_array );
 	auto result = app.run();
-
-	std::cout << "End of AOS Designer.";
-
 
 	return result;
 }
