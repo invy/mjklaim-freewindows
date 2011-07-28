@@ -46,7 +46,8 @@ namespace view
 
 	void NewProjectDialog::find_location()
 	{
-		auto location = request_new_project_path();
+		const bfs::path try_dir( m_ui->edit_dir_location->text().toStdString() );
+		auto location = request_new_project_path( try_dir );
 		if( !location.empty() )
 		{
 			m_ui->edit_dir_location->setText( QString::fromStdString(location.string()) );
