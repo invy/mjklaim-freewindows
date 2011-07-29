@@ -40,7 +40,7 @@ namespace util
 {
 	namespace
 	{
-		class LogFileHandler : public Singleton<LogFileHandler>
+		class LogFileHandler 
 		{
 		public:
 			LogFileHandler()
@@ -108,25 +108,22 @@ namespace util
 		const auto message =  m_stream.str();
 
 		// first we log into the file
-		LogFileHandler::instance().log( message );
+		log_file_handler.log( message );
 
 		// next we log into the "standard" outputs
+		// log into Visual Studio if we are debugging in it
+#if defined( _DEBUG ) && defined( _WIN32 ) // TODO : replace this by something more safe...
+		if( IS_VS_DEBUGGER_PRESENT ) 
+			OutputDebugString( (message + "\n").c_str() ); 
+#endif
 		switch ( m_level )
 		{
 		case( Log::ERROR ):
 			std::cerr << message << '\n';
+			break;
 		case( Log::INFO ):
 		case( Log::DEBUG ):
-		// log into Visual Studio if we are debugging in it
-#if defined( _DEBUG ) && defined( _WIN32 ) // TODO : replace this by something more safe...
-			if( IS_VS_DEBUGGER_PRESENT ) 
-				OutputDebugString( (message + "\n").c_str() ); 
-			else
-				std::cout << message << '\n';
-#else
-			std::cout << message << '\n';
-#endif
-			
+			std::cout << message << '\n';			
 			break;
 
 		default:
