@@ -66,6 +66,7 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.hpp
 	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.hpp
 	${AOSDESIGNER_VIEW_DIR}/NewProjectDialog.hpp
+	${AOSDESIGNER_VIEW_DIR}/NewSequenceDialog.hpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.hpp
 	${AOSDESIGNER_VIEW_DIR}/ActionsProvider.hpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
@@ -127,6 +128,7 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
 	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.cpp
 	${AOSDESIGNER_VIEW_DIR}/NewProjectDialog.cpp
+	${AOSDESIGNER_VIEW_DIR}/NewSequenceDialog.cpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.cpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp
 )
@@ -185,6 +187,7 @@ set( AOSDESIGNER_VIEW_UI
     ${AOSDESIGNER_UI_DIR}/MainWindow.ui
 	${AOSDESIGNER_UI_DIR}/WelcomeScreen.ui
 	${AOSDESIGNER_UI_DIR}/NewProjectDialog.ui
+	${AOSDESIGNER_UI_DIR}/NewSequenceDialog.ui
 )
 
 # UI files need to be processed by Qt wrapper to generate UI headers.

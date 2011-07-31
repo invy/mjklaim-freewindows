@@ -44,7 +44,15 @@ namespace core
 		std::unique_ptr<Project> project( new Project( infos ) );
 		project->save(); // generate the file
 
-		return open_project( std::move(project) );
+		const bool project_open = open_project( std::move(project) );
+		if( !project_open )
+			return false;
+
+		AOSD_ASSERT_NOT_NULL( m_project );
+
+		m_project->new_sequence();
+
+		return true;
 	}
 
 	bool Context::open_project()

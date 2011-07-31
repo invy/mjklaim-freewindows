@@ -5,6 +5,7 @@
 #include <boost/filesystem/path.hpp>
 
 #include "core/ProjectInfos.hpp"
+#include "core/SequenceInfos.hpp"
 
 namespace aosd
 {
@@ -30,6 +31,9 @@ namespace view
 
 	/** Show the dialog to create a new project. */
 	core::ProjectInfos request_new_project_infos();
+
+	/** Show the dialog to create a new sequence. */
+	core::SequenceInfos request_new_sequence_infos();
 
 }
 }

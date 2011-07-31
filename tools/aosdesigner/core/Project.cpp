@@ -11,6 +11,7 @@
 #include "util/Assert.hpp"
 
 #include "core/ProjectInfos.hpp"
+#include "view/Dialogs.hpp"
 #include "Paths.hpp"
 
 namespace aosd
@@ -24,8 +25,6 @@ namespace core
 		, m_directory_path( infos.location.parent_path() )
 	{
 		AOSD_ASSERT( is_valid(infos), "Tried to construct a Project with invalid project infos!" );
-		AOSD_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
-		AOSD_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
 	}
 
 	Project::Project( const bfs::path& project_file_path )
@@ -125,7 +124,8 @@ namespace core
 	bool Project::new_sequence()
 	{
 		// request the new sequence infos
-		SequenceInfos infos; // = ?
+		const SequenceInfos infos = view::request_new_sequence_infos();
+
 		// create and register the sequence
 		if( is_valid( infos ) ) 
 			return new_sequence( infos );

@@ -5,6 +5,7 @@
 
 #include "view/WelcomeScreen.hpp"
 #include "view/NewProjectDialog.hpp"
+#include "view/NewSequenceDialog.hpp"
 #include "Paths.hpp"
 
 namespace aosd
@@ -52,7 +53,14 @@ namespace view
 			return core::ProjectInfos();
 	}
 
-
+	core::SequenceInfos request_new_sequence_infos()
+	{
+		std::unique_ptr<NewSequenceDialog> dialog( new NewSequenceDialog() );
+		if( dialog->exec() )
+			return dialog->sequence_infos();
+		else
+			return core::SequenceInfos();
+	}
 
 }
 }
