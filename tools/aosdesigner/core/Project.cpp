@@ -21,14 +21,21 @@ namespace core
 	Project::Project( const ProjectInfos& infos )
 		: m_location( infos.location )
 		, m_name( infos.name )
+		, m_directory_path( infos.location.parent_path() )
 	{
 		AOSD_ASSERT( is_valid(infos), "Tried to construct a Project with invalid project infos!" );
+		AOSD_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
+		AOSD_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
 	}
 
 	Project::Project( const bfs::path& project_file_path )
 		: m_location( project_file_path )
+		, m_directory_path( project_file_path.parent_path() )
 	{
 		AOSD_ASSERT( !project_file_path.empty(), "Tried to construct a Project at an empty path!" );
+		AOSD_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
+		AOSD_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
+
 		// THINK : make it  a throwing test?
 		AOSD_ASSERT( boost::filesystem::exists( project_file_path ), "Tried to construct a Project with a path that don't exist!" ); 
 
@@ -49,6 +56,11 @@ namespace core
 	{
 		// TODO : add some checks!
 		m_location = new_filepath;
+		m_directory_path = m_location.parent_path();
+
+		AOSD_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
+		AOSD_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
+
 	}
 
 	void Project::rename( const std::string& new_name )
@@ -87,7 +99,7 @@ namespace core
 		catch( const boost::exception& e )
 		{
 			// TODO : add logging here
-			__asm int 3;
+			AOSD_NOT_IMPLEMENTED_YET;
 			return false;
 		}
 
@@ -102,6 +114,24 @@ namespace core
 	void Project::foreach_sequence( const SequenceReaderFunc& func ) const
 	{
 		std::for_each( m_sequences.begin(), m_sequences.end(), func );
+	}
+
+	bool Project::new_sequence( const SequenceInfos& infos )
+	{
+		m_sequences.push_back( new Sequence( *this, infos ) );
+		return true;
+	}
+
+	bool Project::new_sequence()
+	{
+		// request the new sequence infos
+		SequenceInfos infos; // = ?
+		// create and register the sequence
+		if( is_valid( infos ) ) 
+			return new_sequence( infos );
+		else 
+			return false;
+
 	}
 
 

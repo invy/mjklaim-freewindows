@@ -32,11 +32,9 @@ namespace core
 		ProjectInfos infos = view::request_new_project_infos();
 		
 		if( is_valid( infos ) )
-		{
 			return new_project( infos );
-		}
-
-		return false;
+		else 
+			return false;
 	}
 
 	bool Context::new_project( const ProjectInfos& infos )

@@ -44,6 +44,9 @@ namespace core
 
 		/// Path of the file that contain all the project's informations.
 		const bfs::path& location() const { return m_location; }
+		
+		/// Path of the directory where this project's file is located.
+		const bfs::path& directory_path() const { return m_directory_path; }
 
 		/** Change the project's file location to the provided one. */
 		void relocate( const bfs::path& new_filepath );
@@ -64,7 +67,13 @@ namespace core
 
 		/** Call the provided function for each Sequence in this project but don't allow to modify them. */
 		void foreach_sequence( const SequenceReaderFunc& func ) const;
+
+		/** Create a new "empty" sequence with provided informations. */
+		bool new_sequence( const SequenceInfos& infos );
 		
+		/** Request informations to the user and use them to create a new sequence. */
+		bool new_sequence();
+
 	private:
 
 		/// Sequences for this project.
@@ -73,8 +82,11 @@ namespace core
 		/// Name of the project.
 		std::string m_name;
 				
-		/// Path of the file that contain all the project's informations
+		/// Path of the file that contain all the project's informations about this project.
 		bfs::path m_location;
+
+		/// Path of the project's directory.
+		bfs::path m_directory_path;
 
 	};
 
