@@ -27,7 +27,7 @@ namespace view
 		connect( m_ui->edit_dir_location		, SIGNAL( textChanged(const QString&) )	, this		, SLOT( update_project_file() ) );
 
 		// set the validators
-		auto* codename_validator = new QRegExpValidator( QRegExp("[A-Za-z0-9_]+"), nullptr ); // TODO : later, allow any OS valid characters but no spaces.
+		auto* codename_validator = new QRegExpValidator( QRegExp("[A-Za-z0-9_]+"), this ); // TODO : later, allow any OS valid characters but no spaces.
 		m_ui->edit_codename->setValidator( codename_validator );
 
 		// set a default values
@@ -74,6 +74,7 @@ namespace view
 
 	void NewProjectDialog::update_codename()
 	{
+		// TODO : factorize that!!
 		const auto name = m_ui->edit_project_name->text();
 		auto codename = name;
 		

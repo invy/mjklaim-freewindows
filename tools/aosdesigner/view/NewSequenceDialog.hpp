@@ -28,6 +28,9 @@ namespace view
 		core::SequenceInfos sequence_infos();
 
 	private slots:
+
+		void create_sequence();
+		void update_codename();
 			
 	private:
 
