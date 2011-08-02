@@ -41,7 +41,7 @@ namespace core
 
 			std::auto_ptr<aosl::Story> story( new aosl::Story( stages, moves, aosl::Stage_ref(root_stage_id) ) );
 
-			return std::unique_ptr< aosl::Sequence >( new aosl::Sequence( library, canvas, story ) );
+			return std::unique_ptr< aosl::Sequence >( new aosl::Sequence( library, canvas, story, infos.name ) );
 		}
 
 	}
