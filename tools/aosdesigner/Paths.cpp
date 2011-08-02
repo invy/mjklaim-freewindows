@@ -6,11 +6,12 @@ namespace aosd
 {
 namespace path
 {
+	const bfs::path	AOSL_XSD_FILE			= bfs::current_path() / "aosl.xsd";
 
-	const std::string PROJECT_FILE_EXTENSION = ".aosp";
-	const std::string SEQUENCE_FILE_EXTENSION = ".aosl";
-	const std::string META_FILE_EXTENSION = ".aosl";
-	const std::string LIBRARY_FILE_EXTENSION = ".aosl";
+	const std::string PROJECT_FILE_EXTENSION	= ".aosp";
+	const std::string SEQUENCE_FILE_EXTENSION	= ".aosl";
+	const std::string META_FILE_EXTENSION		= ".aosl";
+	const std::string LIBRARY_FILE_EXTENSION	= ".aosl";
 
 
 	const bfs::path DEFAULT_PROJECTS_DIR	= bfs::current_path(); // TODO : replace this by the user directory

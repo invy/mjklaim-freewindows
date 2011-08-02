@@ -47,6 +47,15 @@ namespace core
 		read_xml( filestream, infos );
 
 		m_name = infos.get<std::string>( "project.name" );
+		auto sequences = infos.get_child( "project.sequences" );
+		std::for_each( sequences.begin(), sequences.end(), [&]( const std::pair< std::string, ptree >& sequence_info )
+		{
+			AOSD_ASSERT( sequence_info.first == "sequence", "Found an unknown tag! Should be \"sequence\" instead of \"" << sequence_info.first << "\"" );
+
+			const bfs::path sequence_location = sequence_info.second.get_value<std::string>();
+			add_sequence( std::unique_ptr<Sequence>( new Sequence( *this, sequence_location ) ) );
+			
+		});
 
 	}
 
@@ -79,7 +88,7 @@ namespace core
 
 		foreach_sequence( [&]( const Sequence& sequence )
 		{ 
-			infos.add( "project.sequences", sequence.location().generic_string() );
+			infos.add( "project.sequences.sequence", sequence.location().generic_string() );
 		});
 
 		// TODO : add other informations here
@@ -97,7 +106,6 @@ namespace core
 			}
 			
 			bfs::ofstream filestream( m_location );
-
 			write_xml( filestream, infos );
 		}
 		catch( const boost::exception& e )
@@ -124,7 +132,7 @@ namespace core
 
 	bool Project::new_sequence( const SequenceInfos& infos )
 	{
-		m_sequences.push_back( new Sequence( *this, infos ) );
+		add_sequence( std::unique_ptr<Sequence>( new Sequence( *this, infos ) ) );
 		return true;
 	}
 
@@ -139,6 +147,12 @@ namespace core
 		else 
 			return false;
 
+	}
+
+	void Project::add_sequence( std::unique_ptr<Sequence> sequence )
+	{
+		AOSD_ASSERT_NOT_NULL( sequence );
+		m_sequences.push_back( sequence.release() );
 	}
 
 

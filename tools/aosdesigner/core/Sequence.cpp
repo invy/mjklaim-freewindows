@@ -9,6 +9,8 @@
 
 #include "core/Project.hpp"
 
+#include "Paths.hpp"
+
 namespace aosd
 {
 namespace core
@@ -59,9 +61,30 @@ namespace core
 		: m_project( project )
 		, m_location( sequence_file_path )
 	{
+		xml_schema::Properties properties;
+		properties.schema_location( "artofsequence.org/aosl/1.0", path::AOSL_XSD_FILE.string() );
+
 		boost::filesystem::ifstream filestream( full_location() );
-		auto sequence = aosl::parse_sequence( filestream );
-		m_sequence.reset( sequence.release() );
+		try
+		{
+			auto sequence = aosl::parse_sequence( filestream, 0, properties );
+			m_sequence.reset( sequence.release() );
+		}
+		catch( const ::xsd::cxx::tree::parsing< char >& e )
+		{
+			AOSD_LOG_ERROR << e.what() << "\nDiagnostic : ";
+			
+			std::for_each( e.diagnostics().begin(), e.diagnostics().end(), []( const xsd::cxx::tree::error<char>& err )
+			{
+				AOSD_LOG_ERROR << "\n " << err;
+			});
+			
+		}
+		
+		if( m_sequence )
+		{
+			m_name = m_sequence->name();
+		}
 	}
 
 	Sequence::~Sequence()
@@ -78,8 +101,11 @@ namespace core
 			boost::filesystem::create_directories( sequence_directory );
 		}
 
+		xml_schema::NamespaceInfomap namespace_infos;
+		namespace_infos["aos"].name = "artofsequence.org/aosl/1.0";
+
 		boost::filesystem::ofstream filestream( sequence_file_path );
-		aosl::serialize_sequence( filestream, *m_sequence );
+		aosl::serialize_sequence( filestream, *m_sequence, namespace_infos );
 		
 		return true;
 	}

@@ -88,6 +88,10 @@ namespace core
 		/// Path of the project's directory.
 		bfs::path m_directory_path;
 
+
+		/// Add a Sequence to this project.
+		void add_sequence( std::unique_ptr<Sequence> sequence );
+
 	};
 
 	

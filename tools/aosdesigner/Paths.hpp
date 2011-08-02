@@ -11,6 +11,9 @@ namespace path
 {
 	namespace bfs = boost::filesystem;
 
+	/// XSD file used for aosl files validation.
+	extern const bfs::path AOSL_XSD_FILE;
+
 	/// Extension of projects files.
 	extern const std::string PROJECT_FILE_EXTENSION;
 
