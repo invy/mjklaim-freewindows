@@ -9,7 +9,7 @@
 
 -->
 
-<sequence xmlns="http://artofsequence.org/aosl/1.x" >
+<sequence xmlns="artofsequence.org/aosl/1.0" >
 
     <library>
         <resources>
@@ -27,7 +27,7 @@
         </objects>
     </canvas>
 
-    <thread begin="stage_0" >
+    <story begin="stage_0" >
 
         <navigation>
             
@@ -50,6 +50,6 @@
             <stage id="stage_1" />
         </stages>
         
-    </thread>
+    </story>
 
 </sequence>
