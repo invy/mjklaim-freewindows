@@ -92,14 +92,6 @@ namespace aosl
     };
 
     /**
-     * @brief Default constructor.
-     *
-     * Note that this constructor may leave the instance in an
-     * invalid state.
-     */
-    Axis_origin_x ();
-
-    /**
      * @brief Create an instance from the underlying enum value.
      *
      * @param v A enum value.

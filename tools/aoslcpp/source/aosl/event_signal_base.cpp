@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Event_signal_base::
-  Event_signal_base ()
-  : ::aosl::Event ()
-  {
-  }
-
-  Event_signal_base::
   Event_signal_base (const MoveType& move)
   : ::aosl::Event (move)
   {

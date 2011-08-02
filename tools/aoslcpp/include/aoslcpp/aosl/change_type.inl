@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Change_type::
-  Change_type ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Change_type::
   Change_type (const char* s)
   : ::xml_schema::String (s)
   {

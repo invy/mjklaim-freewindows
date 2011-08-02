@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Unique_id::
-  Unique_id ()
-  : ::xml_schema::Id ()
-  {
-  }
-
-  Unique_id::
   Unique_id (const ::xml_schema::Id& _xsd_Id_base)
   : ::xml_schema::Id (_xsd_Id_base)
   {

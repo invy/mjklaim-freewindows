@@ -47,17 +47,6 @@ namespace aosl
     "unknown");
 
   Change::
-  Change ()
-  : ::xml_schema::Type (),
-    effects_ (::xml_schema::Flags (), this),
-    script_ (::xml_schema::Flags (), this),
-    extension_ (::xml_schema::Flags (), this),
-    type_ (type_default_value (), ::xml_schema::Flags (), this),
-    object_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Change::
   Change (const ObjectType& object)
   : ::xml_schema::Type (),
     effects_ (::xml_schema::Flags (), this),

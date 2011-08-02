@@ -44,14 +44,6 @@ namespace aosl
   //
 
   Library::
-  Library ()
-  : ::xml_schema::Type (),
-    import_ (::xml_schema::Flags (), this),
-    resources_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Library::
   Library (const ResourcesType& resources)
   : ::xml_schema::Type (),
     import_ (::xml_schema::Flags (), this),

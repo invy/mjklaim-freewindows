@@ -44,14 +44,6 @@ namespace aosl
   //
 
   Event_input::
-  Event_input ()
-  : ::aosl::Event_input_base (),
-    key_ (::xml_schema::Flags (), this),
-    value_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Event_input::
   Event_input (const MoveType& move,
                const KeyType& key,
                const ValueType& value)

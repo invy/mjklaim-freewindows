@@ -44,13 +44,6 @@ namespace aosl
   //
 
   Event_selection::
-  Event_selection ()
-  : ::aosl::Event_selection_base (),
-    object_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Event_selection::
   Event_selection (const MoveType& move,
                    const ObjectType& object)
   : ::aosl::Event_selection_base (move),

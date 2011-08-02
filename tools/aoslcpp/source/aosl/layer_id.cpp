@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Layer_id::
-  Layer_id ()
-  : ::aosl::Unique_id ()
-  {
-  }
-
-  Layer_id::
   Layer_id (const ::xml_schema::Id& _xsd_Id_base)
   : ::aosl::Unique_id (_xsd_Id_base)
   {

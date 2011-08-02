@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Resource_type_generic::
-  Resource_type_generic ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Resource_type_generic::
   Resource_type_generic (Value v)
   : ::xml_schema::String (_xsd_Resource_type_generic_literals_[v])
   {

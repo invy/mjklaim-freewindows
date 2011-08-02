@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Angle_type::
-  Angle_type ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Angle_type::
   Angle_type (Value v)
   : ::xml_schema::String (_xsd_Angle_type_literals_[v])
   {

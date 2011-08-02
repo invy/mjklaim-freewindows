@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Move_id::
-  Move_id ()
-  : ::aosl::Unique_id ()
-  {
-  }
-
-  Move_id::
   Move_id (const ::xml_schema::Id& _xsd_Id_base)
   : ::aosl::Unique_id (_xsd_Id_base)
   {

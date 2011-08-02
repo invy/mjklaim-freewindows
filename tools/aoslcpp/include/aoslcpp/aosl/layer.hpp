@@ -301,14 +301,6 @@ namespace aosl
     //@{
 
     /**
-     * @brief Default constructor.
-     *
-     * Note that this constructor leaves required elements and
-     * attributes uninitialized.
-     */
-    Layer ();
-
-    /**
      * @brief Create an instance from the ultimate base and
      * initializers for required elements and attributes.
      */

@@ -47,14 +47,6 @@ namespace aosl
     "auto");
 
   Resource::
-  Resource ()
-  : ::aosl::Source_uri (),
-    id_ (::xml_schema::Flags (), this),
-    type_ (type_default_value (), ::xml_schema::Flags (), this)
-  {
-  }
-
-  Resource::
   Resource (const ::xml_schema::Uri& _xsd_Uri_base,
             const IdType& id)
   : ::aosl::Source_uri (_xsd_Uri_base),

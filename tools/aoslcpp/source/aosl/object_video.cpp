@@ -44,14 +44,6 @@ namespace aosl
   //
 
   Object_video::
-  Object_video ()
-  : ::aosl::Object (),
-    graphic_ (::xml_schema::Flags (), this),
-    stream_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Object_video::
   Object_video (const IdType& id,
                 const GraphicType& graphic,
                 const StreamType& stream)

@@ -47,17 +47,6 @@ namespace aosl
     "reset");
 
   Script::
-  Script ()
-  : ::xml_schema::Type (),
-    lang_ (::xml_schema::Flags (), this),
-    activation_ (activation_default_value (), ::xml_schema::Flags (), this),
-    loop_ (loop_default_value (), ::xml_schema::Flags (), this),
-    interval_ (interval_default_value (), ::xml_schema::Flags (), this),
-    source_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Script::
   Script (const LangType& lang)
   : ::xml_schema::Type (),
     lang_ (lang, ::xml_schema::Flags (), this),

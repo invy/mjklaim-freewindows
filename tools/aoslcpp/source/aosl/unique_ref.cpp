@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Unique_ref::
-  Unique_ref ()
-  : ::xml_schema::Idref ()
-  {
-  }
-
-  Unique_ref::
   Unique_ref (const ::xml_schema::Idref& _xsd_Idref_base)
   : ::xml_schema::Idref (_xsd_Idref_base)
   {

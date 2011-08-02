@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Special_layer_ref::
-  Special_layer_ref ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Special_layer_ref::
   Special_layer_ref (Value v)
   : ::xml_schema::String (_xsd_Special_layer_ref_literals_[v])
   {

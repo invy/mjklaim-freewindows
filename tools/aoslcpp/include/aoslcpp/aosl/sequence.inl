@@ -171,6 +171,41 @@ namespace aosl
   {
     return this->story_.detach ();
   }
+
+  inline
+  const Sequence::NameType& Sequence::
+  name () const
+  {
+    return this->name_.get ();
+  }
+
+  inline
+  Sequence::NameType& Sequence::
+  name ()
+  {
+    return this->name_.get ();
+  }
+
+  inline
+  void Sequence::
+  name (const NameType& x)
+  {
+    this->name_.set (x);
+  }
+
+  inline
+  void Sequence::
+  name (::std::auto_ptr< NameType > x)
+  {
+    this->name_.set (x);
+  }
+
+  inline
+  ::std::auto_ptr< Sequence::NameType > Sequence::
+  detach_name ()
+  {
+    return this->name_.detach ();
+  }
 }
 
 // Begin epilogue.

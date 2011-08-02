@@ -44,13 +44,6 @@ namespace aosl
   //
 
   Object_special::
-  Object_special ()
-  : ::aosl::Object (),
-    type_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Object_special::
   Object_special (const IdType& id,
                   const TypeType& type)
   : ::aosl::Object (id),

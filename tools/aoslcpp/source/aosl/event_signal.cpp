@@ -44,13 +44,6 @@ namespace aosl
   //
 
   Event_signal::
-  Event_signal ()
-  : ::aosl::Event_signal_base (),
-    source_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Event_signal::
   Event_signal (const MoveType& move,
                 const SourceType& source)
   : ::aosl::Event_signal_base (move),

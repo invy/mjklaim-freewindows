@@ -44,16 +44,6 @@ namespace aosl
   //
 
   Box::
-  Box ()
-  : ::xml_schema::Type (),
-    position_ (::xml_schema::Flags (), this),
-    size_ (::xml_schema::Flags (), this),
-    center_ (::xml_schema::Flags (), this),
-    orientation_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Box::
   Box (const PositionType& position,
        const SizeType& size,
        const CenterType& center,

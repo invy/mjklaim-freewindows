@@ -44,36 +44,30 @@ namespace aosl
   //
 
   Sequence::
-  Sequence ()
-  : ::xml_schema::Type (),
-    meta_ (::xml_schema::Flags (), this),
-    library_ (::xml_schema::Flags (), this),
-    canvas_ (::xml_schema::Flags (), this),
-    story_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Sequence::
   Sequence (const LibraryType& library,
             const CanvasType& canvas,
-            const StoryType& story)
+            const StoryType& story,
+            const NameType& name)
   : ::xml_schema::Type (),
     meta_ (::xml_schema::Flags (), this),
     library_ (library, ::xml_schema::Flags (), this),
     canvas_ (canvas, ::xml_schema::Flags (), this),
-    story_ (story, ::xml_schema::Flags (), this)
+    story_ (story, ::xml_schema::Flags (), this),
+    name_ (name, ::xml_schema::Flags (), this)
   {
   }
 
   Sequence::
   Sequence (::std::auto_ptr< LibraryType >& library,
             ::std::auto_ptr< CanvasType >& canvas,
-            ::std::auto_ptr< StoryType >& story)
+            ::std::auto_ptr< StoryType >& story,
+            const NameType& name)
   : ::xml_schema::Type (),
     meta_ (::xml_schema::Flags (), this),
     library_ (library, ::xml_schema::Flags (), this),
     canvas_ (canvas, ::xml_schema::Flags (), this),
-    story_ (story, ::xml_schema::Flags (), this)
+    story_ (story, ::xml_schema::Flags (), this),
+    name_ (name, ::xml_schema::Flags (), this)
   {
   }
 
@@ -85,7 +79,8 @@ namespace aosl
     meta_ (x.meta_, f, this),
     library_ (x.library_, f, this),
     canvas_ (x.canvas_, f, this),
-    story_ (x.story_, f, this)
+    story_ (x.story_, f, this),
+    name_ (x.name_, f, this)
   {
   }
 
@@ -97,11 +92,12 @@ namespace aosl
     meta_ (f, this),
     library_ (f, this),
     canvas_ (f, this),
-    story_ (f, this)
+    story_ (f, this),
+    name_ (f, this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
-      ::xsd::cxx::xml::dom::parser< char > p (e, true, false);
+      ::xsd::cxx::xml::dom::parser< char > p (e, true, true);
       this->parse (p, f);
     }
   }
@@ -195,6 +191,29 @@ namespace aosl
         "story",
         "artofsequence.org/aosl/1.0");
     }
+
+    while (p.more_attributes ())
+    {
+      const ::xercesc::DOMAttr& i (p.next_attribute ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (i));
+
+      if (n.name () == "name" && n.namespace_ ().empty ())
+      {
+        ::std::auto_ptr< NameType > r (
+          NameTraits::create (i, f, this));
+
+        this->name_.set (r);
+        continue;
+      }
+    }
+
+    if (!name_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "name",
+        "");
+    }
   }
 
   Sequence* Sequence::
@@ -222,6 +241,9 @@ namespace aosl
       return false;
 
     if (!(x.story () == y.story ()))
+      return false;
+
+    if (!(x.name () == y.name ()))
       return false;
 
     return true;
@@ -258,6 +280,7 @@ namespace aosl
     o << ::std::endl << "library: " << i.library ();
     o << ::std::endl << "canvas: " << i.canvas ();
     o << ::std::endl << "story: " << i.story ();
+    o << ::std::endl << "name: " << i.name ();
     return o;
   }
 }
@@ -337,6 +360,17 @@ namespace aosl
           e));
 
       s << i.story ();
+    }
+
+    // name
+    //
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "name",
+          e));
+
+      a << i.name ();
     }
   }
 }

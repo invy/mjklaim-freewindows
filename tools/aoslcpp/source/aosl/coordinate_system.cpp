@@ -44,15 +44,6 @@ namespace aosl
   //
 
   Coordinate_system::
-  Coordinate_system ()
-  : ::xml_schema::Type (),
-    xaxis_ (::xml_schema::Flags (), this),
-    yaxis_ (::xml_schema::Flags (), this),
-    zaxis_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Coordinate_system::
   Coordinate_system (const XaxisType& xaxis,
                      const YaxisType& yaxis,
                      const ZaxisType& zaxis)

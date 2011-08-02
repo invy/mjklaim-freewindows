@@ -47,14 +47,6 @@ namespace aosl
     "unknown");
 
   Event::
-  Event ()
-  : ::xml_schema::Type (),
-    move_ (::xml_schema::Flags (), this),
-    type_ (type_default_value (), ::xml_schema::Flags (), this)
-  {
-  }
-
-  Event::
   Event (const MoveType& move)
   : ::xml_schema::Type (),
     move_ (move, ::xml_schema::Flags (), this),

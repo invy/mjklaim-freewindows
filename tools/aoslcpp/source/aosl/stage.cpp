@@ -44,16 +44,6 @@ namespace aosl
   //
 
   Stage::
-  Stage ()
-  : ::xml_schema::Type (),
-    navigation_ (::xml_schema::Flags (), this),
-    script_ (::xml_schema::Flags (), this),
-    extension_ (::xml_schema::Flags (), this),
-    id_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Stage::
   Stage (const IdType& id)
   : ::xml_schema::Type (),
     navigation_ (::xml_schema::Flags (), this),

@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Change_special::
-  Change_special ()
-  : ::aosl::Change ()
-  {
-  }
-
-  Change_special::
   Change_special (const ObjectType& object)
   : ::aosl::Change (object)
   {

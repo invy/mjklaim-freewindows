@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Stage_id::
-  Stage_id ()
-  : ::aosl::Unique_id ()
-  {
-  }
-
-  Stage_id::
   Stage_id (const ::xml_schema::Id& _xsd_Id_base)
   : ::aosl::Unique_id (_xsd_Id_base)
   {

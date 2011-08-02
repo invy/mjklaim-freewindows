@@ -44,19 +44,6 @@ namespace aosl
   //
 
   Object::
-  Object ()
-  : ::xml_schema::Type (),
-    properties_ (::xml_schema::Flags (), this),
-    extension_ (::xml_schema::Flags (), this),
-    children_ (::xml_schema::Flags (), this),
-    id_ (::xml_schema::Flags (), this),
-    active_ (active_default_value (), ::xml_schema::Flags (), this),
-    resource_ (::xml_schema::Flags (), this),
-    layer_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Object::
   Object (const IdType& id)
   : ::xml_schema::Type (),
     properties_ (::xml_schema::Flags (), this),

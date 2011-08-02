@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Change_type_generic::
-  Change_type_generic ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Change_type_generic::
   Change_type_generic (Value v)
   : ::xml_schema::String (_xsd_Change_type_generic_literals_[v])
   {

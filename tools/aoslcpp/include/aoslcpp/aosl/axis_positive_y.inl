@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Axis_positive_y::
-  Axis_positive_y ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Axis_positive_y::
   Axis_positive_y (Value v)
   : ::xml_schema::String (_xsd_Axis_positive_y_literals_[v])
   {

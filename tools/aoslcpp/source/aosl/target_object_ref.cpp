@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Target_object_ref::
-  Target_object_ref ()
-  : ::aosl::Unique_ref ()
-  {
-  }
-
-  Target_object_ref::
   Target_object_ref (const ::xml_schema::Idref& _xsd_Idref_base)
   : ::aosl::Unique_ref (_xsd_Idref_base)
   {

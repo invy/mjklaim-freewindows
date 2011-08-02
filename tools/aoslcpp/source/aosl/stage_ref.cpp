@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Stage_ref::
-  Stage_ref ()
-  : ::aosl::Unique_ref ()
-  {
-  }
-
-  Stage_ref::
   Stage_ref (const ::xml_schema::Idref& _xsd_Idref_base)
   : ::aosl::Unique_ref (_xsd_Idref_base)
   {

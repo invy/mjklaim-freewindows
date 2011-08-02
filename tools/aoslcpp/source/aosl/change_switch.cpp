@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Change_switch::
-  Change_switch ()
-  : ::aosl::Change ()
-  {
-  }
-
-  Change_switch::
   Change_switch (const ObjectType& object)
   : ::aosl::Change (object)
   {

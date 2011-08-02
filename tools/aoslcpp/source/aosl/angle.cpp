@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Angle::
-  Angle ()
-  : ::xsd::cxx::tree::fundamental_base< ::xml_schema::Double, char, ::xml_schema::SimpleType, ::xsd::cxx::tree::schema_type::double_ > ()
-  {
-  }
-
-  Angle::
   Angle (const ::xml_schema::Double& _xsd_Double_base)
   : ::xsd::cxx::tree::fundamental_base< ::xml_schema::Double, char, ::xml_schema::SimpleType, ::xsd::cxx::tree::schema_type::double_ > (_xsd_Double_base)
   {

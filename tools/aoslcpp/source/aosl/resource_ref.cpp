@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Resource_ref::
-  Resource_ref ()
-  : ::aosl::Unique_ref ()
-  {
-  }
-
-  Resource_ref::
   Resource_ref (const ::xml_schema::Idref& _xsd_Idref_base)
   : ::aosl::Unique_ref (_xsd_Idref_base)
   {

@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Event_input_base::
-  Event_input_base ()
-  : ::aosl::Event ()
-  {
-  }
-
-  Event_input_base::
   Event_input_base (const MoveType& move)
   : ::aosl::Event (move)
   {

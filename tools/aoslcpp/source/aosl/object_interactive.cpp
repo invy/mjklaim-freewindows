@@ -44,14 +44,6 @@ namespace aosl
   //
 
   Object_interactive::
-  Object_interactive ()
-  : ::aosl::Object (),
-    graphic_ (::xml_schema::Flags (), this),
-    interaction_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Object_interactive::
   Object_interactive (const IdType& id,
                       const GraphicType& graphic,
                       const InteractionType& interaction)

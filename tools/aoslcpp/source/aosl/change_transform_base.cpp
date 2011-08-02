@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Change_transform_base::
-  Change_transform_base ()
-  : ::aosl::Change ()
-  {
-  }
-
-  Change_transform_base::
   Change_transform_base (const ObjectType& object)
   : ::aosl::Change (object)
   {

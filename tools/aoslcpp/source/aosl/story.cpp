@@ -44,17 +44,6 @@ namespace aosl
   //
 
   Story::
-  Story ()
-  : ::xml_schema::Type (),
-    properties_ (::xml_schema::Flags (), this),
-    navigation_ (::xml_schema::Flags (), this),
-    stages_ (::xml_schema::Flags (), this),
-    moves_ (::xml_schema::Flags (), this),
-    begin_ (::xml_schema::Flags (), this)
-  {
-  }
-
-  Story::
   Story (const StagesType& stages,
          const MovesType& moves,
          const BeginType& begin)

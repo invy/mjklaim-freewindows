@@ -76,14 +76,6 @@ namespace aosl
     public:
 
     /**
-     * @brief Default constructor.
-     *
-     * Note that this constructor may leave the instance in an
-     * invalid state.
-     */
-    Move_ref ();
-
-    /**
      * @brief Create an instance from a C string.
      *
      * @param v A string value.

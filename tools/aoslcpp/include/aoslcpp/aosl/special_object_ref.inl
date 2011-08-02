@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Special_object_ref::
-  Special_object_ref ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Special_object_ref::
   Special_object_ref (Value v)
   : ::xml_schema::String (_xsd_Special_object_ref_literals_[v])
   {

@@ -383,17 +383,81 @@ namespace aosl
     //@}
 
     /**
-     * @name Constructors
+     * @name name
+     *
+     * @brief Accessor and modifier functions for the %name
+     * required attribute.
+     *
+     * Name of the Sequence.
+     * Can be used as a default title by the player.
      */
     //@{
 
     /**
-     * @brief Default constructor.
-     *
-     * Note that this constructor leaves required elements and
-     * attributes uninitialized.
+     * @brief Attribute type.
      */
-    Sequence ();
+    typedef ::xml_schema::String NameType;
+
+    /**
+     * @brief Attribute traits type.
+     */
+    typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
+
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
+    const NameType&
+    name () const;
+
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
+    NameType&
+    name ();
+
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
+    void
+    name (const NameType& x);
+
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
+    void
+    name (::std::auto_ptr< NameType > p);
+
+    /**
+     * @brief Detach the attribute value from the object model.
+     *
+     * @return A pointer to the attribute value.
+     *
+     * Note that this function leaves the required attribute in 
+     * the original object model uninitialized.
+     */
+    ::std::auto_ptr< NameType >
+    detach_name ();
+
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
 
     /**
      * @brief Create an instance from the ultimate base and
@@ -401,7 +465,8 @@ namespace aosl
      */
     Sequence (const LibraryType&,
               const CanvasType&,
-              const StoryType&);
+              const StoryType&,
+              const NameType&);
 
     /**
      * @brief Create an instance from the ultimate base and
@@ -413,7 +478,8 @@ namespace aosl
      */
     Sequence (::std::auto_ptr< LibraryType >&,
               ::std::auto_ptr< CanvasType >&,
-              ::std::auto_ptr< StoryType >&);
+              ::std::auto_ptr< StoryType >&,
+              const NameType&);
 
     /**
      * @brief Create an instance from a DOM element.
@@ -478,6 +544,7 @@ namespace aosl
     ::xsd::cxx::tree::one< LibraryType > library_;
     ::xsd::cxx::tree::one< CanvasType > canvas_;
     ::xsd::cxx::tree::one< StoryType > story_;
+    ::xsd::cxx::tree::one< NameType > name_;
 
     //@endcond
   };

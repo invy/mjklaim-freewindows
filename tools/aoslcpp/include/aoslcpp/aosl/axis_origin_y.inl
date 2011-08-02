@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Axis_origin_y::
-  Axis_origin_y ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Axis_origin_y::
   Axis_origin_y (Value v)
   : ::xml_schema::String (_xsd_Axis_origin_y_literals_[v])
   {

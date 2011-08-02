@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Library_include::
-  Library_include ()
-  : ::aosl::Source_uri ()
-  {
-  }
-
-  Library_include::
   Library_include (const ::xml_schema::Uri& _xsd_Uri_base)
   : ::aosl::Source_uri (_xsd_Uri_base)
   {

@@ -44,15 +44,6 @@ namespace aosl
   //
 
   Layer::
-  Layer ()
-  : ::xml_schema::Type (),
-    extension_ (::xml_schema::Flags (), this),
-    id_ (::xml_schema::Flags (), this),
-    active_ (active_default_value (), ::xml_schema::Flags (), this)
-  {
-  }
-
-  Layer::
   Layer (const IdType& id)
   : ::xml_schema::Type (),
     extension_ (::xml_schema::Flags (), this),

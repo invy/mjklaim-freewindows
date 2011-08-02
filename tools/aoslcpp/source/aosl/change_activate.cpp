@@ -44,12 +44,6 @@ namespace aosl
   //
 
   Change_activate::
-  Change_activate ()
-  : ::aosl::Change ()
-  {
-  }
-
-  Change_activate::
   Change_activate (const ObjectType& object)
   : ::aosl::Change (object)
   {

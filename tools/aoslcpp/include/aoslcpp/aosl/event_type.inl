@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Event_type::
-  Event_type ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Event_type::
   Event_type (Value v)
   : ::xml_schema::String (_xsd_Event_type_literals_[v])
   {

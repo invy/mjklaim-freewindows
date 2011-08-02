@@ -22,13 +22,6 @@ namespace aosl
 
   inline
   Referential::
-  Referential ()
-  : ::xml_schema::String ()
-  {
-  }
-
-  inline
-  Referential::
   Referential (Value v)
   : ::xml_schema::String (_xsd_Referential_literals_[v])
   {
