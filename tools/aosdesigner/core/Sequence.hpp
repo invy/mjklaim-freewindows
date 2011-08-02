@@ -43,6 +43,9 @@ namespace core
 		
 		/// Name of the Sequence.
 		const std::string& name() const { return m_name; }
+
+		const boost::filesystem::path& location() const { return m_location; }
+		boost::filesystem::path full_location() const;
 		
 		/// Project in which this sequence is loaded.
 		const Project& project() const { return m_project; }
@@ -52,7 +55,7 @@ namespace core
 
 		/// Name of this Sequence
 		std::string m_name;
-		
+
 		/// Path relative to the project's folder of the file containing this sequence.
 		boost::filesystem::path m_location;
 

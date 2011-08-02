@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>629</width>
-    <height>190</height>
+    <width>711</width>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -143,9 +143,11 @@ The directory where it is located will be used to contain everything in the Proj
  <tabstops>
   <tabstop>edit_project_name</tabstop>
   <tabstop>edit_codename</tabstop>
-  <tabstop>edit_project_file_location</tabstop>
+  <tabstop>edit_dir_location</tabstop>
+  <tabstop>button_find_location</tabstop>
   <tabstop>button_create</tabstop>
   <tabstop>button_cancel</tabstop>
+  <tabstop>edit_project_file_location</tabstop>
  </tabstops>
  <resources/>
  <connections/>

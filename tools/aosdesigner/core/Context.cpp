@@ -42,7 +42,8 @@ namespace core
 		AOSD_ASSERT( is_valid(infos), "Tried to create a new project with invalid informations!" );
 		
 		std::unique_ptr<Project> project( new Project( infos ) );
-		project->save(); // generate the file
+		project->new_sequence();	// create a first sequence
+		project->save();			// generate the file
 
 		const bool project_open = open_project( std::move(project) );
 		if( !project_open )
@@ -50,8 +51,7 @@ namespace core
 
 		AOSD_ASSERT_NOT_NULL( m_project );
 
-		m_project->new_sequence();
-
+		
 		return true;
 	}
 

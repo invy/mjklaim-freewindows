@@ -77,6 +77,11 @@ namespace core
 
 		infos.put( "project.name", name() );
 
+		foreach_sequence( [&]( const Sequence& sequence )
+		{ 
+			infos.add( "project.sequences", sequence.location().generic_string() );
+		});
+
 		// TODO : add other informations here
 		// TODO : manage errors differently
 
@@ -101,6 +106,8 @@ namespace core
 			AOSD_NOT_IMPLEMENTED_YET;
 			return false;
 		}
+
+		foreach_sequence( []( Sequence& sequence ){ sequence.save(); });
 
 		return true;
 	}

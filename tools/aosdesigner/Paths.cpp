@@ -30,7 +30,7 @@ namespace path
 	bfs::path SEQUENCE_FILE( const std::string& sequence_codename )
 	{
 		// TODO : add some checks
-		return SEQUENCE_DIR( sequence_codename ) / sequence_codename / (sequence_codename + SEQUENCE_FILE_EXTENSION );
+		return SEQUENCE_DIR( sequence_codename ) / (sequence_codename + SEQUENCE_FILE_EXTENSION );
 	}
 
 	bfs::path PROJECT_FILE( const std::string& project_codename )
