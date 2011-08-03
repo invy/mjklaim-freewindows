@@ -234,5 +234,11 @@ include_directories(
 add_executable( aosdesigner ${AOSDESIGNER_ALL_FILES} )
 target_link_libraries( aosdesigner ${QT_LIBRARIES} aoslcpp )
 
+set( AOSDESIGNER_BUILD_MODE "$(Configuration)" ) #until I find a cross-platform way to get the configuration...
+
 # We need the AOSL definition file in the build directory
-add_custom_command( TARGET aosdesigner POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${AOSL_XSD_FILE} ${BUILD_DIR}/$(Configuration) ) #until I find a way to get the configuration...
+add_custom_command( 
+	TARGET aosdesigner 
+	POST_BUILD 
+	COMMAND ${CMAKE_COMMAND} -E copy ${AOSL_XSD_FILE} ${BUILD_DIR}/${AOSDESIGNER_BUILD_MODE} 
+) 
