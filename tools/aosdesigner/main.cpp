@@ -3,6 +3,9 @@
 #include "Application.hpp"
 #include "util/Log.hpp"
 
+
+
+
 int main( int arg_count, char** arg_array )
 {
 	// TODO : add basic (MSVC) memory leak checks

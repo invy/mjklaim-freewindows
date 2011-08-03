@@ -233,3 +233,6 @@ include_directories(
 
 add_executable( aosdesigner ${AOSDESIGNER_ALL_FILES} )
 target_link_libraries( aosdesigner ${QT_LIBRARIES} aoslcpp )
+
+# We need the AOSL definition file in the build directory
+file( COPY ${AOSL_XSD_FILE} DESTINATION ${CMAKE_BINARY_DIR} )
