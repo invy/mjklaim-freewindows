@@ -47,13 +47,15 @@ namespace aosl
   Sequence (const LibraryType& library,
             const CanvasType& canvas,
             const StoryType& story,
-            const NameType& name)
+            const NameType& name,
+            const IdType& id)
   : ::xml_schema::Type (),
     meta_ (::xml_schema::Flags (), this),
     library_ (library, ::xml_schema::Flags (), this),
     canvas_ (canvas, ::xml_schema::Flags (), this),
     story_ (story, ::xml_schema::Flags (), this),
-    name_ (name, ::xml_schema::Flags (), this)
+    name_ (name, ::xml_schema::Flags (), this),
+    id_ (id, ::xml_schema::Flags (), this)
   {
   }
 
@@ -61,13 +63,15 @@ namespace aosl
   Sequence (::std::auto_ptr< LibraryType >& library,
             ::std::auto_ptr< CanvasType >& canvas,
             ::std::auto_ptr< StoryType >& story,
-            const NameType& name)
+            const NameType& name,
+            const IdType& id)
   : ::xml_schema::Type (),
     meta_ (::xml_schema::Flags (), this),
     library_ (library, ::xml_schema::Flags (), this),
     canvas_ (canvas, ::xml_schema::Flags (), this),
     story_ (story, ::xml_schema::Flags (), this),
-    name_ (name, ::xml_schema::Flags (), this)
+    name_ (name, ::xml_schema::Flags (), this),
+    id_ (id, ::xml_schema::Flags (), this)
   {
   }
 
@@ -80,7 +84,8 @@ namespace aosl
     library_ (x.library_, f, this),
     canvas_ (x.canvas_, f, this),
     story_ (x.story_, f, this),
-    name_ (x.name_, f, this)
+    name_ (x.name_, f, this),
+    id_ (x.id_, f, this)
   {
   }
 
@@ -93,7 +98,8 @@ namespace aosl
     library_ (f, this),
     canvas_ (f, this),
     story_ (f, this),
-    name_ (f, this)
+    name_ (f, this),
+    id_ (f, this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -206,12 +212,28 @@ namespace aosl
         this->name_.set (r);
         continue;
       }
+
+      if (n.name () == "id" && n.namespace_ ().empty ())
+      {
+        ::std::auto_ptr< IdType > r (
+          IdTraits::create (i, f, this));
+
+        this->id_.set (r);
+        continue;
+      }
     }
 
     if (!name_.present ())
     {
       throw ::xsd::cxx::tree::expected_attribute< char > (
         "name",
+        "");
+    }
+
+    if (!id_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "id",
         "");
     }
   }
@@ -244,6 +266,9 @@ namespace aosl
       return false;
 
     if (!(x.name () == y.name ()))
+      return false;
+
+    if (!(x.id () == y.id ()))
       return false;
 
     return true;
@@ -281,6 +306,7 @@ namespace aosl
     o << ::std::endl << "canvas: " << i.canvas ();
     o << ::std::endl << "story: " << i.story ();
     o << ::std::endl << "name: " << i.name ();
+    o << ::std::endl << "id: " << i.id ();
     return o;
   }
 }
@@ -371,6 +397,17 @@ namespace aosl
           e));
 
       a << i.name ();
+    }
+
+    // id
+    //
+    {
+      ::xercesc::DOMAttr& a (
+        ::xsd::cxx::xml::dom::create_attribute (
+          "id",
+          e));
+
+      a << i.id ();
     }
   }
 }

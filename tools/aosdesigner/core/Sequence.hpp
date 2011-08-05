@@ -25,6 +25,8 @@ namespace core
 	{
 	public:
 
+		typedef std::string UniqueId;
+
 		/** Create a new sequence using the provided informations.
 			@param project		Project in which this sequence exists.
 			@param infos		Informations required to build the sequence.
@@ -44,6 +46,9 @@ namespace core
 		/// Name of the Sequence.
 		const std::string& name() const { return m_name; }
 
+		/// Unique identifier of this Sequence.
+		const UniqueId& id() const { return m_id; }
+
 		const boost::filesystem::path& location() const { return m_location; }
 		boost::filesystem::path full_location() const;
 		
@@ -56,6 +61,9 @@ namespace core
 		/// Name of this Sequence
 		std::string m_name;
 
+		/// Unique identifier of this Sequence
+		UniqueId m_id;
+
 		/// Path relative to the project's folder of the file containing this sequence.
 		boost::filesystem::path m_location;
 
@@ -64,6 +72,8 @@ namespace core
 
 		/// Project in which this sequence is loaded.
 		Project& m_project;
+
+		
 	};
 
 

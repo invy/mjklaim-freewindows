@@ -55,6 +55,8 @@ namespace core
 			const bfs::path sequence_location = sequence_info.second.get_value<std::string>();
 			add_sequence( std::unique_ptr<Sequence>( new Sequence( *this, sequence_location ) ) );
 			
+			AOSD_LOG << "Loaded Sequence : " << m_sequences.back().name() << " [" << m_sequences.back().id() << "]";
+
 		});
 
 	}

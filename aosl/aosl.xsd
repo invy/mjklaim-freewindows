@@ -540,7 +540,7 @@
 		</xs:annotation>
 		
 		<xs:restriction base="xs:string">
-			<xs:pattern value="([a-zA-Z0-9_])+" />
+			<xs:pattern value="([a-zA-Z0-9_-])+" />
 		</xs:restriction>
 		
 	</xs:simpleType>
@@ -559,7 +559,7 @@
 			<xs:documentation>Valid version name</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="([a-zA-Z0-9_])+" />
+			<xs:pattern value="([a-zA-Z0-9_-])+" />
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -742,10 +742,17 @@
 					Name of the Sequence.
 					Can be used as a default title by the player.
 				</xs:documentation>
-			</xs:annotation>
-			
+			</xs:annotation>	
 		</xs:attribute>
 
+		<xs:attribute name="id" type="aos:unique_id" use="required" >
+			<xs:annotation>
+				<xs:documentation>
+					Identifier of the Sequence.
+					Used by tools manipulating AOSL files to identify them.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 
 	</xs:complexType>
 
@@ -1117,7 +1124,7 @@
 		</xs:annotation>
 
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[!]([a-zA-Z0-9_])+" />
+			<xs:pattern value="[!]([a-zA-Z0-9_-])+" />
 		</xs:restriction>
 
 	</xs:simpleType>
@@ -1724,7 +1731,7 @@
 		</xs:annotation>
 
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[!]([a-zA-Z0-9_])+" />
+			<xs:pattern value="[!]([a-zA-Z0-9_-])+" />
 		</xs:restriction>
 
 	</xs:simpleType>
@@ -2137,7 +2144,7 @@
 		</xs:annotation>
 
 		<xs:restriction base="xs:ID">
-			<xs:pattern value="([a-zA-Z0-9_])+" />
+			<xs:pattern value="([a-zA-Z0-9_-])+" />
 		</xs:restriction>
 
 	</xs:simpleType>
@@ -2195,7 +2202,7 @@
 		</xs:annotation>
 
 		<xs:restriction base="xs:IDREF" >
-			<xs:pattern value="([a-zA-Z0-9_])+" />
+			<xs:pattern value="([a-zA-Z0-9_-])+" />
 		</xs:restriction>
 
 	</xs:simpleType>

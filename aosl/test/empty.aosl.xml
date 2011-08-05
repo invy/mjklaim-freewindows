@@ -10,7 +10,7 @@
 
 -->
 
-<sequence xmlns="artofsequence.org/aosl/1.0" >
+<sequence xmlns="artofsequence.org/aosl/1.0" id="test-empty" name="Test : Empty Sequence" >
 
     <library>
         <resources>

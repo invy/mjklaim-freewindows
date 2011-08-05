@@ -2,6 +2,8 @@
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 #include "util/Assert.hpp"
 
@@ -43,7 +45,10 @@ namespace core
 
 			std::auto_ptr<aosl::Story> story( new aosl::Story( stages, moves, aosl::Stage_ref(root_stage_id) ) );
 
-			return std::unique_ptr< aosl::Sequence >( new aosl::Sequence( library, canvas, story, infos.name ) );
+			static boost::uuids::random_generator new_sequence_id_generator;
+			aosl::Unique_id unique_id( to_string( new_sequence_id_generator() ) );
+
+			return std::unique_ptr< aosl::Sequence >( new aosl::Sequence( library, canvas, story, infos.name, unique_id ) );
 		}
 
 	}
@@ -54,6 +59,10 @@ namespace core
 		, m_location( infos.location )
 		, m_sequence( create_empty_sequence( infos ) )
 	{
+		if( m_sequence )
+		{
+			m_id = m_sequence->id();
+		}
 		
 	}
 
@@ -84,7 +93,9 @@ namespace core
 		if( m_sequence )
 		{
 			m_name = m_sequence->name();
+			m_id = m_sequence->id();
 		}
+
 	}
 
 	Sequence::~Sequence()
@@ -114,6 +125,7 @@ namespace core
 	{
 		return m_project.directory_path() / location();
 	}
+
 
 
 }

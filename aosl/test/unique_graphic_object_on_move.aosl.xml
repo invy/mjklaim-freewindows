@@ -9,7 +9,7 @@
 
 -->
 
-<sequence xmlns="artofsequence.org/aosl/1.0" >
+<sequence xmlns="artofsequence.org/aosl/1.0" name="Test : Unique Graphic Object With a Move" id="test-unique-graphic-object-move" >
 
     <library>
         <resources>
