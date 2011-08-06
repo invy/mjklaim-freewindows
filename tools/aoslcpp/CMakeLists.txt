@@ -42,11 +42,14 @@ file( GLOB_RECURSE AOSLCPP_AOSL_SOURCES
 set( AOSLCPP_ORIGINAL_HEADERS
 	${AOSLCPP_HEADERS_DIR}/aoslcpp.hpp
 	${AOSLCPP_HEADERS_DIR}/common.hpp
+	${AOSLCPP_HEADERS_DIR}/SequenceInterpreter.hpp
+	${AOSLCPP_HEADERS_DIR}/StoryPath.hpp
 )
 
 # sources
 set( AOSLCPP_ORIGINAL_SOURCES
-	
+	${AOSLCPP_SOURCE_DIR}/SequenceInterpreter.cpp
+	${AOSLCPP_SOURCE_DIR}/StoryPath.cpp
 )
 
 # all original files
@@ -85,6 +88,7 @@ set( AOSLCPP_HEADERS
 
 # Get all sources...
 set( AOSLCPP_SOURCES 
+	${AOSLCPP_ORIGINAL_SOURCES}
 	${AOSLCPP_AOSL_SOURCES}
 )
 
