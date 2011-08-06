@@ -11,16 +11,19 @@ namespace aosl
 
 namespace aoslcpp
 {
-
+	/** Walks through a sequence's to interpret it's story.
+	**/
 	class SequenceInterpreter
 	{
 	public:
 		
-		
+		SequenceInterpreter( const aosl::Sequence& sequence );
+
+		const StoryPath& path() const { return m_path; }
 
 	private:
 
-		aosl::Sequence& m_sequence;
+		const aosl::Sequence& m_sequence;
 
 		StoryPath m_path;
 
