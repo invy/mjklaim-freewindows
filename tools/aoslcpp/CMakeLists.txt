@@ -44,12 +44,14 @@ set( AOSLCPP_ORIGINAL_HEADERS
 	${AOSLCPP_HEADERS_DIR}/common.hpp
 	${AOSLCPP_HEADERS_DIR}/SequenceInterpreter.hpp
 	${AOSLCPP_HEADERS_DIR}/StoryPath.hpp
+	${AOSLCPP_HEADERS_DIR}/CanvasState.hpp
 )
 
 # sources
 set( AOSLCPP_ORIGINAL_SOURCES
 	${AOSLCPP_SOURCE_DIR}/SequenceInterpreter.cpp
 	${AOSLCPP_SOURCE_DIR}/StoryPath.cpp
+	${AOSLCPP_SOURCE_DIR}/CanvasState.cpp
 )
 
 # all original files

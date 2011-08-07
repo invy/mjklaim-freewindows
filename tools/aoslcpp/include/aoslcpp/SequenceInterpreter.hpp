@@ -3,6 +3,7 @@
 #pragma once
 
 #include "aoslcpp/StoryPath.hpp"
+#include "aoslcpp/CanvasState.hpp"
 
 namespace aosl
 {
@@ -20,12 +21,15 @@ namespace aoslcpp
 		SequenceInterpreter( const aosl::Sequence& sequence );
 
 		const StoryPath& path() const { return m_path; }
+		const CanvasState& canvas() const { return m_canvas; }
 
 	private:
 
 		const aosl::Sequence& m_sequence;
 
 		StoryPath m_path;
+
+		CanvasState m_canvas;
 
 	};
 

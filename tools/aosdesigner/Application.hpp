@@ -7,8 +7,8 @@
 
 namespace aosd
 {
-	namespace core{ class Context; }
-	namespace view{ class ApplicationView; }
+	namespace core { class Context; }
+	namespace view { class ApplicationView; }
 
 	/** Root object of this application.
 	**/
