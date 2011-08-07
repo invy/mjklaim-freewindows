@@ -20,6 +20,8 @@ namespace aoslcpp
 		void add_step( aosl::Stage_ref stage_id );
 
 		aosl::Stage_ref current_stage() const { return m_stages.back(); }
+
+		std::size_t stage_count() const { return m_stages.size(); }
 		
 
 	private:

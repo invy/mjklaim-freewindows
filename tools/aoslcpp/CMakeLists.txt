@@ -43,15 +43,19 @@ set( AOSLCPP_ORIGINAL_HEADERS
 	${AOSLCPP_HEADERS_DIR}/aoslcpp.hpp
 	${AOSLCPP_HEADERS_DIR}/common.hpp
 	${AOSLCPP_HEADERS_DIR}/SequenceInterpreter.hpp
+	${AOSLCPP_HEADERS_DIR}/StoryGraph.hpp
 	${AOSLCPP_HEADERS_DIR}/StoryPath.hpp
 	${AOSLCPP_HEADERS_DIR}/CanvasState.hpp
+	${AOSLCPP_HEADERS_DIR}/NavigationState.hpp
 )
 
 # sources
 set( AOSLCPP_ORIGINAL_SOURCES
 	${AOSLCPP_SOURCE_DIR}/SequenceInterpreter.cpp
+	${AOSLCPP_SOURCE_DIR}/StoryGraph.cpp
 	${AOSLCPP_SOURCE_DIR}/StoryPath.cpp
 	${AOSLCPP_SOURCE_DIR}/CanvasState.cpp
+	${AOSLCPP_SOURCE_DIR}/NavigationState.cpp
 )
 
 # all original files
