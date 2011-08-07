@@ -5,10 +5,10 @@ cmake_minimum_required (VERSION 2.8)
 
 # Important directories :
 set( UTILCPP_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
-set( UTILCPP_INCLUDE_DIR ${UTILCPP_ROOT_DIR} )
+set( UTILCPP_INCLUDE_DIR ${UTILCPP_ROOT_DIR}/include )
 
-set( UTILCPP_HEADERS_DIR ${UTILCPP_INCLUDE_DIR} )
-set( UTILCPP_SOURCE_DIR ${UTILCPP_ROOT_DIR} )
+set( UTILCPP_HEADERS_DIR ${UTILCPP_INCLUDE_DIR}/utilcpp )
+set( UTILCPP_SOURCE_DIR ${UTILCPP_ROOT_DIR}/sources )
 
 #--------------------------------------------
 # UTILCPP source files

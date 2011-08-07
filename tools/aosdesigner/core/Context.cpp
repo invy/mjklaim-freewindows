@@ -2,7 +2,7 @@
 
 #include <boost/exception/diagnostic_information.hpp>
 
-#include "util/Assert.hpp"
+#include "utilcpp/Assert.hpp"
 
 #include "core/Project.hpp"
 #include "view/Dialogs.hpp"
@@ -39,7 +39,7 @@ namespace core
 
 	bool Context::new_project( const ProjectInfos& infos )
 	{
-		AOSD_ASSERT( is_valid(infos), "Tried to create a new project with invalid informations!" );
+		UTILCPP_ASSERT( is_valid(infos), "Tried to create a new project with invalid informations!" );
 		
 		std::unique_ptr<Project> project( new Project( infos ) );
 		project->new_sequence();	// create a first sequence
@@ -49,7 +49,7 @@ namespace core
 		if( !project_open )
 			return false;
 
-		AOSD_ASSERT_NOT_NULL( m_project );
+		UTILCPP_ASSERT_NOT_NULL( m_project );
 
 		
 		return true;
@@ -74,7 +74,7 @@ namespace core
 
 	bool Context::open_project( std::unique_ptr<Project>&& project )
 	{
-		AOSD_ASSERT_NOT_NULL( project );
+		UTILCPP_ASSERT_NOT_NULL( project );
 
 		if( is_project_open() )
 			close_project();

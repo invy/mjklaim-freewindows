@@ -1,4 +1,4 @@
-#include "Log.hpp"
+#include "utilcpp/Log.hpp"
 
 #include <exception>
 
@@ -26,7 +26,7 @@
 
 #endif
 
-#include "Singleton.hpp"
+#include "utilcpp/Singleton.hpp"
 
 
 
@@ -35,7 +35,7 @@ namespace util
 {
 	namespace
 	{
-		const boost::filesystem::path LOG_FILE_DIR = "./logs";
+		const boost::filesystem::path LOG_FILE_DIR = boost::filesystem::current_path() / "logs";
 
 		class LogFileHandler 
 		{

@@ -3,7 +3,7 @@
 #pragma once
 
 #include <memory>
-#include "util/Singleton.hpp"
+#include "utilcpp/Singleton.hpp"
 
 namespace aosd
 {

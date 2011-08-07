@@ -6,7 +6,7 @@
 #include <QObject>
 
 #include "core/ProjectInfos.hpp"
-#include "util/Singleton.hpp"
+#include "utilcpp/Singleton.hpp"
 
 
 

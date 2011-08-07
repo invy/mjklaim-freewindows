@@ -5,7 +5,7 @@
 // beuh...
 #include <sstream>
 
-#include "HardConfig.hpp"
+#include "utilcpp/HardConfig.hpp"
 
 /* Logging macros :
 
@@ -16,15 +16,15 @@
 
 
 
-#define UTILCPP_LOG_WITH_LEVEL( log_level )		aosd::util::Log( log_level )
-#define UTILCPP_LOG								UTILCPP_LOG_WITH_LEVEL( aosd::util::Log::INFO )
-#define UTILCPP_LOG_ERROR						UTILCPP_LOG_WITH_LEVEL( aosd::util::Log::ERROR )
+#define UTILCPP_LOG_WITH_LEVEL( log_level )		util::Log( log_level )
+#define UTILCPP_LOG								UTILCPP_LOG_WITH_LEVEL( util::Log::INFO )
+#define UTILCPP_LOG_ERROR						UTILCPP_LOG_WITH_LEVEL( util::Log::ERROR )
 
-#define UTILCPP_LOG_NOTHING						if(false) aosd::util::NoLog() 
+#define UTILCPP_LOG_NOTHING						if(false) util::NoLog() 
 
 
 #if UTILCPP_DEBUG_LOG_ON == 1
-#define UTILCPP_LOG_DEBUG						UTILCPP_LOG_WITH_LEVEL( aosd::util::Log::DEBUG )
+#define UTILCPP_LOG_DEBUG						UTILCPP_LOG_WITH_LEVEL( util::Log::DEBUG )
 #else 
 #define UTILCPP_LOG_DEBUG UTILCPP_LOG_NOTHING
 #endif

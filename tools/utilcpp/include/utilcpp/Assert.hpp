@@ -4,8 +4,8 @@
 
 #include <exception>
 
-#include "HardConfig.hpp"
-#include "Log.hpp"
+#include "utilcpp/HardConfig.hpp"
+#include "utilcpp/Log.hpp"
 
 
 #define UTILCPP_DEBUGBREAK ::__debugbreak() // is it crossplatform?
@@ -13,14 +13,14 @@
 #if UTILCPP_ASSERTIONS_LOG_ON == 1
 	#define UTILCPP_ASSERTIONS_LOG( expression__, message__ ) \
 		UTILCPP_LOG_ERROR	<< "\n#############################################" \
-						<< "\n#### Assertion Failed! : " << #expression__ \
-						<< "\n## Function : "	<< __FUNCTION__ \
-						<< "\n## File : "		<< __FILE__ \
-						<< "\n## Line : "		<< __LINE__ \
-						<< "\n##" \
-						<< "\n## Message : \n\t\t"	<< message__  \
-						<< "\n##" \
-						<< "\n#############################################\n\n";
+							<< "\n#### Assertion Failed! : " << #expression__ \
+							<< "\n## Function : "	<< __FUNCTION__ \
+							<< "\n## File : "		<< __FILE__ \
+							<< "\n## Line : "		<< __LINE__ \
+							<< "\n##" \
+							<< "\n## Message : \n\t\t"	<< message__  \
+							<< "\n##" \
+							<< "\n#############################################\n\n";
 #else 
 	#define UTILCPP_ASSERTIONS_LOG( expression__, message__ )
 #endif

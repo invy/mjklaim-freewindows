@@ -3,7 +3,7 @@
 #include <QImage>
 #include "ui_WelcomeScreen.h"
 
-#include "util/Assert.hpp"
+#include "utilcpp/Assert.hpp"
 #include "core/Context.hpp"
 
 namespace aosd
@@ -18,7 +18,7 @@ namespace view
 		m_ui->logo_display->setPixmap( QPixmap::fromImage( QImage( ":/images/welcome_logo" ) ) );
 
 		auto* context = &core::Context::instance();
-		AOSD_ASSERT_NOT_NULL( context );
+		UTILCPP_ASSERT_NOT_NULL( context );
 
 		// connect the buttons to the actions
 		connect( m_ui->button_new_project, SIGNAL(clicked()), context, SLOT(new_project()) );

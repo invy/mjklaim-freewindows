@@ -8,7 +8,7 @@
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include "util/Assert.hpp"
+#include "utilcpp/Assert.hpp"
 
 #include "core/ProjectInfos.hpp"
 #include "view/Dialogs.hpp"
@@ -24,19 +24,19 @@ namespace core
 		, m_name( infos.name )
 		, m_directory_path( infos.location.parent_path() )
 	{
-		AOSD_ASSERT( is_valid(infos), "Tried to construct a Project with invalid project infos!" );
+		UTILCPP_ASSERT( is_valid(infos), "Tried to construct a Project with invalid project infos!" );
 	}
 
 	Project::Project( const bfs::path& project_file_path )
 		: m_location( project_file_path )
 		, m_directory_path( project_file_path.parent_path() )
 	{
-		AOSD_ASSERT( !project_file_path.empty(), "Tried to construct a Project at an empty path!" );
-		AOSD_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
-		AOSD_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
+		UTILCPP_ASSERT( !project_file_path.empty(), "Tried to construct a Project at an empty path!" );
+		UTILCPP_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
+		UTILCPP_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
 
 		// THINK : make it  a throwing test?
-		AOSD_ASSERT( boost::filesystem::exists( project_file_path ), "Tried to construct a Project with a path that don't exist!" ); 
+		UTILCPP_ASSERT( boost::filesystem::exists( project_file_path ), "Tried to construct a Project with a path that don't exist!" ); 
 
 		// THINK : move that in a separate function?
 		using namespace boost::property_tree;
@@ -50,7 +50,7 @@ namespace core
 		auto sequences = infos.get_child( "project.sequences" );
 		std::for_each( sequences.begin(), sequences.end(), [&]( const std::pair< std::string, ptree >& sequence_info )
 		{
-			AOSD_ASSERT( sequence_info.first == "sequence", "Found an unknown tag! Should be \"sequence\" instead of \"" << sequence_info.first << "\"" );
+			UTILCPP_ASSERT( sequence_info.first == "sequence", "Found an unknown tag! Should be \"sequence\" instead of \"" << sequence_info.first << "\"" );
 
 			const bfs::path sequence_location = sequence_info.second.get_value<std::string>();
 			add_sequence( std::unique_ptr<Sequence>( new Sequence( *this, sequence_location ) ) );
@@ -66,8 +66,8 @@ namespace core
 		m_location = new_filepath;
 		m_directory_path = m_location.parent_path();
 
-		AOSD_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
-		AOSD_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
+		UTILCPP_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
+		UTILCPP_ASSERT( bfs::is_directory( m_directory_path ), "Wow, what's wrong with that project's directory? Path : " << m_directory_path )
 
 	}
 
@@ -111,7 +111,7 @@ namespace core
 		catch( const boost::exception& e )
 		{
 			// TODO : add logging here
-			AOSD_NOT_IMPLEMENTED_YET;
+			UTILCPP_NOT_IMPLEMENTED_YET;
 			return false;
 		}
 
@@ -151,7 +151,7 @@ namespace core
 
 	void Project::add_sequence( std::unique_ptr<Sequence> sequence )
 	{
-		AOSD_ASSERT_NOT_NULL( sequence );
+		UTILCPP_ASSERT_NOT_NULL( sequence );
 		m_sequences.push_back( sequence.release() );
 	}
 

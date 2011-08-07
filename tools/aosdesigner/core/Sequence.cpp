@@ -3,7 +3,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
-#include "util/Assert.hpp"
+#include "utilcpp/Assert.hpp"
 
 #include "aoslcpp/aosl/aosl.hpp"
 
@@ -72,11 +72,11 @@ namespace core
 		}
 		catch( const ::xsd::cxx::tree::parsing< char >& e )
 		{
-			AOSD_LOG_ERROR << e.what() << "\nDiagnostic : ";
+			UTILCPP_LOG_ERROR << e.what() << "\nDiagnostic : ";
 			
 			std::for_each( e.diagnostics().begin(), e.diagnostics().end(), []( const xsd::cxx::tree::error<char>& err )
 			{
-				AOSD_LOG_ERROR << "\n " << err;
+				UTILCPP_LOG_ERROR << "\n " << err;
 			});
 			
 		}
