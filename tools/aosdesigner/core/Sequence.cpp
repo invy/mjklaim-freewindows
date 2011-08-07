@@ -1,9 +1,12 @@
 #include "core/Sequence.hpp"
 
+#include <string>
+
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "utilcpp/Assert.hpp"
 
@@ -20,6 +23,7 @@ namespace core
 
 	namespace
 	{
+		const std::string SEQUENCE_ID_PREFIX = "sequence-";
 
 		std::unique_ptr< aosl::Sequence > create_empty_sequence( const SequenceInfos& infos )
 		{
@@ -46,7 +50,7 @@ namespace core
 			std::auto_ptr<aosl::Story> story( new aosl::Story( stages, moves, aosl::Stage_ref(root_stage_id) ) );
 
 			static boost::uuids::random_generator new_sequence_id_generator;
-			aosl::Unique_id unique_id( to_string( new_sequence_id_generator() ) );
+			aosl::Unique_id unique_id( SEQUENCE_ID_PREFIX + to_string( new_sequence_id_generator() ) );
 
 			return std::unique_ptr< aosl::Sequence >( new aosl::Sequence( library, canvas, story, infos.name, unique_id ) );
 		}
@@ -61,7 +65,8 @@ namespace core
 	{
 		if( m_sequence )
 		{
-			m_id = m_sequence->id();
+			std::string full_id = m_sequence->id();
+			m_id = boost::replace_first_copy( full_id, SEQUENCE_ID_PREFIX, std::string() );
 		}
 		
 	}
@@ -93,7 +98,9 @@ namespace core
 		if( m_sequence )
 		{
 			m_name = m_sequence->name();
-			m_id = m_sequence->id();
+			
+			std::string full_id( m_sequence->id() );
+			m_id = boost::replace_first_copy( full_id, SEQUENCE_ID_PREFIX, std::string() ); // TODO : factorize this
 		}
 
 	}
