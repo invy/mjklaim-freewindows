@@ -42,11 +42,20 @@ file( GLOB_RECURSE AOSLCPP_AOSL_SOURCES
 set( AOSLCPP_ORIGINAL_HEADERS
 	${AOSLCPP_HEADERS_DIR}/aoslcpp.hpp
 	${AOSLCPP_HEADERS_DIR}/common.hpp
+	${AOSLCPP_HEADERS_DIR}/SequenceInterpreter.hpp
+	${AOSLCPP_HEADERS_DIR}/StoryGraph.hpp
+	${AOSLCPP_HEADERS_DIR}/StoryPath.hpp
+	${AOSLCPP_HEADERS_DIR}/CanvasState.hpp
+	${AOSLCPP_HEADERS_DIR}/NavigationState.hpp
 )
 
 # sources
 set( AOSLCPP_ORIGINAL_SOURCES
-	
+	${AOSLCPP_SOURCE_DIR}/SequenceInterpreter.cpp
+	${AOSLCPP_SOURCE_DIR}/StoryGraph.cpp
+	${AOSLCPP_SOURCE_DIR}/StoryPath.cpp
+	${AOSLCPP_SOURCE_DIR}/CanvasState.cpp
+	${AOSLCPP_SOURCE_DIR}/NavigationState.cpp
 )
 
 # all original files
@@ -85,6 +94,7 @@ set( AOSLCPP_HEADERS
 
 # Get all sources...
 set( AOSLCPP_SOURCES 
+	${AOSLCPP_ORIGINAL_SOURCES}
 	${AOSLCPP_AOSL_SOURCES}
 )
 
@@ -102,7 +112,8 @@ set( AOSLCPP_INCLUDE_DIRS
 )
 
 include_directories( 
-	${AOSLCPP_INCLUDE_DIR} 
+	${AOSLCPP_INCLUDE_DIR}
+	${AOSLCPP_HEADERS_DIR}
 	${XSD_INCLUDE_DIR} 
 	${UTILCPP_INCLUDE_DIR}
 )
