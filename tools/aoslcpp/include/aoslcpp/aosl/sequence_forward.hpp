@@ -598,6 +598,8 @@ namespace xml_schema
 
 #include "aoslcpp/aosl/story_forward.hpp"
 
+#include "aoslcpp/aosl/unique_id_forward.hpp"
+
 // Forward declarations.
 //
 namespace aosl

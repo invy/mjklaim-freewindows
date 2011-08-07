@@ -27,6 +27,9 @@
 #include "aoslcpp/aosl/story.hpp"
 #include "aoslcpp/aosl/story.inl"
 
+#include "aoslcpp/aosl/unique_id.hpp"
+#include "aoslcpp/aosl/unique_id.inl"
+
 namespace aosl
 {
   // Sequence
@@ -205,6 +208,41 @@ namespace aosl
   detach_name ()
   {
     return this->name_.detach ();
+  }
+
+  inline
+  const Sequence::IdType& Sequence::
+  id () const
+  {
+    return this->id_.get ();
+  }
+
+  inline
+  Sequence::IdType& Sequence::
+  id ()
+  {
+    return this->id_.get ();
+  }
+
+  inline
+  void Sequence::
+  id (const IdType& x)
+  {
+    this->id_.set (x);
+  }
+
+  inline
+  void Sequence::
+  id (::std::auto_ptr< IdType > x)
+  {
+    this->id_.set (x);
+  }
+
+  inline
+  ::std::auto_ptr< Sequence::IdType > Sequence::
+  detach_id ()
+  {
+    return this->id_.detach ();
   }
 }
 

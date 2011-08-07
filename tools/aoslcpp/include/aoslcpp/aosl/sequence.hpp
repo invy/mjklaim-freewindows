@@ -59,6 +59,8 @@
 
 #include "aoslcpp/aosl/story_forward.hpp"
 
+#include "aoslcpp/aosl/unique_id_forward.hpp"
+
 #undef XSD_DONT_INCLUDE_INLINE
 #else
 
@@ -69,6 +71,8 @@
 #include "aoslcpp/aosl/canvas_forward.hpp"
 
 #include "aoslcpp/aosl/story_forward.hpp"
+
+#include "aoslcpp/aosl/unique_id_forward.hpp"
 
 #endif // XSD_DONT_INCLUDE_INLINE
 
@@ -455,6 +459,78 @@ namespace aosl
     //@}
 
     /**
+     * @name id
+     *
+     * @brief Accessor and modifier functions for the %id
+     * required attribute.
+     *
+     * Identifier of the Sequence.
+     * Used by tools manipulating AOSL files to identify them.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
+    typedef ::aosl::Unique_id IdType;
+
+    /**
+     * @brief Attribute traits type.
+     */
+    typedef ::xsd::cxx::tree::traits< IdType, char > IdTraits;
+
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
+    const IdType&
+    id () const;
+
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
+    IdType&
+    id ();
+
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
+    void
+    id (const IdType& x);
+
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
+    void
+    id (::std::auto_ptr< IdType > p);
+
+    /**
+     * @brief Detach the attribute value from the object model.
+     *
+     * @return A pointer to the attribute value.
+     *
+     * Note that this function leaves the required attribute in 
+     * the original object model uninitialized.
+     */
+    ::std::auto_ptr< IdType >
+    detach_id ();
+
+    //@}
+
+    /**
      * @name Constructors
      */
     //@{
@@ -466,7 +542,8 @@ namespace aosl
     Sequence (const LibraryType&,
               const CanvasType&,
               const StoryType&,
-              const NameType&);
+              const NameType&,
+              const IdType&);
 
     /**
      * @brief Create an instance from the ultimate base and
@@ -479,7 +556,8 @@ namespace aosl
     Sequence (::std::auto_ptr< LibraryType >&,
               ::std::auto_ptr< CanvasType >&,
               ::std::auto_ptr< StoryType >&,
-              const NameType&);
+              const NameType&,
+              const IdType&);
 
     /**
      * @brief Create an instance from a DOM element.
@@ -545,6 +623,7 @@ namespace aosl
     ::xsd::cxx::tree::one< CanvasType > canvas_;
     ::xsd::cxx::tree::one< StoryType > story_;
     ::xsd::cxx::tree::one< NameType > name_;
+    ::xsd::cxx::tree::one< IdType > id_;
 
     //@endcond
   };
@@ -569,6 +648,9 @@ namespace aosl
 
 #include "aoslcpp/aosl/story.hpp"
 #include "aoslcpp/aosl/story.inl"
+
+#include "aoslcpp/aosl/unique_id.hpp"
+#include "aoslcpp/aosl/unique_id.inl"
 
 #endif // XSD_DONT_INCLUDE_INLINE
 
