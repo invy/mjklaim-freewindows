@@ -26,8 +26,13 @@ namespace aoslcpp
 		*/
 		void go( const aosl::Event& event );
 
+		/** Go from the current stage to the refered stage directly. 
+
+		*/
+		void go( const aosl::Move_ref& move, bool reversed = false );
+
 		/** Go back in the path followed. */
-		void go_back();
+		void go_back( std::size_t step_count = 1 );
 
 		/** Go to the next automatically guessed move. */
 		void go_next();
@@ -45,7 +50,7 @@ namespace aoslcpp
 		bool can_go_next() const;
 
 		/** @return true if there is a previous stage, false if we're at the first stage. */
-		bool can_go_previous() const { return m_path.stage_count() > 1; }
+		bool can_go_back() const { return m_path.stage_count() > 1; }
 
 	private:
 
