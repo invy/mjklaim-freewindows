@@ -40,12 +40,12 @@ file( GLOB_RECURSE AOSLCPP_AOSL_SOURCES
 
 # headers
 set( AOSLCPP_ORIGINAL_HEADERS
-	${AOSLCPP_HEADERS_DIR}/aoslcpp.hpp
 	${AOSLCPP_HEADERS_DIR}/common.hpp
 	
-	${AOSLCPP_HEADERS_DIR}/Function.hpp
-	${AOSLCPP_HEADERS_DIR}/Find.hpp
-	${AOSLCPP_HEADERS_DIR}/ForEach.hpp
+	${AOSLCPP_HEADERS_DIR}/algorithm.hpp
+	${AOSLCPP_HEADERS_DIR}/function.hpp
+	${AOSLCPP_HEADERS_DIR}/find.hpp
+	${AOSLCPP_HEADERS_DIR}/for_each.hpp
 	
 	${AOSLCPP_HEADERS_DIR}/SequenceInterpreter.hpp
 	${AOSLCPP_HEADERS_DIR}/StoryPath.hpp
@@ -56,8 +56,8 @@ set( AOSLCPP_ORIGINAL_HEADERS
 
 # sources
 set( AOSLCPP_ORIGINAL_SOURCES
-	${AOSLCPP_SOURCE_DIR}/Find.cpp
-	${AOSLCPP_SOURCE_DIR}/ForEach.cpp
+	${AOSLCPP_SOURCE_DIR}/find.cpp
+	${AOSLCPP_SOURCE_DIR}/for_each.cpp
 	
 	${AOSLCPP_SOURCE_DIR}/SequenceInterpreter.cpp
 	${AOSLCPP_SOURCE_DIR}/StoryPath.cpp
