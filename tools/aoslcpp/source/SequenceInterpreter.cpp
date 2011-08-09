@@ -52,7 +52,11 @@ namespace aoslcpp
 
 	void SequenceInterpreter::go_next()
 	{
-		// find
+		if( can_go_next() )
+		{
+			// find the unique move to go next
+		}
+		
 	}
 
 

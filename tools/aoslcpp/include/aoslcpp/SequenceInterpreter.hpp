@@ -2,7 +2,6 @@
 #define HGUARD_AOSLCPP_SEQUENCEINTERPRETER_HPP__
 #pragma once
 
-#include "aoslcpp/StoryGraph.hpp"
 #include "aoslcpp/StoryPath.hpp"
 #include "aoslcpp/CanvasState.hpp"
 #include "aoslcpp/NavigationState.hpp"
@@ -56,9 +55,7 @@ namespace aoslcpp
 
 		const aosl::Sequence& m_sequence;
 
-		/// Graph of the story build from the sequence informations.
-		StoryGraph m_story_graph;
-
+		
 		/// The path followed by this interpreter.
 		StoryPath m_path;
 
