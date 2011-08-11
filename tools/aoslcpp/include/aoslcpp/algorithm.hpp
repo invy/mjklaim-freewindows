@@ -2,13 +2,8 @@
 #define HGUARD_AOSLCPP_ALGORITHM_HPP__
 #pragma once
 
-
-namespace aoslcpp
-{
-
-	
-
-}
-
+#include "function.hpp"
+#include "find.hpp"
+#include "for_each.hpp"
 
 #endif

@@ -1,8 +1,7 @@
 #include "aoslcpp/CanvasState.hpp"
 
-#include "aosl/canvas.hpp"
-
-#include "aoslcpp/ForEach.hpp"
+#include "aoslcpp/for_each.hpp"
+#include "aoslcpp/find.hpp"
 
 namespace aoslcpp
 {
@@ -25,12 +24,20 @@ namespace aoslcpp
 		});
 	}
 
-	void CanvasState::activate( aosl::Object_ref object )
+	void CanvasState::activate( aosl::Object_ref object_ref )
+	{
+		/*auto& object = find_object( m_canvas, object_ref );
+
+		object.active( true );*/
+
+	}
+
+	void CanvasState::deactivate( aosl::Object_ref object_ref )
 	{
 
 	}
 
-	void CanvasState::deactivate( aosl::Object_ref object )
+	void CanvasState::switch_state( aosl::Object_ref object_ref )
 	{
 
 	}

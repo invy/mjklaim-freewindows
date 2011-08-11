@@ -5,8 +5,7 @@
 #include <vector>
 
 #include "aosl/object_ref.hpp"
-
-namespace aosl { class Canvas; }
+#include "aosl/canvas.hpp"
 
 namespace aoslcpp
 {
@@ -16,19 +15,19 @@ namespace aoslcpp
 	{
 	public:
 
-		CanvasState( const aosl::Canvas& canvas );
+		explicit CanvasState( const aosl::Canvas& canvas );
 
 		void activate( aosl::Object_ref object );
 		void deactivate( aosl::Object_ref object );
-
+		void switch_state( aosl::Object_ref object );
 		
 	private:
 
-		const aosl::Canvas& m_canvas;
+		aosl::Canvas m_canvas;
 
 		std::vector< aosl::Object_ref > m_active_objects;
 		std::vector< aosl::Object_ref > m_unactive_objects;
-
+		
 	};
 
 

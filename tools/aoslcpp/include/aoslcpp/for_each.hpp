@@ -2,7 +2,7 @@
 #define HGUARD_AOSLCPP_FOREACH_HPP__
 #pragma once
 
-#include "aoslcpp/Function.hpp"
+#include "aoslcpp/function.hpp"
 
 
 namespace aoslcpp
