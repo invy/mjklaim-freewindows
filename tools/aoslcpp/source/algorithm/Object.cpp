@@ -1,6 +1,7 @@
-#include "aoslcpp/algorithm/for_each.hpp"
+#include "aoslcpp/algorithm/object.hpp"
 
-#include "aosl/aosl.hpp"
+#include "aosl/canvas.hpp"
+#include "aosl/sequence.hpp"
 
 namespace aoslcpp
 {
@@ -30,6 +31,6 @@ namespace aoslcpp
 		for_each_object( objects, func );
 
 	}
-
+	
 
 }
