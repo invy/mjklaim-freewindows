@@ -1,7 +1,7 @@
 #include "aoslcpp/CanvasState.hpp"
 
-#include "aoslcpp/for_each.hpp"
-#include "aoslcpp/find.hpp"
+#include "aoslcpp/algorithm/for_each.hpp"
+#include "aoslcpp/algorithm/find.hpp"
 
 namespace aoslcpp
 {

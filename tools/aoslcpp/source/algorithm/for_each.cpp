@@ -1,4 +1,4 @@
-#include "aoslcpp/for_each.hpp"
+#include "aoslcpp/algorithm/for_each.hpp"
 
 #include "aosl/aosl.hpp"
 

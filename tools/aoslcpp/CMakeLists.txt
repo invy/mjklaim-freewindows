@@ -14,6 +14,9 @@ set( AOSLCPP_INCLUDE_DIR ${AOSLCPP_ROOT_DIR}/include )
 set( AOSLCPP_HEADERS_DIR ${AOSLCPP_INCLUDE_DIR}/aoslcpp )
 set( AOSLCPP_SOURCE_DIR ${AOSLCPP_ROOT_DIR}/source )
 
+set( AOSLCPP_ALGORITHM_HEADERS_DIR ${AOSLCPP_HEADERS_DIR}/algorithm )
+set( AOSLCPP_ALGORITHM_SOURCES_DIR ${AOSLCPP_SOURCE_DIR}/algorithm )
+
 set( AOSLCPP_AOSL_HEADERS_DIR ${AOSLCPP_HEADERS_DIR}/aosl )
 set( AOSLCPP_AOSL_SOURCES_DIR ${AOSLCPP_SOURCE_DIR}/aosl )
 
@@ -38,14 +41,19 @@ file( GLOB_RECURSE AOSLCPP_AOSL_SOURCES
 #--------------------------------------------
 # AOSLCPP original (not generated) files
 
-# headers
-set( AOSLCPP_ORIGINAL_HEADERS
+#### Headers 
+
+# algorithms headers
+set( AOSLCPP_ALGORITHM_HEADERS
+	${AOSLCPP_ALGORITHM_HEADERS_DIR}/algorithm.hpp
+	${AOSLCPP_ALGORITHM_HEADERS_DIR}/function.hpp
+	${AOSLCPP_ALGORITHM_HEADERS_DIR}/find.hpp
+	${AOSLCPP_ALGORITHM_HEADERS_DIR}/for_each.hpp
+)
+
+# tool types headers
+set( AOSLCPP_TOOL_HEADERS
 	${AOSLCPP_HEADERS_DIR}/common.hpp
-	
-	${AOSLCPP_HEADERS_DIR}/algorithm.hpp
-	${AOSLCPP_HEADERS_DIR}/function.hpp
-	${AOSLCPP_HEADERS_DIR}/find.hpp
-	${AOSLCPP_HEADERS_DIR}/for_each.hpp
 	
 	${AOSLCPP_HEADERS_DIR}/SequenceInterpreter.hpp
 	${AOSLCPP_HEADERS_DIR}/StoryPath.hpp
@@ -54,17 +62,49 @@ set( AOSLCPP_ORIGINAL_HEADERS
 	
 )
 
-# sources
-set( AOSLCPP_ORIGINAL_SOURCES
-	${AOSLCPP_SOURCE_DIR}/find.cpp
-	${AOSLCPP_SOURCE_DIR}/for_each.cpp
-	
+# all original headers
+set( AOSLCPP_ORIGINAL_HEADERS
+	${AOSLCPP_ALGORITHM_HEADERS}
+	${AOSLCPP_TOOL_HEADERS}	
+)
+
+#### Sources
+
+# algorithm sources
+set( AOSLCPP_ALGORITHM_SOURCES
+	${AOSLCPP_ALGORITHM_SOURCES_DIR}/find.cpp
+	${AOSLCPP_ALGORITHM_SOURCES_DIR}/for_each.cpp
+)
+
+
+# tool types sources
+set( AOSLCPP_TOOL_SOURCES
 	${AOSLCPP_SOURCE_DIR}/SequenceInterpreter.cpp
 	${AOSLCPP_SOURCE_DIR}/StoryPath.cpp
 	${AOSLCPP_SOURCE_DIR}/CanvasState.cpp
 	${AOSLCPP_SOURCE_DIR}/NavigationState.cpp
 	
 )
+
+set( AOSLCPP_ORIGINAL_SOURCES
+	${AOSLCPP_ALGORITHM_SOURCES}
+	${AOSLCPP_TOOL_SOURCES}
+)
+
+#### All 
+
+# all algorithms files
+set( AOSLCPP_ALGORITHM_ALL_FILES 
+	${AOSLCPP_ALGORITHM_HEADERS}
+	${AOSLCPP_ALGORITHM_SOURCES}
+)
+
+# all tools files
+set( AOSLCPP_TOOL_ALL_FILES 
+	${AOSLCPP_TOOL_HEADERS}
+	${AOSLCPP_TOOL_SOURCES}
+)
+
 
 # all original files
 set( AOSLCPP_ORIGINAL_ALL_FILES
@@ -110,7 +150,8 @@ set( AOSLCPP_SOURCES
 source_group( aoslcpp\\aosl 		FILES ${AOSLCPP_AOSL_HEADERS}   	)
 source_group( aoslcpp\\aosl\\inline FILES ${AOSLCPP_AOSL_INLINES} 		)
 source_group( aoslcpp\\aosl\\source FILES ${AOSLCPP_AOSL_SOURCES} 		)
-source_group( aoslcpp 				FILES ${AOSLCPP_ORIGINAL_ALL_FILES} )
+source_group( aoslcpp\\algorithm	FILES ${AOSLCPP_ALGORITHM_ALL_FILES})
+source_group( aoslcpp 				FILES ${AOSLCPP_TOOL_ALL_FILES} 	)
 
 # Make sure required include directories will be available for compilation
 set( AOSLCPP_INCLUDE_DIRS
