@@ -21,6 +21,8 @@ namespace aoslcpp
 	typedef boost::optional< aosl::Object > ObjectOrNull;
 
 	ObjectOrNull find_object( const aosl::Canvas& canvas, const aosl::Object_ref object_ref );
+	ObjectOrNull find_object( const aosl::List_object& list_objects, const aosl::Object_ref object_ref );
+	ObjectOrNull find_object( const aosl::Object& object, const aosl::Object_ref object_ref );
 
 
 }

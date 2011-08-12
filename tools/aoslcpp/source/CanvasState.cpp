@@ -27,7 +27,8 @@ namespace aoslcpp
 	{
 		/*auto& object = find_object( m_canvas, object_ref );
 
-		object.active( true );*/
+		object.active( true );
+		*/
 
 	}
 
