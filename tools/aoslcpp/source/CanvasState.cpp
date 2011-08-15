@@ -1,7 +1,6 @@
 #include "aoslcpp/CanvasState.hpp"
 
-#include "aoslcpp/algorithm/for_each.hpp"
-#include "aoslcpp/algorithm/find.hpp"
+#include "aoslcpp/algorithm/execution.hpp"
 
 namespace aoslcpp
 {
@@ -12,29 +11,19 @@ namespace aoslcpp
 	{
 	}
 	
-	void CanvasState::activate( aosl::Object_ref object_ref )
+	void CanvasState::activate( const aosl::Object_ref object_ref )
 	{
-		change_object( object_ref, []( aosl::Object& object){ object.active( true ); } );
+		aoslcpp::activate( m_canvas, object_ref );
 	}
 
-	void CanvasState::deactivate( aosl::Object_ref object_ref )
+	void CanvasState::deactivate( const aosl::Object_ref object_ref )
 	{
-		change_object( object_ref, []( aosl::Object& object){ object.active( false ); } );
+		aoslcpp::deactivate( m_canvas, object_ref );
 	}
 
-	void CanvasState::switch_state( aosl::Object_ref object_ref )
+	void CanvasState::switch_state( const aosl::Object_ref object_ref )
 	{
-		change_object( object_ref, []( aosl::Object& object){ object.active( !object.active() ); } );
-	}
-
-	void CanvasState::change_object( aosl::Object_ref object_ref, std::function< void (aosl::Object&) > func )
-	{
-		auto object = find_object( m_canvas, object_ref );
-
-		if( object )
-		{
-			func( *object );
-		}
+		aoslcpp::switch_state( m_canvas, object_ref );
 	}
 
 }

@@ -19,14 +19,13 @@ namespace aoslcpp
 	{
 	public:
 		
-		SequenceInterpreter( const aosl::Sequence& sequence );
+		explicit SequenceInterpreter( const aosl::Sequence& sequence );
 
 		/** Navigate through the sequence's story by triggering an event from navigation choices.
 		*/
 		void go( const aosl::Event& event );
 
-		/** Go from the current stage to the refered stage directly. 
-
+		/** Apply the given move.
 		*/
 		void go( const aosl::Move_ref& move, bool reversed = false );
 

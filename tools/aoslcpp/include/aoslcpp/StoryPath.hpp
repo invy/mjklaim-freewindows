@@ -15,7 +15,7 @@ namespace aoslcpp
 	{
 	public:
 
-		StoryPath( aosl::Stage_ref first_stage );
+		explicit StoryPath( aosl::Stage_ref first_stage );
 
 		void add_step( aosl::Stage_ref stage_id );
 

@@ -18,15 +18,14 @@ namespace aoslcpp
 
 		explicit CanvasState( const aosl::Canvas& canvas );
 
-		void activate( aosl::Object_ref object );
-		void deactivate( aosl::Object_ref object );
-		void switch_state( aosl::Object_ref object );
+		void activate( const aosl::Object_ref object_ref );
+		void deactivate( const aosl::Object_ref object_ref );
+		void switch_state( const aosl::Object_ref object_ref );
 		
 	private:
 
 		aosl::Canvas m_canvas;
 
-		void change_object( aosl::Object_ref object_ref, std::function< void (aosl::Object&) > func );
 
 	};
 

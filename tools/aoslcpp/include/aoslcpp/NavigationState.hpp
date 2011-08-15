@@ -14,7 +14,7 @@ namespace aoslcpp
 	{
 	public:
 
-		NavigationState( const aosl::Navigation& default_navigation );
+		explicit NavigationState( const aosl::Navigation& default_navigation );
 
 
 		/** Update the navigation options with the default options plus the provided stage navigation options. */

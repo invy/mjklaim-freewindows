@@ -37,6 +37,7 @@ namespace aoslcpp
 
 		// apply the changes
 
+
 		// update the navigation options
 		if( stage->navigation() )
 			m_navigation.update( *stage->navigation() );
