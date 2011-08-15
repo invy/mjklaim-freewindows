@@ -2,6 +2,8 @@
 
 #include "aoslcpp/algorithm/execution.hpp"
 
+#include "aosl/change.hpp"
+
 namespace aoslcpp
 {
 	

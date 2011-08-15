@@ -36,7 +36,7 @@ namespace aoslcpp
 		UTILCPP_ASSERT_NOT_NULL( stage );
 
 		// apply the changes
-
+		std::for_each( move->change().begin(), move->change().end() , [&]( const aosl::Change& change ) { m_canvas.execute( change ); } );
 
 		// update the navigation options
 		if( stage->navigation() )
