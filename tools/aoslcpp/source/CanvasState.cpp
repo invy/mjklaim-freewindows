@@ -10,47 +10,30 @@ namespace aoslcpp
 	CanvasState::CanvasState( const aosl::Canvas& canvas )
 		: m_canvas( canvas )
 	{
-		for_each_object( canvas, [&]( const aosl::Object& object )
-		{
-			if( object.active() )
-			{
-				m_active_objects.push_back( object.id() );
-			}
-			else
-			{
-				m_unactive_objects.push_back( object.id() );
-			}
-
-		});
 	}
 	
 	void CanvasState::activate( aosl::Object_ref object_ref )
 	{
-		auto object = find_object( m_canvas, object_ref );
-
-		if( object )
-		{
-			object->active( true );
-		}
+		change_object( object_ref, []( aosl::Object& object){ object.active( true ); } );
 	}
 
 	void CanvasState::deactivate( aosl::Object_ref object_ref )
 	{
-		auto object = find_object( m_canvas, object_ref );
-
-		if( object )
-		{
-			object->active( false );
-		}
+		change_object( object_ref, []( aosl::Object& object){ object.active( false ); } );
 	}
 
 	void CanvasState::switch_state( aosl::Object_ref object_ref )
+	{
+		change_object( object_ref, []( aosl::Object& object){ object.active( !object.active() ); } );
+	}
+
+	void CanvasState::change_object( aosl::Object_ref object_ref, std::function< void (aosl::Object&) > func )
 	{
 		auto object = find_object( m_canvas, object_ref );
 
 		if( object )
 		{
-			object->active( !object->active() );
+			func( *object );
 		}
 	}
 

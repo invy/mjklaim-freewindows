@@ -31,9 +31,9 @@ namespace aoslcpp
 	}
 
 	
-	optional<aosl::Object> find_object( const aosl::Object& object, const aosl::Object_ref object_ref )
+	optional<aosl::Object> find_object( const aosl::Object& parent, const aosl::Object_ref object_ref )
 	{
-		return object.children() ? find_object( *object.children(), object_ref ) : optional<aosl::Object>();
+		return parent.children() ? find_object( *parent.children(), object_ref ) : optional<aosl::Object>();
 	}
 
 	optional<aosl::Move> find_move( const aosl::Story& story, const aosl::Move_ref move_ref )

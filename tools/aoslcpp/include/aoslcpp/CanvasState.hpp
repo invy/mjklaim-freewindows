@@ -3,6 +3,7 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 
 #include "aosl/object_ref.hpp"
 #include "aosl/canvas.hpp"
@@ -25,9 +26,8 @@ namespace aoslcpp
 
 		aosl::Canvas m_canvas;
 
-		std::vector< aosl::Object_ref > m_active_objects;
-		std::vector< aosl::Object_ref > m_unactive_objects;
-		
+		void change_object( aosl::Object_ref object_ref, std::function< void (aosl::Object&) > func );
+
 	};
 
 

@@ -3,7 +3,7 @@
 #pragma once
 
 #include <vector>
-
+#include <boost/optional.hpp>
 #include "aosl/navigation.hpp"
 
 namespace aoslcpp
@@ -16,8 +16,13 @@ namespace aoslcpp
 
 		NavigationState( const aosl::Navigation& default_navigation );
 
-		void update( aosl::Navigation& stage_navigation );
 
+		/** Update the navigation options with the default options plus the provided stage navigation options. */
+		void update( const aosl::Navigation& stage_navigation );
+
+		/** Reset the navigation to the default options. */
+		void reset();
+		
 		const aosl::Navigation& current() const { return m_current_navigation; }
 
 

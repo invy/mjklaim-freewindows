@@ -15,21 +15,18 @@ namespace aoslcpp
 		});
 	}
 
-	void for_each_object( const aosl::Object& object, std::function< void( const aosl::Object& )> func )
+	void for_each_object( const aosl::Object& parent, std::function< void( const aosl::Object& )> func )
 	{
-		if( object.children() )
+		if( parent.children() )
 		{
-			for_each_object( *object.children(), func );
+			for_each_object( *parent.children(), func );
 		}
 
 	}
 
 	void for_each_object( const aosl::Canvas& canvas, std::function< void( const aosl::Object& )> func )
 	{
-		auto& objects = canvas.objects();
-
-		for_each_object( objects, func );
-
+		for_each_object( canvas.objects(), func );
 	}
 
 
