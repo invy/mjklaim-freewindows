@@ -23,7 +23,7 @@ namespace aoslcpp
 
 		});
 	}
-
+	
 	void CanvasState::activate( aosl::Object_ref object_ref )
 	{
 		auto object = find_object( m_canvas, object_ref );
