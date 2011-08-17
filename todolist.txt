@@ -26,6 +26,11 @@ AOSL
 AOSLCPP
 -------
 
+ * (klaim) interpret/execute a sequence
+ * (klaim) algorithms to manipulate a sequence
+ - dispatch events from the execution of a sequence
+ - add tests
+
 AOS Designer
 ------------
 
@@ -45,8 +50,8 @@ AOS Designer
   - add version (and build) infos in the start of the log
   - add context (platform, etc.) infos in the log
   - add authors names in the log
- * (klaim) add assertion macros
-  - add assertions in current code
+ x (klaim) add assertion macros
+  x add assertions in current code
  - define an error handling strategy for the whole application
  
  - output (text) files have to be written with UTF-8 encoding
