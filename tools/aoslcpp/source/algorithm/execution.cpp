@@ -73,21 +73,48 @@ namespace aoslcpp
 	}
 
 
-	void execute( const aosl::Change& change, aosl::Object& object )
+	void reverse_transform( aosl::Properties_graphic_object& graphic_properties, const aosl::Transformation& transformation )
+	{
+		UTILCPP_NOT_IMPLEMENTED_YET;
+	}
+
+	void reverse_transform( aosl::Canvas& canvas, const aosl::Object_ref object_ref, const aosl::Transformation& transformation )
+	{
+		UTILCPP_NOT_IMPLEMENTED_YET;
+	}
+
+	namespace 
+	{
+		struct ChangeExecutor
+		{
+			typedef std::function< void ( aosl::Object& object ) > ObjectModifier;
+
+			ChangeExecutor(){}
+			ChangeExecutor( ObjectModifier action, ObjectModifier reverse ) : action( action ), reverse( reverse ) {}
+
+			ObjectModifier action;
+			ObjectModifier reverse;
+		};
+
+	}
+	
+	void execute( const aosl::Change& change, aosl::Object& object, bool reverse )
 	{
 		UTILCPP_ASSERT( change.object() == object.id(), "Tried to execute a change \"" << typeid(change).name() 
 			<< "\" that should be executed with object \""  << change.object()
 			<< "\" but is executed with object \"" << object.id() << "\"!"			
 			);
 
-		typedef std::map< const char*, std::function< void ( aosl::Object& object ) > > ChangeFunctionMap;
+		
+		
+		typedef std::map< const char*, ChangeExecutor > ChangeFunctionMap;
 
 		const ChangeFunctionMap CHANGE_FUNCTION_MAP = []() -> ChangeFunctionMap 
 		{
 			ChangeFunctionMap change_function_map;
-			change_function_map[ typeid(aosl::Change_activate).name()		] = []( aosl::Object& object ) { activate( object ); };
-			change_function_map[ typeid(aosl::Change_deactivate).name()		] = []( aosl::Object& object ) { deactivate( object ); };
-			change_function_map[ typeid(aosl::Change_switch).name()			] = []( aosl::Object& object ) { switch_state( object ); };
+			change_function_map[ typeid(aosl::Change_activate).name()		] = ChangeExecutor( []( aosl::Object& object ) { activate( object ); } , []( aosl::Object& object ) { reverse_activate( object ); } );
+			change_function_map[ typeid(aosl::Change_deactivate).name()		] = ChangeExecutor( []( aosl::Object& object ) { deactivate( object ); } , []( aosl::Object& object ) { reverse_activate( object ); } );
+			change_function_map[ typeid(aosl::Change_switch).name()			] = ChangeExecutor( []( aosl::Object& object ) { switch_state( object ); } , []( aosl::Object& object ) { reverse_switch_state( object ); } );
 			// TODO : add transformation change here
 			return change_function_map;
 		}();
@@ -97,7 +124,10 @@ namespace aoslcpp
 
 		if( func_it != CHANGE_FUNCTION_MAP.end() )
 		{
-			func_it->second( object );
+			if( reverse )
+				func_it->second.reverse( object );
+			else
+				func_it->second.action( object );
 		}
 		else
 		{
@@ -106,16 +136,16 @@ namespace aoslcpp
 	}
 
 
-	void execute( aosl::Canvas& canvas, const aosl::Change& change )
+	void execute( aosl::Canvas& canvas, const aosl::Change& change, bool reverse )
 	{
 		get_check_act_object( canvas, change.object(), [&]( aosl::Object& object )
 		{
-			execute( change, object );
+			execute( change, object, reverse );
 		});
 		
 	}
 
-	void execute( aosl::Canvas& canvas, const aosl::List_change& change_list )
+	void execute( aosl::Canvas& canvas, const aosl::List_change& change_list, bool reverse )
 	{
 		auto sorted_change_list = change_list.change();
 		std::sort( sorted_change_list.begin(), sorted_change_list.end(), []( const aosl::Change& a, const aosl::Change& b )
@@ -138,7 +168,7 @@ namespace aoslcpp
 
 			UTILCPP_ASSERT_NOT_NULL( object );
 			
-			execute( change, *object );
+			execute( change, *object, reverse );
 		}
 	}
 

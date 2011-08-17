@@ -28,8 +28,8 @@ namespace aoslcpp
 
 		void transform( const aosl::Object_ref object_ref, const aosl::Transformation& transformation );
 
-		void execute( const aosl::Change& change );
-		void execute( const aosl::List_change& change_list );
+		void execute( const aosl::Change& change, bool reverse = false );
+		void execute( const aosl::List_change& change_list, bool reverse = false );
 		
 	private:
 

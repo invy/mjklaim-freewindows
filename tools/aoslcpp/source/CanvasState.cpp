@@ -33,14 +33,14 @@ namespace aoslcpp
 		aoslcpp::transform( m_canvas, object_ref, transformation );
 	}
 
-	void CanvasState::execute( const aosl::Change& change )
+	void CanvasState::execute( const aosl::Change& change, bool reverse )
 	{
-		aoslcpp::execute( m_canvas, change );
+		aoslcpp::execute( m_canvas, change, reverse );
 	}
 
-	void CanvasState::execute( const aosl::List_change& change_list )
+	void CanvasState::execute( const aosl::List_change& change_list, bool reverse )
 	{
-		aoslcpp::execute( m_canvas, change_list );
+		aoslcpp::execute( m_canvas, change_list, reverse );
 	}
 
 }

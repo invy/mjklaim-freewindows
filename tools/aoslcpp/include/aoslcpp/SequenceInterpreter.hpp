@@ -2,6 +2,8 @@
 #define HGUARD_AOSLCPP_SEQUENCEINTERPRETER_HPP__
 #pragma once
 
+#include "aosl/stage_ref.hpp"
+
 #include "aoslcpp/StoryPath.hpp"
 #include "aoslcpp/CanvasState.hpp"
 #include "aoslcpp/NavigationState.hpp"
@@ -64,7 +66,7 @@ namespace aoslcpp
 		/// The current navigation actions available at this stage.
 		NavigationState m_navigation;
 
-		
+		aosl::Stage_ref execute_move( const aosl::Move_ref& move, bool reverse );
 	};
 
 

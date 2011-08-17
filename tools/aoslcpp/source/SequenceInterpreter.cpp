@@ -25,20 +25,20 @@ namespace aoslcpp
 		go( event.move() );
 	}
 
-	void SequenceInterpreter::go( const aosl::Move_ref& move_ref )
+	aosl::Stage_ref SequenceInterpreter::execute_move( const aosl::Move_ref& move_ref, bool reverse )
 	{
 		// get the move informations
 		const auto move = find_move( m_sequence.story(), move_ref );
 		UTILCPP_ASSERT_NOT_NULL( move );
 
-		const auto stage_ref = move->to();
+		const auto stage_ref = reverse ? move->from() : move->to();
 
 		// get the next stage informations
 		const auto stage = find_stage( m_sequence.story(), stage_ref );
 		UTILCPP_ASSERT_NOT_NULL( stage );
 
 		// apply the changes
-		std::for_each( move->change().begin(), move->change().end() , [&]( const aosl::Change& change ) { m_canvas.execute( change ); } );
+		std::for_each( move->change().begin(), move->change().end() , [&]( const aosl::Change& change ) { m_canvas.execute( change, reverse ); } );
 
 		// update the navigation options
 		if( stage->navigation() )
@@ -46,7 +46,12 @@ namespace aoslcpp
 		else
 			m_navigation.reset();
 
-		// record the step
+		return stage_ref;
+	}
+
+	void SequenceInterpreter::go( const aosl::Move_ref& move_ref )
+	{
+		const auto stage_ref = execute_move( move_ref, false );
 		m_path.add_step( move_ref, stage_ref );
 	}
 
@@ -56,13 +61,10 @@ namespace aoslcpp
 
 		if( can_go_back() && step_count > 0 )
 		{
-			// find the move to reverse
-			m_path.step_back();
-			const auto move = find_move( m_sequence.story(), m_path.last_move() );
+			const auto stage_ref = execute_move( m_path.last_move(), true );
+			m_path.step_back( 1 );
 
-			UTILCPP_NOT_IMPLEMENTED_YET;
-
-			// go back
+			UTILCPP_ASSERT( m_path.current_stage() == stage_ref, "WTF????" );
 
 			--step_count;
 		}
@@ -73,6 +75,7 @@ namespace aoslcpp
 		if( can_go_next() )
 		{
 			// find the unique move to go next
+
 		}
 		
 	}
