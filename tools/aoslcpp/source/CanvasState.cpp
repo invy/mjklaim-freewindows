@@ -28,4 +28,19 @@ namespace aoslcpp
 		aoslcpp::switch_state( m_canvas, object_ref );
 	}
 
+	void CanvasState::transform( const aosl::Object_ref object_ref, const aosl::Transformation& transformation )
+	{
+		aoslcpp::transform( m_canvas, object_ref, transformation );
+	}
+
+	void CanvasState::execute( const aosl::Change& change )
+	{
+		aoslcpp::execute( m_canvas, change );
+	}
+
+	void CanvasState::execute( const aosl::List_change& change_list )
+	{
+		aoslcpp::execute( m_canvas, change_list );
+	}
+
 }

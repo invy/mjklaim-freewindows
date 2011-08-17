@@ -7,6 +7,8 @@
 
 #include "aosl/object_ref.hpp"
 #include "aosl/canvas.hpp"
+#include "aosl/list_change_forward.hpp"
+#include "aosl/transformation_forward.hpp"
 
 namespace aosl { class Change; }
 
@@ -24,7 +26,10 @@ namespace aoslcpp
 		void deactivate( const aosl::Object_ref object_ref );
 		void switch_state( const aosl::Object_ref object_ref );
 
+		void transform( const aosl::Object_ref object_ref, const aosl::Transformation& transformation );
+
 		void execute( const aosl::Change& change );
+		void execute( const aosl::List_change& change_list );
 		
 	private:
 

@@ -4,30 +4,22 @@
 
 namespace aoslcpp
 {
-	
 
-
-	StoryPath::StoryPath( aosl::Stage_ref first_stage )
+	void StoryPath::add_step( aosl::Move_ref move_ref, aosl::Stage_ref stage_ref )
 	{
-		add_step( first_stage );
+		m_steps.push_back( Step( move_ref, stage_ref ) );
 	}
 
-	void StoryPath::add_step( aosl::Stage_ref stage_id )
+	void StoryPath::step_back( std::size_t step_count )
 	{
-		m_stages.push_back( stage_id );
-	}
+		UTILCPP_ASSERT( step_count > 0, "Invalid step count for stepping back : " << step_count );
 
-	aosl::Stage_ref StoryPath::step_back( std::size_t step_count )
-	{
-		UTILCPP_ASSERT( step_count > 0, "Invalid step count : " << step_count );
-
-		while( m_stages.size() > 1 && step_count != 0 )
+		while( can_step_back() && step_count != 0 ) // we need to have at least one step
 		{
-			m_stages.pop_back();
+			m_steps.pop_back();
 			--step_count;
 		}
 
-		return m_stages.back();
 	}
 
 }

@@ -27,7 +27,7 @@ namespace aoslcpp
 
 		/** Apply the given move.
 		*/
-		void go( const aosl::Move_ref& move, bool reversed = false );
+		void go( const aosl::Move_ref& move );
 
 		/** Go back in the path followed. */
 		void go_back( std::size_t step_count = 1 );
@@ -48,7 +48,7 @@ namespace aoslcpp
 		bool can_go_next() const;
 
 		/** @return true if there is a previous stage, false if we're at the first stage. */
-		bool can_go_back() const { return m_path.stage_count() > 1; }
+		bool can_go_back() const { return m_path.can_step_back(); }
 
 	private:
 
