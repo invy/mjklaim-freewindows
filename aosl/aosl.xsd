@@ -698,7 +698,7 @@
 	</xs:complexType>
 
 
-	<!--##### Root Objects #############################################################-->
+	<!--##### Root Elements #############################################################-->
 
 	<xs:complexType name="sequence" final="#all" >
 		<xs:annotation>
@@ -943,7 +943,7 @@
 	</xs:complexType>
 
 
-	<!--##### Meta Objects #############################################################-->
+	<!--##### Meta Elements #############################################################-->
 
 	<xs:complexType name="author">
 		<xs:annotation>
@@ -1198,7 +1198,7 @@
 
 
 
-	<!--##### Canvas Objects #############################################################-->
+	<!--##### Canvas Elements #############################################################-->
 
 	<xs:complexType name="layer" final="#all" >
 		<xs:annotation>
@@ -1543,7 +1543,7 @@
 	</xs:complexType>
 
 	
-	<!--##### Story Objects #############################################################-->
+	<!--##### Story Elements #############################################################-->
 
 	<xs:complexType name="stage" final="#all" >
 		<xs:annotation>
@@ -1901,7 +1901,7 @@
 
 
 
-	<!--## Navigation objects ########################-->
+	<!--## Navigation Elements ########################-->
 
 	<xs:complexType name="navigation" final="#all" >
 		<xs:annotation>
