@@ -15,6 +15,7 @@ set( UTILCPP_SOURCE_DIR ${UTILCPP_ROOT_DIR}/sources )
 
 # headers
 set( UTILCPP_HEADERS
+	${UTILCPP_HEADERS_DIR}/HardConfig.hpp
 	${UTILCPP_HEADERS_DIR}/Assert.hpp
 	${UTILCPP_HEADERS_DIR}/Log.hpp
 	${UTILCPP_HEADERS_DIR}/Singleton.hpp
