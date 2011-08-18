@@ -61,7 +61,7 @@ namespace core
 
 		/** Create an interpreter for this Sequence.
 		*/
-		std::unique_ptr< aoslcpp::SequenceInterpreter > new_interpreter();
+		std::unique_ptr< aoslcpp::SequenceInterpreter > new_interpreter() const;
 
 	private:
 

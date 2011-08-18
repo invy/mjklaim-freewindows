@@ -4,6 +4,8 @@
 
 #include <memory>
 
+#include <QObject>
+
 namespace aoslcpp
 {
 	class SequenceInterpreter;
@@ -13,19 +15,34 @@ namespace aosd
 {
 namespace core
 {
-
+	class Sequence;
 
 	/** Allow going through a Sequence story and provide informations about the state of this story.
 	*/
 	class StoryWalker
+		: public QObject
 	{
+		Q_OBJECT
 	public:
 
-		StoryWalker( std::unique_ptr< SequenceInterpreter >&& interpreter );
+		explicit StoryWalker( const Sequence& sequence );
 	
+		void restart();
+
+	signals:
+
+		void restarted();
+
+	private slots:
+
+
 	private:
 
-		std::unique_ptr< SequenceInterpreter > m_interpreter;
+		/// The Sequence we are walking through.
+		const Sequence& m_sequence;
+
+		std::unique_ptr< aoslcpp::SequenceInterpreter > m_interpreter;
+
 	};
 
 
