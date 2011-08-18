@@ -23,6 +23,7 @@ namespace core
 
 	namespace
 	{
+		const auto AOSL_NAMESPACE_NAME = "artofsequence.org/aosl/1.0";
 		const std::string SEQUENCE_ID_PREFIX = "sequence-";
 
 		std::unique_ptr< aosl::Sequence > create_empty_sequence( const SequenceInfos& infos )
@@ -75,7 +76,7 @@ namespace core
 		, m_location( sequence_file_path )
 	{
 		xml_schema::Properties properties;
-		properties.schema_location( "artofsequence.org/aosl/1.0", path::AOSL_XSD_FILE.string() );
+		properties.schema_location( AOSL_NAMESPACE_NAME, path::AOSL_XSD_FILE.string() );
 
 		boost::filesystem::ifstream filestream( full_location() );
 		try
@@ -119,7 +120,7 @@ namespace core
 		}
 
 		xml_schema::NamespaceInfomap namespace_infos;
-		namespace_infos["aos"].name = "artofsequence.org/aosl/1.0";
+		namespace_infos["aos"].name = AOSL_NAMESPACE_NAME;
 
 		boost::filesystem::ofstream filestream( sequence_file_path );
 		aosl::serialize_sequence( filestream, *m_sequence, namespace_infos );
