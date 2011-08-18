@@ -65,8 +65,7 @@ namespace core
 	{
 		if( m_sequence )
 		{
-			std::string full_id = m_sequence->id();
-			m_id = boost::replace_first_copy( full_id, SEQUENCE_ID_PREFIX, std::string() );
+			m_id = m_sequence->id();
 		}
 		
 	}
