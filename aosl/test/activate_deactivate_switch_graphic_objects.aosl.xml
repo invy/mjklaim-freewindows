@@ -10,7 +10,11 @@
 
 -->
 
-<sequence xmlns="artofsequence.org/aosl/1.0" >
+<sequence xmlns="artofsequence.org/aosl/1.0" 
+	id="test-activate-deactivate-switch-graphic-objects" 
+	name="Test : Activate, Deactivate and Switch graphic objects"
+>
+	
 
     <library>
         <resources>
