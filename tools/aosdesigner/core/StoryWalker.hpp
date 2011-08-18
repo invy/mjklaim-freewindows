@@ -2,20 +2,15 @@
 #define HGUARD_AOSD_CORE_STORYWALKER_HPP__
 #pragma once
 
-#include <memory>
 
 #include <QObject>
 
-namespace aoslcpp
-{
-	class SequenceInterpreter;
-}
+#include "aoslcpp/SequenceInterpreter.hpp"
 
 namespace aosd
 {
 namespace core
 {
-	class Sequence;
 
 	/** Allow going through a Sequence story and provide informations about the state of this story.
 	*/
@@ -25,9 +20,13 @@ namespace core
 		Q_OBJECT
 	public:
 
-		explicit StoryWalker( const Sequence& sequence );
+		explicit StoryWalker( const aoslcpp::SequenceInterpreter& interpreter );
 	
-		void restart();
+		void restart( const aoslcpp::SequenceInterpreter& interpreter );
+
+	public slots:
+
+		//void go_next();
 
 	signals:
 
@@ -38,10 +37,7 @@ namespace core
 
 	private:
 
-		/// The Sequence we are walking through.
-		const Sequence& m_sequence;
-
-		std::unique_ptr< aoslcpp::SequenceInterpreter > m_interpreter;
+		aoslcpp::SequenceInterpreter m_interpreter;
 
 	};
 

@@ -11,7 +11,6 @@
 #include "utilcpp/Assert.hpp"
 
 #include "aoslcpp/aosl/aosl.hpp"
-#include "aoslcpp/SequenceInterpreter.hpp"
 
 #include "core/Project.hpp"
 
@@ -134,14 +133,14 @@ namespace core
 		return m_project.directory_path() / location();
 	}
 
-	std::unique_ptr< aoslcpp::SequenceInterpreter > Sequence::new_interpreter() const
+	boost::optional<aoslcpp::SequenceInterpreter> Sequence::make_interpreter() const
 	{
 		if( m_sequence )
 		{
-			return std::unique_ptr< aoslcpp::SequenceInterpreter >( new aoslcpp::SequenceInterpreter( *m_sequence ) );
+			return aoslcpp::SequenceInterpreter( *m_sequence );
 		}
 
-		return std::unique_ptr< aoslcpp::SequenceInterpreter >();
+		return nullptr;
 	}
 
 

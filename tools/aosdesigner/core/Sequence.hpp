@@ -4,16 +4,15 @@
 
 #include <string>
 #include <memory>
+#include <boost/optional.hpp>
 
 #include "core/SequenceInfos.hpp"
+
+#include "aoslcpp/SequenceInterpreter.hpp"
 
 namespace aosl
 {
 	class Sequence;
-}
-namespace aoslcpp
-{
-	class SequenceInterpreter;
 }
 
 namespace aosd
@@ -61,7 +60,7 @@ namespace core
 
 		/** Create an interpreter for this Sequence.
 		*/
-		std::unique_ptr< aoslcpp::SequenceInterpreter > new_interpreter() const;
+		boost::optional<aoslcpp::SequenceInterpreter> make_interpreter() const;
 
 	private:
 

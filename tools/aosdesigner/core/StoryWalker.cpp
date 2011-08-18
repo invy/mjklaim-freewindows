@@ -1,6 +1,5 @@
 #include "core/StoryWalker.hpp"
 
-#include "core/Sequence.hpp"
 
 #include "aoslcpp/SequenceInterpreter.hpp"
 
@@ -10,15 +9,14 @@ namespace core
 {
 	
 
-	StoryWalker::StoryWalker( const Sequence& sequence )
-		: m_sequence( sequence )
+	StoryWalker::StoryWalker( const aoslcpp::SequenceInterpreter& interpreter )
+		: m_interpreter( interpreter )
 	{
-		restart();
 	}
 
-	void StoryWalker::restart()
+	void StoryWalker::restart( const aoslcpp::SequenceInterpreter& interpreter )
 	{
-		m_interpreter= m_sequence.new_interpreter();
+		m_interpreter = interpreter;
 		
 		emit restarted();
 	}
