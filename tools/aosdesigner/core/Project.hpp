@@ -6,14 +6,15 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/ptr_container/ptr_vector.hpp>
 
-#include "core/Sequence.hpp"
-
 
 namespace aosd 
 { 
 namespace core 
 {
+	class Sequence;
+	class StoryWalker;
 	struct ProjectInfos;
+	struct SequenceInfos;
 
 	namespace bfs = boost::filesystem;
 
@@ -31,6 +32,8 @@ namespace core
 
 		/** Load a project from a provided project file location. */
 		Project( const bfs::path& project_file_path );
+
+		~Project();
 		
 		/** Save the project informations and content in the provided location. */
 		bool save( const bfs::path& filepath )
@@ -78,6 +81,9 @@ namespace core
 
 		/// Sequences for this project.
 		boost::ptr_vector< Sequence > m_sequences;
+
+		/// Sequence paths taken for edition.
+		boost::ptr_vector< StoryWalker > m_walks;
 
 		/// Name of the project.
 		std::string m_name;

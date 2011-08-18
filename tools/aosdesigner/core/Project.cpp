@@ -11,6 +11,9 @@
 #include "utilcpp/Assert.hpp"
 
 #include "core/ProjectInfos.hpp"
+#include "core/SequenceInfos.hpp"
+#include "core/Sequence.hpp"
+#include "core/StoryWalker.hpp"
 #include "view/Dialogs.hpp"
 #include "Paths.hpp"
 
@@ -58,6 +61,12 @@ namespace core
 			UTILCPP_LOG << "Loaded Sequence : " << m_sequences.back().name() << " [" << m_sequences.back().id() << "]";
 
 		});
+
+	}
+
+
+	Project::~Project()
+	{
 
 	}
 
@@ -161,6 +170,7 @@ namespace core
 		UTILCPP_ASSERT_NOT_NULL( sequence );
 		m_sequences.push_back( sequence.release() );
 	}
+
 
 
 }
