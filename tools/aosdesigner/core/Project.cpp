@@ -75,7 +75,12 @@ namespace core
 
 	void Project::rename( const std::string& new_name )
 	{
-		// TODO : add some checks!
+		if( new_name.empty()  )
+		{
+			UTILCPP_LOG_ERROR << "Tried to rename project " << m_name << " to \"" << new_name << "\" : invalid!";
+			return;
+		}
+
 		m_name = new_name;
 	}
 
