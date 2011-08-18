@@ -35,7 +35,7 @@
 
         <moves>
             
-            <move from="stage_0" to="stage_1" >
+            <move id="move_0_1" from="stage_0" to="stage_1" >
                 <transform object="a_character">
                     <transformation>
                         <translation x="100" y="100" />

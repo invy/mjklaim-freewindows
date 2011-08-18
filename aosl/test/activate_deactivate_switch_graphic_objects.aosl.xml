@@ -47,21 +47,21 @@
 
         <moves>
             
-            <move from="stage_0" to="stage_1" >
+            <move id="move_0_1" from="stage_0" to="stage_1" >
                 <activate object="background" />
             </move>
             
-            <move from="stage_1" to="stage_2" >
+            <move id="move_1_2" from="stage_1" to="stage_2" >
                 <activate object="a_character" />
                 <switch object="icon" />
             </move>
 
-            <move from="stage_2" to="stage_3" >
+            <move id="move_2_3" from="stage_2" to="stage_3" >
                 <deactivate object="a_character" />
                 <switch object="icon" />
             </move>
 
-            <move from="stage_3" to="stage_4" >
+            <move id="move_3_4" from="stage_3" to="stage_4" >
                 <deactivate object="background" />
                 <switch object="icon" />
             </move>
