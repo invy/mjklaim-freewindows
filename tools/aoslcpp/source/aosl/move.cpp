@@ -45,12 +45,13 @@ namespace aosl
 
   Move::
   Move (const FromType& from,
-        const ToType& to)
+        const ToType& to,
+        const IdType& id)
   : ::aosl::List_change (),
     extension_ (::xml_schema::Flags (), this),
     from_ (from, ::xml_schema::Flags (), this),
     to_ (to, ::xml_schema::Flags (), this),
-    id_ (::xml_schema::Flags (), this)
+    id_ (id, ::xml_schema::Flags (), this)
   {
   }
 
@@ -159,6 +160,13 @@ namespace aosl
         "to",
         "");
     }
+
+    if (!id_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "id",
+        "");
+    }
   }
 
   Move* Move::
@@ -227,11 +235,7 @@ namespace aosl
 
     o << ::std::endl << "from: " << i.from ();
     o << ::std::endl << "to: " << i.to ();
-    if (i.id ())
-    {
-      o << ::std::endl << "id: " << *i.id ();
-    }
-
+    o << ::std::endl << "id: " << i.id ();
     return o;
   }
 }
@@ -301,14 +305,13 @@ namespace aosl
 
     // id
     //
-    if (i.id ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "id",
           e));
 
-      a << *i.id ();
+      a << i.id ();
     }
   }
 }
