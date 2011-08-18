@@ -11,7 +11,10 @@ namespace aosl
 {
 	class Sequence;
 }
-
+namespace aoslcpp
+{
+	class SequenceInterpreter;
+}
 
 namespace aosd
 {
@@ -55,6 +58,10 @@ namespace core
 		/// Project in which this sequence is loaded.
 		const Project& project() const { return m_project; }
 		Project& project() { return m_project; }
+
+		/** Create an interpreter for this Sequence.
+		*/
+		std::unique_ptr< aoslcpp::SequenceInterpreter > new_interpreter();
 
 	private:
 

@@ -10,7 +10,8 @@
 
 #include "utilcpp/Assert.hpp"
 
-#include "aoslcpp/aosl/aosl.hpp"
+#include "aosl/aosl.hpp"
+#include "aoslcpp/SequenceInterpreter.hpp"
 
 #include "core/Project.hpp"
 
@@ -131,6 +132,16 @@ namespace core
 	boost::filesystem::path Sequence::full_location() const
 	{
 		return m_project.directory_path() / location();
+	}
+
+	std::unique_ptr< aoslcpp::SequenceInterpreter > Sequence::new_interpreter()
+	{
+		if( m_sequence )
+		{
+			return std::unique_ptr< aoslcpp::SequenceInterpreter >( new aoslcpp::SequenceInterpreter( *m_sequence ) );
+		}
+
+		return std::unique_ptr< aoslcpp::SequenceInterpreter >();
 	}
 
 

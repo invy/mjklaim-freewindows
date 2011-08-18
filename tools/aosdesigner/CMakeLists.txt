@@ -32,6 +32,8 @@ set( AOSDESIGNER_CORE_HEADERS
     ${AOSDESIGNER_CORE_DIR}/Project.hpp
     ${AOSDESIGNER_CORE_DIR}/Sequence.hpp
 	${AOSDESIGNER_CORE_DIR}/ProjectInfos.hpp
+	${AOSDESIGNER_CORE_DIR}/SequenceInfos.hpp
+	${AOSDESIGNER_CORE_DIR}/StoryWalker.hpp
 )
 
 #-----------------------------------------------------------------
@@ -129,7 +131,7 @@ set( AOSDESIGNER_CORE_SOURCES
     ${AOSDESIGNER_CORE_DIR}/Context.cpp
     ${AOSDESIGNER_CORE_DIR}/Project.cpp
     ${AOSDESIGNER_CORE_DIR}/Sequence.cpp
-    
+    ${AOSDESIGNER_CORE_DIR}/StoryWalker.cpp
 )
 
 #------------------------------------------------------
