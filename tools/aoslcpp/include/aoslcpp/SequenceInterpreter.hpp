@@ -4,7 +4,7 @@
 
 #include <boost/optional.hpp>
 
-#include "aosl/move.hpp"
+#include "aosl/story.hpp"
 #include "aoslcpp/StoryPath.hpp"
 #include "aoslcpp/CanvasState.hpp"
 #include "aoslcpp/NavigationState.hpp"
@@ -12,6 +12,7 @@
 namespace aosl
 {
 	class Sequence;
+	class Move;
 }
 
 namespace aoslcpp
@@ -48,6 +49,9 @@ namespace aoslcpp
 		/// The current navigation actions available at this stage.
 		const NavigationState& navigation() const { return m_navigation; }
 
+		/// The story this interpreter is going through.
+		const aosl::Story& story() const { return m_story; }
+
 		/** @return true if there is a unique next move from the current stage, false otherwise. */
 		bool can_go_next() const { return m_auto_next_move; }
 
@@ -56,7 +60,8 @@ namespace aoslcpp
 
 	private:
 
-		const aosl::Sequence& m_sequence;
+		/// The story this interpreter is going through.
+		aosl::Story m_story;
 		
 		/// The path followed by this interpreter.
 		StoryPath m_path;

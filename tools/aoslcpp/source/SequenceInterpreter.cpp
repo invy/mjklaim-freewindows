@@ -13,7 +13,7 @@ namespace aoslcpp
 {
 		
 	SequenceInterpreter::SequenceInterpreter( const aosl::Sequence& sequence )
-		: m_sequence( sequence ) 
+		: m_story( sequence.story() ) 
 		, m_path()
 		, m_canvas( sequence.canvas() ) // copy the initial canvas
 		, m_navigation( sequence.story().navigation() ? *sequence.story().navigation() : aosl::Navigation() ) // empty navigation if not provided by the sequence
@@ -29,7 +29,7 @@ namespace aoslcpp
 	aosl::Stage_ref SequenceInterpreter::execute_move( const aosl::Move_ref& move_ref, bool reverse )
 	{
 		// get the move informations
-		const auto move = find_move( m_sequence.story(), move_ref );
+		const auto move = find_move( story(), move_ref );
 		UTILCPP_ASSERT_NOT_NULL( move );
 
 		return execute_move( *move, reverse );
@@ -40,7 +40,7 @@ namespace aoslcpp
 		const auto stage_ref = reverse ? move.from() : move.to();
 
 		// get the next stage informations
-		const auto stage = find_stage( m_sequence.story(), stage_ref );
+		const auto stage = find_stage( story(), stage_ref );
 		UTILCPP_ASSERT_NOT_NULL( stage );
 
 		// apply the changes
@@ -53,14 +53,14 @@ namespace aoslcpp
 			m_navigation.reset();
 
 		// deduce the automatic next move if any
-		m_auto_next_move = auto_next( m_sequence.story(), stage_ref );
+		m_auto_next_move = auto_next( story(), stage_ref );
 
 		return stage_ref;
 	}
 
 	void SequenceInterpreter::go( const aosl::Move_ref& move_ref )
 	{
-		const auto move = find_move( m_sequence.story(), move_ref );
+		const auto move = find_move( story(), move_ref );
 		UTILCPP_ASSERT_NOT_NULL( move );
 
 		const auto stage_ref = execute_move( move_ref, false );
