@@ -137,17 +137,17 @@ namespace aosl
   }
 
   inline
-  const Move::IdOptional& Move::
+  const Move::IdType& Move::
   id () const
   {
-    return this->id_;
+    return this->id_.get ();
   }
 
   inline
-  Move::IdOptional& Move::
+  Move::IdType& Move::
   id ()
   {
-    return this->id_;
+    return this->id_.get ();
   }
 
   inline
@@ -159,16 +159,16 @@ namespace aosl
 
   inline
   void Move::
-  id (const IdOptional& x)
-  {
-    this->id_ = x;
-  }
-
-  inline
-  void Move::
   id (::std::auto_ptr< IdType > x)
   {
     this->id_.set (x);
+  }
+
+  inline
+  ::std::auto_ptr< Move::IdType > Move::
+  detach_id ()
+  {
+    return this->id_.detach ();
   }
 }
 
