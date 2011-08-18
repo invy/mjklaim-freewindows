@@ -52,7 +52,7 @@ namespace aoslcpp
 			if( moves.empty() ) // be lazy!
 				return nullptr;
 
-			auto find_it = std::find_if( moves.begin(), moves.end(), [&]( MoveType& move ){ return move.id() && *move.id() == move_ref; });
+			auto find_it = std::find_if( moves.begin(), moves.end(), [&]( MoveType& move ){ return move.id() == move_ref; });
 
 			if( find_it != moves.end() )
 			{
@@ -75,8 +75,8 @@ namespace aoslcpp
 
 			if( find_it != stages.end() )
 			{
-				auto& move = *find_it;
-				return &move;
+				auto& stage = *find_it;
+				return &stage;
 			}
 			else
 				return nullptr;

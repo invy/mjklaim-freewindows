@@ -172,6 +172,34 @@ namespace aoslcpp
 		}
 	}
 
+	boost::optional< aosl::Move > auto_next( const aosl::Story& story, const aosl::Stage& stage )
+	{
+		return auto_next( story, aosl::Stage_ref( stage.id() ) );
+	}
+
+	boost::optional< aosl::Move > auto_next( const aosl::Story& story, const aosl::Stage_ref& stage_ref )
+	{
+		auto& moves = story.moves().move();
+		boost::optional< aosl::Move > found;
+		
+		for( auto it = moves.begin(); it != moves.end(); ++it )
+		{
+			auto& move = *it;
+			if( move.from() == stage_ref )
+			{
+				if( found ) // move already found : there is more than one moves for this stage
+					return nullptr;
+				else
+				{
+					// found the first move that comes from the stage
+					found = move;
+				}
+			}
+		}
+		
+		return found;
+	}
+
 
 	
 

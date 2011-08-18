@@ -5,6 +5,7 @@
 #include "utilcpp/Assert.hpp"
 
 #include "aoslcpp/algorithm/find.hpp"
+#include "aoslcpp/algorithm//execution.hpp"
 #include "aosl/sequence.hpp"
 #include "aosl/event.hpp"
 
@@ -31,14 +32,19 @@ namespace aoslcpp
 		const auto move = find_move( m_sequence.story(), move_ref );
 		UTILCPP_ASSERT_NOT_NULL( move );
 
-		const auto stage_ref = reverse ? move->from() : move->to();
+		return execute_move( *move, reverse );
+	}
+
+	aosl::Stage_ref SequenceInterpreter::execute_move( const aosl::Move& move, bool reverse )
+	{
+		const auto stage_ref = reverse ? move.from() : move.to();
 
 		// get the next stage informations
 		const auto stage = find_stage( m_sequence.story(), stage_ref );
 		UTILCPP_ASSERT_NOT_NULL( stage );
 
 		// apply the changes
-		std::for_each( move->change().begin(), move->change().end() , [&]( const aosl::Change& change ) { m_canvas.execute( change, reverse ); } );
+		m_canvas.execute( move, reverse );
 
 		// update the navigation options
 		if( stage->navigation() )
@@ -46,13 +52,25 @@ namespace aoslcpp
 		else
 			m_navigation.reset();
 
+		// deduce the automatic next move if any
+		m_auto_next_move = auto_next( m_sequence.story(), stage_ref );
+
 		return stage_ref;
 	}
 
 	void SequenceInterpreter::go( const aosl::Move_ref& move_ref )
 	{
+		const auto move = find_move( m_sequence.story(), move_ref );
+		UTILCPP_ASSERT_NOT_NULL( move );
+
 		const auto stage_ref = execute_move( move_ref, false );
-		m_path.add_step( move_ref, stage_ref );
+		m_path.add_step( move->id(), stage_ref );
+	}
+
+	void SequenceInterpreter::go( const aosl::Move& move )
+	{
+		const auto stage_ref = execute_move( move, false );
+		m_path.add_step( move.id(), stage_ref );
 	}
 
 	void SequenceInterpreter::go_back( std::size_t step_count )
@@ -75,15 +93,11 @@ namespace aoslcpp
 		if( can_go_next() )
 		{
 			// find the unique move to go next
-
+			go( *m_auto_next_move );
 		}
+
 		
 	}
 
-
-	bool SequenceInterpreter::can_go_next() const
-	{
-		return false;
-	}
 
 }

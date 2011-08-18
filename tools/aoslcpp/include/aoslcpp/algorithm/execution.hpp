@@ -2,6 +2,7 @@
 #define HGUARD_AOSLCPP_EXECUTION_HPP__
 #pragma once
 
+#include <boost/optional.hpp>
 #include "aosl/aosl_forward.hpp"
 #include "aosl/object_ref.hpp"
 
@@ -35,6 +36,13 @@ namespace aoslcpp
 
 	void reverse_transform( aosl::Properties_graphic_object& graphic_properties, const aosl::Transformation& transformation );
 	void reverse_transform( aosl::Canvas& canvas, const aosl::Object_ref object_ref, const aosl::Transformation& transformation );
+	
+
+	/** Deduce automatically what would be the next move.
+		@return The next move if it's there is only one available from the stage, null otherwise.
+	**/
+	boost::optional< aosl::Move > auto_next( const aosl::Story& story, const aosl::Stage& stage );
+	boost::optional< aosl::Move > auto_next( const aosl::Story& story, const aosl::Stage_ref& stage_ref );
 
 }
 

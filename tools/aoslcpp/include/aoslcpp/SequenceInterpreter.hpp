@@ -2,8 +2,9 @@
 #define HGUARD_AOSLCPP_SEQUENCEINTERPRETER_HPP__
 #pragma once
 
-#include "aosl/stage_ref.hpp"
+#include <boost/optional.hpp>
 
+#include "aosl/move.hpp"
 #include "aoslcpp/StoryPath.hpp"
 #include "aoslcpp/CanvasState.hpp"
 #include "aoslcpp/NavigationState.hpp"
@@ -29,7 +30,8 @@ namespace aoslcpp
 
 		/** Apply the given move.
 		*/
-		void go( const aosl::Move_ref& move );
+		void go( const aosl::Move_ref& move_ref );
+		void go( const aosl::Move& move );
 
 		/** Go back in the path followed. */
 		void go_back( std::size_t step_count = 1 );
@@ -47,7 +49,7 @@ namespace aoslcpp
 		const NavigationState& navigation() const { return m_navigation; }
 
 		/** @return true if there is a unique next move from the current stage, false otherwise. */
-		bool can_go_next() const;
+		bool can_go_next() const { return m_auto_next_move; }
 
 		/** @return true if there is a previous stage, false if we're at the first stage. */
 		bool can_go_back() const { return m_path.can_step_back(); }
@@ -55,7 +57,6 @@ namespace aoslcpp
 	private:
 
 		const aosl::Sequence& m_sequence;
-
 		
 		/// The path followed by this interpreter.
 		StoryPath m_path;
@@ -66,7 +67,13 @@ namespace aoslcpp
 		/// The current navigation actions available at this stage.
 		NavigationState m_navigation;
 
-		aosl::Stage_ref execute_move( const aosl::Move_ref& move, bool reverse );
+		/// Automatically deduced next move or null if cannot be deduced
+		boost::optional<aosl::Move> m_auto_next_move;
+
+		aosl::Stage_ref execute_move( const aosl::Move& move, bool reverse );
+		aosl::Stage_ref execute_move( const aosl::Move_ref& move_ref, bool reverse );
+
+		
 	};
 
 

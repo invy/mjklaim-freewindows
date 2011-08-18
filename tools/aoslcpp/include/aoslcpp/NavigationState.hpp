@@ -2,8 +2,6 @@
 #define HGUARD_AOSLCPP_NAVIGATIONSTATE_HPP__
 #pragma once
 
-#include <vector>
-#include <boost/optional.hpp>
 #include "aosl/navigation.hpp"
 
 namespace aoslcpp
