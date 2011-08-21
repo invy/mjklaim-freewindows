@@ -63,8 +63,6 @@ namespace core
 		/** Signal : a project have been open. */
 		void project_open( const core::Project& project );
 
-		/** Signal : the currently open project have been modified. */
-		void project_changed( const core::Project& project );
 
 		/** Signal : the currently open project will be closed. */
 		void project_closed( const core::Project& project );

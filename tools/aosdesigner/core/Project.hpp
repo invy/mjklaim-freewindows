@@ -93,7 +93,7 @@ namespace core
 		void sequence_created( const Sequence& sequence );
 
 		/** Signal : a sequence have been requested to be destroyed. **/
-		void sequence_destroyed( const Sequence& sequence );
+		void sequence_deleted( const Sequence& sequence );
 		
 	private:
 
