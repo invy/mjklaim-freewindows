@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/axis_positive_y.hpp"
+#include "aosl/axis_positive_y.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

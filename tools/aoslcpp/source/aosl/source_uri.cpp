@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/source_uri.hpp"
+#include "aosl/source_uri.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

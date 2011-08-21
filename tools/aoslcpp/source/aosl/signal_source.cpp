@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/signal_source.hpp"
+#include "aosl/signal_source.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

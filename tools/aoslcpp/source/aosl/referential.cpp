@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/referential.hpp"
+#include "aosl/referential.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

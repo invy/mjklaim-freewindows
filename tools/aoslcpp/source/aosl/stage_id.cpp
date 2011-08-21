@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/stage_id.hpp"
+#include "aosl/stage_id.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

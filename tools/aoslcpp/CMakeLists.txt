@@ -17,7 +17,7 @@ set( AOSLCPP_SOURCE_DIR ${AOSLCPP_ROOT_DIR}/source )
 set( AOSLCPP_ALGORITHM_HEADERS_DIR ${AOSLCPP_HEADERS_DIR}/algorithm )
 set( AOSLCPP_ALGORITHM_SOURCES_DIR ${AOSLCPP_SOURCE_DIR}/algorithm )
 
-set( AOSLCPP_AOSL_HEADERS_DIR ${AOSLCPP_HEADERS_DIR}/aosl )
+set( AOSLCPP_AOSL_HEADERS_DIR ${AOSLCPP_INCLUDE_DIR}/aosl )
 set( AOSLCPP_AOSL_SOURCES_DIR ${AOSLCPP_SOURCE_DIR}/aosl )
 
 set( AOSLCPP_SCRIPT_DIR script )
@@ -49,6 +49,7 @@ set( AOSLCPP_ALGORITHM_HEADERS
 	${AOSLCPP_ALGORITHM_HEADERS_DIR}/find.hpp
 	${AOSLCPP_ALGORITHM_HEADERS_DIR}/for_each.hpp
 	${AOSLCPP_ALGORITHM_HEADERS_DIR}/execution.hpp
+	${AOSLCPP_ALGORITHM_HEADERS_DIR}/edition.hpp
 )
 
 # tool types headers
@@ -75,11 +76,14 @@ set( AOSLCPP_ALGORITHM_SOURCES
 	${AOSLCPP_ALGORITHM_SOURCES_DIR}/for_each.cpp
 	${AOSLCPP_ALGORITHM_SOURCES_DIR}/find.cpp
 	${AOSLCPP_ALGORITHM_SOURCES_DIR}/execution.cpp
+	${AOSLCPP_ALGORITHM_SOURCES_DIR}/edition.cpp
 )
 
 
 # tool types sources
 set( AOSLCPP_TOOL_SOURCES
+	${AOSLCPP_SOURCE_DIR}/common.cpp
+
 	${AOSLCPP_SOURCE_DIR}/SequenceInterpreter.cpp
 	${AOSLCPP_SOURCE_DIR}/StoryPath.cpp
 	${AOSLCPP_SOURCE_DIR}/CanvasState.cpp
@@ -148,9 +152,9 @@ set( AOSLCPP_SOURCES
 )
 
 # Make sure the generated code is isolated in a separate virtual folder in IDEs supporting them
-source_group( aoslcpp\\aosl 		FILES ${AOSLCPP_AOSL_HEADERS}   	)
-source_group( aoslcpp\\aosl\\inline FILES ${AOSLCPP_AOSL_INLINES} 		)
-source_group( aoslcpp\\aosl\\source FILES ${AOSLCPP_AOSL_SOURCES} 		)
+source_group( aosl 					FILES ${AOSLCPP_AOSL_HEADERS}   	)
+source_group( aosl\\inline 			FILES ${AOSLCPP_AOSL_INLINES} 		)
+source_group( aosl\\source 			FILES ${AOSLCPP_AOSL_SOURCES} 		)
 source_group( aoslcpp\\algorithm	FILES ${AOSLCPP_ALGORITHM_ALL_FILES})
 source_group( aoslcpp 				FILES ${AOSLCPP_TOOL_ALL_FILES} 	)
 
@@ -163,7 +167,6 @@ set( AOSLCPP_INCLUDE_DIRS
 
 include_directories( 
 	${AOSLCPP_INCLUDE_DIR}
-	${AOSLCPP_HEADERS_DIR}
 	${XSD_INCLUDE_DIR} 
 	${UTILCPP_INCLUDE_DIR}
 )

@@ -32,4 +32,10 @@
 #define AOSLCPP_API AOSLCPP_DllImport
 #endif
 
+namespace aosl
+{
+	extern const char* AOSL_XML_NAMESPACE_NAME;
+}
+
+
 #endif

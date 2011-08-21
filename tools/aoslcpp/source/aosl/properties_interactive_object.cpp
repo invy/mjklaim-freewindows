@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/properties_interactive_object.hpp"
+#include "aosl/properties_interactive_object.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

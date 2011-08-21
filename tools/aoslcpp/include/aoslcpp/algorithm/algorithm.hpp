@@ -5,5 +5,6 @@
 #include "find.hpp"
 #include "for_each.hpp"
 #include "execution.hpp"
+#include "edition.hpp"
 
 #endif

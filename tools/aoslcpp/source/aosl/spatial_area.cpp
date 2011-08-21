@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/spatial_area.hpp"
+#include "aosl/spatial_area.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

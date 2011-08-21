@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/value_percent.hpp"
+#include "aosl/value_percent.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

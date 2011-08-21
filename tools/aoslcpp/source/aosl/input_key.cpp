@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/input_key.hpp"
+#include "aosl/input_key.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

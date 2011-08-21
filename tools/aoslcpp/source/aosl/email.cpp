@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/email.hpp"
+#include "aosl/email.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

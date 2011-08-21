@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/list_effect.hpp"
+#include "aosl/list_effect.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

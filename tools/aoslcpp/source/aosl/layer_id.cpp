@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/layer_id.hpp"
+#include "aosl/layer_id.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

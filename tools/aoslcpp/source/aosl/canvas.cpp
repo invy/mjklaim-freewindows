@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/canvas.hpp"
+#include "aosl/canvas.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

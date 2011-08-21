@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/change_type.hpp"
+#include "aosl/change_type.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

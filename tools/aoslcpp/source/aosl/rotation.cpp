@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/rotation.hpp"
+#include "aosl/rotation.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

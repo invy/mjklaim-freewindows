@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/unit_space.hpp"
+#include "aosl/unit_space.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

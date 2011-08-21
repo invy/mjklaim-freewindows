@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/unit_time.hpp"
+#include "aosl/unit_time.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

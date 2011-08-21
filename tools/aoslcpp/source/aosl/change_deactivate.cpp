@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/change_deactivate.hpp"
+#include "aosl/change_deactivate.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

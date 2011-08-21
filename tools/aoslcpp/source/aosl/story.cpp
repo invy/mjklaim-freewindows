@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/story.hpp"
+#include "aosl/story.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

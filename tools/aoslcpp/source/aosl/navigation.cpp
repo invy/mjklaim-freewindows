@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/navigation.hpp"
+#include "aosl/navigation.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

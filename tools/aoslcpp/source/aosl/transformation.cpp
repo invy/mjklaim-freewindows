@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/transformation.hpp"
+#include "aosl/transformation.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

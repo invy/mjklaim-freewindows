@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/unique_id.hpp"
+#include "aosl/unique_id.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

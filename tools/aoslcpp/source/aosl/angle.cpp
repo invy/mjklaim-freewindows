@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/angle.hpp"
+#include "aosl/angle.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 

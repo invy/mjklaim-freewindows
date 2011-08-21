@@ -17,7 +17,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "aoslcpp/aosl/event_selection_base.hpp"
+#include "aosl/event_selection_base.hpp"
 
 #include <xsd/cxx/xml/dom/wildcard-source.hxx>
 
