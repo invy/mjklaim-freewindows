@@ -74,6 +74,7 @@ namespace core
 	void Project::relocate( const bfs::path& new_filepath )
 	{
 		// TODO : add some checks!
+		// TODO : move the files in the new location?
 		m_location = new_filepath;
 		m_directory_path = m_location.parent_path();
 
@@ -148,7 +149,10 @@ namespace core
 
 	bool Project::new_sequence( const SequenceInfos& infos )
 	{
-		add_sequence( std::unique_ptr<Sequence>( new Sequence( *this, infos ) ) );
+		auto sequence = new Sequence( *this, infos );
+		
+		add_sequence( std::unique_ptr<Sequence>( sequence ) );
+		emit sequence_created( *sequence );
 		return true;
 	}
 
@@ -183,14 +187,14 @@ namespace core
 	}
 
 
-	void Project::add_sequence( std::unique_ptr<Sequence> sequence )
+	void Project::add_sequence( std::unique_ptr<Sequence>&& sequence )
 	{
 		UTILCPP_ASSERT_NOT_NULL( sequence );
 		m_sequences.push_back( sequence.release() );
 	}
 
 
-	void Project::add_storywalker( std::unique_ptr<StoryWalker> storywalker )
+	void Project::add_storywalker( std::unique_ptr<StoryWalker>&& storywalker )
 	{
 		UTILCPP_ASSERT_NOT_NULL( storywalker );
 		m_walks.push_back( storywalker.release() );
