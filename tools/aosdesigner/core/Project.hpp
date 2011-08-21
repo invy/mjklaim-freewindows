@@ -6,6 +6,7 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/ptr_container/ptr_vector.hpp>
 
+#include "core/SequenceId.hpp"
 
 namespace aosd 
 { 
@@ -77,6 +78,9 @@ namespace core
 		/** Request informations to the user and use them to create a new sequence. */
 		bool new_sequence();
 
+		/** Create a story walk for the referenced sequence. **/
+		bool new_storywalker( const SequenceId& sequence_id );
+
 	private:
 
 		/// Sequences for this project.
@@ -97,6 +101,14 @@ namespace core
 
 		/// Add a Sequence to this project.
 		void add_sequence( std::unique_ptr<Sequence> sequence );
+
+		/// Add a StoryWalk to this project.
+		void add_storywalker( std::unique_ptr<StoryWalker> sequence );
+
+		/** Search for a Sequence having the provided id.
+			@return The Sequence we looked after or null if not found. 
+		**/
+		Sequence* find_sequence( const SequenceId& sequence_id );
 
 	};
 

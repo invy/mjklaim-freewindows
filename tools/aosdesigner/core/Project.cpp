@@ -165,11 +165,51 @@ namespace core
 
 	}
 
+	bool Project::new_storywalker( const SequenceId& sequence_id )
+	{
+		Sequence* sequence = find_sequence( sequence_id );
+		
+		if( sequence )
+		{
+			auto interpreter = sequence->make_interpreter();
+			if( interpreter )
+			{
+				add_storywalker( std::unique_ptr< StoryWalker >( new StoryWalker( *interpreter ) ) );
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+
 	void Project::add_sequence( std::unique_ptr<Sequence> sequence )
 	{
 		UTILCPP_ASSERT_NOT_NULL( sequence );
 		m_sequences.push_back( sequence.release() );
 	}
+
+
+	void Project::add_storywalker( std::unique_ptr<StoryWalker> storywalker )
+	{
+		UTILCPP_ASSERT_NOT_NULL( storywalker );
+		m_walks.push_back( storywalker.release() );
+	}
+
+	Sequence* Project::find_sequence( const SequenceId& sequence_id )
+	{
+		if( m_sequences.empty() )
+			return nullptr;
+
+		auto find_it = std::find_if( m_sequences.begin(), m_sequences.end(), [&]( Sequence& sequence ){ return sequence.id() == sequence_id; } );
+
+		if( find_it != m_sequences.end() )
+			return &(*find_it);
+		else
+			return nullptr;
+	}
+
+
 
 
 
