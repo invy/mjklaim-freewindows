@@ -88,11 +88,11 @@ namespace view
 		{
 			auto menu_designer = menubar.addMenu( QObject::tr("&Designer") );
 
-			menu_designer->addAction( &new_project() );
-			menu_designer->addAction( &open_project() );
-			menu_designer->addAction( &close_project() );
+			menu_designer->addAction( &m_new_project );
+			menu_designer->addAction( &m_open_project );
+			menu_designer->addAction( &m_close_project );
 			menu_designer->addSeparator();
-			menu_designer->addAction( &quit() );
+			menu_designer->addAction( &m_quit );
 
 		}
 
@@ -100,17 +100,20 @@ namespace view
 		{
 			auto menu_project = menubar.addMenu( QObject::tr("&Project") );
 
-			menu_project->addAction( &new_sequence() );
-			menu_project->addAction( &save_project() );
-			menu_project->addAction( &restore_project() );
-
+			menu_project->addAction( &m_save_project );
+			menu_project->addAction( &m_restore_project );
+			menu_project->addSeparator();
+			menu_project->addAction( &m_new_sequence );
+			
 		}
 
 		// Sequence menu
 		{
 			auto menu_sequence = menubar.addMenu( QObject::tr("&Sequence") );
 
-			menu_sequence->addAction( &new_storypath() );
+			menu_sequence->addAction( &m_new_storypath );
+			menu_sequence->addSeparator();
+
 
 		}
 
