@@ -1,6 +1,6 @@
 #include "state/Welcome.hpp"
 
-#include "view/WelcomeScreen.hpp"
+#include "view/dialog/WelcomeScreen.hpp"
 
 
 namespace aosd

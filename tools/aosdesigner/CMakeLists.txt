@@ -13,6 +13,7 @@ set( AOSDESIGNER_STATE_DIR ${AOSDESIGNER_ROOT_DIR}/state )
 set( AOSDESIGNER_VIEW_DIR ${AOSDESIGNER_ROOT_DIR}/view )
 set( AOSDESIGNER_RC_DIR ${AOSDESIGNER_VIEW_DIR}/rc )
 set( AOSDESIGNER_UI_DIR ${AOSDESIGNER_VIEW_DIR}/ui )
+set( AOSDESIGNER_DIALOG_DIR ${AOSDESIGNER_VIEW_DIR}/dialog )
 
 #####################################################
 # Header files.
@@ -50,6 +51,8 @@ set( AOSDESIGNER_STATE_HEADERS
 
 #-----------------------------------------------------------------
 
+
+
 # Views header files.
 set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/ForwardView.hpp
@@ -66,14 +69,17 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/LogView.hpp
     ${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.hpp
-	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.hpp
-	${AOSDESIGNER_VIEW_DIR}/NewProjectDialog.hpp
-	${AOSDESIGNER_VIEW_DIR}/NewSequenceDialog.hpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.hpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
 )
 
 
+# Dialog header files.
+set( AOSDESIGNER_DIALOG_HEADERS
+	${AOSDESIGNER_DIALOG_DIR}/WelcomeScreen.hpp
+	${AOSDESIGNER_DIALOG_DIR}/NewProjectDialog.hpp
+	${AOSDESIGNER_DIALOG_DIR}/NewSequenceDialog.hpp
+)
 
 #-----------------------------------------------------------------
 
@@ -83,6 +89,7 @@ set( AOSDESIGNER_ALL_HEADERS
     ${AOSDESIGNER_CORE_HEADERS}
 	${AOSDESIGNER_STATE_HEADERS}
     ${AOSDESIGNER_VIEW_HEADERS}
+	${AOSDESIGNER_DIALOG_HEADERS}
 )
 
 # Headers that depends on QObject
@@ -90,6 +97,7 @@ set( AOSDESIGNER_QOBJECT_HEADERS
 	${AOSDESIGNER_APPLICATION_HEADERS}
 	${AOSDESIGNER_CORE_HEADERS}
 	${AOSDESIGNER_VIEW_HEADERS}
+	${AOSDESIGNER_DIALOG_HEADERS}
 )
  
 
@@ -110,19 +118,26 @@ set( AOSDESIGNER_APPLICATION_SOURCES
 	${AOSDESIGNER_ROOT_DIR}/Paths.cpp
 )
 
+
 # Views source files.
 set( AOSDESIGNER_VIEW_SOURCES 
-    ${AOSDESIGNER_VIEW_DIR}/ApplicationView.cpp
+	${AOSDESIGNER_VIEW_DIR}/ApplicationView.cpp
 	${AOSDESIGNER_VIEW_DIR}/MainWindow.cpp
     ${AOSDESIGNER_VIEW_DIR}/ProjectView.cpp
     ${AOSDESIGNER_VIEW_DIR}/SequenceListView.cpp
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
-	${AOSDESIGNER_VIEW_DIR}/WelcomeScreen.cpp
-	${AOSDESIGNER_VIEW_DIR}/NewProjectDialog.cpp
-	${AOSDESIGNER_VIEW_DIR}/NewSequenceDialog.cpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.cpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp
 )
+
+
+# Dialog source files.
+set( AOSDESIGNER_DIALOG_SOURCES 
+    ${AOSDESIGNER_DIALOG_DIR}/WelcomeScreen.cpp
+	${AOSDESIGNER_DIALOG_DIR}/NewProjectDialog.cpp
+	${AOSDESIGNER_DIALOG_DIR}/NewSequenceDialog.cpp	
+)
+
 
 #------------------------------------------------------
 
@@ -186,6 +201,7 @@ source_group( designer\\view\\generated\\ui FILES ${AOSDESIGNER_VIEW_HEADERS_UI}
 
 # Additional groups
 source_group( designer\\view FILES ${AOSDESIGNER_VIEW_HEADERS} ${AOSDESIGNER_VIEW_SOURCES} )
+source_group( designer\\view\\dialog FILES ${AOSDESIGNER_DIALOG_HEADERS} ${AOSDESIGNER_DIALOG_SOURCES} )
 source_group( designer\\core FILES ${AOSDESIGNER_CORE_HEADERS} ${AOSDESIGNER_CORE_SOURCES} )
 source_group( designer\\state FILES ${AOSDESIGNER_STATE_HEADERS} ${AOSDESIGNER_STATE_SOURCES} )
 source_group( designer FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICATION_SOURCES} )
@@ -199,7 +215,8 @@ set( AOSDESIGNER_ALL_SOURCES
 	${AOSDESIGNER_STATE_SOURCES}
     ${AOSDESIGNER_APPLICATION_SOURCES}
     ${AOSDESIGNER_VIEW_SOURCES}
-    ${AOSDESIGNER_QOBJECT_HEADERS_MOC}
+	${AOSDESIGNER_DIALOG_SOURCES}
+	${AOSDESIGNER_QOBJECT_HEADERS_MOC}
     ${AOSDESIGNER_VIEW_HEADERS_UI}
 	${AOSDESIGNER_VIEW_RESOURCES}
 )

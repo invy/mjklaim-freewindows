@@ -1,4 +1,4 @@
-#include "view/WelcomeScreen.hpp"
+#include "WelcomeScreen.hpp"
 
 #include <QImage>
 #include "ui_WelcomeScreen.h"

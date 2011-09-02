@@ -3,9 +3,9 @@
 #include <QFileDialog>
 #include <QObject>
 
-#include "view/WelcomeScreen.hpp"
-#include "view/NewProjectDialog.hpp"
-#include "view/NewSequenceDialog.hpp"
+#include "view/dialog/WelcomeScreen.hpp"
+#include "view/dialog/NewProjectDialog.hpp"
+#include "view/dialog/NewSequenceDialog.hpp"
 #include "Paths.hpp"
 
 namespace aosd
