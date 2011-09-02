@@ -2,7 +2,7 @@
 #define HGUARD_AOSD_VIEW_DESIGNERACTIONS_HPP__
 #pragma once
 
-#include "view/ActionsProvider.hpp"
+#include <QAction>
 
 namespace aosd
 {
@@ -11,12 +11,14 @@ namespace view
 	/** Provide actions for manipulating the Designer(the application).
 	*/
 	class DesignerActions
-		: public ActionsProvider
 	{
-		Q_OBJECT
 	public:
 
 		DesignerActions();
+
+		/** Setup a full main menu. 
+		**/
+		void setup_menubar( QMenuBar& menubar );
 
 		const QAction& quit() const { return m_quit; }
 		const QAction& new_project() const { return m_new_project; }

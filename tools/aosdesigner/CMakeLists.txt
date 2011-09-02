@@ -70,7 +70,6 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/NewProjectDialog.hpp
 	${AOSDESIGNER_VIEW_DIR}/NewSequenceDialog.hpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.hpp
-	${AOSDESIGNER_VIEW_DIR}/ActionsProvider.hpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
 )
 

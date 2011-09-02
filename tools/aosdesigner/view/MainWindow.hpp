@@ -8,6 +8,7 @@
 
 #include "view/ForwardView.hpp"
 #include "core/ForwardCore.hpp"
+#include "view/DesignerActions.hpp"
 
 namespace Ui
 {
@@ -83,8 +84,8 @@ namespace view
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
 
-		// Actions:
-		std::unique_ptr<DesignerActions> m_designer_actions;
+		// Manage and provide main actions (in the main menu for example)
+		DesignerActions m_designer_actions;
 
 		/// Are we in edition mode?
 		bool m_edition_mode;
@@ -92,15 +93,16 @@ namespace view
 		/** Connect our slots to signals we want to react to. */
 		void connect_signals();
 
-		/** Setup the views in their default configuration and positions. **/
-		void setup_views_default();
-		
 		/** Create the menus from the actions. */
 		void create_menus();
 
+		/** Setup the views in their default configuration and positions. **/
+		void setup_views_default();
+		
 		/** Add  astory path view in the central tabs of the window. **/
 		void add_storypath( std::unique_ptr<StoryPathView>&& storypath );
 
+		
 	};
 
 
