@@ -17,14 +17,7 @@ namespace view
 		Q_OBJECT
 	public:
 
-		LogView()
-		{
-			setVisible( false );
-			setWindowTitle(tr("Log"));
-			setWidget( new QListView() );
-
-			
-		}
+		LogView();
 
 
 	private:

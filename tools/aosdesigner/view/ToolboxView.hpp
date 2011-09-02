@@ -17,12 +17,7 @@ namespace view
 		Q_OBJECT
 	public:
 		
-		ToolboxView()
-		{
-			setVisible( false );
-			setWindowTitle( tr("Toolbox") );
-			setWidget( new QToolBox() );
-		}
+		ToolboxView();
 
 
 	private:

@@ -18,12 +18,10 @@ namespace view
 		Q_OBJECT
 	public:
 		
-		LibrariesView()
-		{
-			setVisible( false );
-			setWindowTitle(tr("Libraries"));
-			setWidget( new QListView() );
-		}
+		LibrariesView();
+
+	private slots:
+
 
 
 	private:

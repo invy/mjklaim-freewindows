@@ -17,12 +17,7 @@ namespace view
 		Q_OBJECT
 	public:
 
-		ChangesView()
-		{
-			setVisible( false );
-			setWindowTitle( tr("Changes") );
-			setWidget( new QListView() );
-		}
+		ChangesView();
 		
 		
 

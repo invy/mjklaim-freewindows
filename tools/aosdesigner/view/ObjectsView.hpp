@@ -18,13 +18,7 @@ namespace view
 		Q_OBJECT
 	public:
 		
-		ObjectsView()
-		{
-			setVisible( false );
-			setWindowTitle( tr("Objects") );
-			
-			setWidget(new QTreeView());
-		}
+		ObjectsView();
 
 
 	private:

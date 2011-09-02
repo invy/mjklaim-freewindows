@@ -125,6 +125,14 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/MainWindow.cpp
     ${AOSDESIGNER_VIEW_DIR}/ProjectView.cpp
     ${AOSDESIGNER_VIEW_DIR}/SequenceListView.cpp
+	${AOSDESIGNER_VIEW_DIR}/LibrariesView.cpp
+	${AOSDESIGNER_VIEW_DIR}/LogView.cpp
+	${AOSDESIGNER_VIEW_DIR}/ObjectsView.cpp
+	${AOSDESIGNER_VIEW_DIR}/StoryView.cpp
+	${AOSDESIGNER_VIEW_DIR}/LayersView.cpp
+	${AOSDESIGNER_VIEW_DIR}/ToolboxView.cpp
+	${AOSDESIGNER_VIEW_DIR}/CanvasView.cpp
+	${AOSDESIGNER_VIEW_DIR}/ChangesView.cpp
 	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.cpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp
