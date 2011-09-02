@@ -9,6 +9,8 @@
 
 namespace aosd
 {
+	namespace core{ class StoryWalker; }
+
 namespace view
 {
 
@@ -24,7 +26,7 @@ namespace view
 		Q_OBJECT
 	public:
 		
-		StoryPathView();
+		explicit StoryPathView( const core::StoryWalker& storywalker );
 		~StoryPathView();
 
 	private:
@@ -32,6 +34,8 @@ namespace view
 		std::unique_ptr<CanvasView> m_canvas_view;
 		std::unique_ptr<StoryView> m_story_view;
 
+		
+		void connect_storywalker( const core::StoryWalker& storywalker );
 		
 	};
 

@@ -137,12 +137,12 @@ namespace core
 		return true;
 	}
 
-	void Project::foreach_sequence( const SequenceModifierFunc& func )
+	void Project::foreach_sequence( SequenceModifierFunc func )
 	{
 		std::for_each( m_sequences.begin(), m_sequences.end(), func );
 	}
 
-	void Project::foreach_sequence( const SequenceReaderFunc& func ) const
+	void Project::foreach_sequence( SequenceReaderFunc func ) const
 	{
 		std::for_each( m_sequences.begin(), m_sequences.end(), func );
 	}
@@ -198,6 +198,10 @@ namespace core
 	{
 		UTILCPP_ASSERT_NOT_NULL( storywalker );
 		m_walks.push_back( storywalker.release() );
+		
+		// notify the world!
+		storywalk_begin( m_walks.back() );
+
 	}
 
 	Sequence* Project::find_sequence( const SequenceId& sequence_id )

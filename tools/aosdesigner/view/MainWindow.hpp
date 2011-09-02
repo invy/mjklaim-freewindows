@@ -31,9 +31,6 @@ namespace view
 		MainWindow();
 		~MainWindow();
 
-		/** Add  astory path view in the central tabs of the window. **/
-		void add_storypath( StoryPathView& storypath );
-
 		/** Clear the tabs currently open in the center of the window. */
 		void clear_tabs();
 		
@@ -56,6 +53,18 @@ namespace view
 
 		/** Slot : called when a project have been closed. */
 		void on_project_closed( const core::Project& project );
+
+		/** Slot : called when a new sequence have been created. */
+		void on_sequence_created( const core::Sequence& sequence );
+
+		/** Slot : called when a sequence have been deleted. */
+		void on_sequence_deleted( const core::Sequence& sequence );
+
+		/** Slot : called when a story walk is beginning. */
+		void on_storywalk_begin( const core::StoryWalker& storywalker );
+
+		/** Slot : called when a story walk is ending. */
+		void on_storywalk_end( const core::StoryWalker& storywalker );
 
 	private:
 
@@ -88,6 +97,9 @@ namespace view
 		
 		/** Create the menus from the actions. */
 		void create_menus();
+
+		/** Add  astory path view in the central tabs of the window. **/
+		void add_storypath( std::unique_ptr<StoryPathView>&& storypath );
 
 	};
 

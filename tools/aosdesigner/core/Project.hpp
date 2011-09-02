@@ -55,10 +55,10 @@ namespace core
 		typedef std::function< void ( const Sequence& sequence )> SequenceReaderFunc;
 
 		/** Call the provided function for each Sequence in this project, allowing it to modify the Sequences. */
-		void foreach_sequence( const SequenceModifierFunc& func );
+		void foreach_sequence( SequenceModifierFunc func );
 
 		/** Call the provided function for each Sequence in this project but don't allow to modify them. */
-		void foreach_sequence( const SequenceReaderFunc& func ) const;
+		void foreach_sequence( SequenceReaderFunc func ) const;
 
 	public slots:
 
@@ -94,6 +94,12 @@ namespace core
 
 		/** Signal : a sequence have been requested to be destroyed. **/
 		void sequence_deleted( const Sequence& sequence );
+
+		/** Signal : a story walk have began. **/
+		void storywalk_begin( const StoryWalker& walker );
+
+		/** Signal : a story walk will be ended. **/
+		void storywalk_end( const StoryWalker& walker );
 		
 	private:
 

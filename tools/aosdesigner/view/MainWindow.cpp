@@ -7,6 +7,7 @@
 
 #include "core/Context.hpp"
 #include "core/Project.hpp"
+#include "core/Sequence.hpp"
 #include "view/ProjectView.hpp"
 #include "view/LibrariesView.hpp"
 #include "view/ChangesView.hpp"
@@ -66,6 +67,12 @@ namespace view
 	{
 		setWindowTitle( tr("Art Of Sequence : ") + QString::fromStdString( project.name() ) );
 
+		connect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(on_storywalk_begin(const core::StoryWalker&)) );
+		connect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(on_storywalk_end(const core::StoryWalker&)) );
+
+		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(on_sequence_created(const core::Sequence&)) );
+		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(on_sequence_deleted(const core::Sequence&)) );
+
 	}
 
 
@@ -76,12 +83,9 @@ namespace view
 
 
 
-	void MainWindow::add_storypath( StoryPathView& storypath )
+	void MainWindow::add_storypath( std::unique_ptr<StoryPathView>&& storypath )
 	{
-		// TEMPORARY :
-		static unsigned long next_idx = 0;
-
-		m_central_tabs->addTab( &storypath, QString( "story path %1" ).arg(++next_idx) );
+		m_central_tabs->addTab( storypath.release(), "NO NAME : MAKE IT WORK NOW!" );
 	}
 
 
@@ -103,8 +107,10 @@ namespace view
 	void MainWindow::connect_signals()
 	{
 		auto& context = core::Context::instance();
+
 		connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(on_project_open(const core::Project&)) );
 		connect( &context, SIGNAL(project_closed(const core::Project&)), this, SLOT(on_project_closed(const core::Project&)) );
+
 	}
 
 	void MainWindow::open_edition()
@@ -165,6 +171,28 @@ namespace view
 		menu_designer->addSeparator();
 		menu_designer->addAction( &m_designer_actions->quit() );
 
+	}
+
+	void MainWindow::on_storywalk_begin( const core::StoryWalker& storywalker )
+	{
+		add_storypath( std::unique_ptr<StoryPathView>( new StoryPathView( storywalker ) ) );
+	}
+
+	void MainWindow::on_storywalk_end( const core::StoryWalker& storywalker )
+	{
+		UTILCPP_NOT_IMPLEMENTED_YET;
+	}
+
+	void MainWindow::on_sequence_created( const core::Sequence& sequence )
+	{
+		// NOT SURE BUT OH WELL : we need to open a new story path
+		UTILCPP_NOT_IMPLEMENTED_YET;
+	}
+
+	void MainWindow::on_sequence_deleted( const core::Sequence& sequence )
+	{
+		// we need to remove all the storypaths from the central view.
+		UTILCPP_NOT_IMPLEMENTED_YET;
 	}
 
 
