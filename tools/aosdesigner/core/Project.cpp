@@ -153,6 +153,10 @@ namespace core
 		
 		add_sequence( std::unique_ptr<Sequence>( sequence ) );
 		emit sequence_created( *sequence );
+
+		// create a new storywalker for this sequence
+		new_storywalker( sequence->id() );
+
 		return true;
 	}
 
@@ -178,7 +182,10 @@ namespace core
 			auto interpreter = sequence->make_interpreter();
 			if( interpreter )
 			{
-				add_storywalker( std::unique_ptr< StoryWalker >( new StoryWalker( *interpreter ) ) );
+				auto storywalker = new StoryWalker( *interpreter );
+				add_storywalker( std::unique_ptr< StoryWalker >( storywalker ) );
+				
+				emit storywalk_begin( *storywalker ); 
 				return true;
 			}
 		}
@@ -199,8 +206,6 @@ namespace core
 		UTILCPP_ASSERT_NOT_NULL( storywalker );
 		m_walks.push_back( storywalker.release() );
 		
-		// notify the world!
-		storywalk_begin( m_walks.back() ); // THINK : not sure it should be here...
 
 	}
 
