@@ -90,16 +90,16 @@ namespace core
 	signals:
 
 		/** Signal : a new sequence have been created. **/
-		void sequence_created( const Sequence& sequence );
+		void sequence_created( const core::Sequence& sequence );
 
 		/** Signal : a sequence have been requested to be destroyed. **/
-		void sequence_deleted( const Sequence& sequence );
+		void sequence_deleted( const core::Sequence& sequence );
 
 		/** Signal : a story walk have began. **/
-		void storywalk_begin( const StoryWalker& walker );
+		void storywalk_begin( const core::StoryWalker& walker );
 
 		/** Signal : a story walk will be ended. **/
-		void storywalk_end( const StoryWalker& walker );
+		void storywalk_end( const core::StoryWalker& walker );
 		
 	private:
 

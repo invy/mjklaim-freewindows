@@ -78,6 +78,13 @@ namespace view
 	void MainWindow::on_project_closed( const core::Project& project )
 	{
 		setWindowTitle( tr("Art Of Sequence") );
+
+		disconnect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(on_storywalk_begin(const core::StoryWalker&)) );
+		disconnect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(on_storywalk_end(const core::StoryWalker&)) );
+
+		disconnect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(on_sequence_created(const core::Sequence&)) );
+		disconnect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(on_sequence_deleted(const core::Sequence&)) );
+
 	}
 
 
@@ -177,14 +184,12 @@ namespace view
 
 	void MainWindow::on_sequence_created( const core::Sequence& sequence )
 	{
-		// NOT SURE BUT OH WELL : we need to open a new story path
-		UTILCPP_NOT_IMPLEMENTED_YET;
+		// THINK : ?
 	}
 
 	void MainWindow::on_sequence_deleted( const core::Sequence& sequence )
 	{
-		// we need to remove all the storypaths from the central view.
-		UTILCPP_NOT_IMPLEMENTED_YET;
+		// THINK : ?
 	}
 
 

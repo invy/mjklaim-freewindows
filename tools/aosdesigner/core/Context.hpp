@@ -6,6 +6,7 @@
 #include <QObject>
 
 #include "core/ProjectInfos.hpp"
+#include "core/SequenceId.hpp"
 #include "utilcpp/Singleton.hpp"
 
 
@@ -57,6 +58,20 @@ namespace core
 			@return false if the project loading process failed or have been canceled by the user, true otherwise.
 		*/
 		bool open_project();
+
+		/** Save the project and everything it contains. */
+		bool save_project();
+
+		/** Create a new sequence in the current project. 
+			@return false if the sequence creation failed or if there is no project currently open, true otherwise.
+		**/
+		bool new_sequence();
+		
+		/** Create a new story-walk for a sequence of the project.
+			@param sequence_id Id of the sequence to create a story-walk for.
+			@return false if the story-walk creation failed or if there is no project currently open, true otherwise.
+		**/
+		bool new_storywalk( const SequenceId& sequence_id );
 		
 	signals:
 

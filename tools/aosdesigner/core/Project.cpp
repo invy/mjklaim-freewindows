@@ -200,7 +200,7 @@ namespace core
 		m_walks.push_back( storywalker.release() );
 		
 		// notify the world!
-		storywalk_begin( m_walks.back() );
+		storywalk_begin( m_walks.back() ); // THINK : not sure it should be here...
 
 	}
 

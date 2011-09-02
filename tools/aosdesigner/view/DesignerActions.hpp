@@ -24,12 +24,23 @@ namespace view
 		const QAction& new_project() const { return m_new_project; }
 		const QAction& open_project() const { return m_open_project; }
 		const QAction& close_project() const { return m_close_project; }
+
+		const QAction& new_sequence() const { return m_new_sequence; }
+		const QAction& save_project() const { return m_save_project; }
+
+		const QAction& new_storypath() const { return m_new_storypath; }
 	
 
 		QAction& quit() { return m_quit; }
 		QAction& new_project() { return m_new_project; }
 		QAction& open_project() { return m_open_project; }
 		QAction& close_project() { return m_close_project; }
+
+		QAction& new_sequence() { return m_new_sequence; }
+		QAction& save_project() { return m_save_project; }
+
+		QAction& new_storypath() { return m_new_storypath; }
+
 	
 	private:
 
@@ -37,6 +48,11 @@ namespace view
 		QAction m_new_project;
 		QAction m_open_project;
 		QAction m_close_project;
+
+		QAction m_new_sequence;
+		QAction m_save_project;
+
+		QAction m_new_storypath;
 		
 	};
 

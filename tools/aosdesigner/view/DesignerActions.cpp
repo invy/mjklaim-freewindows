@@ -9,12 +9,15 @@ namespace aosd
 {
 namespace view
 {
-
+	// TODO : find a better way to manage all this...
 	DesignerActions::DesignerActions()
 		: m_quit( "&Quit", nullptr )
 		, m_new_project( "&New Project", nullptr )
 		, m_open_project( "&Open Project", nullptr )
 		, m_close_project( "&Close Project", nullptr )
+		, m_new_sequence( "&New Sequence", nullptr )
+		, m_new_storypath( "&New Story-Path", nullptr )
+		, m_save_project( "&Save all", nullptr )
 	{
 		auto quit_tip = QObject::tr("Quit AOS Designer");
 		m_quit.setStatusTip( quit_tip );
@@ -39,19 +42,56 @@ namespace view
 		m_close_project.setToolTip( close_project_tip );
 		QObject::connect( &m_close_project, SIGNAL(triggered()), context, SLOT(close_project()) );
 		
-		
+		auto new_sequence_tip = QObject::tr( "Create a new sequence in the current project." );
+		m_new_sequence.setStatusTip( new_sequence_tip );
+		m_new_sequence.setToolTip( new_sequence_tip );
+		QObject::connect( &m_new_sequence, SIGNAL(triggered()), context, SLOT(new_sequence()) );
+
+		auto save_project_tip = QObject::tr( "Save the project and all the sequences and story-paths it contains." );
+		m_save_project.setStatusTip( save_project_tip );
+		m_save_project.setToolTip( new_sequence_tip );
+		QObject::connect( &m_save_project, SIGNAL(triggered()), context, SLOT(save_project()) );
+
+
+		auto new_storypath_tip = QObject::tr( "Create a new editable view of a path through the sequence." );
+		m_new_storypath.setStatusTip( new_storypath_tip );
+		m_new_storypath.setToolTip( new_storypath_tip );
+		//QObject::connect( &m_new_storypath, SIGNAL(triggered()), context, SLOT(new_storywalk()) );
+
+
 	}
 
 	void DesignerActions::setup_menubar( QMenuBar& menubar )
 	{
-		auto menu_designer = menubar.addMenu( QObject::tr("&Designer") );
+		// Designer menu
+		{
+			auto menu_designer = menubar.addMenu( QObject::tr("&Designer") );
 
-		menu_designer->addAction( &new_project() );
-		menu_designer->addAction( &open_project() );
-		menu_designer->addAction( &close_project() );
-		menu_designer->addSeparator();
-		menu_designer->addAction( &quit() );
+			menu_designer->addAction( &new_project() );
+			menu_designer->addAction( &open_project() );
+			menu_designer->addAction( &close_project() );
+			menu_designer->addSeparator();
+			menu_designer->addAction( &quit() );
 
+		}
+
+		// Project menu
+		{
+			auto menu_project = menubar.addMenu( QObject::tr("&Project") );
+
+			menu_project->addAction( &new_sequence() );
+			menu_project->addAction( &save_project() );
+
+		}
+
+		// Sequence menu
+		{
+			auto menu_sequence = menubar.addMenu( QObject::tr("&Sequence") );
+
+			menu_sequence->addAction( &new_storypath() );
+
+		}
+		
 	}
 
 }
