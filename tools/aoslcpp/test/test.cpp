@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "aoslcpp/aosl/aosl.hpp"
+#include "aosl/aosl.hpp"
 
 int main()
 {
