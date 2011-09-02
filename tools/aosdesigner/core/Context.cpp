@@ -147,6 +147,21 @@ namespace core
 		return false;
 	}
 
+	bool Context::restore_project()
+	{
+		if( is_project_open() )
+		{
+			auto project_location = m_project->location();
+			close_project();
+			return open_project( std::unique_ptr<Project>( new Project( project_location ) ) );
+		}
+
+		// THINK : replace that with an exception?
+		UTILCPP_LOG_ERROR << "Cannot restore the project: no project is open!";
+
+		return false;
+	}
+
 
 }
 }

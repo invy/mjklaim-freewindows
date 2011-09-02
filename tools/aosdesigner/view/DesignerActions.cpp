@@ -18,46 +18,67 @@ namespace view
 		, m_new_sequence( "&New Sequence", nullptr )
 		, m_new_storypath( "&New Story-Path", nullptr )
 		, m_save_project( "&Save all", nullptr )
+		, m_restore_project( "&Restore", nullptr )
 	{
-		auto quit_tip = QObject::tr("Quit AOS Designer");
-		m_quit.setStatusTip( quit_tip );
-		m_quit.setToolTip( quit_tip );
-		m_quit.setShortcut( QObject::tr("Ctrl+Q") );
-		QObject::connect( &m_quit, SIGNAL(triggered()), ApplicationView::instance(), SLOT(quit()) );
+		{
+			auto quit_tip = QObject::tr("Quit AOS Designer");
+			m_quit.setStatusTip( quit_tip );
+			m_quit.setToolTip( quit_tip );
+			m_quit.setShortcut( QObject::tr("Ctrl+Q") );
+			QObject::connect( &m_quit, SIGNAL(triggered()), ApplicationView::instance(), SLOT(quit()) );
+		}
 
 		auto* context = &core::Context::instance();
-		
-		auto new_project_tip = QObject::tr("Create a new project. If a project is already open, it will be closed first.");
-		m_new_project.setStatusTip( new_project_tip );
-		m_new_project.setToolTip( new_project_tip );
-		QObject::connect( &m_new_project, SIGNAL(triggered()), context, SLOT(new_project()) );
 
-		auto open_project_tip = QObject::tr( "Open a project. If a project is already open, it will be closed first." );
-		m_open_project.setStatusTip( open_project_tip );
-		m_open_project.setToolTip( open_project_tip );
-		QObject::connect( &m_open_project, SIGNAL(triggered()), context, SLOT(open_project()) );
+		{
+			auto new_project_tip = QObject::tr("Create a new project. If a project is already open, it will be closed first.");
+			m_new_project.setStatusTip( new_project_tip );
+			m_new_project.setToolTip( new_project_tip );
+			QObject::connect( &m_new_project, SIGNAL(triggered()), context, SLOT(new_project()) );
+		}
 
-		auto close_project_tip = QObject::tr( "Close the currently open project." );
-		m_close_project.setStatusTip( close_project_tip );
-		m_close_project.setToolTip( close_project_tip );
-		QObject::connect( &m_close_project, SIGNAL(triggered()), context, SLOT(close_project()) );
-		
-		auto new_sequence_tip = QObject::tr( "Create a new sequence in the current project." );
-		m_new_sequence.setStatusTip( new_sequence_tip );
-		m_new_sequence.setToolTip( new_sequence_tip );
-		QObject::connect( &m_new_sequence, SIGNAL(triggered()), context, SLOT(new_sequence()) );
+		{
+			auto open_project_tip = QObject::tr( "Open a project. If a project is already open, it will be closed first." );
+			m_open_project.setStatusTip( open_project_tip );
+			m_open_project.setToolTip( open_project_tip );
+			QObject::connect( &m_open_project, SIGNAL(triggered()), context, SLOT(open_project()) );
+		}
 
-		auto save_project_tip = QObject::tr( "Save the project and all the sequences and story-paths it contains." );
-		m_save_project.setStatusTip( save_project_tip );
-		m_save_project.setToolTip( new_sequence_tip );
-		QObject::connect( &m_save_project, SIGNAL(triggered()), context, SLOT(save_project()) );
+		{
+			auto close_project_tip = QObject::tr( "Close the currently open project." );
+			m_close_project.setStatusTip( close_project_tip );
+			m_close_project.setToolTip( close_project_tip );
+			QObject::connect( &m_close_project, SIGNAL(triggered()), context, SLOT(close_project()) );
+		}
+
+		{
+			auto new_sequence_tip = QObject::tr( "Create a new sequence in the current project." );
+			m_new_sequence.setStatusTip( new_sequence_tip );
+			m_new_sequence.setToolTip( new_sequence_tip );
+			QObject::connect( &m_new_sequence, SIGNAL(triggered()), context, SLOT(new_sequence()) );
+		}
+
+		{
+			auto save_project_tip = QObject::tr( "Save the project and all the sequences and story-paths it contains." );
+			m_save_project.setStatusTip( save_project_tip );
+			m_save_project.setToolTip( save_project_tip );
+			QObject::connect( &m_save_project, SIGNAL(triggered()), context, SLOT(save_project()) );
+		}
+
+		{
+			auto restore_project_tip = QObject::tr( "Reload the last saved version of the project." );
+			m_restore_project.setStatusTip( restore_project_tip );
+			m_restore_project.setToolTip( restore_project_tip );
+			QObject::connect( &m_restore_project, SIGNAL(triggered()), context, SLOT(restore_project()) );
+		}
 
 
-		auto new_storypath_tip = QObject::tr( "Create a new editable view of a path through the sequence." );
-		m_new_storypath.setStatusTip( new_storypath_tip );
-		m_new_storypath.setToolTip( new_storypath_tip );
-		//QObject::connect( &m_new_storypath, SIGNAL(triggered()), context, SLOT(new_storywalk()) );
-
+		{
+			auto new_storypath_tip = QObject::tr( "Create a new editable view of a path through the sequence." );
+			m_new_storypath.setStatusTip( new_storypath_tip );
+			m_new_storypath.setToolTip( new_storypath_tip );
+			//QObject::connect( &m_new_storypath, SIGNAL(triggered()), context, SLOT(new_storywalk()) );
+		}
 
 	}
 
@@ -81,6 +102,7 @@ namespace view
 
 			menu_project->addAction( &new_sequence() );
 			menu_project->addAction( &save_project() );
+			menu_project->addAction( &restore_project() );
 
 		}
 
@@ -91,7 +113,7 @@ namespace view
 			menu_sequence->addAction( &new_storypath() );
 
 		}
-		
+
 	}
 
 }

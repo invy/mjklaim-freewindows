@@ -62,6 +62,9 @@ namespace core
 		/** Save the project and everything it contains. */
 		bool save_project();
 
+		/** Close the current project without saving it and load the last saved version of it. */
+		bool restore_project();
+
 		/** Create a new sequence in the current project. 
 			@return false if the sequence creation failed or if there is no project currently open, true otherwise.
 		**/

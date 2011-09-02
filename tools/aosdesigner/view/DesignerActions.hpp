@@ -27,6 +27,7 @@ namespace view
 
 		const QAction& new_sequence() const { return m_new_sequence; }
 		const QAction& save_project() const { return m_save_project; }
+		const QAction& restore_project() const { return m_restore_project; }
 
 		const QAction& new_storypath() const { return m_new_storypath; }
 	
@@ -38,6 +39,7 @@ namespace view
 
 		QAction& new_sequence() { return m_new_sequence; }
 		QAction& save_project() { return m_save_project; }
+		QAction& restore_project() { return m_restore_project; }
 
 		QAction& new_storypath() { return m_new_storypath; }
 
@@ -51,6 +53,7 @@ namespace view
 
 		QAction m_new_sequence;
 		QAction m_save_project;
+		QAction m_restore_project;
 
 		QAction m_new_storypath;
 		
