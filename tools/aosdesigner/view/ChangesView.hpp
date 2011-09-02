@@ -19,6 +19,7 @@ namespace view
 
 		ChangesView()
 		{
+			setVisible( false );
 			setWindowTitle( tr("Changes") );
 			setWidget( new QListView() );
 		}

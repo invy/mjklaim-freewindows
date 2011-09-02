@@ -106,8 +106,7 @@ namespace view
 		tabifyDockWidget( m_libraries_view.get(), m_toolbox_view.get() );
 
 		addDockWidget( Qt::BottomDockWidgetArea, m_log_view.get() );
-		m_log_view->setVisible(false); // don't display it if not needed by the user
-		
+
 	}
 
 	void MainWindow::connect_signals()

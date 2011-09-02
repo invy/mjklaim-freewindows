@@ -20,6 +20,7 @@ namespace view
 		
 		ObjectsView()
 		{
+			setVisible( false );
 			setWindowTitle( tr("Objects") );
 			
 			setWidget(new QTreeView());

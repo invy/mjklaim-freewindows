@@ -20,6 +20,7 @@ namespace view
 		
 		LibrariesView()
 		{
+			setVisible( false );
 			setWindowTitle(tr("Libraries"));
 			setWidget( new QListView() );
 		}

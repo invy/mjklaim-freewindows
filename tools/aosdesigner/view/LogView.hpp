@@ -19,8 +19,11 @@ namespace view
 
 		LogView()
 		{
+			setVisible( false );
 			setWindowTitle(tr("Log"));
 			setWidget( new QListView() );
+
+			
 		}
 
 

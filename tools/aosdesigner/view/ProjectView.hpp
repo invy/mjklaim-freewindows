@@ -10,6 +10,8 @@ class QTabWidget;
 
 namespace aosd
 {
+	namespace core { class Project; }
+
 namespace view
 {
 	class SequenceListView;
@@ -28,6 +30,9 @@ namespace view
 		
 	
 	private slots:
+
+		void on_project_open( const core::Project& );
+		void on_project_closed( const core::Project& );
 
 	private:
 		

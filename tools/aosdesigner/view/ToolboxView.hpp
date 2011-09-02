@@ -19,6 +19,7 @@ namespace view
 		
 		ToolboxView()
 		{
+			setVisible( false );
 			setWindowTitle( tr("Toolbox") );
 			setWidget( new QToolBox() );
 		}

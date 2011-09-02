@@ -20,6 +20,7 @@ namespace view
 		
 		LayersView()
 		{
+			setVisible( false );
 			setWindowTitle(tr("Layers"));
 			setWidget( new QTreeView() );
 		}
