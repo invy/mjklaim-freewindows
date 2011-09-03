@@ -12,7 +12,7 @@ namespace view
 {
 
 	ProjectView::ProjectView()
-		: QDockWidget( tr("[no project]") )
+		: QDockWidget( tr("Project") )
 		, m_tabs( new QTabWidget() )
 	{
 		setVisible( false );
@@ -35,14 +35,14 @@ namespace view
 
 	void ProjectView::on_project_open( const core::Project& project )
 	{
-		setWindowTitle( QString::fromStdString( project.name() ) );
+		setWindowTitle( "Project : " + QString::fromStdString( project.name() ) );
 		setVisible( true );
 		setEnabled( true );
 	}
 
 	void ProjectView::on_project_closed( const core::Project& )
 	{
-		setWindowTitle( tr( "[no project]" ) );
+		setWindowTitle( tr("Project") );
 		setVisible( false );
 		setEnabled( false );
 	}
