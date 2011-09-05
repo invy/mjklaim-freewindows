@@ -46,11 +46,11 @@ namespace core
 		infos.put( "storywalk.sequence", m_sequence.id() );
 
 		// write the path taken in the sequence
-		/**m_interpreter.path().for_each_step( [&]( const aoslcpp::StoryPath::Step& step )
+		m_interpreter.path().for_each_step( [&]( const aoslcpp::StoryPath::Step& step )
 		{
 			infos.put( "storywalk.steps.move", step.move );
 			infos.put( "storywalk.steps.stage", step.stage );
-		});**/
+		});
 
 		const auto& file_path = m_project.directory_path() / path::STORYWALK_FILE( id() );
 
