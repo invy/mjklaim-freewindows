@@ -32,12 +32,12 @@ namespace core
 			@param project		Project in which this sequence exists.
 			@param infos		Informations required to build the sequence.
 		*/
-		Sequence( Project& project, const SequenceInfos& infos );
+		Sequence( const Project& project, const SequenceInfos& infos );
 
 		/** Create the sequence by loading informations from the AOSL file at the the provided path.
 			The path have to be 
 		*/
-		Sequence( Project& project, const boost::filesystem::path sequence_file_path );
+		Sequence( const Project& project, const boost::filesystem::path sequence_file_path );
 
 		~Sequence();
 
@@ -55,8 +55,7 @@ namespace core
 		
 		/// Project in which this sequence is loaded.
 		const Project& project() const { return m_project; }
-		Project& project() { return m_project; }
-
+		
 		/** Create an interpreter for this Sequence.
 		*/
 		boost::optional<aoslcpp::SequenceInterpreter> make_interpreter() const;
@@ -76,7 +75,7 @@ namespace core
 		std::unique_ptr< aosl::Sequence > m_sequence;
 
 		/// Project in which this sequence is loaded.
-		Project& m_project;
+		const Project& m_project;
 
 		
 	};

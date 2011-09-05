@@ -48,17 +48,9 @@ namespace core
 		/** Name of the project. */
 		const std::string& name() const { return m_name; }
 
-		
-		/// Signature for functions allowed to modify a Sequences.
-		typedef std::function< void ( Sequence& sequence )> SequenceModifierFunc;
-		/// Signature for functions only allowed to read Sequences.
-		typedef std::function< void ( const Sequence& sequence )> SequenceReaderFunc;
-
-		/** Call the provided function for each Sequence in this project, allowing it to modify the Sequences. */
-		void foreach_sequence( SequenceModifierFunc func );
-
 		/** Call the provided function for each Sequence in this project but don't allow to modify them. */
-		void foreach_sequence( SequenceReaderFunc func ) const;
+		void foreach_sequence( std::function< void ( const Sequence& sequence )> func ) const;
+
 
 	public slots:
 

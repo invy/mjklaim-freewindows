@@ -20,7 +20,7 @@ namespace aosd
 namespace core
 {
 
-	Sequence::Sequence( Project& project, const SequenceInfos& infos )
+	Sequence::Sequence( const Project& project, const SequenceInfos& infos )
 		: m_project( project )
 		, m_name( infos.name )
 		, m_location( infos.location )
@@ -33,7 +33,7 @@ namespace core
 		
 	}
 
-	Sequence::Sequence( Project& project, const boost::filesystem::path sequence_file_path )
+	Sequence::Sequence( const Project& project, const boost::filesystem::path sequence_file_path )
 		: m_project( project )
 		, m_location( sequence_file_path )
 	{

@@ -7,7 +7,8 @@ namespace aoslcpp
 
 	void StoryPath::add_step( aosl::Move_ref move_ref, aosl::Stage_ref stage_ref )
 	{
-		m_steps.push_back( Step( move_ref, stage_ref ) );
+		Step step = { move_ref, stage_ref };
+		m_steps.emplace_back( step );
 	}
 
 	void StoryPath::step_back( std::size_t step_count )
@@ -20,6 +21,11 @@ namespace aoslcpp
 			--step_count;
 		}
 
+	}
+
+	void StoryPath::for_each_step( std::function< void ( const Step& ) > f ) const
+	{
+		std::for_each( m_steps.begin(), m_steps.end(), f );
 	}
 
 }

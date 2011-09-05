@@ -108,6 +108,11 @@ namespace core
 			infos.add( "project.sequences.sequence", sequence.location().generic_string() );
 		});
 
+		/*foreach_sequence( [&]( const StoryWalker& storywalker )
+		{ 
+			infos.add( "project.storywalks.storywalker", storywalker.location().generic_string() );
+		});*/
+
 		// TODO : add other informations here
 		// TODO : manage errors differently
 
@@ -132,17 +137,13 @@ namespace core
 			return false;
 		}
 
-		foreach_sequence( []( Sequence& sequence ){ sequence.save(); });
+		std::for_each( m_sequences.begin(), m_sequences.end(), []( Sequence& sequence ){ sequence.save(); });
+		std::for_each( m_walks.begin(), m_walks.end(), []( StoryWalker& storywalker ){ storywalker.save(); });
 
 		return true;
 	}
 
-	void Project::foreach_sequence( SequenceModifierFunc func )
-	{
-		std::for_each( m_sequences.begin(), m_sequences.end(), func );
-	}
-
-	void Project::foreach_sequence( SequenceReaderFunc func ) const
+	void Project::foreach_sequence( std::function< void ( const Sequence& sequence )> func ) const
 	{
 		std::for_each( m_sequences.begin(), m_sequences.end(), func );
 	}
@@ -182,7 +183,7 @@ namespace core
 			auto interpreter = sequence->make_interpreter();
 			if( interpreter )
 			{
-				auto storywalker = new StoryWalker( *interpreter );
+				auto storywalker = new StoryWalker( *this, *sequence, *interpreter );
 				add_storywalker( std::unique_ptr< StoryWalker >( storywalker ) );
 				
 				emit storywalk_begin( *storywalker ); 

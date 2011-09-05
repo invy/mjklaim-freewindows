@@ -3,6 +3,7 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 
 #include "aosl/stage_ref.hpp"
 #include "aosl/move_ref.hpp"
@@ -18,7 +19,11 @@ namespace aoslcpp
 	public:
 		
 		/// A step contain a reference to a stage where the step is and a reference to the move that was used to get there.
-		typedef std::pair< aosl::Move_ref, aosl::Stage_ref > Step;
+		struct Step
+		{
+			aosl::Move_ref move;
+			aosl::Stage_ref stage;
+		};
 		
 		/** Add a setp to the path.
 			@param move_ref		The move used to go through this step.
@@ -33,16 +38,19 @@ namespace aoslcpp
 		void step_back( std::size_t step_count = 1 );
 
 		/** @return The current stage. */
-		aosl::Stage_ref current_stage() const { return m_steps.back().second; }
+		aosl::Stage_ref current_stage() const { return m_steps.back().stage; }
 
 		/** @return The last move through which we go to the current stage. */
-		aosl::Move_ref last_move() const { return m_steps.back().first; }
+		aosl::Move_ref last_move() const { return m_steps.back().move; }
 		
 		/** @return Count of steps we've gone through. */
 		std::size_t step_count() const { return m_steps.size(); }
 		
 		/** @return True if we can step back, false otherwise. */
 		bool can_step_back() const { return m_steps.empty(); }
+
+		/**  */
+		void for_each_step( std::function< void ( const Step& ) > ) const;
 
 	private:
 
