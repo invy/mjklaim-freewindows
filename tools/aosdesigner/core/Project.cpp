@@ -108,10 +108,10 @@ namespace core
 			infos.add( "project.sequences.sequence", sequence.location().generic_string() );
 		});
 
-		/*foreach_sequence( [&]( const StoryWalker& storywalker )
+		foreach_storywalk( [&]( const StoryWalker& storywalker )
 		{ 
-			infos.add( "project.storywalks.storywalker", storywalker.location().generic_string() );
-		});*/
+			infos.add( "project.walks.storywalker", storywalker.id() );
+		});
 
 		// TODO : add other informations here
 		// TODO : manage errors differently
@@ -146,6 +146,11 @@ namespace core
 	void Project::foreach_sequence( std::function< void ( const Sequence& sequence )> func ) const
 	{
 		std::for_each( m_sequences.begin(), m_sequences.end(), func );
+	}
+
+	void Project::foreach_storywalk( std::function< void ( const StoryWalker& storywalker )> func ) const
+	{
+		std::for_each( m_walks.begin(), m_walks.end(), func );
 	}
 
 	bool Project::new_sequence( const SequenceInfos& infos )

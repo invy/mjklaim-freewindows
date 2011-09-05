@@ -51,6 +51,8 @@ namespace core
 		/** Call the provided function for each Sequence in this project but don't allow to modify them. */
 		void foreach_sequence( std::function< void ( const Sequence& sequence )> func ) const;
 
+		/** Call the provided function for each story-walk in this project but don't allow to modify them. */
+		void foreach_storywalk( std::function< void ( const StoryWalker& storywalker )> func ) const;
 
 	public slots:
 

@@ -12,6 +12,7 @@ namespace path
 	const std::string SEQUENCE_FILE_EXTENSION	= ".aosl";
 	const std::string META_FILE_EXTENSION		= ".aosl";
 	const std::string LIBRARY_FILE_EXTENSION	= ".aosl";
+	const std::string WALKER_FILE_EXTENSION		= ".ssw";
 
 
 	const bfs::path DEFAULT_PROJECTS_DIR	= bfs::current_path(); // TODO : replace this by the user directory
@@ -41,6 +42,13 @@ namespace path
 		// TODO : add some checks
 		return project_codename + PROJECT_FILE_EXTENSION;
 	}
+
+
+	bfs::path STORYWALK_FILE( const std::string& storywalker_id )
+	{
+		return WALKERS_DIR / ("path-" + storywalker_id + WALKER_FILE_EXTENSION ) ;
+	}
+
 
 	bfs::path GENERATE_PROJECT_FILE( const bfs::path& directory, const std::string& project_codename )
 	{

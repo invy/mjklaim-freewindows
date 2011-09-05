@@ -36,6 +36,7 @@ set( AOSDESIGNER_CORE_HEADERS
 	${AOSDESIGNER_CORE_DIR}/ProjectInfos.hpp
 	${AOSDESIGNER_CORE_DIR}/SequenceInfos.hpp
 	${AOSDESIGNER_CORE_DIR}/StoryWalker.hpp
+	${AOSDESIGNER_CORE_DIR}/StoryWalkerId.hpp
 )
 
 #-----------------------------------------------------------------

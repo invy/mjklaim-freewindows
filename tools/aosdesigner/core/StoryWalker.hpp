@@ -4,7 +4,9 @@
 
 #include <QObject>
 
+#include "core/StoryWalkerId.hpp"
 #include "aoslcpp/SequenceInterpreter.hpp"
+
 
 namespace aosd
 {
@@ -24,6 +26,8 @@ namespace core
 		StoryWalker( const Project& project, const Sequence& sequence, const aoslcpp::SequenceInterpreter& interpreter );
 	
 		void restart( const aoslcpp::SequenceInterpreter& interpreter );
+
+		const StoryWalkerId& id() const { return m_id; }
 		
 	public slots:
 
@@ -45,6 +49,8 @@ namespace core
 
 		const Project& m_project;
 		const Sequence& m_sequence;
+
+		StoryWalkerId m_id;
 
 	};
 
