@@ -41,6 +41,12 @@ namespace core
 		{
 			bfs::ifstream file_stream( file_path );
 
+			if( file_stream.fail() )
+			{
+				UTILCPP_LOG_ERROR << "Failed to open file " << file_path;
+				return;
+			}
+
 			ptree infos;
 			read_xml( file_stream, infos );
 

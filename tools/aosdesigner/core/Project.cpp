@@ -68,10 +68,10 @@ namespace core
 		{
 			UTILCPP_ASSERT( walk.first == "storywalker", "Found an unknown tag! Should be \"storywalker\" instead of \"" << walk.first << "\"" );
 
-			const bfs::path walker_file_location = path::STORYWALK_FILE( walk.second.get_value<std::string>() );
+			const bfs::path walker_file_location = directory_path() / path::STORYWALK_FILE( walk.second.get_value<std::string>() );
 			add_storywalker( std::unique_ptr<StoryWalker>( new StoryWalker( *this, walker_file_location ) ) );
 
-			UTILCPP_LOG << "Loaded Story-Walker : " /*<< m_walks.back().name() <<*/ " [" << m_walks.back().id() << "]";
+			UTILCPP_LOG << "Loaded Story-Walker : [" << m_walks.back().id() << "]";
 		});
 	}
 
