@@ -7,6 +7,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/exception/diagnostic_information.hpp>
 
 #include "utilcpp/Assert.hpp"
 
@@ -132,8 +133,7 @@ namespace core
 		}
 		catch( const boost::exception& e )
 		{
-			// TODO : add logging here
-			UTILCPP_NOT_IMPLEMENTED_YET;
+			UTILCPP_LOG_ERROR <<  boost::diagnostic_information(e);
 			return false;
 		}
 

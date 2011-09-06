@@ -63,7 +63,6 @@ namespace core
 		}
 		catch( const boost::exception& e )
 		{
-			// TODO : add logging here
 			UTILCPP_LOG_ERROR <<  boost::diagnostic_information(e);
 		}
 
