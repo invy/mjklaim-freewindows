@@ -33,11 +33,11 @@ namespace view
 
 	private slots:
 
-		void on_project_open( const core::Project& );
-		void on_project_closed( const core::Project& );
+		void react_project_open( const core::Project& );
+		void react_project_closed( const core::Project& );
 
-		void on_sequence_created( const core::Sequence& );
-		void on_sequence_deleted( const core::Sequence& );
+		void react_sequence_created( const core::Sequence& );
+		void react_sequence_deleted( const core::Sequence& );
 
 	private:
 

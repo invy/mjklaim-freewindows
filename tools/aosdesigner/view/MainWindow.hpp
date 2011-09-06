@@ -50,22 +50,22 @@ namespace view
 	private slots:
 
 		/** Slot : called when a project have been opened. */
-		void on_project_open( const core::Project& project );
+		void react_project_open( const core::Project& project );
 
 		/** Slot : called when a project have been closed. */
-		void on_project_closed( const core::Project& project );
+		void react_project_closed( const core::Project& project );
 
 		/** Slot : called when a new sequence have been created. */
-		void on_sequence_created( const core::Sequence& sequence );
+		void react_sequence_created( const core::Sequence& sequence );
 
 		/** Slot : called when a sequence have been deleted. */
-		void on_sequence_deleted( const core::Sequence& sequence );
+		void react_sequence_deleted( const core::Sequence& sequence );
 
 		/** Slot : called when a story walk is beginning. */
-		void on_storywalk_begin( const core::StoryWalker& storywalker );
+		void react_storywalk_begin( const core::StoryWalker& storywalker );
 
 		/** Slot : called when a story walk is ending. */
-		void on_storywalk_end( const core::StoryWalker& storywalker );
+		void react_storywalk_end( const core::StoryWalker& storywalker );
 
 	private:
 

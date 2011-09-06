@@ -62,28 +62,28 @@ namespace view
 	}
 
 
-	void MainWindow::on_project_open( const core::Project& project )
+	void MainWindow::react_project_open( const core::Project& project )
 	{
 		setWindowTitle( tr("Art Of Sequence : ") + QString::fromStdString( project.name() ) );
 
-		connect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(on_storywalk_begin(const core::StoryWalker&)) );
-		connect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(on_storywalk_end(const core::StoryWalker&)) );
+		connect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(react_storywalk_begin(const core::StoryWalker&)) );
+		connect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(react_storywalk_end(const core::StoryWalker&)) );
 
-		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(on_sequence_created(const core::Sequence&)) );
-		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(on_sequence_deleted(const core::Sequence&)) );
+		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
+		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
 
 	}
 
 
-	void MainWindow::on_project_closed( const core::Project& project )
+	void MainWindow::react_project_closed( const core::Project& project )
 	{
 		setWindowTitle( tr("Art Of Sequence") );
 
-		disconnect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(on_storywalk_begin(const core::StoryWalker&)) );
-		disconnect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(on_storywalk_end(const core::StoryWalker&)) );
+		disconnect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(react_storywalk_begin(const core::StoryWalker&)) );
+		disconnect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(react_storywalk_end(const core::StoryWalker&)) );
 
-		disconnect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(on_sequence_created(const core::Sequence&)) );
-		disconnect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(on_sequence_deleted(const core::Sequence&)) );
+		disconnect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
+		disconnect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
 
 	}
 
@@ -113,8 +113,8 @@ namespace view
 	{
 		auto& context = core::Context::instance();
 
-		connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(on_project_open(const core::Project&)) );
-		connect( &context, SIGNAL(project_closed(const core::Project&)), this, SLOT(on_project_closed(const core::Project&)) );
+		connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(react_project_open(const core::Project&)) );
+		connect( &context, SIGNAL(project_closed(const core::Project&)), this, SLOT(react_project_closed(const core::Project&)) );
 
 	}
 
@@ -171,24 +171,24 @@ namespace view
 
 	}
 
-	void MainWindow::on_storywalk_begin( const core::StoryWalker& storywalker )
+	void MainWindow::react_storywalk_begin( const core::StoryWalker& storywalker )
 	{
 		add_storypath( std::unique_ptr<StoryPathView>( new StoryPathView( storywalker ) ) );
 	}
 
-	void MainWindow::on_storywalk_end( const core::StoryWalker& storywalker )
+	void MainWindow::react_storywalk_end( const core::StoryWalker& storywalker )
 	{
 		UTILCPP_NOT_IMPLEMENTED_YET;
 	}
 
-	void MainWindow::on_sequence_created( const core::Sequence& sequence )
+	void MainWindow::react_sequence_created( const core::Sequence& sequence )
 	{
 		// THINK : ?
 	}
 
-	void MainWindow::on_sequence_deleted( const core::Sequence& sequence )
+	void MainWindow::react_sequence_deleted( const core::Sequence& sequence )
 	{
-		// THINK : ?
+		UTILCPP_NOT_IMPLEMENTED_YET;
 	}
 
 

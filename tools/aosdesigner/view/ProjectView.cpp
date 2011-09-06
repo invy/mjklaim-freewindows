@@ -23,8 +23,8 @@ namespace view
 
 		auto& context = core::Context::instance();
 
-		connect( &context, SIGNAL(project_open( const core::Project& )),		this, SLOT( on_project_open(const core::Project&) ) );
-		connect( &context, SIGNAL(project_closed( const core::Project& )),		this, SLOT( on_project_closed(const core::Project&) ) );
+		connect( &context, SIGNAL(project_open( const core::Project& )),		this, SLOT( react_project_open(const core::Project&) ) );
+		connect( &context, SIGNAL(project_closed( const core::Project& )),		this, SLOT( react_project_closed(const core::Project&) ) );
 
 	}
 
@@ -33,14 +33,14 @@ namespace view
 
 	}
 
-	void ProjectView::on_project_open( const core::Project& project )
+	void ProjectView::react_project_open( const core::Project& project )
 	{
 		setWindowTitle( "Project : " + QString::fromStdString( project.name() ) );
 		setVisible( true );
 		setEnabled( true );
 	}
 
-	void ProjectView::on_project_closed( const core::Project& )
+	void ProjectView::react_project_closed( const core::Project& )
 	{
 		setWindowTitle( tr("Project") );
 		setVisible( false );

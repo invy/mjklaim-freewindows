@@ -32,8 +32,8 @@ namespace view
 	void SequenceListView::connect_context()
 	{
 		auto& context = core::Context::instance();
-		connect( &context, SIGNAL( project_open(const core::Project&)    ) , this, SLOT( on_project_open(const core::Project&)       ) );
-		connect( &context, SIGNAL( project_closed(const core::Project&)  ) , this, SLOT( on_project_closed(const core::Project&)     ) );
+		connect( &context, SIGNAL( project_open(const core::Project&)    ) , this, SLOT( react_project_open(const core::Project&)       ) );
+		connect( &context, SIGNAL( project_closed(const core::Project&)  ) , this, SLOT( react_project_closed(const core::Project&)     ) );
 
 		if( context.is_project_open() )
 		{
@@ -45,8 +45,8 @@ namespace view
 
 	void SequenceListView::connect_project( const core::Project& project )
 	{
-		connect( &project, SIGNAL( sequence_created(const core::Sequence&)    ) , this, SLOT( on_sequence_created(const core::Sequence&)       ) );
-		connect( &project, SIGNAL( sequence_deleted(const core::Sequence&)    ) , this, SLOT( on_sequence_deleted(const core::Sequence&)       ) );
+		connect( &project, SIGNAL( sequence_created(const core::Sequence&)    ) , this, SLOT( react_sequence_created(const core::Sequence&)       ) );
+		connect( &project, SIGNAL( sequence_deleted(const core::Sequence&)    ) , this, SLOT( react_sequence_deleted(const core::Sequence&)       ) );
 
 
 		read_sequences( project );
@@ -54,8 +54,8 @@ namespace view
 
 	void SequenceListView::disconnect_project( const core::Project& project )
 	{
-		disconnect( &project, SIGNAL( sequence_created(const core::Sequence&)    ) , this, SLOT( on_sequence_created(const core::Sequence&)       ) );
-		disconnect( &project, SIGNAL( sequence_deleted(const core::Sequence&)    ) , this, SLOT( on_sequence_deleted(const core::Sequence&)       ) );
+		disconnect( &project, SIGNAL( sequence_created(const core::Sequence&)    ) , this, SLOT( react_sequence_created(const core::Sequence&)       ) );
+		disconnect( &project, SIGNAL( sequence_deleted(const core::Sequence&)    ) , this, SLOT( react_sequence_deleted(const core::Sequence&)       ) );
 
 		clear();
 	}
@@ -98,23 +98,23 @@ namespace view
 	}
 
 
-	void SequenceListView::on_project_open( const core::Project& project )
+	void SequenceListView::react_project_open( const core::Project& project )
 	{
 		connect_project( project );
 	}
 
-	void SequenceListView::on_project_closed( const core::Project& project )
+	void SequenceListView::react_project_closed( const core::Project& project )
 	{
 		disconnect_project( project );
 	}
 
 
-	void SequenceListView::on_sequence_created( const core::Sequence& sequence )
+	void SequenceListView::react_sequence_created( const core::Sequence& sequence )
 	{
 		add_sequence_infos( sequence );
 	}
 
-	void SequenceListView::on_sequence_deleted( const core::Sequence& sequence )
+	void SequenceListView::react_sequence_deleted( const core::Sequence& sequence )
 	{
 		remove_sequence_infos( sequence );
 	}

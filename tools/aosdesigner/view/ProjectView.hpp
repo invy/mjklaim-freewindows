@@ -31,8 +31,8 @@ namespace view
 	
 	private slots:
 
-		void on_project_open( const core::Project& );
-		void on_project_closed( const core::Project& );
+		void react_project_open( const core::Project& );
+		void react_project_closed( const core::Project& );
 
 	private:
 		
