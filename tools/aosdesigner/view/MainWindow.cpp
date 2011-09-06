@@ -77,7 +77,6 @@ namespace view
 			add_storypath( std::unique_ptr<StoryPathView>( new StoryPathView( storywalker ) ) );
 		});
 		
-
 	}
 
 

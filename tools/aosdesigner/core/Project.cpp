@@ -195,7 +195,7 @@ namespace core
 		
 		if( sequence )
 		{
-			add_storywalker( std::unique_ptr< StoryWalker >( new StoryWalker( *this, *sequence ) ) );
+			add_storywalker( std::unique_ptr< StoryWalker >( new StoryWalker( *this, *sequence, "STORY-WALK : " + sequence->name() ) ) );
 
 			return true;
 			

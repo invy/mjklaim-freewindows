@@ -21,11 +21,12 @@ namespace core
 {
 	
 
-	StoryWalker::StoryWalker( const Project& project, const Sequence& sequence )
+	StoryWalker::StoryWalker( const Project& project, const Sequence& sequence, const std::string& name )
 		: m_sequence( &sequence )
 		, m_project( project )
 		, m_interpreter( sequence.make_interpreter() )
 		, m_id( to_string( boost::uuids::random_generator()() ) )
+		, m_name( name )
 	{
 		UTILCPP_ASSERT_NOT_NULL( m_sequence ); // TODO : replace this by an throwing an exception
 	}
@@ -51,6 +52,7 @@ namespace core
 			read_xml( file_stream, infos );
 
 			m_id = infos.get<StoryWalkerId>( "storywalk.id" );
+			m_name = infos.get<std::string>( "storywalk.name" );
 
 			auto sequence_id = infos.get<SequenceId>( "storywalk.sequence" );
 			if( !sequence_id.empty() && sequence_id != "NONE" )
@@ -90,6 +92,7 @@ namespace core
 
 		// write the sequence id
 		infos.put( "storywalk.id", id() );
+		infos.put( "storywalk.name", name() );
 		infos.put( "storywalk.sequence", m_sequence ? m_sequence->id() : "NONE" );
 
 		// write the path taken in the sequence

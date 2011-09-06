@@ -33,7 +33,7 @@ namespace core
 			@param sequence		Sequence that is being walked in.
 			@param interpreter	Interpreter containing the walk informations.
 		**/
-		StoryWalker( const Project& project, const Sequence& sequence );
+		StoryWalker( const Project& project, const Sequence& sequence, const std::string& name );
 
 		/**	Constructor : load a story-walk from a file.
 			@param file_path	Path of the file containing the story-walk informations.
@@ -41,6 +41,8 @@ namespace core
 		StoryWalker( const Project& project, const bfs::path& file_path );
 	
 		const StoryWalkerId& id() const { return m_id; }
+
+		const std::string& name() const { return m_name; }
 
 		bool is_valid() const { return m_sequence && m_interpreter; }
 		
@@ -57,6 +59,8 @@ namespace core
 	private:
 
 		std::unique_ptr<aoslcpp::SequenceInterpreter> m_interpreter;
+
+		std::string m_name;
 
 
 		const Project& m_project;
