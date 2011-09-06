@@ -7,6 +7,7 @@
 #include <boost/filesystem/fstream.hpp>
 #include <boost/exception/diagnostic_information.hpp>
 
+#include "utilcpp/Assert.hpp"
 #include "utilcpp/Log.hpp"
 
 #include "core/Sequence.hpp"
@@ -20,20 +21,60 @@ namespace core
 {
 	
 
-	StoryWalker::StoryWalker( const Project& project, const Sequence& sequence, const aoslcpp::SequenceInterpreter& interpreter )
-		: m_interpreter( interpreter )
-		, m_sequence( sequence )
+	StoryWalker::StoryWalker( const Project& project, const Sequence& sequence )
+		: m_sequence( &sequence )
 		, m_project( project )
+		, m_interpreter( sequence.make_interpreter() )
 		, m_id( to_string( boost::uuids::random_generator()() ) )
 	{
+		UTILCPP_ASSERT_NOT_NULL( m_sequence ); // TODO : replace this by an throwing an exception
 	}
 
-	void StoryWalker::restart( const aoslcpp::SequenceInterpreter& interpreter )
+	StoryWalker::StoryWalker( const Project& project, const bfs::path& file_path )
+		: m_project( project )
+		, m_sequence( nullptr )
+		, m_id( to_string( boost::uuids::nil_generator()() ) )
 	{
-		m_interpreter = interpreter;
+		using namespace boost::property_tree;
+
+		try
+		{
+			bfs::ifstream file_stream( file_path );
+
+			ptree infos;
+			read_xml( file_stream, infos );
+
+			m_id = infos.get<StoryWalkerId>( "storywalk.id" );
+
+			auto sequence_id = infos.get<SequenceId>( "storywalk.sequence" );
+			if( !sequence_id.empty() && sequence_id != "NONE" )
+			{
+				m_sequence = project.find_sequence( sequence_id );
+				if( m_sequence )
+				{
+					m_interpreter = m_sequence->make_interpreter();
+
+					// TODO : inject the path in the interpreter, maybe in another (public) function?
+				}
+				else
+				{
+					UTILCPP_LOG_ERROR << "Sequence id not found in the project!";
+				}
+			}
+			else
+			{
+				UTILCPP_LOG_ERROR << "No valid sequence id!";
+			}
+
+		}
+		catch( const boost::exception& e )
+		{
+			UTILCPP_LOG_ERROR <<  boost::diagnostic_information(e);
+		}
 		
-		emit restarted();
+
 	}
+
 
 	void StoryWalker::save()
 	{
@@ -43,14 +84,18 @@ namespace core
 
 		// write the sequence id
 		infos.put( "storywalk.id", id() );
-		infos.put( "storywalk.sequence", m_sequence.id() );
+		infos.put( "storywalk.sequence", m_sequence ? m_sequence->id() : "NONE" );
 
 		// write the path taken in the sequence
-		m_interpreter.path().for_each_step( [&]( const aoslcpp::StoryPath::Step& step )
+		if( m_interpreter )
 		{
-			infos.put( "storywalk.steps.move", step.move );
-			infos.put( "storywalk.steps.stage", step.stage );
-		});
+			m_interpreter->path().for_each_step( [&]( const aoslcpp::StoryPath::Step& step )
+			{
+				//infos.put( "storywalk.steps.move", step.move );
+				//infos.put( "storywalk.steps.stage", step.stage );
+			});
+		}
+		
 
 		const auto& file_path = m_project.directory_path() / path::STORYWALK_FILE( id() );
 

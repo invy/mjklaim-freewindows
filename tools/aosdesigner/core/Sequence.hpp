@@ -22,6 +22,7 @@ namespace core
 {
 	class Project;
 
+
 	/** A full Sequence as defined in AOSL.
 	*/
 	class Sequence
@@ -58,7 +59,7 @@ namespace core
 		
 		/** Create an interpreter for this Sequence.
 		*/
-		boost::optional<aoslcpp::SequenceInterpreter> make_interpreter() const;
+		std::unique_ptr<aoslcpp::SequenceInterpreter> make_interpreter() const;
 
 	private:
 

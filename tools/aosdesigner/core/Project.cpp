@@ -185,15 +185,13 @@ namespace core
 		
 		if( sequence )
 		{
-			auto interpreter = sequence->make_interpreter();
-			if( interpreter )
-			{
-				auto storywalker = new StoryWalker( *this, *sequence, *interpreter );
-				add_storywalker( std::unique_ptr< StoryWalker >( storywalker ) );
-				
-				emit storywalk_begin( *storywalker ); 
-				return true;
-			}
+			auto storywalker = new StoryWalker( *this, *sequence );
+
+			add_storywalker( std::unique_ptr< StoryWalker >( storywalker ) );
+
+			emit storywalk_begin( *storywalker ); 
+			return true;
+			
 		}
 
 		return false;

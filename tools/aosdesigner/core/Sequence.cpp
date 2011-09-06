@@ -93,14 +93,14 @@ namespace core
 		return m_project.directory_path() / location();
 	}
 
-	boost::optional<aoslcpp::SequenceInterpreter> Sequence::make_interpreter() const
+	std::unique_ptr<aoslcpp::SequenceInterpreter> Sequence::make_interpreter() const
 	{
 		if( m_sequence )
 		{
-			return aoslcpp::SequenceInterpreter( *m_sequence );
+			return std::unique_ptr<aoslcpp::SequenceInterpreter>( new aoslcpp::SequenceInterpreter( *m_sequence ) );
 		}
 
-		return nullptr;
+		return std::unique_ptr<aoslcpp::SequenceInterpreter>();
 	}
 
 

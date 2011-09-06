@@ -54,6 +54,8 @@ namespace core
 		/** Call the provided function for each story-walk in this project but don't allow to modify them. */
 		void foreach_storywalk( std::function< void ( const StoryWalker& storywalker )> func ) const;
 
+		const Sequence* find_sequence( const SequenceId& sequence_id ) const {  return const_cast<Project*>(this)->find_sequence(sequence_id); }
+
 	public slots:
 
 		/** Change the project's file location to the provided one. */

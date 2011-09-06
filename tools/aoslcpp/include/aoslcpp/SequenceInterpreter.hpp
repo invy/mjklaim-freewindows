@@ -2,6 +2,7 @@
 #define HGUARD_AOSLCPP_SEQUENCEINTERPRETER_HPP__
 #pragma once
 
+#include <memory>
 #include <boost/optional.hpp>
 
 #include "aosl/story.hpp"
@@ -81,6 +82,7 @@ namespace aoslcpp
 		
 	};
 
+	
 
 }
 
