@@ -72,6 +72,12 @@ namespace view
 		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
 		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
 
+		project.foreach_storywalk( [&]( const core::StoryWalker& storywalker ) 
+		{
+			add_storypath( std::unique_ptr<StoryPathView>( new StoryPathView( storywalker ) ) );
+		});
+		
+
 	}
 
 
@@ -84,6 +90,8 @@ namespace view
 
 		disconnect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
 		disconnect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
+
+		// TODO : clear storywalks
 
 	}
 
