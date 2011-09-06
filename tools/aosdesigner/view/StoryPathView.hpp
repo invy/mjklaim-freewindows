@@ -29,10 +29,14 @@ namespace view
 		explicit StoryPathView( const core::StoryWalker& storywalker );
 		~StoryPathView();
 
+		const QString& title() const { return m_title; }
+
 	private:
 				
 		std::unique_ptr<CanvasView> m_canvas_view;
 		std::unique_ptr<StoryView> m_story_view;
+
+		QString m_title;
 
 		
 		void connect_storywalker( const core::StoryWalker& storywalker );

@@ -98,7 +98,8 @@ namespace view
 
 	void MainWindow::add_storypath( std::unique_ptr<StoryPathView>&& storypath )
 	{
-		m_central_tabs->addTab( storypath.release(), "NO NAME : MAKE IT WORK NOW!" );
+		const auto tab_title = storypath->title();
+		m_central_tabs->addTab( storypath.release(), tab_title );
 	}
 
 

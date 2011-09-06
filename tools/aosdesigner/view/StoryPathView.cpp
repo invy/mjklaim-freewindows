@@ -11,6 +11,7 @@ namespace view
 	StoryPathView::StoryPathView( const  core::StoryWalker& storywalker )
 		: m_canvas_view( new CanvasView )
 		, m_story_view( new StoryView )
+		, m_title( QString::fromStdString( storywalker.name() ) )
 	{
 		setOrientation( Qt::Vertical );
 
