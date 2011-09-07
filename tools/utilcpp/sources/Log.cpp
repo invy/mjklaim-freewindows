@@ -140,7 +140,7 @@ namespace util
 		
 
 		// now we can display to the logging into the log outputs
-		std::for_each( log_outputs.begin(), log_outputs.end(), [&]( OutputInfos& infos ){ infos.output( message ); } );
+		std::for_each( log_outputs.begin(), log_outputs.end(), [&]( OutputInfos& infos ){ infos.output( m_level, message ); } );
 
 	}
 

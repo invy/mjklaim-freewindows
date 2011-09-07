@@ -33,11 +33,7 @@
 namespace util
 {
 
-	typedef std::function< void ( const std::string& ) > LogOutput;
-
-	void register_log_output( LogOutput output, int id );
-	void unregister_log_output( int id );
-
+	
 	/** NO DOCUMENTATION YET!
 	*/
 	class Log
@@ -80,6 +76,12 @@ namespace util
 		void operator<<( const T& message )
 		{ }
 	};
+
+
+	typedef std::function< void ( Log::Level level, const std::string& ) > LogOutput;
+
+	void register_log_output( LogOutput output, int id );
+	void unregister_log_output( int id );
 
 
 }
