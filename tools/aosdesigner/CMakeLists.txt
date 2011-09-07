@@ -80,6 +80,7 @@ set( AOSDESIGNER_DIALOG_HEADERS
 	${AOSDESIGNER_DIALOG_DIR}/WelcomeScreen.hpp
 	${AOSDESIGNER_DIALOG_DIR}/NewProjectDialog.hpp
 	${AOSDESIGNER_DIALOG_DIR}/NewSequenceDialog.hpp
+	${AOSDESIGNER_DIALOG_DIR}/NewEditionSessionDialog.hpp
 )
 
 #-----------------------------------------------------------------
@@ -144,7 +145,8 @@ set( AOSDESIGNER_VIEW_SOURCES
 set( AOSDESIGNER_DIALOG_SOURCES 
     ${AOSDESIGNER_DIALOG_DIR}/WelcomeScreen.cpp
 	${AOSDESIGNER_DIALOG_DIR}/NewProjectDialog.cpp
-	${AOSDESIGNER_DIALOG_DIR}/NewSequenceDialog.cpp	
+	${AOSDESIGNER_DIALOG_DIR}/NewSequenceDialog.cpp
+	${AOSDESIGNER_DIALOG_DIR}/NewEditionSessionDialog.cpp
 )
 
 
