@@ -59,17 +59,41 @@ namespace core
 		try
 		{
 			m_name = infos.get<std::string>( "project.name" );
-			auto sequences = infos.get_child( "project.sequences" );
-			std::for_each( sequences.begin(), sequences.end(), [&]( const std::pair< std::string, ptree >& sequence_info )
+		}
+		catch( const boost::exception& e )
+		{
+			UTILCPP_LOG_ERROR << "ERROR on Project's properties reading : \n" << boost::diagnostic_information(e);
+		}
+
+		try
+		{
+			auto sequences = infos.get_child( "project.sequences", ptree() );
+
+			if( !sequences.empty() )
 			{
-				UTILCPP_ASSERT( sequence_info.first == "sequence", "Found an unknown tag! Should be \"sequence\" instead of \"" << sequence_info.first << "\"" );
+				std::for_each( sequences.begin(), sequences.end(), [&]( const std::pair< std::string, ptree >& sequence_info )
+				{
+					if( sequence_info.first == "sequence" )
+					{
+						const bfs::path sequence_location = sequence_info.second.get_value<std::string>();
+						add_sequence( std::unique_ptr<Sequence>( new Sequence( *this, sequence_location ) ) );
 
-				const bfs::path sequence_location = sequence_info.second.get_value<std::string>();
-				add_sequence( std::unique_ptr<Sequence>( new Sequence( *this, sequence_location ) ) );
+						UTILCPP_LOG << "Loaded Sequence : " << m_sequences.back().name() << " [" << m_sequences.back().id() << "]";
+					}
+					else
+					{
+						UTILCPP_LOG_ERROR << "Found an unknown tag! Should be \"sequence\" instead of \"" << sequence_info.first << "\"";
+					}
 
-				UTILCPP_LOG << "Loaded Sequence : " << m_sequences.back().name() << " [" << m_sequences.back().id() << "]";
 
-			});
+
+				});
+			}
+			else
+			{
+				UTILCPP_LOG << "No sequences in this project.";
+			}
+			
 		}
 		catch( const boost::exception& e )
 		{
@@ -78,16 +102,31 @@ namespace core
 
 		try
 		{
-			auto walks = infos.get_child( "project.walks" );
-			std::for_each( walks.begin(), walks.end(), [&]( const std::pair< std::string, ptree >& walk )
+			auto walks = infos.get_child( "project.walks", ptree() );
+
+			if( !walks.empty() )
 			{
-				UTILCPP_ASSERT( walk.first == "storywalker", "Found an unknown tag! Should be \"storywalker\" instead of \"" << walk.first << "\"" );
+				std::for_each( walks.begin(), walks.end(), [&]( const std::pair< std::string, ptree >& walk )
+				{
+					if( walk.first == "storywalker" )
+					{
+						const bfs::path walker_file_location = directory_path() / path::STORYWALK_FILE( walk.second.get_value<std::string>() );
+						add_storywalker( std::unique_ptr<StoryWalker>( new StoryWalker( *this, walker_file_location ) ) );
 
-				const bfs::path walker_file_location = directory_path() / path::STORYWALK_FILE( walk.second.get_value<std::string>() );
-				add_storywalker( std::unique_ptr<StoryWalker>( new StoryWalker( *this, walker_file_location ) ) );
+						UTILCPP_LOG << "Loaded Story-Walker : [" << m_walks.back().id() << "]";
 
-				UTILCPP_LOG << "Loaded Story-Walker : [" << m_walks.back().id() << "]";
-			});
+					}
+					else
+					{
+						UTILCPP_LOG_ERROR << "Found an unknown tag! Should be \"storywalker\" instead of \"" << walk.first << "\"";
+					}
+				});
+			}
+			else
+			{
+				UTILCPP_LOG << "No story-walk for this project.";
+			}
+
 		}
 		catch( const boost::exception& e )
 		{
