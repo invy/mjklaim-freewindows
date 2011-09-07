@@ -2,8 +2,9 @@
 #define HGUARD_UTILCPP_LOG_HPP__
 #pragma once
 
-// beuh...
+#include <string>
 #include <sstream>
+#include <functional>
 
 #include "utilcpp/HardConfig.hpp"
 
@@ -31,6 +32,12 @@
 
 namespace util
 {
+
+	typedef std::function< void ( const std::string& ) > LogOutput;
+
+	void register_log_output( LogOutput output, int id );
+	void unregister_log_output( int id );
+
 	/** NO DOCUMENTATION YET!
 	*/
 	class Log

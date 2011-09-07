@@ -2,8 +2,11 @@
 #define HGUARD_AOSD_VIEW_LOGVIEW_HPP__
 #pragma once
 
+#include <memory>
 #include <QDockWidget>
 #include <QListView>
+
+class QTextEdit;
 
 namespace aosd
 {
@@ -18,9 +21,15 @@ namespace view
 	public:
 
 		LogView();
+		~LogView();
 
 
 	private:
+
+		std::unique_ptr<QTextEdit> m_text_area;
+
+		void print_log( const std::string& message );
+
 
 	};
 

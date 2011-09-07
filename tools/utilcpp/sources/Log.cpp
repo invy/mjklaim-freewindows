@@ -1,6 +1,8 @@
 #include "utilcpp/Log.hpp"
 
 #include <exception>
+#include <algorithm>
+#include <vector>
 
 #include <boost/format.hpp>
 #include <boost/date_time.hpp>
@@ -77,6 +79,14 @@ namespace util
 
 		LogFileHandler log_file_handler;
 
+		struct OutputInfos
+		{
+			int id;
+			LogOutput output;
+		};
+
+		std::vector< OutputInfos > log_outputs;
+
 	}
 
 	Log::Log( Level level )
@@ -129,7 +139,8 @@ namespace util
 
 		
 
-		// now we can display to the logging into the log view
+		// now we can display to the logging into the log outputs
+		std::for_each( log_outputs.begin(), log_outputs.end(), [&]( OutputInfos& infos ){ infos.output( message ); } );
 
 	}
 
@@ -147,6 +158,22 @@ namespace util
 		default:
 			return nullptr;
 		}
+	}
+
+	void register_log_output( LogOutput output, int id )
+	{
+		OutputInfos infos;
+		infos.output = output;
+		infos.id= id;
+		log_outputs.push_back( infos );
+	}
+
+	void unregister_log_output( int id )
+	{
+		log_outputs.erase( std::remove_if( log_outputs.begin(), log_outputs.end()
+							, [id](const OutputInfos& infos){ return id == infos.id;} )
+							, log_outputs.end()
+							);
 	}
 
 	
