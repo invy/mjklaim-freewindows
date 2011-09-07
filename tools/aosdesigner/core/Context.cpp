@@ -121,15 +121,15 @@ namespace core
 	}
 
 
-	bool Context::new_storywalk( const SequenceId& sequence_id )
+	bool Context::new_edition( const SequenceId& sequence_id )
 	{
 		if( is_project_open() )
 		{
-			return m_project->new_storywalker( sequence_id );
+			return m_project->new_edition( sequence_id );
 		}
 
 		// THINK : replace that with an exception?
-		UTILCPP_LOG_ERROR << "Cannot create a story-walk while no project is open!";
+		UTILCPP_LOG_ERROR << "Cannot create a edition session while no project is open!";
 
 		return false;
 	}

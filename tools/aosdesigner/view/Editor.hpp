@@ -1,5 +1,5 @@
-#ifndef HGUARD_AOSD_STORYPATHVIEW_HPP__
-#define HGUARD_AOSD_STORYPATHVIEW_HPP__
+#ifndef HGUARD_AOSD_EDITOR_HPP__
+#define HGUARD_AOSD_EDITOR_HPP__
 #pragma once
 
 #include <memory>
@@ -9,7 +9,7 @@
 
 namespace aosd
 {
-	namespace core{ class StoryWalker; }
+	namespace core{ class EditionSession; }
 
 namespace view
 {
@@ -18,16 +18,16 @@ namespace view
 	class StoryView;
 
 	/** Display the canvas and the story structure view for a specific path through the stages.
-		
+		Every information displayed is dependant on the path followed in the sequence.
 	*/
-	class StoryPathView
-		: public QSplitter
+	class Editor
+		: public QSplitter // THINK : maybe a QObject + setCentralWidget( new QSplitter() ) might be better?
 	{
 		Q_OBJECT
 	public:
 		
-		explicit StoryPathView( const core::StoryWalker& storywalker );
-		~StoryPathView();
+		explicit Editor( const core::EditionSession& edition_session );
+		~Editor();
 
 		const QString& title() const { return m_title; }
 
@@ -39,7 +39,7 @@ namespace view
 		QString m_title;
 
 		
-		void connect_storywalker( const core::StoryWalker& storywalker );
+		void connect_edition( const core::EditionSession& edition_session );
 		
 	};
 

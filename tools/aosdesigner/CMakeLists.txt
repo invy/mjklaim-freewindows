@@ -35,8 +35,8 @@ set( AOSDESIGNER_CORE_HEADERS
 	${AOSDESIGNER_CORE_DIR}/SequenceId.hpp
 	${AOSDESIGNER_CORE_DIR}/ProjectInfos.hpp
 	${AOSDESIGNER_CORE_DIR}/SequenceInfos.hpp
-	${AOSDESIGNER_CORE_DIR}/StoryWalker.hpp
-	${AOSDESIGNER_CORE_DIR}/StoryWalkerId.hpp
+	${AOSDESIGNER_CORE_DIR}/EditionSession.hpp
+	${AOSDESIGNER_CORE_DIR}/EditionSessionId.hpp
 )
 
 #-----------------------------------------------------------------
@@ -69,7 +69,7 @@ set( AOSDESIGNER_VIEW_HEADERS
     ${AOSDESIGNER_VIEW_DIR}/StoryView.hpp
 	${AOSDESIGNER_VIEW_DIR}/LogView.hpp
     ${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
-	${AOSDESIGNER_VIEW_DIR}/StoryPathView.hpp
+	${AOSDESIGNER_VIEW_DIR}/Editor.hpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.hpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
 )
@@ -134,7 +134,7 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/ToolboxView.cpp
 	${AOSDESIGNER_VIEW_DIR}/CanvasView.cpp
 	${AOSDESIGNER_VIEW_DIR}/ChangesView.cpp
-	${AOSDESIGNER_VIEW_DIR}/StoryPathView.cpp
+	${AOSDESIGNER_VIEW_DIR}/Editor.cpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.cpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp
 )
@@ -155,7 +155,7 @@ set( AOSDESIGNER_CORE_SOURCES
     ${AOSDESIGNER_CORE_DIR}/Context.cpp
     ${AOSDESIGNER_CORE_DIR}/Project.cpp
     ${AOSDESIGNER_CORE_DIR}/Sequence.cpp
-    ${AOSDESIGNER_CORE_DIR}/StoryWalker.cpp
+    ${AOSDESIGNER_CORE_DIR}/EditionSession.cpp
 )
 
 #------------------------------------------------------

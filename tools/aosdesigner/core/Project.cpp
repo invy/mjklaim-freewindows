@@ -14,7 +14,7 @@
 #include "core/ProjectInfos.hpp"
 #include "core/SequenceInfos.hpp"
 #include "core/Sequence.hpp"
-#include "core/StoryWalker.hpp"
+#include "core/EditionSession.hpp"
 #include "view/Dialogs.hpp"
 #include "Paths.hpp"
 
@@ -102,35 +102,35 @@ namespace core
 
 		try
 		{
-			auto walks = infos.get_child( "project.walks", ptree() );
+			auto edition_sessions = infos.get_child( "project.edition", ptree() );
 
-			if( !walks.empty() )
+			if( !edition_sessions.empty() )
 			{
-				std::for_each( walks.begin(), walks.end(), [&]( const std::pair< std::string, ptree >& walk )
+				std::for_each( edition_sessions.begin(), edition_sessions.end(), [&]( const std::pair< std::string, ptree >& edition_session )
 				{
-					if( walk.first == "storywalker" )
+					if( edition_session.first == "session" )
 					{
-						const bfs::path walker_file_location = directory_path() / path::STORYWALK_FILE( walk.second.get_value<std::string>() );
-						add_storywalker( std::unique_ptr<StoryWalker>( new StoryWalker( *this, walker_file_location ) ) );
+						const bfs::path session_file_location = directory_path() / path::EDITION_SESSION_FILE( edition_session.second.get_value<std::string>() );
+						add_edition( std::unique_ptr<EditionSession>( new EditionSession( *this, session_file_location ) ) );
 
-						UTILCPP_LOG << "Loaded Story-Walker : [" << m_walks.back().id() << "]";
+						UTILCPP_LOG << "Loaded edition session : [" << m_edit_sessions.back().id() << "]";
 
 					}
 					else
 					{
-						UTILCPP_LOG_ERROR << "Found an unknown tag! Should be \"storywalker\" instead of \"" << walk.first << "\"";
+						UTILCPP_LOG_ERROR << "Found an unknown tag! Should be \"session\" instead of \"" << edition_session.first << "\"";
 					}
 				});
 			}
 			else
 			{
-				UTILCPP_LOG << "No story-walk for this project.";
+				UTILCPP_LOG << "No edition session for this project.";
 			}
 
 		}
 		catch( const boost::exception& e )
 		{
-			UTILCPP_LOG_ERROR << "ERROR on Project's story-walks loading : \n" << boost::diagnostic_information(e);
+			UTILCPP_LOG_ERROR << "ERROR on Project's edition session loading : \n" << boost::diagnostic_information(e);
 		}
 
 		
@@ -180,9 +180,9 @@ namespace core
 			infos.add( "project.sequences.sequence", sequence.location().generic_string() );
 		});
 
-		foreach_storywalk( [&]( const StoryWalker& storywalker )
+		foreach_edition( [&]( const EditionSession& edition_session )
 		{ 
-			infos.add( "project.walks.storywalker", storywalker.id() );
+			infos.add( "project.edition.session", edition_session.id() );
 		});
 
 		// TODO : add other informations here
@@ -209,7 +209,7 @@ namespace core
 		}
 
 		std::for_each( m_sequences.begin(), m_sequences.end(), []( Sequence& sequence ){ sequence.save(); });
-		std::for_each( m_walks.begin(), m_walks.end(), []( StoryWalker& storywalker ){ storywalker.save(); });
+		std::for_each( m_edit_sessions.begin(), m_edit_sessions.end(), []( EditionSession& edition_session ){ edition_session.save(); });
 
 		return true;
 	}
@@ -219,9 +219,9 @@ namespace core
 		std::for_each( m_sequences.begin(), m_sequences.end(), func );
 	}
 
-	void Project::foreach_storywalk( std::function< void ( const StoryWalker& storywalker )> func ) const
+	void Project::foreach_edition( std::function< void ( const EditionSession& edition_session )> func ) const
 	{
-		std::for_each( m_walks.begin(), m_walks.end(), func );
+		std::for_each( m_edit_sessions.begin(), m_edit_sessions.end(), func );
 	}
 
 	bool Project::new_sequence( const SequenceInfos& infos )
@@ -231,9 +231,9 @@ namespace core
 		add_sequence( std::unique_ptr<Sequence>( sequence ) );
 		emit sequence_created( *sequence );
 
-		if( infos.is_storywalker_requested )
+		if( infos.is_edition_requested )
 		{
-			new_storywalker( sequence->id() );
+			new_edition( sequence->id() );
 		}
 
 		return true;
@@ -252,13 +252,13 @@ namespace core
 
 	}
 
-	bool Project::new_storywalker( const SequenceId& sequence_id )
+	bool Project::new_edition( const SequenceId& sequence_id )
 	{
 		Sequence* sequence = find_sequence( sequence_id );
 		
 		if( sequence )
 		{
-			add_storywalker( std::unique_ptr< StoryWalker >( new StoryWalker( *this, *sequence, "STORY-WALK : " + sequence->name() ) ) );
+			add_edition( std::unique_ptr< EditionSession >( new EditionSession( *this, *sequence, sequence->name() ) ) );
 
 			return true;
 		}
@@ -274,12 +274,12 @@ namespace core
 	}
 
 
-	void Project::add_storywalker( std::unique_ptr<StoryWalker>&& storywalker )
+	void Project::add_edition( std::unique_ptr<EditionSession>&& edition )
 	{
-		UTILCPP_ASSERT_NOT_NULL( storywalker );
-		m_walks.push_back( storywalker.release() );
+		UTILCPP_ASSERT_NOT_NULL( edition );
+		m_edit_sessions.push_back( edition.release() );
 
-		emit storywalk_begin( m_walks.back() ); 		
+		emit edition_begin( m_edit_sessions.back() ); 		
 	}
 
 	Sequence* Project::find_sequence( const SequenceId& sequence_id )

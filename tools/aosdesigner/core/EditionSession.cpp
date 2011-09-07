@@ -1,4 +1,4 @@
-#include "core/StoryWalker.hpp"
+#include "core/EditionSession.hpp"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
@@ -21,17 +21,17 @@ namespace core
 {
 	
 
-	StoryWalker::StoryWalker( const Project& project, const Sequence& sequence, const std::string& name )
+	EditionSession::EditionSession( const Project& project, const Sequence& sequence, const std::string& name )
 		: m_sequence( &sequence )
 		, m_project( project )
 		, m_interpreter( sequence.make_interpreter() )
 		, m_id( to_string( boost::uuids::random_generator()() ) )
 		, m_name( name )
 	{
-		UTILCPP_ASSERT_NOT_NULL( m_sequence ); // TODO : replace this by an throwing an exception
+		UTILCPP_ASSERT_NOT_NULL( m_sequence ); // TODO : replace this by an throwing an exception at runtime
 	}
 
-	StoryWalker::StoryWalker( const Project& project, const bfs::path& file_path )
+	EditionSession::EditionSession( const Project& project, const bfs::path& file_path )
 		: m_project( project )
 		, m_sequence( nullptr )
 		, m_id( to_string( boost::uuids::nil_generator()() ) )
@@ -51,10 +51,10 @@ namespace core
 			ptree infos;
 			read_xml( file_stream, infos );
 
-			m_id = infos.get<StoryWalkerId>( "storywalk.id" );
-			m_name = infos.get<std::string>( "storywalk.name" );
+			m_id = infos.get<EditionSessionId>( "edition_session.id" );
+			m_name = infos.get<std::string>( "edition_session.name" );
 
-			auto sequence_id = infos.get<SequenceId>( "storywalk.sequence" );
+			auto sequence_id = infos.get<SequenceId>( "edition_session.sequence" );
 			if( !sequence_id.empty() && sequence_id != "NONE" )
 			{
 				m_sequence = project.find_sequence( sequence_id );
@@ -84,29 +84,29 @@ namespace core
 	}
 
 
-	void StoryWalker::save()
+	void EditionSession::save()
 	{
 		using namespace boost::property_tree;
 
 		ptree infos;
 
 		// write the sequence id
-		infos.put( "storywalk.id", id() );
-		infos.put( "storywalk.name", name() );
-		infos.put( "storywalk.sequence", m_sequence ? m_sequence->id() : "NONE" );
+		infos.put( "edition_session.id", id() );
+		infos.put( "edition_session.name", name() );
+		infos.put( "edition_session.sequence", m_sequence ? m_sequence->id() : "NONE" );
 
 		// write the path taken in the sequence
 		if( m_interpreter )
 		{
 			m_interpreter->path().for_each_step( [&]( const aoslcpp::StoryPath::Step& step )
 			{
-				//infos.put( "storywalk.steps.move", step.move );
-				//infos.put( "storywalk.steps.stage", step.stage );
+				//infos.put( "edition_session.steps.move", step.move );
+				//infos.put( "edition_session.steps.stage", step.stage );
 			});
 		}
 		
 
-		const auto& file_path = m_project.directory_path() / path::STORYWALK_FILE( id() );
+		const auto& file_path = m_project.directory_path() / path::EDITION_SESSION_FILE( id() );
 
 		try
 		{

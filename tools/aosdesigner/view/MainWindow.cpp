@@ -15,7 +15,7 @@
 #include "view/LayersView.hpp"
 #include "view/ToolboxView.hpp"
 #include "view/LogView.hpp"
-#include "view/StoryPathView.hpp"
+#include "view/Editor.hpp"
 #include "view/DesignerActions.hpp"
 
 namespace aosd
@@ -66,15 +66,15 @@ namespace view
 	{
 		setWindowTitle( tr("%1 - Art Of Sequence").arg( QString::fromStdString( project.name() ), 0 ) );
 
-		connect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(react_storywalk_begin(const core::StoryWalker&)) );
-		connect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(react_storywalk_end(const core::StoryWalker&)) );
+		connect( &project, SIGNAL(edition_begin(const core::EditionSession&)), this, SLOT(react_edition_begin(const core::EditionSession&)) );
+		connect( &project, SIGNAL(edition_end(const core::EditionSession&)), this, SLOT(react_edition_end(const core::EditionSession&)) );
 
 		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
 		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
 
-		project.foreach_storywalk( [&]( const core::StoryWalker& storywalker ) 
+		project.foreach_edition( [&]( const core::EditionSession& edition_session ) 
 		{
-			add_storypath( std::unique_ptr<StoryPathView>( new StoryPathView( storywalker ) ) );
+			add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
 		});
 		
 	}
@@ -84,8 +84,8 @@ namespace view
 	{
 		setWindowTitle( tr("Art Of Sequence") );
 
-		disconnect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(react_storywalk_begin(const core::StoryWalker&)) );
-		disconnect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(react_storywalk_end(const core::StoryWalker&)) );
+		disconnect( &project, SIGNAL(edition_begin(const core::EditionSession&)), this, SLOT(react_edition_begin(const core::EditionSession&)) );
+		disconnect( &project, SIGNAL(edition_end(const core::EditionSession&)), this, SLOT(react_edition_end(const core::EditionSession&)) );
 
 		disconnect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
 		disconnect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
@@ -96,10 +96,10 @@ namespace view
 
 
 
-	void MainWindow::add_storypath( std::unique_ptr<StoryPathView>&& storypath )
+	void MainWindow::add_editor( std::unique_ptr<Editor>&& editor )
 	{
-		const auto tab_title = storypath->title();
-		m_central_tabs->addTab( storypath.release(), tab_title );
+		const auto tab_title = editor->title();
+		m_central_tabs->addTab( editor.release(), tab_title );
 	}
 
 
@@ -179,12 +179,12 @@ namespace view
 
 	}
 
-	void MainWindow::react_storywalk_begin( const core::StoryWalker& storywalker )
+	void MainWindow::react_edition_begin( const core::EditionSession& edition_session )
 	{
-		add_storypath( std::unique_ptr<StoryPathView>( new StoryPathView( storywalker ) ) );
+		add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
 	}
 
-	void MainWindow::react_storywalk_end( const core::StoryWalker& storywalker )
+	void MainWindow::react_edition_end( const core::EditionSession& edition_session )
 	{
 		UTILCPP_NOT_IMPLEMENTED_YET;
 	}

@@ -8,11 +8,11 @@ namespace path
 {
 	const bfs::path	AOSL_XSD_FILE			= bfs::current_path() / "aosl.xsd";
 
-	const std::string PROJECT_FILE_EXTENSION	= ".aosp";
-	const std::string SEQUENCE_FILE_EXTENSION	= ".aosl";
-	const std::string META_FILE_EXTENSION		= ".aosl";
-	const std::string LIBRARY_FILE_EXTENSION	= ".aosl";
-	const std::string WALKER_FILE_EXTENSION		= ".ssw";
+	const std::string PROJECT_FILE_EXTENSION			= ".aosp";
+	const std::string SEQUENCE_FILE_EXTENSION			= ".aosl";
+	const std::string META_FILE_EXTENSION				= ".aosl";
+	const std::string LIBRARY_FILE_EXTENSION			= ".aosl";
+	const std::string EDITION_SESSION_FILE_EXTENSION	= ".aosd.session";
 
 
 	const bfs::path DEFAULT_PROJECTS_DIR	= bfs::current_path(); // TODO : replace this by the user directory
@@ -21,7 +21,7 @@ namespace path
 	const bfs::path PROJECT_META_FILE		= "./meta.aosl";
 	const bfs::path PROJECT_SEQUENCES_DIR	= "./sequences/";
 
-	const bfs::path WALKERS_DIR = ".";
+	const bfs::path EDITION_SESSIONS_DIR = ".";
 
 	const bfs::path LOG_FILE_DIR			= bfs::current_path() / "logs";
 	
@@ -44,9 +44,9 @@ namespace path
 	}
 
 
-	bfs::path STORYWALK_FILE( const std::string& storywalker_id )
+	bfs::path EDITION_SESSION_FILE( const std::string& edition_session_id )
 	{
-		return WALKERS_DIR / ("path-" + storywalker_id + WALKER_FILE_EXTENSION ) ;
+		return EDITION_SESSIONS_DIR / ("edit-" + edition_session_id + EDITION_SESSION_FILE_EXTENSION ) ;
 	}
 
 

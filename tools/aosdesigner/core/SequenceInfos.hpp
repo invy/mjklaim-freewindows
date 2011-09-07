@@ -12,13 +12,13 @@ namespace core
 	
 	struct SequenceInfos
 	{
-		SequenceInfos() : canvas_width( 0.0 ), canvas_height( 0.0 ), is_storywalker_requested(false) {}
+		SequenceInfos() : canvas_width( 0.0 ), canvas_height( 0.0 ), is_edition_requested(false) {}
 
 		boost::filesystem::path location;
 		std::string name;
 		double canvas_width;
 		double canvas_height;
-		bool is_storywalker_requested;
+		bool is_edition_requested;
 
 	};
 

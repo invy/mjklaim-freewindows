@@ -13,7 +13,7 @@ namespace aosd
 namespace core 
 {
 	class Sequence;
-	class StoryWalker;
+	class EditionSession;
 	struct ProjectInfos;
 	struct SequenceInfos;
 
@@ -51,8 +51,8 @@ namespace core
 		/** Call the provided function for each Sequence in this project but don't allow to modify them. */
 		void foreach_sequence( std::function< void ( const Sequence& sequence )> func ) const;
 
-		/** Call the provided function for each story-walk in this project but don't allow to modify them. */
-		void foreach_storywalk( std::function< void ( const StoryWalker& storywalker )> func ) const;
+		/** Call the provided function for each edition session in this project but don't allow to modify them. */
+		void foreach_edition( std::function< void ( const EditionSession& edition )> func ) const;
 
 		const Sequence* find_sequence( const SequenceId& sequence_id ) const {  return const_cast<Project*>(this)->find_sequence(sequence_id); }
 
@@ -70,8 +70,8 @@ namespace core
 		/** Request informations to the user and use them to create a new sequence. */
 		bool new_sequence();
 
-		/** Create a story walk for the referenced sequence. **/
-		bool new_storywalker( const SequenceId& sequence_id );
+		/** Create an edition session for the referenced sequence. **/
+		bool new_edition( const SequenceId& sequence_id );
 
 		/** Save the project informations and content in the provided location. */
 		bool save( const bfs::path& filepath )
@@ -91,19 +91,19 @@ namespace core
 		/** Signal : a sequence have been requested to be destroyed. **/
 		void sequence_deleted( const core::Sequence& sequence );
 
-		/** Signal : a story walk have began. **/
-		void storywalk_begin( const core::StoryWalker& walker );
+		/** Signal : an edition session have began. **/
+		void edition_begin( const core::EditionSession& walker );
 
-		/** Signal : a story walk will be ended. **/
-		void storywalk_end( const core::StoryWalker& walker );
+		/** Signal : an edition session will be ended. **/
+		void edition_end( const core::EditionSession& walker );
 		
 	private:
 
 		/// Sequences for this project.
 		boost::ptr_vector< Sequence > m_sequences;
 
-		/// Sequence paths taken for edition.
-		boost::ptr_vector< StoryWalker > m_walks;
+		/// Sequence edition sessions.
+		boost::ptr_vector< EditionSession > m_edit_sessions;
 
 		/// Name of the project.
 		std::string m_name;
@@ -118,8 +118,8 @@ namespace core
 		/// Add a Sequence to this project.
 		void add_sequence( std::unique_ptr<Sequence>&& sequence );
 
-		/// Add a StoryWalk to this project.
-		void add_storywalker( std::unique_ptr<StoryWalker>&& sequence );
+		/// Add an edition session to this project.
+		void add_edition( std::unique_ptr<EditionSession>&& sequence );
 
 		/** Search for a Sequence having the provided id.
 			@return The Sequence we looked after or null if not found. 

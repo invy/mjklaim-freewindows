@@ -45,7 +45,6 @@ namespace view
 		/** True if we are currently in edition mode, false otherwise. */
 		bool is_edition_mode() const { return m_edition_mode; }
 
-				
 
 	private slots:
 
@@ -62,10 +61,10 @@ namespace view
 		void react_sequence_deleted( const core::Sequence& sequence );
 
 		/** Slot : called when a story walk is beginning. */
-		void react_storywalk_begin( const core::StoryWalker& storywalker );
+		void react_edition_begin( const core::EditionSession& edition_session );
 
 		/** Slot : called when a story walk is ending. */
-		void react_storywalk_end( const core::StoryWalker& storywalker );
+		void react_edition_end( const core::EditionSession& edition_session );
 
 	private:
 
@@ -99,8 +98,8 @@ namespace view
 		/** Setup the views in their default configuration and positions. **/
 		void setup_views_default();
 		
-		/** Add  astory path view in the central tabs of the window. **/
-		void add_storypath( std::unique_ptr<StoryPathView>&& storypath );
+		/** Add an editor view in the central tabs of the window. **/
+		void add_editor( std::unique_ptr<Editor>&& editor );
 
 		
 	};

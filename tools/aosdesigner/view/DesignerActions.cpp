@@ -16,7 +16,7 @@ namespace view
 		, m_open_project( "&Open Project", nullptr )
 		, m_close_project( "&Close Project", nullptr )
 		, m_new_sequence( "&New Sequence", nullptr )
-		, m_new_storypath( "&New Story-Path", nullptr )
+		, m_new_edition( "&New Edition Session", nullptr )
 		, m_save_project( "&Save all", nullptr )
 		, m_restore_project( "&Restore", nullptr )
 	{
@@ -74,10 +74,10 @@ namespace view
 
 
 		{
-			auto new_storypath_tip = QObject::tr( "Create a new editable view of a path through the sequence." );
-			m_new_storypath.setStatusTip( new_storypath_tip );
-			m_new_storypath.setToolTip( new_storypath_tip );
-			//QObject::connect( &m_new_storypath, SIGNAL(triggered()), context, SLOT(new_storywalk()) );
+			auto new_edition_tip = QObject::tr( "Create a new editable view of a path through the sequence." );
+			m_new_edition.setStatusTip( new_edition_tip );
+			m_new_edition.setToolTip( new_edition_tip );
+			//QObject::connect( &m_new_storypath, SIGNAL(triggered()), context, SLOT(new_edition()) );
 		}
 
 	}
@@ -111,7 +111,7 @@ namespace view
 		{
 			auto menu_sequence = menubar.addMenu( QObject::tr("&Sequence") );
 
-			menu_sequence->addAction( &m_new_storypath );
+			menu_sequence->addAction( &m_new_edition );
 			menu_sequence->addSeparator();
 
 

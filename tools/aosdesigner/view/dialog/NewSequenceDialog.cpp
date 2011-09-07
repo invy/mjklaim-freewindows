@@ -38,7 +38,7 @@ namespace view
 		m_ui->edit_name->setText( tr("Unnamed Sequence") );
 		m_ui->edit_canvas_width->setText( "800" );
 		m_ui->edit_canvas_height->setText( "600" );
-		m_ui->check_create_storywalker->setChecked( true );
+		m_ui->check_create_edition->setChecked( true );
 	}
 
 	NewSequenceDialog::~NewSequenceDialog()
@@ -54,7 +54,7 @@ namespace view
 		infos.location = path::SEQUENCE_FILE( m_ui->edit_codename->text().toStdString() );
 		infos.canvas_width = m_ui->edit_canvas_width->text().toDouble();
 		infos.canvas_height = m_ui->edit_canvas_width->text().toDouble();
-		infos.is_storywalker_requested = m_ui->check_create_storywalker->isChecked();
+		infos.is_edition_requested = m_ui->check_create_edition->isChecked();
 
 		return infos;
 	}

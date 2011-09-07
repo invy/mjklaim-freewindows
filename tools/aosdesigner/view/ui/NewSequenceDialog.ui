@@ -118,9 +118,9 @@ It should be set at the target platform resolution in pixels.</string>
     </spacer>
    </item>
    <item row="4" column="0" colspan="2">
-    <widget class="QCheckBox" name="check_create_storywalker">
+    <widget class="QCheckBox" name="check_create_edition">
      <property name="text">
-      <string>Create and open a new sequence story edition session for this sequence.</string>
+      <string>Create and open a new sequence edition session for this sequence.</string>
      </property>
      <property name="checked">
       <bool>true</bool>

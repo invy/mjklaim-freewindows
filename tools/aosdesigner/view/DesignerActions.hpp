@@ -36,7 +36,7 @@ namespace view
 		QAction m_save_project;
 		QAction m_restore_project;
 
-		QAction m_new_storypath;
+		QAction m_new_edition;
 
 
 	};

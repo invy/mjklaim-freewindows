@@ -41,8 +41,7 @@ namespace core
 		Sequence( const Project& project, const boost::filesystem::path sequence_file_path );
 
 		~Sequence();
-
-
+		
 		bool save();
 		
 		/// Name of the Sequence.
@@ -57,8 +56,7 @@ namespace core
 		/// Project in which this sequence is loaded.
 		const Project& project() const { return m_project; }
 		
-		/** Create an interpreter for this Sequence.
-		*/
+		/** Create an interpreter for this Sequence. */
 		std::unique_ptr<aoslcpp::SequenceInterpreter> make_interpreter() const;
 
 	private:

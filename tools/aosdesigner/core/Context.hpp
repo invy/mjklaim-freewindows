@@ -70,11 +70,11 @@ namespace core
 		**/
 		bool new_sequence();
 		
-		/** Create a new story-walk for a sequence of the project.
-			@param sequence_id Id of the sequence to create a story-walk for.
-			@return false if the story-walk creation failed or if there is no project currently open, true otherwise.
+		/** Create a new edition session for a sequence of the project.
+			@param sequence_id Id of the sequence to create an edition session for.
+			@return false if the edition session creation failed or if there is no project currently open, true otherwise.
 		**/
-		bool new_storywalk( const SequenceId& sequence_id );
+		bool new_edition( const SequenceId& sequence_id );
 		
 	signals:
 

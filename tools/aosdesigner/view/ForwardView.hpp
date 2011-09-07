@@ -17,7 +17,7 @@ namespace view
 	class SequenceListView;
 	class StoryView;
 	class ToolboxView;
-	class StoryPathView;
+	class Editor;
 
 	class WelcomeScreen;
 

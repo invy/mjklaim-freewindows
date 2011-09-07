@@ -13,7 +13,7 @@ namespace core
 	class Context;
 	class Project;
 	class Sequence;
-	class StoryWalker;
+	class EditionSession;
 		
 }	
 }

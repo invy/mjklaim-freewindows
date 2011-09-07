@@ -26,8 +26,8 @@ namespace path
 	/// Extension of library files.
 	extern const std::string LIBRARY_FILE_EXTENSION;
 
-	/// Extension of Story-walk files.
-	extern const std::string WALKER_FILE_EXTENSION;
+	/// Extension of Edition session files.
+	extern const std::string EDITION_SESSION_FILE_EXTENSION;
 
 	/// Default directory to look in when we start looking for project directories.
 	extern const bfs::path DEFAULT_PROJECTS_DIR;
@@ -47,8 +47,8 @@ namespace path
 	/// Directory that will contain the log file(s).
 	extern const bfs::path LOG_FILE_DIR;
 
-	/// Directory that will contain story-walks files.
-	extern const bfs::path WALKERS_DIR;
+	/// Directory that will contain edition session files.
+	extern const bfs::path EDITION_SESSIONS_DIR;
 
 	/// Generate the path of a sequence directory.
 	bfs::path SEQUENCE_DIR( const std::string& sequence_codename );
@@ -59,8 +59,8 @@ namespace path
 	/// Project infos file, defining the whole project.
 	bfs::path PROJECT_FILE( const std::string& project_codename );
 	
-	/// Story-walk infos file, defining a path in a walk in a sequence.
-	bfs::path STORYWALK_FILE( const std::string& storywalker_id );
+	/// Edition session infos file, defining a path in a walk in a sequence.
+	bfs::path EDITION_SESSION_FILE( const std::string& edition_session_id );
 
 	/// Generate a full path of for a (fictive) project file given it's codename and the directory where to find the project's folder.
 	bfs::path GENERATE_PROJECT_FILE( const bfs::path& directory, const std::string& project_codename );
