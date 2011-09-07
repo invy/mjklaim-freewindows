@@ -196,6 +196,7 @@ set( AOSDESIGNER_VIEW_UI
 	${AOSDESIGNER_UI_DIR}/WelcomeScreen.ui
 	${AOSDESIGNER_UI_DIR}/NewProjectDialog.ui
 	${AOSDESIGNER_UI_DIR}/NewSequenceDialog.ui
+	${AOSDESIGNER_UI_DIR}/NewEditionSessionDialog.ui
 )
 
 # UI files need to be processed by Qt wrapper to generate UI headers.
