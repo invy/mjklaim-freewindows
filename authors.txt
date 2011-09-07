@@ -1,0 +1,14 @@
+﻿Art Of Sequence
+===============
+
+List of all contributors to the project.
+
+Core devteam :
+--------------
+
+ - A. Joël Lamotte
+ 
+
+Contributors :
+--------------
+

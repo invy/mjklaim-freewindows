@@ -1,0 +1,84 @@
+TODOLIST
+========
+
+Legend: 
+ - something that have to be done
+ * (klaim) work in progress by klaim
+ ? suggestion, something that might be good to do needs thinking
+ x (klaim) done by klaim
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+CMAKE
+-----
+
+ - make sure Boost (1.47 min) is an available dependency
+ - dependency binaries should be copied to the build repositories 
+ - (cross-platform) distribution package generation
+
+AOSL
+----
+
+ - add heavy documentation in the xsd file
+ - use xs3p to generate the documentation from the xsd file
+
+
+AOSLCPP
+-------
+
+ * (klaim) interpret/execute a sequence
+ * (klaim) algorithms to manipulate a sequence
+ - dispatch events from the execution of a sequence
+ - add tests
+
+AOS Designer
+------------
+
+ ? move the files in /core in the global application directory (?)
+
+ x (klaim) create a new project
+ x (klaim) save the current project
+ x (klaim) open and load a project
+ - project properties edition
+ 
+ x (klaim) add logging macros 
+  x (klaim) that output in a file
+   - in the Log view
+   x (klaim) in Visual Studio's log view if debugging is active
+  - use logs in current code
+  - add an automatic deletion of old log files or limit log files count
+  - add version (and build) infos in the start of the log
+  - add context (platform, etc.) infos in the log
+  - add authors names in the log
+ x (klaim) add assertion macros
+  x add assertions in current code
+ - define an error handling strategy for the whole application
+ 
+ - output (text) files have to be written with UTF-8 encoding
+ 
+ - add a config folder
+  - move Paths.*pp in it
+  - add an hard config source file for constants
+ 
+ - use a AOSD_TXT( txt_id ) macro that would be implemented as QObject::tr( text_id )
+  
+ - import a sequence from an AOSL file (and ask the user if he wants to import the resources too)
+ 
+ - Story view:
+  - generate a graphic view of the story from a raw Sequence
+  - save/load the graphic view informations
+  - actions : add, move, remove stage
+  - actions : add, move, remove move
+  
+ - Libraries view:
+  - setup project's library system (library shared with all the project's sequences)
+  - view all libraries content (all resources)
+  - actions : add, remove, edit resources
+  - drag'n'drop resources from file to library/designer
+  - drag'n'drop resources from library to canvas
+  
+ - 
+  
+ - Objects view:
+  - list objects in the current
+ 
