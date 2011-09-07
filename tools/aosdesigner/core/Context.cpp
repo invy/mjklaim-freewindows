@@ -43,7 +43,7 @@ namespace core
 		
 		std::unique_ptr<Project> project( new Project( infos ) );
 		project->new_sequence();	// create a first sequence
-		project->save();			// generate the file
+		project->save();			// save everything
 
 		const bool project_open = open_project( std::move(project) );
 		if( !project_open )

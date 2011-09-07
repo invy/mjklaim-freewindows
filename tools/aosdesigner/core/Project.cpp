@@ -192,9 +192,6 @@ namespace core
 		add_sequence( std::unique_ptr<Sequence>( sequence ) );
 		emit sequence_created( *sequence );
 
-		// create a new storywalker for this sequence
-		new_storywalker( sequence->id() );
-
 		return true;
 	}
 
@@ -220,7 +217,6 @@ namespace core
 			add_storywalker( std::unique_ptr< StoryWalker >( new StoryWalker( *this, *sequence, "STORY-WALK : " + sequence->name() ) ) );
 
 			return true;
-			
 		}
 
 		return false;
