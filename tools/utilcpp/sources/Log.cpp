@@ -121,7 +121,7 @@ namespace util
 		// log into Visual Studio if we are debugging in it
 #if defined( _DEBUG ) && defined( _WIN32 ) // TODO : replace this by something more safe...
 		if( IS_VS_DEBUGGER_PRESENT ) 
-			OutputDebugString( (message + "\n").c_str() ); 
+			OutputDebugStringA( (message + "\n").c_str() ); 
 #endif
 		switch ( m_level )
 		{
