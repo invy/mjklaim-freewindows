@@ -64,7 +64,7 @@ namespace view
 
 	void MainWindow::react_project_open( const core::Project& project )
 	{
-		setWindowTitle( tr("Art Of Sequence : ") + QString::fromStdString( project.name() ) );
+		setWindowTitle( tr("%1 - Art Of Sequence").arg( QString::fromStdString( project.name() ), 0 ) );
 
 		connect( &project, SIGNAL(storywalk_begin(const core::StoryWalker&)), this, SLOT(react_storywalk_begin(const core::StoryWalker&)) );
 		connect( &project, SIGNAL(storywalk_end(const core::StoryWalker&)), this, SLOT(react_storywalk_end(const core::StoryWalker&)) );

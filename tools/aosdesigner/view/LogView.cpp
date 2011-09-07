@@ -16,7 +16,10 @@ namespace view
 		setWindowTitle(tr("Log"));
 		setWidget( m_text_area.get() );
 
+		m_text_area->setReadOnly(true);
+
 		util::register_log_output( [&]( util::Log::Level level, const std::string& message ){ print_log( level, message ); }, 1 );
+
 	}
 
 	LogView::~LogView()
