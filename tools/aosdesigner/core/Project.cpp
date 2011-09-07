@@ -231,6 +231,11 @@ namespace core
 		add_sequence( std::unique_ptr<Sequence>( sequence ) );
 		emit sequence_created( *sequence );
 
+		if( infos.is_storywalker_requested )
+		{
+			new_storywalker( sequence->id() );
+		}
+
 		return true;
 	}
 
