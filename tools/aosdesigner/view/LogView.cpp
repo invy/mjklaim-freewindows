@@ -2,7 +2,6 @@
 
 #include <QTextEdit>
 
-#include "utilcpp/Log.hpp"
 
 namespace aosd
 {
@@ -17,7 +16,7 @@ namespace view
 		setWindowTitle(tr("Log"));
 		setWidget( m_text_area.get() );
 
-		util::register_log_output( [&]( const std::string& message ){ print_log( message ); }, 1 );
+		util::register_log_output( [&]( util::Log::Level level, const std::string& message ){ print_log( level, message ); }, 1 );
 	}
 
 	LogView::~LogView()
@@ -25,9 +24,14 @@ namespace view
 		util::unregister_log_output( 1 );
 	}
 
-	void LogView::print_log( const std::string& message )
+	void LogView::print_log( util::Log::Level level, const std::string& message )
 	{
-		m_text_area->insertHtml( QString::fromStdString( message ) + "<br />" );
+		auto color = level < util::Log::INFO ? "red" : "black";
+
+		auto display_message = QString("<br /><font color=\"%1\" >%2</font>" ).arg( color, 1 ).arg( QString::fromStdString( message ), 2 );
+
+
+		m_text_area->insertHtml( display_message );
 	}
 
 }

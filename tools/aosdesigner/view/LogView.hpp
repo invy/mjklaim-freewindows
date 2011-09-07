@@ -6,6 +6,9 @@
 #include <QDockWidget>
 #include <QListView>
 
+#include "utilcpp/Log.hpp"
+
+
 class QTextEdit;
 
 namespace aosd
@@ -28,7 +31,7 @@ namespace view
 
 		std::unique_ptr<QTextEdit> m_text_area;
 
-		void print_log( const std::string& message );
+		void print_log( util::Log::Level level, const std::string& message );
 
 
 	};
