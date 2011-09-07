@@ -2,6 +2,9 @@ cmake_minimum_required( VERSION 2.8 )
 
 project( ArtOfSequence )
 
+# Make sure we use UNICODE.
+add_definitions(-DUNICODE -D_UNICODE)
+
 # Use relative paths
 # This is mostly to reduce path size for command-line limits on windows
 if(WIN32)
