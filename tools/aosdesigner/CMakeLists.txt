@@ -240,7 +240,13 @@ include_directories(
 	${UTILCPP_INCLUDE_DIR}
 )
 
-add_executable( aosdesigner ${AOSDESIGNER_ALL_FILES} )
+# Make sure there is no console on windows : make Qt use it's own WinMain().
+link_libraries( ${QT_LIBRARIES} )
+if(WIN32)
+	LINK_LIBRARIES( ${QT_QTMAIN_LIBRARY} )
+endif(WIN32)
+
+add_executable( aosdesigner WIN32 ${AOSDESIGNER_ALL_FILES} )
 target_link_libraries( aosdesigner ${QT_LIBRARIES} utilcpp aoslcpp  )
 
 set( AOSDESIGNER_BUILD_MODE "$(Configuration)" ) #until I find a cross-platform way to get the configuration...
