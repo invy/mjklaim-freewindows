@@ -100,6 +100,7 @@ namespace view
 	{
 		const auto tab_title = editor->title();
 		m_central_tabs->addTab( editor.release(), tab_title );
+		m_central_tabs->setCurrentIndex( m_central_tabs->count() - 1 );
 	}
 
 
