@@ -29,9 +29,7 @@ namespace core
 	{
 		Q_OBJECT
 	public:
-
-		static const std::string FILENAME;
-		
+				
 		/** Create a project from basic informations. */
 		Project( const ProjectInfos& infos );
 
