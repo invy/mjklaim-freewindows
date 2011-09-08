@@ -30,6 +30,8 @@ namespace aoslcpp
 
 		void execute( const aosl::Change& change, bool reverse = false );
 		void execute( const aosl::List_change& change_list, bool reverse = false );
+
+		const aosl::Canvas& canvas() const { return m_canvas; }
 		
 	private:
 
