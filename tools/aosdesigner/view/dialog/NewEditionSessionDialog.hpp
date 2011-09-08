@@ -2,6 +2,14 @@
 #define HGUARD_AOSD_VIEW_NEWEDITIONSESSIONDIALOG_HPP__
 #pragma once
 
+#include <memory>
+#include <QDialog>
+#include "core/EditionSessionInfos.hpp"
+
+namespace Ui
+{
+	class NewEditionSessionDialog;
+}
 
 namespace aosd
 {
@@ -17,14 +25,20 @@ namespace view
 		NewEditionSessionDialog();
 		~NewEditionSessionDialog();
 
+	public slots:
+
+		core::EditionSessionInfos infos() const;
 
 	private slots:
+
+		void create_session();
 			
 	private:
 
 		std::unique_ptr< Ui::NewEditionSessionDialog > m_ui;
 
 		
+		void fill_session_selector();
 	};
 
 }

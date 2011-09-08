@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>NewEditionSession</class>
- <widget class="QWidget" name="NewEditionSession">
+ <class>NewEditionSessionDialog</class>
+ <widget class="QWidget" name="NewEditionSessionDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

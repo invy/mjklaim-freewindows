@@ -25,7 +25,7 @@ namespace view
 		~NewSequenceDialog();
 
 		/** Provide the basic informations about the sequence described by the user. */
-		core::SequenceInfos sequence_infos();
+		core::SequenceInfos infos();
 
 	private slots:
 

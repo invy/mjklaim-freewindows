@@ -6,6 +6,7 @@
 
 #include "core/ProjectInfos.hpp"
 #include "core/SequenceInfos.hpp"
+#include "core/EditionSessionInfos.hpp"
 
 namespace aosd
 {
@@ -34,6 +35,9 @@ namespace view
 
 	/** Show the dialog to create a new sequence. */
 	core::SequenceInfos request_new_sequence_infos();
+
+	/** Show the dialog to create a new edition session. */
+	core::EditionSessionInfos request_new_edition_session_infos();
 
 }
 }

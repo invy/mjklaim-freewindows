@@ -86,7 +86,7 @@ namespace view
 	}
 
 
-	core::ProjectInfos NewProjectDialog::project_infos()
+	core::ProjectInfos NewProjectDialog::infos()
 	{
 		
 		const auto location = m_ui->edit_dir_location->text();

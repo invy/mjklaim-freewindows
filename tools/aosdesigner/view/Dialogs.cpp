@@ -6,6 +6,7 @@
 #include "view/dialog/WelcomeScreen.hpp"
 #include "view/dialog/NewProjectDialog.hpp"
 #include "view/dialog/NewSequenceDialog.hpp"
+#include "view/dialog/NewEditionSessionDialog.hpp"
 #include "Paths.hpp"
 
 namespace aosd
@@ -44,22 +45,29 @@ namespace view
 														).toStdString() );
 	}
 
+	template< class InfoType, class DialogType>
+	InfoType request_infos()
+	{
+		std::unique_ptr<DialogType> dialog( new DialogType() );
+		if( dialog->exec() )
+			return dialog->infos();
+		else
+			return InfoType();
+	}
+
 	core::ProjectInfos request_new_project_infos()
 	{
-		std::unique_ptr<NewProjectDialog> dialog( new NewProjectDialog() );
-		if( dialog->exec() )
-			return dialog->project_infos();
-		else
-			return core::ProjectInfos();
+		return request_infos< core::ProjectInfos, NewProjectDialog >();
 	}
 
 	core::SequenceInfos request_new_sequence_infos()
 	{
-		std::unique_ptr<NewSequenceDialog> dialog( new NewSequenceDialog() );
-		if( dialog->exec() )
-			return dialog->sequence_infos();
-		else
-			return core::SequenceInfos();
+		return request_infos< core::SequenceInfos, NewSequenceDialog >();
+	}
+
+	core::EditionSessionInfos request_new_edition_session_infos()
+	{
+		return request_infos< core::EditionSessionInfos, NewEditionSessionDialog >();
 	}
 
 }

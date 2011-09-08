@@ -46,7 +46,7 @@ namespace view
 
 	}
 
-	core::SequenceInfos NewSequenceDialog::sequence_infos()
+	core::SequenceInfos NewSequenceDialog::infos()
 	{
 		core::SequenceInfos infos;
 		
