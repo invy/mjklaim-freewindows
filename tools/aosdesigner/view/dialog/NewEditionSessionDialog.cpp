@@ -19,8 +19,8 @@ namespace view
 		// interactions
 		connect( m_ui->button_cancel			, SIGNAL( clicked() )					, this		, SLOT( reject() )				);
 		connect( m_ui->button_create			, SIGNAL( clicked() )					, this		, SLOT( create_session() )		);
-		connect( m_ui->selector_sequence		, SIGNAL( currentIndexChanged )			, this		, SLOT( update_name() )			);
-
+		connect( m_ui->selector_sequence		, SIGNAL( currentIndexChanged(int) )	, this		, SLOT( update_name() )			);
+		
 		fill_session_selector();
 		update_name();
 	}
