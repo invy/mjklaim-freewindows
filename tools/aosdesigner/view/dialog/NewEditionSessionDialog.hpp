@@ -32,6 +32,7 @@ namespace view
 	private slots:
 
 		void create_session();
+		void update_name();
 			
 	private:
 

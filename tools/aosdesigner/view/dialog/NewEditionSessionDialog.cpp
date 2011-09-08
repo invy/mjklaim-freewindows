@@ -1,5 +1,9 @@
 #include "NewEditionSessionDialog.hpp"
 
+#include "core/Context.hpp"
+#include "core/Project.hpp"
+#include "core/Sequence.hpp"
+#include "core/EditionSession.hpp"
 #include "ui_NewEditionSessionDialog.h"
 
 namespace aosd
@@ -15,7 +19,7 @@ namespace view
 		// interactions
 		connect( m_ui->button_cancel			, SIGNAL( clicked() )					, this		, SLOT( reject() )				);
 		connect( m_ui->button_create			, SIGNAL( clicked() )					, this		, SLOT( create_session() )		);
-		//connect( m_ui->edit_name				, SIGNAL( textChanged(const QString&) )	, this		, SLOT( update_codename() )		);
+		connect( m_ui->selector_sequence		, SIGNAL( currentIndexChanged )			, this		, SLOT( update_name() )			);
 
 		fill_session_selector();
 	}
@@ -34,7 +38,7 @@ namespace view
 	{
 		// TODO : check that the names are filled
 		if( !m_ui->edit_name->text().isEmpty() 
-		//&&	!m_ui->selector_sequence->
+		&&	!m_ui->selector_sequence->currentText().isEmpty()
 			)
 		{
 			// TODO : check that the location is valid
@@ -50,9 +54,47 @@ namespace view
 
 	void NewEditionSessionDialog::fill_session_selector()
 	{
+		const auto& context = core::Context::instance();
+
+		if( !context.is_project_open() )
+			return;
+
+		const auto& project = context.current_project();
+
 		auto& selector = *m_ui->selector_sequence;
 
+		project.foreach_sequence( [&]( const core::Sequence& sequence )
+		{
+			selector.addItem( QString::fromStdString( sequence.name() ), QString::fromStdString( sequence.id() ) );
+		});
 		
+	}
+
+	void NewEditionSessionDialog::update_name()
+	{
+		auto& selector = *m_ui->selector_sequence;
+		SequenceId sequence_id = selector.itemData( selector.currentIndex() ).toString().toStdString();
+		const auto sequence_name = selector.currentText().toStdString();
+		std::size_t edition_count = 0;
+
+		const auto& project = core::Context::instance().current_project();
+		project.foreach_edition( [&]( const core::EditionSession& edition_session )
+		{
+			if( sequence_id == edition_session.id() )
+			{
+				++edition_count;
+			}
+		});
+
+
+		std::stringstream proposed_name;
+		proposed_name << sequence_name;
+		
+		if( edition_count > 0 )
+			proposed_name << " (" << (edition_count +1 ) << ")";
+
+		m_ui->edit_name->setText( QString::fromStdString( proposed_name.str() ) );
+
 	}
 
 }
