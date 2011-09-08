@@ -7,6 +7,7 @@
 
 
 #include "core/SequenceId.hpp"
+#include "core/EditionSessionId.hpp"
 #include "utilcpp/Singleton.hpp"
 
 
@@ -40,6 +41,9 @@ namespace core
 
 		/** Current project open for edition. */
 		const Project& current_project() const;
+
+		/** Current selected edition session or null if none or if there is no project open. */
+		const EditionSession* selected_edition_session() const;
 		
 
 	public slots:
@@ -84,8 +88,10 @@ namespace core
 		/** Create a new edition session for a sequence of the project.
 			@return false if the edition session creation failed or if there is no project currently open, true otherwise.
 		**/
-		
 		bool new_edition();
+
+		/** Select the referred edition session. */
+		void select_edition_session( const EditionSessionId& session_id );
 		
 	signals:
 

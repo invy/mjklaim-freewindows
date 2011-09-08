@@ -4,6 +4,7 @@
 
 #include "view/CanvasView.hpp"
 #include "view/StoryView.hpp"
+#include "core/Context.hpp"
 #include "core/EditionSession.hpp"
 
 namespace aosd
@@ -14,6 +15,7 @@ namespace view
 		: m_canvas_view( new CanvasView )
 		, m_story_view( new StoryView )
 		, m_title( QString::fromStdString( edition_session.name() ) )
+		, m_session_id( edition_session.id() )
 	{
 		setOrientation( Qt::Vertical );
 
@@ -36,16 +38,16 @@ namespace view
 
 	void Editor::showEvent( QShowEvent* event )
 	{
-		UTILCPP_LOG << "FOCUS IN : " << this->title().toStdString();
-
 		QWidget::showEvent( event );
+
+		core::Context::instance().select_edition_session( m_session_id );
+
 	}
 
 	void Editor::hideEvent( QHideEvent* event )
 	{
-		UTILCPP_LOG << "FOCUS OUT : " << this->title().toStdString();
-
 		QWidget::hideEvent( event );
+
 	}
 
 

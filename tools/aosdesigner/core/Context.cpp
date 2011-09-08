@@ -178,6 +178,24 @@ namespace core
 		return false;
 	}
 
+	void Context::select_edition_session( const EditionSessionId& session_id )
+	{
+		if( is_project_open() )
+		{
+			m_project->select_edition_session( session_id );
+		}
+	}
+
+	const EditionSession* Context::selected_edition_session() const
+	{
+		if( is_project_open() )
+		{
+			return m_project->selected_edition_session();
+		}
+
+		return nullptr;
+	}
+
 
 }
 }

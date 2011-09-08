@@ -7,6 +7,7 @@
 #include <boost/ptr_container/ptr_vector.hpp>
 #include <QObject>
 #include "core/SequenceId.hpp"
+#include "core/EditionSessionId.hpp"
 
 namespace aosd 
 { 
@@ -57,6 +58,10 @@ namespace core
 
 		const Sequence* find_sequence( const SequenceId& sequence_id ) const {  return const_cast<Project*>(this)->find_sequence(sequence_id); }
 
+		/** Current selected edition session or null if none or if there is no project open. */
+		const EditionSession* selected_edition_session() const { return m_selected_session; }
+
+		
 	public slots:
 
 		/** Change the project's file location to the provided one. */
@@ -76,6 +81,9 @@ namespace core
 
 		/** Request informations to the user and use them to create a new edition session. */
 		bool new_edition();
+
+		/** Select the referred edition session. */
+		void select_edition_session( const EditionSessionId& session_id );
 
 		/** Save the project informations and content in the provided location. */
 		bool save( const bfs::path& filepath )
@@ -100,6 +108,13 @@ namespace core
 
 		/** Signal : an edition session will be ended. **/
 		void edition_end( const core::EditionSession& walker );
+
+		/** Signal : an edition session have been selected. **/
+		void edition_selected( const core::EditionSession& edition_session );
+		
+		/** Signal : an edition session have been deselected. **/
+		void edition_deselected( const core::EditionSession& edition_session );
+
 		
 	private:
 
@@ -118,6 +133,9 @@ namespace core
 		/// Path of the project's directory.
 		bfs::path m_directory_path;
 
+		/// Currently selected edition session.
+		EditionSession* m_selected_session;
+
 
 		/// Add a Sequence to this project.
 		void add_sequence( std::unique_ptr<Sequence>&& sequence );
@@ -129,6 +147,10 @@ namespace core
 			@return The Sequence we looked after or null if not found. 
 		**/
 		Sequence* find_sequence( const SequenceId& sequence_id );
+
+		/** Search for an edition session having the provided id.
+		**/
+		EditionSession* find_edition( const EditionSessionId& session_id );
 
 	};
 

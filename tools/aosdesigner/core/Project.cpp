@@ -27,6 +27,7 @@ namespace core
 		: m_location( infos.location )
 		, m_name( infos.name )
 		, m_directory_path( infos.location.parent_path() )
+		, m_selected_session( nullptr )
 	{
 		UTILCPP_ASSERT( is_valid(infos), "Tried to construct a Project with invalid project infos!" );
 	}
@@ -34,6 +35,7 @@ namespace core
 	Project::Project( const bfs::path& project_file_path )
 		: m_location( project_file_path )
 		, m_directory_path( project_file_path.parent_path() )
+		, m_selected_session( nullptr )
 	{
 		UTILCPP_ASSERT( !project_file_path.empty(), "Tried to construct a Project at an empty path!" );
 		UTILCPP_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )
@@ -308,6 +310,39 @@ namespace core
 			return &(*find_it);
 		else
 			return nullptr;
+	}
+
+	EditionSession* Project::find_edition( const EditionSessionId& session_id )
+	{
+		if( m_edit_sessions.empty() )
+			return nullptr;
+
+		auto find_it = std::find_if( m_edit_sessions.begin(), m_edit_sessions.end(), [&]( EditionSession& edition_session ){ return edition_session.id() == session_id; } );
+
+		if( find_it != m_edit_sessions.end() )
+			return &(*find_it);
+		else
+			return nullptr;
+	}
+
+	void Project::select_edition_session( const EditionSessionId& session_id )
+	{
+		EditionSession* edition_session = find_edition( session_id );
+
+		if( edition_session )
+		{
+			auto* previous_selected_session = selected_edition_session();
+
+			m_selected_session = edition_session;
+
+			if( previous_selected_session )
+			{
+				emit edition_deselected( *previous_selected_session );
+			}
+
+			emit edition_selected( *selected_edition_session() );
+		}
+
 	}
 
 

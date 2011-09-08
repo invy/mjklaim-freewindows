@@ -7,6 +7,8 @@
 #include <QWidget>
 #include <QSplitter>
 
+#include "core/EditionSessionId.hpp"
+
 namespace aosd
 {
 	namespace core{ class EditionSession; }
@@ -42,7 +44,7 @@ namespace view
 		std::unique_ptr<StoryView> m_story_view;
 
 		QString m_title;
-
+		core::EditionSessionId m_session_id;
 		
 		void connect_edition( const core::EditionSession& edition_session );
 		
