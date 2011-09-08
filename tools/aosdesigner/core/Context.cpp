@@ -137,6 +137,19 @@ namespace core
 		return false;
 	}
 
+	bool Context::new_edition()
+	{
+		if( is_project_open() )
+		{
+			return m_project->new_edition();
+		}
+
+		// THINK : replace that with an exception?
+		UTILCPP_LOG_ERROR << "Cannot create a edition session while no project is open!";
+
+		return false;
+	}
+
 	bool Context::save_project()
 	{
 		if( is_project_open() )

@@ -6,6 +6,7 @@
 #include <boost/filesystem/path.hpp>
 #include <QObject>
 
+#include "core/SequenceId.hpp"
 #include "core/EditionSessionId.hpp"
 #include "aoslcpp/SequenceInterpreter.hpp"
 
@@ -42,6 +43,7 @@ namespace core
 		EditionSession( const Project& project, const bfs::path& file_path );
 	
 		const EditionSessionId& id() const { return m_id; }
+		const SequenceId& sequence_id() const { return m_sequence_id; }
 
 		const std::string& name() const { return m_name; }
 
@@ -68,7 +70,7 @@ namespace core
 		const Sequence* m_sequence;
 
 		EditionSessionId m_id;
-
+		SequenceId m_sequence_id;
 	};
 
 

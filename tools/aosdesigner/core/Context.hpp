@@ -80,6 +80,12 @@ namespace core
 			@return false if the edition session creation failed or if there is no project currently open, true otherwise.
 		**/
 		bool new_edition( const EditionSessionInfos& session_infos );
+
+		/** Create a new edition session for a sequence of the project.
+			@return false if the edition session creation failed or if there is no project currently open, true otherwise.
+		**/
+		
+		bool new_edition();
 		
 	signals:
 

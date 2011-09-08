@@ -62,6 +62,11 @@ namespace core
 			m_name = m_sequence->name();
 			m_id = m_sequence->id();
 		}
+		else
+		{
+			m_name = "UNREADABLE SEQUENCE";
+			m_id = "";
+		}
 
 	}
 

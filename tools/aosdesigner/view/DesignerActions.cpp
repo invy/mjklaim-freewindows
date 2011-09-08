@@ -77,7 +77,7 @@ namespace view
 			auto new_edition_tip = QObject::tr( "Create a new editable view of a path through the sequence." );
 			m_new_edition.setStatusTip( new_edition_tip );
 			m_new_edition.setToolTip( new_edition_tip );
-			//QObject::connect( &m_new_storypath, SIGNAL(triggered()), context, SLOT(new_edition()) );
+			QObject::connect( &m_new_edition, SIGNAL(triggered()), context, SLOT(new_edition()) );
 		}
 
 	}

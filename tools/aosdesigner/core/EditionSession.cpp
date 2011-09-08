@@ -26,6 +26,7 @@ namespace core
 		, m_project( project )
 		, m_interpreter( sequence.make_interpreter() )
 		, m_id( to_string( boost::uuids::random_generator()() ) )
+		, m_sequence_id( sequence.id() )
 		, m_name( name )
 	{
 		UTILCPP_ASSERT_NOT_NULL( m_sequence ); // TODO : replace this by an throwing an exception at runtime
@@ -54,10 +55,10 @@ namespace core
 			m_id = infos.get<EditionSessionId>( "edition_session.id" );
 			m_name = infos.get<std::string>( "edition_session.name" );
 
-			auto sequence_id = infos.get<SequenceId>( "edition_session.sequence" );
-			if( !sequence_id.empty() && sequence_id != "NONE" )
+			m_sequence_id = infos.get<SequenceId>( "edition_session.sequence", "NONE" );
+			if( !m_sequence_id.empty() && m_sequence_id != "NONE" )
 			{
-				m_sequence = project.find_sequence( sequence_id );
+				m_sequence = project.find_sequence( m_sequence_id );
 				if( m_sequence )
 				{
 					m_interpreter = m_sequence->make_interpreter();
@@ -86,6 +87,8 @@ namespace core
 
 	void EditionSession::save()
 	{
+		UTILCPP_ASSERT( m_sequence ? m_sequence_id == m_sequence->id() : true, "Edition session isn't in sync with the sequence id!" )
+
 		using namespace boost::property_tree;
 
 		ptree infos;

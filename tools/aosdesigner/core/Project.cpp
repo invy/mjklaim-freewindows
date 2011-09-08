@@ -236,7 +236,7 @@ namespace core
 			EditionSessionInfos session_infos;
 			session_infos.name = sequence->name();
 			session_infos.sequence_id = sequence->id();
-			new_edition( session_infos );
+			return new_edition( session_infos );
 		}
 
 		return true;

@@ -22,6 +22,7 @@ namespace view
 		connect( m_ui->selector_sequence		, SIGNAL( currentIndexChanged )			, this		, SLOT( update_name() )			);
 
 		fill_session_selector();
+		update_name();
 	}
 
 	NewEditionSessionDialog::~NewEditionSessionDialog()
@@ -80,7 +81,7 @@ namespace view
 		const auto& project = core::Context::instance().current_project();
 		project.foreach_edition( [&]( const core::EditionSession& edition_session )
 		{
-			if( sequence_id == edition_session.id() )
+			if( sequence_id == edition_session.sequence_id() )
 			{
 				++edition_count;
 			}
@@ -91,7 +92,7 @@ namespace view
 		proposed_name << sequence_name;
 		
 		if( edition_count > 0 )
-			proposed_name << " (" << (edition_count +1 ) << ")";
+			proposed_name << " (" << edition_count << ")";
 
 		m_ui->edit_name->setText( QString::fromStdString( proposed_name.str() ) );
 
