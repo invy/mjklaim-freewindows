@@ -233,7 +233,10 @@ namespace core
 
 		if( infos.is_edition_requested )
 		{
-			new_edition( sequence->id() );
+			EditionSessionInfos session_infos;
+			session_infos.name = sequence->name();
+			session_infos.sequence_id = sequence->id();
+			new_edition( session_infos );
 		}
 
 		return true;
@@ -252,18 +255,30 @@ namespace core
 
 	}
 
-	bool Project::new_edition( const SequenceId& sequence_id )
+	bool Project::new_edition( const EditionSessionInfos& session_infos )
 	{
-		Sequence* sequence = find_sequence( sequence_id );
+		Sequence* sequence = find_sequence( session_infos.sequence_id );
 		
 		if( sequence )
 		{
-			add_edition( std::unique_ptr< EditionSession >( new EditionSession( *this, *sequence, sequence->name() ) ) );
+			add_edition( std::unique_ptr< EditionSession >( new EditionSession( *this, *sequence, session_infos.name ) ) );
 
 			return true;
 		}
 
 		return false;
+	}
+
+	bool Project::new_edition()
+	{
+		// request the new edition session
+		const EditionSessionInfos infos = view::request_new_edition_session_infos();
+
+		// create and register the sequence
+		if( is_valid( infos ) ) 
+			return new_edition( infos );
+		else 
+			return false;
 	}
 
 

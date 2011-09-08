@@ -5,7 +5,7 @@
 #include <memory>
 #include <QObject>
 
-#include "core/ProjectInfos.hpp"
+
 #include "core/SequenceId.hpp"
 #include "utilcpp/Singleton.hpp"
 
@@ -16,6 +16,11 @@ namespace aosd
 namespace core
 {
 	class Project;
+	struct ProjectInfos;
+	class Sequence;
+	struct SequenceInfos;
+	class EditionSession;
+	struct EditionSessionInfos;
 
 	/** Singleton that hold the current context of the application, 
 		like the current project to work on and the open sequence.
@@ -71,10 +76,10 @@ namespace core
 		bool new_sequence();
 		
 		/** Create a new edition session for a sequence of the project.
-			@param sequence_id Id of the sequence to create an edition session for.
+			@param session_infos Informations necessary to create a new edition session.
 			@return false if the edition session creation failed or if there is no project currently open, true otherwise.
 		**/
-		bool new_edition( const SequenceId& sequence_id );
+		bool new_edition( const EditionSessionInfos& session_infos );
 		
 	signals:
 

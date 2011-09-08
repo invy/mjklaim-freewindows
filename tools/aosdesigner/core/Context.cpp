@@ -5,6 +5,9 @@
 #include "utilcpp/Assert.hpp"
 
 #include "core/Project.hpp"
+#include "core/Sequence.hpp"
+#include "core/EditionSession.hpp"
+
 #include "view/Dialogs.hpp"
 #include "Paths.hpp"
 
@@ -121,11 +124,11 @@ namespace core
 	}
 
 
-	bool Context::new_edition( const SequenceId& sequence_id )
+	bool Context::new_edition( const EditionSessionInfos& session_infos )
 	{
 		if( is_project_open() )
 		{
-			return m_project->new_edition( sequence_id );
+			return m_project->new_edition( session_infos );
 		}
 
 		// THINK : replace that with an exception?

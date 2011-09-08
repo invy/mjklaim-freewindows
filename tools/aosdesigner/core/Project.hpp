@@ -16,6 +16,7 @@ namespace core
 	class EditionSession;
 	struct ProjectInfos;
 	struct SequenceInfos;
+	struct EditionSessionInfos;
 
 	namespace bfs = boost::filesystem;
 
@@ -71,7 +72,10 @@ namespace core
 		bool new_sequence();
 
 		/** Create an edition session for the referenced sequence. **/
-		bool new_edition( const SequenceId& sequence_id );
+		bool new_edition( const EditionSessionInfos& session_infos );
+
+		/** Request informations to the user and use them to create a new edition session. */
+		bool new_edition();
 
 		/** Save the project informations and content in the provided location. */
 		bool save( const bfs::path& filepath )
