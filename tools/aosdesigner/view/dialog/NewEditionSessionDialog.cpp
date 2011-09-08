@@ -32,7 +32,15 @@ namespace view
 
 	core::EditionSessionInfos NewEditionSessionDialog::infos() const
 	{
-		return core::EditionSessionInfos();
+		core::EditionSessionInfos session_infos;
+
+		session_infos.name = m_ui->edit_name->text().toStdString();
+
+		UTILCPP_ASSERT_NOT_NULL( m_ui->selector_sequence );
+		auto& selector = *m_ui->selector_sequence;
+		session_infos.sequence_id = selector.itemData( selector.currentIndex() ).toString().toStdString();
+
+		return session_infos;
 	}
 
 	void NewEditionSessionDialog::create_session()
