@@ -31,6 +31,11 @@ namespace view
 
 		const QString& title() const { return m_title; }
 
+	private slots:
+
+		void showEvent( QShowEvent* event );
+		void hideEvent( QHideEvent* event );
+
 	private:
 				
 		std::unique_ptr<CanvasView> m_canvas_view;

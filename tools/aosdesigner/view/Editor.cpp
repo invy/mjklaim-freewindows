@@ -1,5 +1,7 @@
 #include "Editor.hpp"
 
+#include "utilcpp/Log.hpp"
+
 #include "view/CanvasView.hpp"
 #include "view/StoryView.hpp"
 #include "core/EditionSession.hpp"
@@ -30,6 +32,20 @@ namespace view
 	void Editor::connect_edition( const core::EditionSession& edition_session )
 	{
 
+	}
+
+	void Editor::showEvent( QShowEvent* event )
+	{
+		UTILCPP_LOG << "FOCUS IN : " << this->title().toStdString();
+
+		QWidget::showEvent( event );
+	}
+
+	void Editor::hideEvent( QHideEvent* event )
+	{
+		UTILCPP_LOG << "FOCUS OUT : " << this->title().toStdString();
+
+		QWidget::hideEvent( event );
 	}
 
 
