@@ -5,6 +5,7 @@
 #include <QDockWidget>
 #include <QTreeView>
 
+
 namespace aosd
 {
 namespace core 
@@ -25,6 +26,7 @@ namespace view
 	public:
 		
 		ObjectsView();
+		~ObjectsView();
 
 	private slots:
 
@@ -36,6 +38,17 @@ namespace view
 
 	private:
 
+		std::unique_ptr<QTreeView> m_object_tree_view;
+
+		void activate();
+		void deactivate();
+
+		void fill_object_tree( const core::EditionSession& edition_session );
+		void clear();
+
+		void connect_edition( const core::EditionSession& edition_session );
+		void disconnect_edition( const core::EditionSession& edition_session );
+ 
 	};
 
 

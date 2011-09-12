@@ -1,10 +1,2 @@
- <?xml version="1.0" encoding="utf-8"?>
-<project>
-	<name>Test Project</name>
-	<sequences>
-		<sequence>./sequences/activate_deactivate_switch_graphic_objects/activate_deactivate_switch_graphic_objects.aosl</sequence>
-		<sequence>./sequences/empty/empty.aosl</sequence>
-		<sequence>./sequences/unique_graphic_object/unique_graphic_object.aosl</sequence>
-		<sequence>./sequences/unique_graphic_object_on_move/unique_graphic_object_on_move.aosl</sequence>
-	</sequences>
-</project>
+<?xml version="1.0" encoding="utf-8"?>
+<project><name>Test Project</name><sequences><sequence>./sequences/activate_deactivate_switch_graphic_objects/activate_deactivate_switch_graphic_objects.aosl</sequence><sequence>./sequences/empty/empty.aosl</sequence><sequence>./sequences/unique_graphic_object/unique_graphic_object.aosl</sequence><sequence>./sequences/unique_graphic_object_on_move/unique_graphic_object_on_move.aosl</sequence></sequences><edition><session>a0916bf3-ba6f-432e-9520-47c4e65da4b6</session></edition></project>

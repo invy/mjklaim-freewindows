@@ -2,13 +2,14 @@
 #define HGUARD_AOSD_CORE_EDITIONSESSION_HPP__
 #pragma once
 
-
+#include <functional>
 #include <boost/filesystem/path.hpp>
 #include <QObject>
 
 #include "core/SequenceId.hpp"
 #include "core/EditionSessionId.hpp"
 #include "aoslcpp/SequenceInterpreter.hpp"
+#include "aosl/aosl_forward.hpp"
 
 
 namespace aosd
@@ -48,6 +49,8 @@ namespace core
 		const std::string& name() const { return m_name; }
 
 		bool is_valid() const { return m_sequence && m_interpreter; }
+
+		void foreach_object( std::function<void( const aosl::Object& )> func ) const;
 		
 	public slots:
 

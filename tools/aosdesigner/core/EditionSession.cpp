@@ -13,6 +13,7 @@
 #include "core/Sequence.hpp"
 #include "core/Project.hpp"
 #include "aoslcpp/SequenceInterpreter.hpp"
+#include "aoslcpp/algorithm/for_each.hpp"
 #include "Paths.hpp"
 
 namespace aosd
@@ -123,6 +124,14 @@ namespace core
 			UTILCPP_LOG_ERROR <<  boost::diagnostic_information(e);
 		}
 
+	}
+
+	void EditionSession::foreach_object( std::function< void (const aosl::Object& )> func ) const
+	{
+		UTILCPP_ASSERT_NOT_NULL( m_interpreter );
+		
+		aoslcpp::for_each_object( m_interpreter->canvas().canvas(), func );
+		
 	}
 
 }
