@@ -12,7 +12,12 @@ namespace view
 	LogView::LogView()
 		: m_text_area( new QTextEdit() )
 	{
+#ifdef _DEBUG
+		setVisible( true );
+#else
 		setVisible( false );
+#endif
+
 		setWindowTitle(tr("Log"));
 		setWidget( m_text_area.get() );
 
