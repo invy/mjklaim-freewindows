@@ -106,6 +106,12 @@ namespace view
 
 	void MainWindow::setup_views_default()
 	{
+		// Tabs should be on the top of windows, not at the bottom
+		setTabPosition( Qt::LeftDockWidgetArea, QTabWidget::North );
+		setTabPosition( Qt::RightDockWidgetArea, QTabWidget::North );
+		setTabPosition( Qt::BottomDockWidgetArea, QTabWidget::North );
+		setTabPosition( Qt::TopDockWidgetArea, QTabWidget::North );
+
 		addDockWidget( Qt::LeftDockWidgetArea, m_project_view.get() );
 		tabifyDockWidget( m_project_view.get(), m_changes_view.get() );
 		tabifyDockWidget( m_project_view.get(), m_objects_view.get() );
