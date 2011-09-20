@@ -41,13 +41,7 @@ namespace view
 
 	void view::EditionToolView::react_project_closed( const core::Project& project )
 	{
-		disconnect( &project, SIGNAL( edition_begin() ), this, SLOT( react_edition_begin() ) );
-		disconnect( &project, SIGNAL( edition_end() ), this, SLOT( react_edition_end() ) );
-
-		disconnect( &project, SIGNAL( edition_deselected( const core::EditionSession& ) ), this, SLOT( react_edition_deselected( const core::EditionSession& ) ) );
-		disconnect( &project, SIGNAL( edition_selected( const core::EditionSession& ) ), this, SLOT( react_edition_selected( const core::EditionSession& ) ) );
-		
-
+		disconnect( &project, 0, this, 0 );
 	}
 
 	void EditionToolView::react_edition_begin()

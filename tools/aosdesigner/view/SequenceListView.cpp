@@ -54,9 +54,7 @@ namespace view
 
 	void SequenceListView::disconnect_project( const core::Project& project )
 	{
-		disconnect( &project, SIGNAL( sequence_created(const core::Sequence&)    ) , this, SLOT( react_sequence_created(const core::Sequence&)       ) );
-		disconnect( &project, SIGNAL( sequence_deleted(const core::Sequence&)    ) , this, SLOT( react_sequence_deleted(const core::Sequence&)       ) );
-
+		disconnect( &project, 0, this, 0 );
 		clear();
 	}
 
