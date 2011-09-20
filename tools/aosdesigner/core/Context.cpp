@@ -92,9 +92,8 @@ namespace core
 	{
 		if( is_project_open() )
 		{
-			// TODO : add here closing code
-
-			emit project_closed( current_project() );
+			m_project->close();
+			emit project_closed( *m_project );
 			m_project.reset();
 		}
 		

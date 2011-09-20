@@ -141,7 +141,7 @@ namespace core
 
 	Project::~Project()
 	{
-
+		// THIS IS TEMPORARY : should be replaced by proper edition selection clearing
 	}
 
 
@@ -343,6 +343,21 @@ namespace core
 			emit edition_selected( *selected_edition_session() );
 		}
 
+	}
+
+	void Project::deselect_edition_session()
+	{
+		if( m_selected_session )
+		{
+			emit edition_deselected( *m_selected_session );
+			m_selected_session = nullptr;
+		}
+		
+	}
+
+	void Project::close()
+	{
+		deselect_edition_session();
 	}
 
 

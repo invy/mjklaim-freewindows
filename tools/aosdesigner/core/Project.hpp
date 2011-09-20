@@ -83,6 +83,9 @@ namespace core
 		/** Select the referred edition session. */
 		void select_edition_session( const EditionSessionId& session_id );
 
+		/** Deselect the currently selected edition session if any. */
+		void deselect_edition_session();
+
 		/** Save the project informations and content in the provided location. */
 		bool save( const bfs::path& filepath )
 		{
@@ -92,6 +95,9 @@ namespace core
 
 		/** Save the project informations and content in the default location. */
 		bool save();
+
+		/** Close this project. */
+		void close();
 
 	signals:
 
