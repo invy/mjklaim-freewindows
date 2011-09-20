@@ -8,6 +8,7 @@
 
 #include "view/ForwardView.hpp"
 #include "core/ForwardCore.hpp"
+#include "core/EditionSessionId.hpp"
 #include "view/DesignerActions.hpp"
 
 namespace Ui
@@ -44,6 +45,11 @@ namespace view
 		
 		/** True if we are currently in edition mode, false otherwise. */
 		bool is_edition_mode() const { return m_edition_mode; }
+
+	public slots:
+
+		/** Select visually the editor corresponding to the provided session id. */
+		void select_editor( const core::EditionSessionId& session_id );
 
 
 	private slots:
@@ -82,6 +88,9 @@ namespace view
 		std::unique_ptr<LayersView> m_layers_view;
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
+
+		// Editors
+		std::vector< std::unique_ptr<Editor> > m_editors;
 
 		// Manage and provide main actions (in the main menu for example)
 		DesignerActions m_designer_actions;

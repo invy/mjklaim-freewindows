@@ -33,10 +33,13 @@ namespace view
 
 		const QString& title() const { return m_title; }
 
+		const core::EditionSessionId& session_id() const { return m_session_id; }
+
 	private slots:
 
 		void showEvent( QShowEvent* event );
 		void hideEvent( QHideEvent* event );
+
 
 	private:
 				

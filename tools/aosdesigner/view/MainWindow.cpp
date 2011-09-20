@@ -8,6 +8,7 @@
 #include "core/Context.hpp"
 #include "core/Project.hpp"
 #include "core/Sequence.hpp"
+#include "core/EditionSession.hpp"
 #include "view/ProjectView.hpp"
 #include "view/LibrariesView.hpp"
 #include "view/ChangesView.hpp"
@@ -72,10 +73,18 @@ namespace view
 		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
 		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
 
+		const auto* initial_session_selection = project.selected_edition_session();
+
 		project.foreach_edition( [&]( const core::EditionSession& edition_session ) 
 		{
 			add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
 		});
+
+		if( initial_session_selection )
+		{
+			core::Context::instance().select_edition_session( initial_session_selection->id() );
+			select_editor( initial_session_selection->id() );
+		}
 		
 	}
 
@@ -94,8 +103,11 @@ namespace view
 
 	void MainWindow::add_editor( std::unique_ptr<Editor>&& editor )
 	{
-		const auto tab_title = editor->title();
-		m_central_tabs->addTab( editor.release(), tab_title );
+		m_editors.push_back( std::move( editor ) );
+
+		const auto tab_title = m_editors.back()->title();
+		m_central_tabs->addTab( m_editors.back().get(), tab_title );
+
 		m_central_tabs->setCurrentIndex( m_central_tabs->count() - 1 );
 	}
 
@@ -174,6 +186,7 @@ namespace view
 	void MainWindow::clear_tabs()
 	{
 		m_central_tabs->clear();
+		m_editors.clear();
 	}
 
 	void MainWindow::create_menus()
@@ -200,6 +213,20 @@ namespace view
 	void MainWindow::react_sequence_deleted( const core::Sequence& sequence )
 	{
 		UTILCPP_NOT_IMPLEMENTED_YET;
+	}
+
+	void MainWindow::select_editor( const core::EditionSessionId& session_id )
+	{
+		auto find_it = std::find_if( m_editors.begin(), m_editors.end(), [&]( const std::unique_ptr<Editor>& editor )
+		{
+			return editor->session_id() == session_id;
+		});
+
+		if( find_it != m_editors.end() )
+		{
+			Editor& editor = **find_it;
+			m_central_tabs->setCurrentIndex( m_central_tabs->indexOf( &editor ) );
+		}
 	}
 
 

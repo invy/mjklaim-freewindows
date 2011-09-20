@@ -127,9 +127,16 @@ namespace core
 				// select the last selected session
 				auto selected_session_id = infos.get<EditionSessionId>("project.edition.selected", "NONE");
 				if( selected_session_id != "NONE" )
+				{
+					UTILCPP_LOG << "Loaded selected session : [" << selected_session_id << "]";
 					select_edition_session( selected_session_id );
-				else 
-					select_edition_session( m_edit_sessions.back().id() ); // select the last session registered if none selected found
+				}
+				else
+				{
+					const auto last_session_id = m_edit_sessions.back().id();
+					UTILCPP_LOG << "Selected session not found, will select : [" << last_session_id << "]";
+					select_edition_session( last_session_id ); // select the last session registered if none selected found
+				}
 				
 			}
 			else
@@ -359,6 +366,7 @@ namespace core
 				emit edition_deselected( *previous_selected_session );
 			}
 
+			UTILCPP_LOG << "Selected session [" << m_selected_session->id() << "]";
 			emit edition_selected( *selected_edition_session() );
 		}
 
