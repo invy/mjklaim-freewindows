@@ -118,16 +118,26 @@ namespace core
 						UTILCPP_LOG << "Loaded edition session : [" << m_edit_sessions.back().id() << "]";
 
 					}
-					else
+					else if( edition_session.first != "selected" )
 					{
 						UTILCPP_LOG_ERROR << "Found an unknown tag! Should be \"session\" instead of \"" << edition_session.first << "\"";
 					}
 				});
+
+				// select the last selected session
+				auto selected_session_id = infos.get<EditionSessionId>("project.edition.selected", "NONE");
+				if( selected_session_id != "NONE" )
+					select_edition_session( selected_session_id );
+				else 
+					select_edition_session( m_edit_sessions.back().id() ); // select the last session registered if none selected found
+				
 			}
 			else
 			{
 				UTILCPP_LOG << "No edition session for this project.";
 			}
+
+			
 
 		}
 		catch( const boost::exception& e )
@@ -186,6 +196,8 @@ namespace core
 		{ 
 			infos.add( "project.edition.session", edition_session.id() );
 		});
+
+		infos.add( "project.edition.selected", m_selected_session ? m_selected_session->id() : "NONE" );
 
 		// TODO : add other informations here
 		// TODO : manage errors differently
@@ -295,7 +307,7 @@ namespace core
 	{
 		UTILCPP_ASSERT_NOT_NULL( edition );
 		
-		bool is_edition_begin = m_edit_sessions.empty();
+		const bool is_edition_begin = m_edit_sessions.empty();
 
 		m_edit_sessions.push_back( edition.release() );
 
