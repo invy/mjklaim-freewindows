@@ -66,8 +66,8 @@ namespace view
 	{
 		setWindowTitle( tr("%1 - Art Of Sequence").arg( QString::fromStdString( project.name() ), 0 ) );
 
-		connect( &project, SIGNAL(edition_begin(const core::EditionSession&)), this, SLOT(react_edition_begin(const core::EditionSession&)) );
-		connect( &project, SIGNAL(edition_end(const core::EditionSession&)), this, SLOT(react_edition_end(const core::EditionSession&)) );
+		connect( &project, SIGNAL(edition_session_begin(const core::EditionSession&)), this, SLOT(react_edition_session_begin(const core::EditionSession&)) );
+		connect( &project, SIGNAL(edition_session_end(const core::EditionSession&)), this, SLOT(react_edition_session_end(const core::EditionSession&)) );
 
 		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
 		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
@@ -84,8 +84,8 @@ namespace view
 	{
 		setWindowTitle( tr("Art Of Sequence") );
 
-		disconnect( &project, SIGNAL(edition_begin(const core::EditionSession&)), this, SLOT(react_edition_begin(const core::EditionSession&)) );
-		disconnect( &project, SIGNAL(edition_end(const core::EditionSession&)), this, SLOT(react_edition_end(const core::EditionSession&)) );
+		disconnect( &project, SIGNAL(edition_session_begin(const core::EditionSession&)), this, SLOT(react_edition_session_begin(const core::EditionSession&)) );
+		disconnect( &project, SIGNAL(edition_session_end(const core::EditionSession&)), this, SLOT(react_edition_session_end(const core::EditionSession&)) );
 
 		disconnect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
 		disconnect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
@@ -186,12 +186,12 @@ namespace view
 
 	}
 
-	void MainWindow::react_edition_begin( const core::EditionSession& edition_session )
+	void MainWindow::react_edition_session_begin( const core::EditionSession& edition_session )
 	{
 		add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
 	}
 
-	void MainWindow::react_edition_end( const core::EditionSession& edition_session )
+	void MainWindow::react_edition_session_end( const core::EditionSession& edition_session )
 	{
 		UTILCPP_NOT_IMPLEMENTED_YET;
 	}

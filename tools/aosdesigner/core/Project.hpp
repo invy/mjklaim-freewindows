@@ -107,11 +107,17 @@ namespace core
 		/** Signal : a sequence have been requested to be destroyed. **/
 		void sequence_deleted( const core::Sequence& sequence );
 
+		/** Signal : at least one edition session is open now. */
+		void edition_begin();
+
+		/** Signal : no edition session is open now. */
+		void edition_end();
+		
 		/** Signal : an edition session have began. **/
-		void edition_begin( const core::EditionSession& walker );
+		void edition_session_begin( const core::EditionSession& walker );
 
 		/** Signal : an edition session will be ended. **/
-		void edition_end( const core::EditionSession& walker );
+		void edition_session_end( const core::EditionSession& walker );
 
 		/** Signal : an edition session have been selected. **/
 		void edition_selected( const core::EditionSession& edition_session );
@@ -119,6 +125,7 @@ namespace core
 		/** Signal : an edition session have been deselected. **/
 		void edition_deselected( const core::EditionSession& edition_session );
 
+		
 		
 	private:
 

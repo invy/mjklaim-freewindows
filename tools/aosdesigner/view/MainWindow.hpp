@@ -61,10 +61,10 @@ namespace view
 		void react_sequence_deleted( const core::Sequence& sequence );
 
 		/** Slot : called when a story walk is beginning. */
-		void react_edition_begin( const core::EditionSession& edition_session );
+		void react_edition_session_begin( const core::EditionSession& edition_session );
 
 		/** Slot : called when a story walk is ending. */
-		void react_edition_end( const core::EditionSession& edition_session );
+		void react_edition_session_end( const core::EditionSession& edition_session );
 
 	private:
 

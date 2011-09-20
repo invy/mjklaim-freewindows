@@ -294,9 +294,16 @@ namespace core
 	void Project::add_edition( std::unique_ptr<EditionSession>&& edition )
 	{
 		UTILCPP_ASSERT_NOT_NULL( edition );
+		
+		bool is_edition_begin = m_edit_sessions.empty();
+
 		m_edit_sessions.push_back( edition.release() );
 
-		emit edition_begin( m_edit_sessions.back() ); 		
+		emit edition_session_begin( m_edit_sessions.back() );
+
+		if( is_edition_begin )
+			emit edition_begin();
+
 	}
 
 	Sequence* Project::find_sequence( const SequenceId& sequence_id )
@@ -358,6 +365,9 @@ namespace core
 	void Project::close()
 	{
 		deselect_edition_session();
+
+		// THIS IS TEMPORARY!!!
+		emit edition_end();
 	}
 
 
