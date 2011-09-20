@@ -7,6 +7,7 @@ namespace aosd
 {
 namespace view
 {
+	class EditionToolView;
 	class CanvasView;
 	class ChangesView;
 	class LayersView;

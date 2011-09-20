@@ -27,11 +27,6 @@ namespace view
 		ObjectsView();
 		~ObjectsView();
 
-	private slots:
-
-		void connect_edition( const core::EditionSession& edition_session );
-		void disconnect_edition( const core::EditionSession& edition_session );
-		
 	private:
 
 		std::unique_ptr<QTreeView> m_object_tree_view;
@@ -40,7 +35,9 @@ namespace view
 		void fill_object_tree( const core::EditionSession& edition_session );
 		void clear();
 
-		
+		void connect_edition( const core::EditionSession& edition_session );
+		void disconnect_edition( const core::EditionSession& edition_session );
+
 	};
 
 

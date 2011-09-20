@@ -2,8 +2,8 @@
 #define HGUARD_AOSD_VIEW_LIBRARIESVIEW_HPP__
 #pragma once
 
-#include <QDockWidget>
 #include <QListView>
+#include "view/EditionToolView.hpp"
 
 namespace aosd
 {
@@ -13,18 +13,19 @@ namespace view
 		Allow editing, adding and removing resources from libraries.
 	**/
 	class LibrariesView
-		: public QDockWidget
+		: public EditionToolView
 	{
+
 		Q_OBJECT
 	public:
 		
 		LibrariesView();
 
-	private slots:
-
-
-
 	private:
+
+		void connect_edition( const core::EditionSession& edition_session );
+		void disconnect_edition( const core::EditionSession& edition_session );
+
 
 	};
 

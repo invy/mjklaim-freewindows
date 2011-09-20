@@ -22,24 +22,24 @@ namespace view
 	protected:
 		
 		EditionToolView();
-		~EditionToolView();
-	
-	private slots:
+		virtual ~EditionToolView();
 
-		virtual void react_project_open( const core::Project& );
-		virtual void react_project_closed( const core::Project& );
-
-		virtual void react_edition_selected( const core::EditionSession& edition_session );
-		virtual void react_edition_deselected( const core::EditionSession& edition_session );
-
-	protected:
-
-		virtual void activate();
-		virtual void deactivate();
+		void activate();
+		void deactivate();
 
 		virtual void connect_edition( const core::EditionSession& edition_session ) = 0;
 		virtual void disconnect_edition( const core::EditionSession& edition_session ) = 0;
 
+	
+	private slots:
+
+		void react_project_open( const core::Project& );
+		void react_project_closed( const core::Project& );
+
+		void react_edition_selected( const core::EditionSession& edition_session );
+		void react_edition_deselected( const core::EditionSession& edition_session );
+		
+	private:
 
 
 	};

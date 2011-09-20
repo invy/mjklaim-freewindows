@@ -2,8 +2,8 @@
 #define HGUARD_AOSD_VIEW_TOOLBOXVIEW_HPP__
 #pragma once
 
-#include <QDockWidget>
 #include <QToolBox>
+#include "view/EditionToolView.hpp"
 
 namespace aosd
 {
@@ -12,15 +12,17 @@ namespace view
 	/** Display tools for edition.
 	**/
 	class ToolboxView
-		: public QDockWidget
+		: public EditionToolView
 	{
 		Q_OBJECT
 	public:
 		
 		ToolboxView();
 
-
 	private:
+
+		void connect_edition( const core::EditionSession& edition_session );
+		void disconnect_edition( const core::EditionSession& edition_session );
 
 	};
 

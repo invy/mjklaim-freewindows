@@ -15,9 +15,7 @@ namespace view
 	ObjectsView::ObjectsView()
 		: m_object_tree_view( new QTreeView() )
 	{
-		setVisible( false );
 		setWindowTitle( tr("Objects") );
-
 		setWidget( m_object_tree_view.get() );
 		
 	}

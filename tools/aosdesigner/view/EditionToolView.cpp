@@ -12,6 +12,8 @@ namespace view
 
 	view::EditionToolView::EditionToolView()
 	{
+		deactivate();
+
 		const auto& context = core::Context::instance();
 
 		connect( &context, SIGNAL( project_open( const core::Project& ) ), this, SLOT( react_project_open( const core::Project& ) ) );

@@ -2,8 +2,8 @@
 #define HGUARD_AOSD_VIEW_LAYERSVIEW_HPP__
 #pragma once
 
-#include <QDockWidget>
 #include <QTreeView>
+#include "view/EditionToolView.hpp"
 
 namespace aosd
 {
@@ -13,20 +13,19 @@ namespace view
 		Allow activating and deactivating layers for the current stage.
 	**/
 	class LayersView
-		: public QDockWidget
+		: public EditionToolView
 	{
+
 		Q_OBJECT
 	public:
 		
-		LayersView()
-		{
-			setVisible( false );
-			setWindowTitle(tr("Layers"));
-			setWidget( new QTreeView() );
-		}
+		LayersView();
 
 
 	private:
+
+		void connect_edition( const core::EditionSession& edition_session );
+		void disconnect_edition( const core::EditionSession& edition_session );
 
 	};
 
