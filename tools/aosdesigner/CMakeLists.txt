@@ -72,6 +72,7 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/Editor.hpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.hpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
+	${AOSDESIGNER_VIEW_DIR}/EditionToolView.hpp
 )
 
 
@@ -138,6 +139,7 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/Editor.cpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.cpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp
+	${AOSDESIGNER_VIEW_DIR}/EditionToolView.cpp
 )
 
 

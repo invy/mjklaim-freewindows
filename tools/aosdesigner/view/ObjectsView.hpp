@@ -2,9 +2,8 @@
 #define HGUARD_AOSD_VIEW_OBJECTSVIEW_HPP__
 #pragma once
 
-#include <QDockWidget>
 #include <QTreeView>
-
+#include "view/EditionToolView.hpp"
 
 namespace aosd
 {
@@ -20,7 +19,7 @@ namespace view
 		Allows editing, adding and removing objects.
 	**/
 	class ObjectsView
-		: public QDockWidget
+		: public EditionToolView
 	{
 		Q_OBJECT
 	public:
@@ -30,25 +29,18 @@ namespace view
 
 	private slots:
 
-		void react_project_open( const core::Project& );
-		void react_project_closed( const core::Project& );
-
-		void react_edition_selected( const core::EditionSession& edition_session );
-		void react_edition_deselected( const core::EditionSession& edition_session );
-
+		void connect_edition( const core::EditionSession& edition_session );
+		void disconnect_edition( const core::EditionSession& edition_session );
+		
 	private:
 
 		std::unique_ptr<QTreeView> m_object_tree_view;
 
-		void activate();
-		void deactivate();
-
+		
 		void fill_object_tree( const core::EditionSession& edition_session );
 		void clear();
 
-		void connect_edition( const core::EditionSession& edition_session );
-		void disconnect_edition( const core::EditionSession& edition_session );
- 
+		
 	};
 
 

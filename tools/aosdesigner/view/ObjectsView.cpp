@@ -20,61 +20,12 @@ namespace view
 
 		setWidget( m_object_tree_view.get() );
 		
-
-		const auto& context = core::Context::instance();
-
-		connect( &context, SIGNAL( project_open( const core::Project& ) ), this, SLOT( react_project_open( const core::Project& ) ) );
-		connect( &context, SIGNAL( project_closed( const core::Project& ) ), this, SLOT( react_project_closed( const core::Project& ) ) );
-
 	}
 
 
 	ObjectsView::~ObjectsView()
 	{
 
-	}
-
-	void ObjectsView::react_project_open( const core::Project& project )
-	{
-		connect( &project, SIGNAL( edition_selected( const core::EditionSession& ) ), this, SLOT( react_edition_selected( const core::EditionSession& ) ) );
-		connect( &project, SIGNAL( edition_deselected( const core::EditionSession& ) ), this, SLOT( react_edition_deselected( const core::EditionSession& ) ) );
-
-
-
-	}
-
-	void ObjectsView::react_project_closed( const core::Project& project )
-	{
-		disconnect( &project, SIGNAL( edition_deselected( const core::EditionSession& ) ), this, SLOT( react_edition_deselected( const core::EditionSession& ) ) );
-		disconnect( &project, SIGNAL( edition_selected( const core::EditionSession& ) ), this, SLOT( react_edition_selected( const core::EditionSession& ) ) );
-		
-	}
-
-
-	void ObjectsView::react_edition_selected( const core::EditionSession& edition_session )
-	{
-		connect_edition( edition_session );
-		fill_object_tree( edition_session );
-		activate();
-	}
-
-	void ObjectsView::react_edition_deselected( const core::EditionSession& edition_session )
-	{
-		disconnect_edition( edition_session );
-		deactivate();
-		clear();
-	}
-
-	void ObjectsView::activate()
-	{
-		setEnabled( true );
-		setVisible( true );
-	}
-
-	void ObjectsView::deactivate()
-	{
-		setEnabled( false );
-		setVisible( false );
 	}
 
 	void ObjectsView::fill_object_tree( const core::EditionSession& edition_session )
@@ -100,11 +51,15 @@ namespace view
 	void ObjectsView::connect_edition( const core::EditionSession& edition_session )
 	{
 		// TODO : connect interesting signals
+		fill_object_tree( edition_session );
 	}
 
 	void ObjectsView::disconnect_edition( const core::EditionSession& edition_session )
 	{
+		clear();
 		// TODO : disconnect interesting signals
+
+		
 	}
 
 	
