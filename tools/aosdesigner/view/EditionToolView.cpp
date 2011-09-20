@@ -37,6 +37,13 @@ namespace view
 		connect( &project, SIGNAL( edition_selected( const core::EditionSession& ) ), this, SLOT( react_edition_selected( const core::EditionSession& ) ) );
 		connect( &project, SIGNAL( edition_deselected( const core::EditionSession& ) ), this, SLOT( react_edition_deselected( const core::EditionSession& ) ) );
 		
+		const auto* selected_session = project.selected_edition_session();
+		if( selected_session )
+		{
+			react_edition_selected( *selected_session );
+			react_edition_begin();
+		}
+
 	}
 
 	void view::EditionToolView::react_project_closed( const core::Project& project )
