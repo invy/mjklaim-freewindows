@@ -3,27 +3,44 @@
 #pragma once
 
 #include <functional>
+#include <utility>
 #include "aosl/aosl_forward.hpp"
+#include "aoslcpp/algorithm/iterator.hpp"
 
 namespace aoslcpp
 {
+	
+	/** Apply the given (READ-ONLY) function to every Object in the given root object (Canvas or Object), depth-first.
+		The function will be called for all the objects of the object trees with depth-first algorithm.
 
-	/** Apply the given (READ-ONLY) function to every Object in the given Canvas. 
-		The function will be called for all the objects of the object trees.
-
-		@param canvas		Canvas that contains the Objects we will iterate through.
+		@param root			Object that contains the Objects we will iterate through. 
 		@param func			Function to call for each Object.
 	*/
-	void for_each_object( const aosl::Canvas& canvas, std::function< void( const aosl::Object& )> func );
+	template< class FuncType, class RootType >
+	void for_each_object_depth( const RootType& root, FuncType func )
+	{
+		std::for_each( objects_iterator_depth( root ), objects_iterator_depth(), [=]( const ObjectTreeNodeInfos& node )
+		{
+			func( *node.object() );
+		});
+	}
 
-	/** Apply the given (READ-ONLY) function to every child Object of a given parent Object. READ-ONLY
-		The function will be called recursively for all the children of the parent.
+	/** Apply the given (READ-ONLY) function to every Object in the given root object (Canvas or Object), breadth-first.
+		The function will be called for all the objects of the object trees with breadth-first algorithm.
 
-		@param parent		Parent object to start looking in for Objects. Will be ignored.
+		@param root			Object that contains the Objects we will iterate through. 
 		@param func			Function to call for each Object.
 	*/
-	void for_each_object( const aosl::Object& parent, std::function< void( const aosl::Object& )> func );
+	template< class FuncType, class RootType >
+	void for_each_object_breadth( const RootType& root, FuncType func )
+	{
+		std::for_each( objects_iterator_breadth( root ), objects_iterator_breadth(), [=]( const ObjectTreeNodeInfos& node )
+		{
+			func( *node.object() );
+		});
+	}
 
+	
 }
 
 
