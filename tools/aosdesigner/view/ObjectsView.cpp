@@ -6,6 +6,8 @@
 #include "core/Project.hpp"
 #include "core/EditionSession.hpp"
 
+#include "aoslcpp/algorithm/iterator.hpp"
+
 
 namespace aosd
 {
@@ -30,13 +32,18 @@ namespace view
 	{
 		auto* object_tree = new QStandardItemModel();
 
-		unsigned int row = 0;
-		edition_session.foreach_object( [&]( const aosl::Object& object )
+		using namespace aoslcpp;
+
+		for( auto it = objects_iterator_depth( edition_session.canvas() ); it != objects_iterator_depth(); ++it )
 		{
+			const ObjectTreeNodeInfos& info = *it;
+
+			UTILCPP_ASSERT_NOT_NULL( info.object() );
+			const auto& object = *info.object();
 			auto* item = new QStandardItem( QString::fromStdString( object.id() ) );
-			object_tree->insertRow( row, item );
-			++ row;
-		});
+			object_tree->insertRow( info.depth(), item );
+			
+		}
 
 		m_object_tree_view->setModel( object_tree );
 	}
