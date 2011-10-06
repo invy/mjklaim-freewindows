@@ -10,6 +10,7 @@
 #include "core/EditionSessionId.hpp"
 #include "aoslcpp/SequenceInterpreter.hpp"
 #include "aosl/aosl_forward.hpp"
+#include "aoslcpp/algorithm/for_each.hpp"
 
 
 namespace aosd
@@ -50,7 +51,7 @@ namespace core
 
 		bool is_valid() const { return m_sequence && m_interpreter; }
 
-		void foreach_object( std::function<void( const aosl::Object& )> func ) const;
+		const aosl::Canvas& canvas() const { return m_interpreter->canvas().canvas(); }
 		
 	public slots:
 
