@@ -105,7 +105,7 @@ namespace view
 	{
 		m_editors.push_back( std::move( editor ) );
 
-		const auto tab_title = m_editors.back()->title();
+		const QString tab_title = m_editors.back()->title();
 		m_central_tabs->addTab( m_editors.back().get(), tab_title );
 
 		m_central_tabs->setCurrentIndex( m_central_tabs->count() - 1 );
