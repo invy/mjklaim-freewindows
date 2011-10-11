@@ -56,7 +56,7 @@ namespace aoslcpp
 	typedef TreeNodeInfos<aosl::Object> ObjectTreeNodeInfos;
 
 	class objects_iterator 
-		: public std::iterator< std::output_iterator_tag, ObjectTreeNodeInfos >
+		: public std::iterator< std::input_iterator_tag, ObjectTreeNodeInfos >
 	{
 	public:
 		
@@ -108,7 +108,9 @@ namespace aoslcpp
 		explicit objects_iterator_breadth( const aosl::Canvas& canvas );
 
 
-		static objects_iterator_breadth end() { return objects_iterator_breadth(); }
+		static inline objects_iterator_breadth end() { return objects_iterator_breadth(); }
+		template< class T >
+		static inline objects_iterator_breadth begin( const T& root ) { return objects_iterator_breadth(root); }
 
 	private:
 
@@ -134,7 +136,10 @@ namespace aoslcpp
 		explicit objects_iterator_depth( const aosl::Object& object );
 		explicit objects_iterator_depth( const aosl::Canvas& canvas );
 
-		static objects_iterator_breadth end() { return objects_iterator_breadth(); }
+		static inline objects_iterator_depth end() { return objects_iterator_depth(); }
+		template< class T >
+		static inline objects_iterator_depth begin( const T& root ) { return objects_iterator_depth(root); }
+
 		
 	private:
 
