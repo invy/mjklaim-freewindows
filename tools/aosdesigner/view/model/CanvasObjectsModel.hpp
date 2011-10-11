@@ -51,7 +51,7 @@ namespace view
 
 		QModelIndex add( const aosl::Object*, size_t child_idx, QModelIndex parent_index );
 
-		
+		const ObjectInfos* find( QModelIndex index ) const;
 	};
 
 }

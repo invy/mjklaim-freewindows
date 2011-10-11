@@ -77,15 +77,16 @@ namespace view
 
 	QModelIndex CanvasObjectsModel::index( int row, int column, const QModelIndex & parent /*= QModelIndex() */ ) const
 	{
+		UTILCPP_NOT_IMPLEMENTED_YET;
 		return QModelIndex();
 	}
 
 	QModelIndex CanvasObjectsModel::parent( const QModelIndex & index ) const
 	{
-		auto find_it = m_object_registry.find( index );
-		if( find_it != m_object_registry.end() )
+		auto infos = find( index );
+		if( infos )
 		{
-			return find_it->second.parent_idx;
+			return infos->parent_idx;
 		}
 		
 		return QModelIndex();
@@ -93,11 +94,31 @@ namespace view
 
 	Qt::ItemFlags CanvasObjectsModel::flags( const QModelIndex & index ) const
 	{
+		auto infos = find( index );
+		if( infos )
+		{
+			return Qt::ItemIsSelectable; // TODO : add flags here if necessary
+		}
+
 		return Qt::NoItemFlags;
 	}
 
 	QVariant CanvasObjectsModel::data( const QModelIndex & index, int role /*= Qt::DisplayRole */ ) const
 	{
+		auto infos = find( index );
+		if( infos )
+		{
+			switch( role )
+			{
+			case( Qt::DisplayRole ):
+				{
+					return QString::fromStdString( infos->object->id() );
+				}
+				// TODO : add here other informations possible
+			}
+
+		}
+
 		return QVariant();
 	}
 
@@ -108,7 +129,24 @@ namespace view
 
 	int CanvasObjectsModel::rowCount( const QModelIndex & parent /*= QModelIndex() */ ) const
 	{
+		auto infos = find( parent );
+		if( infos && infos->object->children() )
+		{
+			return infos->object->children()->object().size();
+		}
+
 		return 0;
+	}
+
+	const CanvasObjectsModel::ObjectInfos* CanvasObjectsModel::find( QModelIndex index ) const
+	{
+		auto find_it = m_object_registry.find( index );
+		if( find_it != m_object_registry.end() )
+		{
+			UTILCPP_ASSERT_NOT_NULL( find_it->second.object );
+			return &find_it->second;
+		}
+		return nullptr;
 	}
 
 	
