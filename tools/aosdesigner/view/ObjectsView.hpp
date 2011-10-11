@@ -4,6 +4,8 @@
 
 #include <QTreeView>
 #include "view/EditionToolView.hpp"
+#include "view/model/CanvasObjectsModel.hpp"
+
 
 namespace aosd
 {
@@ -30,6 +32,7 @@ namespace view
 	private:
 
 		std::unique_ptr<QTreeView> m_object_tree_view;
+		CanvasObjectsModel m_model;
 
 		
 		void fill_object_tree( const core::EditionSession& edition_session );

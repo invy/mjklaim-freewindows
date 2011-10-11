@@ -2,7 +2,6 @@
 
 #include <QStandardItemModel>
 
-#include "view/model/CanvasObjectsModel.hpp"
 
 #include "core/Context.hpp"
 #include "core/Project.hpp"
@@ -22,6 +21,7 @@ namespace view
 		setWindowTitle( tr("Objects") );
 		setWidget( m_object_tree_view.get() );
 		
+		m_object_tree_view->setModel( &m_model );
 	}
 
 
@@ -32,12 +32,12 @@ namespace view
 
 	void ObjectsView::fill_object_tree( const core::EditionSession& edition_session )
 	{
-		m_object_tree_view->setModel( new CanvasObjectsModel( edition_session.canvas() ) );
+		m_model.build_registry( edition_session.canvas());
 	}
 
 	void ObjectsView::clear()
 	{
-		m_object_tree_view->setModel( new QStandardItemModel() ); // TODO : find a better way to clear it
+		m_model.clear();
 	}
 
 	void ObjectsView::connect_edition( const core::EditionSession& edition_session )

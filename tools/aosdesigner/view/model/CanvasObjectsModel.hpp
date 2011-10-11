@@ -3,6 +3,7 @@
 #pragma once
 
 #include <map>
+#include <vector>
 #include <QAbstractItemModel>
 
 namespace aosl
@@ -27,7 +28,7 @@ namespace view
 		explicit CanvasObjectsModel( const aosl::Canvas& canvas );
 		
 
-		QModelIndex index( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
+		QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const;
 		QModelIndex parent( const QModelIndex& index ) const;
 		Qt::ItemFlags flags( const QModelIndex& index ) const;
 		QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
@@ -50,10 +51,13 @@ namespace view
 		};
 
 		std::map< QModelIndex, ObjectInfos > m_object_registry;
+		std::map< const aosl::Object*, QModelIndex > m_object_indice;
+		std::vector< QModelIndex > m_root_objects_indice;
 
-		QModelIndex add( const aosl::Object*, size_t child_idx, QModelIndex parent_index );
+		QModelIndex add( const aosl::Object*, size_t child_idx, const QModelIndex& parent_index );
 
-		const ObjectInfos* find( QModelIndex index ) const;
+		const ObjectInfos* find( const QModelIndex& index ) const;
+		QModelIndex find_index( const aosl::Object& object ) const;
 	};
 
 }

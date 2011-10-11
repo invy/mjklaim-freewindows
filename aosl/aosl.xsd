@@ -1281,39 +1281,6 @@
 
 	</xs:attributeGroup>
 
-	<xs:group name="group_common_object">
-
-		<xs:sequence>
-
-			<xs:element name="properties" type="aos:property" minOccurs="0" maxOccurs="1" >
-				<xs:annotation>
-					<xs:documentation>
-						Custom properties bound to this Object.
-						The properties should be accessible from scripts.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="extension" type="aos:extension" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Interpreter-defined additional informations.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-
-			<xs:element name="children" type="aos:list_object" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						Objects contained in this one.
-						The child Objects will have their state relative to their parent :
-						 - their spatial state if they have some
-						 - if active, the child Object will not be perceived as active if it's parent isn't                        
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-
-		</xs:sequence>
-
-	</xs:group>
 
 	<xs:complexType name="properties_stream_object">
 
@@ -1423,7 +1390,36 @@
 			<xs:documentation>An Object is a transformed instance of a Resource and can contain other Objects in a hierarchical way.</xs:documentation>
 		</xs:annotation>
 
-		<xs:group ref="aos:group_common_object" />
+		<xs:sequence>
+
+			<xs:element name="properties" type="aos:property" minOccurs="0" maxOccurs="1" >
+				<xs:annotation>
+					<xs:documentation>
+						Custom properties bound to this Object.
+						The properties should be accessible from scripts.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="extension" type="aos:extension" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Interpreter-defined additional informations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="children" type="aos:list_object" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Objects contained in this one.
+						The child Objects will have their state relative to their parent :
+						- their spatial state if they have some
+						- if active, the child Object will not be perceived as active if it's parent isn't
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+
 		<xs:attributeGroup ref="aos:attributes_object" />
 
 	</xs:complexType>

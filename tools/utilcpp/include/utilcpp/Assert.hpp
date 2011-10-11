@@ -50,11 +50,15 @@
 	#define UTILCPP_ASSERT_NULL( expression__ ) UTILCPP_ASSERT( !(expression__), #expression__ " IS NOT NULL! It should be!" )
 	#define UTILCPP_ASSERT_NOT_NULL( expression__ ) UTILCPP_ASSERT( expression__, #expression__ " IS NULL! It shouldn't be!" )
 
+	#define UTILCPP_ASSERT_IMPOSSIBLE( message__ ) UTILCPP_ASSERTION_IMPLEMENTATION( "IMPOSSIBLE!!!", message__ )
+
 #else
 	
 	#define UTILCPP_ASSERT( expression__, message__ )
 	#define UTILCPP_ASSERT_NULL( expression__ )
 	#define UTILCPP_ASSERT_NOT_NULL( expression__ )
+
+	#define UTILCPP_ASSERT_IMPOSSIBLE( message__ )
 
 #endif
 

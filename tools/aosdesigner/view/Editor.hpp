@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QSplitter>
 
+#include "view/model/CanvasObjectsModel.hpp"
 #include "core/EditionSessionId.hpp"
 
 namespace aosd
@@ -20,10 +21,10 @@ namespace view
 	class StoryView;
 
 	/** Display the canvas and the story structure view for a specific path through the stages.
-		Every information displayed is dependant on the path followed in the sequence.
+		Every information displayed is dependent on the path followed in the sequence.
 	*/
 	class Editor
-		: public QSplitter // THINK : maybe a QObject + setCentralWidget( new QSplitter() ) might be better?
+		: public QSplitter // THINK : maybe a QDockWidget + setCentralWidget( new QSplitter() ) might be better?
 	{
 		Q_OBJECT
 	public:
@@ -35,6 +36,8 @@ namespace view
 
 		const core::EditionSessionId& session_id() const { return m_session_id; }
 
+		const CanvasObjectsModel& object_model() const { return m_objects_model; }
+
 	private slots:
 
 		void showEvent( QShowEvent* event );
@@ -45,6 +48,8 @@ namespace view
 				
 		std::unique_ptr<CanvasView> m_canvas_view;
 		std::unique_ptr<StoryView> m_story_view;
+
+		CanvasObjectsModel m_objects_model;
 
 		QString m_title;
 		core::EditionSessionId m_session_id;
