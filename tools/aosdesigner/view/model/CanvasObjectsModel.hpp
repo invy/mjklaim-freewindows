@@ -27,12 +27,14 @@ namespace view
 		explicit CanvasObjectsModel( const aosl::Canvas& canvas );
 		
 
-		QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
-		QModelIndex parent ( const QModelIndex& index ) const;
+		QModelIndex index( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
+		QModelIndex parent( const QModelIndex& index ) const;
 		Qt::ItemFlags flags( const QModelIndex& index ) const;
 		QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
-		QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
-		int rowCount ( const QModelIndex& parent = QModelIndex() ) const;
+		QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+
+		int rowCount( const QModelIndex& parent = QModelIndex() ) const;
+		int columnCount( const QModelIndex& parent = QModelIndex() ) const;
 
 		void build_registry( const aosl::Canvas& canvas );
 		void clear();

@@ -124,6 +124,14 @@ namespace view
 
 	QVariant CanvasObjectsModel::headerData( int section, Qt::Orientation orientation, int role /*= Qt::DisplayRole */ ) const
 	{
+		if( role == Qt::DisplayRole )
+		{
+			if( section == 0 )
+			{
+				return QString( tr("Object Id") );
+			}
+		}
+
 		return QVariant();
 	}
 
@@ -137,6 +145,12 @@ namespace view
 
 		return 0;
 	}
+
+	int CanvasObjectsModel::columnCount( const QModelIndex& parent /*= QModelIndex() */ ) const
+	{
+		return 1;
+	}
+
 
 	const CanvasObjectsModel::ObjectInfos* CanvasObjectsModel::find( QModelIndex index ) const
 	{

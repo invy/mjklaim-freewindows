@@ -2,6 +2,8 @@
 
 #include <QStandardItemModel>
 
+#include "view/model/CanvasObjectsModel.hpp"
+
 #include "core/Context.hpp"
 #include "core/Project.hpp"
 #include "core/EditionSession.hpp"
@@ -30,22 +32,7 @@ namespace view
 
 	void ObjectsView::fill_object_tree( const core::EditionSession& edition_session )
 	{
-		auto* object_tree = new QStandardItemModel();
-
-		using namespace aoslcpp;
-
-		for( auto it = objects_iterator_depth( edition_session.canvas() ); it != objects_iterator_depth(); ++it )
-		{
-			const ObjectTreeNodeInfos& info = *it;
-
-			UTILCPP_ASSERT_NOT_NULL( info.object() );
-			const auto& object = *info.object();
-			auto* item = new QStandardItem( QString::fromStdString( object.id() ) );
-			object_tree->insertRow( info.depth(), item );
-			
-		}
-
-		m_object_tree_view->setModel( object_tree );
+		m_object_tree_view->setModel( new CanvasObjectsModel( edition_session.canvas() ) );
 	}
 
 	void ObjectsView::clear()
