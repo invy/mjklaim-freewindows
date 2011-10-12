@@ -16,7 +16,6 @@ namespace view
 		, m_story_view( new StoryView )
 		, m_title( QString::fromStdString( edition_session.name() ) )
 		, m_session_id( edition_session.id() )
-		, m_objects_model( edition_session.canvas() )
 	{
 		setOrientation( Qt::Vertical );
 

@@ -7,7 +7,6 @@
 #include <QWidget>
 #include <QSplitter>
 
-#include "view/model/CanvasObjectsModel.hpp"
 #include "core/EditionSessionId.hpp"
 
 namespace aosd
@@ -36,7 +35,6 @@ namespace view
 
 		const core::EditionSessionId& session_id() const { return m_session_id; }
 
-		const CanvasObjectsModel& object_model() const { return m_objects_model; }
 
 	private slots:
 
@@ -49,7 +47,6 @@ namespace view
 		std::unique_ptr<CanvasView> m_canvas_view;
 		std::unique_ptr<StoryView> m_story_view;
 
-		CanvasObjectsModel m_objects_model;
 
 		QString m_title;
 		core::EditionSessionId m_session_id;
