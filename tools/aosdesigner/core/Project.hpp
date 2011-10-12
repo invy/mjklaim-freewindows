@@ -114,10 +114,10 @@ namespace core
 		void edition_end();
 		
 		/** Signal : an edition session have began. **/
-		void edition_session_begin( const core::EditionSession& walker );
+		void edition_session_begin( const core::EditionSession& edition_session );
 
 		/** Signal : an edition session will be ended. **/
-		void edition_session_end( const core::EditionSession& walker );
+		void edition_session_end( const core::EditionSession& edition_session );
 
 		/** Signal : an edition session have been selected. **/
 		void edition_selected( const core::EditionSession& edition_session );

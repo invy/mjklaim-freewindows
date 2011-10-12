@@ -10,7 +10,7 @@ namespace view
 {
 
 
-	view::EditionToolView::EditionToolView()
+	EditionToolView::EditionToolView()
 	{
 		setAttribute( Qt::WA_ShowWithoutActivating ); // THINK : should it be child class relative?
 		deactivate();
@@ -24,15 +24,18 @@ namespace view
 			react_project_open( context.current_project() );
 	}
 
-	view::EditionToolView::~EditionToolView()
+	EditionToolView::~EditionToolView()
 	{
 
 	}
 
-	void view::EditionToolView::react_project_open( const core::Project& project )
+	void EditionToolView::react_project_open( const core::Project& project )
 	{
 		connect( &project, SIGNAL( edition_begin() ), this, SLOT( react_edition_begin() ) );
 		connect( &project, SIGNAL( edition_end() ), this, SLOT( react_edition_end() ) );
+
+		connect( &project, SIGNAL( edition_session_begin( const core::EditionSession& ) ), this, SLOT( react_edition_session_begin( const core::EditionSession& ) ) );
+		connect( &project, SIGNAL( edition_session_end( const core::EditionSession& ) ), this, SLOT( react_edition_session_end( const core::EditionSession& ) ) );
 
 		connect( &project, SIGNAL( edition_selected( const core::EditionSession& ) ), this, SLOT( react_edition_selected( const core::EditionSession& ) ) );
 		connect( &project, SIGNAL( edition_deselected( const core::EditionSession& ) ), this, SLOT( react_edition_deselected( const core::EditionSession& ) ) );
@@ -46,7 +49,7 @@ namespace view
 
 	}
 
-	void view::EditionToolView::react_project_closed( const core::Project& project )
+	void EditionToolView::react_project_closed( const core::Project& project )
 	{
 		disconnect( &project, 0, this, 0 );
 	}
@@ -60,19 +63,28 @@ namespace view
 	{
 		deactivate();
 	}
+	
+	void EditionToolView::react_edition_session_begin( const core::EditionSession& edition_session )
+	{
+		begin_edition_session( edition_session );
+	}
 
+	void EditionToolView::react_edition_session_end( const core::EditionSession& edition_session )
+	{
+		end_edition_session( edition_session );
+	}
 
-	void view::EditionToolView::react_edition_selected( const core::EditionSession& edition_session )
+	void EditionToolView::react_edition_selected( const core::EditionSession& edition_session )
 	{
 		connect_edition( edition_session );
 	}
 
-	void view::EditionToolView::react_edition_deselected( const core::EditionSession& edition_session )
+	void EditionToolView::react_edition_deselected( const core::EditionSession& edition_session )
 	{
 		disconnect_edition( edition_session );
 	}
 
-	void  view::EditionToolView::change_state( bool is_active )
+	void EditionToolView::change_state( bool is_active )
 	{
 		setVisible( is_active );
 		setEnabled( is_active );

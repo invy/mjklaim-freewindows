@@ -27,6 +27,10 @@ namespace view
 		void activate() { change_state( true ); }
 		void deactivate()  { change_state( false ); }
 
+
+		virtual void begin_edition_session( const core::EditionSession& edition_session ) = 0;
+		virtual void end_edition_session( const core::EditionSession& edition_session ) = 0;
+
 		virtual void connect_edition( const core::EditionSession& edition_session ) = 0;
 		virtual void disconnect_edition( const core::EditionSession& edition_session ) = 0;
 
@@ -38,6 +42,9 @@ namespace view
 
 		void react_edition_begin();
 		void react_edition_end();
+
+		void react_edition_session_begin( const core::EditionSession& edition_session );
+		void react_edition_session_end( const core::EditionSession& edition_session );
 
 		void react_edition_selected( const core::EditionSession& edition_session );
 		void react_edition_deselected( const core::EditionSession& edition_session );

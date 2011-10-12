@@ -2,7 +2,10 @@
 #define HGUARD_AOSD_VIEW_OBJECTSVIEW_HPP__
 #pragma once
 
+#include <map>
+#include <memory>
 #include <QTreeView>
+#include "core/EditionSessionId.hpp"
 #include "view/EditionToolView.hpp"
 #include "view/model/CanvasObjectsModel.hpp"
 
@@ -32,14 +35,15 @@ namespace view
 	private:
 
 		std::unique_ptr<QTreeView> m_object_tree_view;
-		CanvasObjectsModel m_model;
-
 		
-		void fill_object_tree( const core::EditionSession& edition_session );
-		void clear();
-
+		std::map< core::EditionSessionId, std::unique_ptr< CanvasObjectsModel > > m_model_registry;
+		
+		void begin_edition_session( const core::EditionSession& edition_session );
+		void end_edition_session( const core::EditionSession& edition_session );
 		void connect_edition( const core::EditionSession& edition_session );
 		void disconnect_edition( const core::EditionSession& edition_session );
+
+		CanvasObjectsModel* find_model( const core::EditionSessionId& edition_id );
 
 	};
 
