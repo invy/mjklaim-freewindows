@@ -9,7 +9,6 @@ add_definitions( ${QT_DEFINITIONS} )
 # Sub-directories.
 set( AOSDESIGNER_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
 set( AOSDESIGNER_CORE_DIR ${AOSDESIGNER_ROOT_DIR}/core )
-set( AOSDESIGNER_STATE_DIR ${AOSDESIGNER_ROOT_DIR}/state )
 set( AOSDESIGNER_VIEW_DIR ${AOSDESIGNER_ROOT_DIR}/view )
 set( AOSDESIGNER_RC_DIR ${AOSDESIGNER_VIEW_DIR}/rc )
 set( AOSDESIGNER_UI_DIR ${AOSDESIGNER_VIEW_DIR}/ui )
@@ -40,16 +39,6 @@ set( AOSDESIGNER_CORE_HEADERS
 	${AOSDESIGNER_CORE_DIR}/EditionSessionId.hpp
 )
 
-#-----------------------------------------------------------------
-
-# States header files.
-set( AOSDESIGNER_STATE_HEADERS
-	${AOSDESIGNER_STATE_DIR}/Events.hpp
-	${AOSDESIGNER_STATE_DIR}/DesignerStateMachine.hpp
-	${AOSDESIGNER_STATE_DIR}/Welcome.hpp
-	${AOSDESIGNER_STATE_DIR}/EditingProject.hpp
-	${AOSDESIGNER_STATE_DIR}/Idle.hpp
-)
 
 #-----------------------------------------------------------------
 
@@ -96,7 +85,6 @@ set( AOSDESIGNER_VIEW_MODEL_HEADERS
 set( AOSDESIGNER_ALL_HEADERS  
     ${AOSDESIGNER_APPLICATION_HEADERS}
     ${AOSDESIGNER_CORE_HEADERS}
-	${AOSDESIGNER_STATE_HEADERS}
     ${AOSDESIGNER_VIEW_HEADERS}
 	${AOSDESIGNER_DIALOG_HEADERS}
 	${AOSDESIGNER_VIEW_MODEL_HEADERS}
@@ -177,16 +165,6 @@ set( AOSDESIGNER_CORE_SOURCES
 
 #------------------------------------------------------
 
-# States source files
-set( AOSDESIGNER_STATE_SOURCES
-	${AOSDESIGNER_STATE_DIR}/DesignerStateMachine.cpp
-	${AOSDESIGNER_STATE_DIR}/EditingProject.cpp
-	${AOSDESIGNER_STATE_DIR}/Welcome.cpp
-	${AOSDESIGNER_STATE_DIR}/Idle.cpp
-)
-
-#------------------------------------------------------
-
 
 
 #####################################################
@@ -231,7 +209,6 @@ source_group( designer\\view FILES ${AOSDESIGNER_VIEW_HEADERS} ${AOSDESIGNER_VIE
 source_group( designer\\view\\dialog FILES ${AOSDESIGNER_DIALOG_HEADERS} ${AOSDESIGNER_DIALOG_SOURCES} )
 source_group( designer\\view\\model FILES ${AOSDESIGNER_VIEW_MODEL_HEADERS} ${AOSDESIGNER_VIEW_MODEL_SOURCES} )
 source_group( designer\\core FILES ${AOSDESIGNER_CORE_HEADERS} ${AOSDESIGNER_CORE_SOURCES} )
-source_group( designer\\state FILES ${AOSDESIGNER_STATE_HEADERS} ${AOSDESIGNER_STATE_SOURCES} )
 source_group( designer FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICATION_SOURCES} )
 
 ####################################################
@@ -240,7 +217,6 @@ source_group( designer FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_AP
 # All the compiled sources.
 set( AOSDESIGNER_ALL_SOURCES
     ${AOSDESIGNER_CORE_SOURCES}
-	${AOSDESIGNER_STATE_SOURCES}
     ${AOSDESIGNER_APPLICATION_SOURCES}
     ${AOSDESIGNER_VIEW_SOURCES}
 	${AOSDESIGNER_DIALOG_SOURCES}
