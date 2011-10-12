@@ -23,8 +23,6 @@ namespace view
 
 	void CanvasObjectsModel::build_registry( const aosl::Canvas& canvas )
 	{
-		clear();
-
 		using namespace aoslcpp;
 		// go through the object tree and register each object
 
@@ -38,6 +36,7 @@ namespace view
 			}
 
 		});
+
 	}
 
 
@@ -45,6 +44,8 @@ namespace view
 	{
 		m_object_registry.clear();
 		m_root_objects.clear();
+
+		reset();
 	}
 	
 
@@ -56,7 +57,10 @@ namespace view
 		if( !parent.isValid() )
 		{
 			UTILCPP_ASSERT( row < m_root_objects.size(), "Tried to get root object with a wrong index : row = " << row << ", root objects count = " << m_root_objects.size() );
-			return createIndex( row, 0, (void*)m_root_objects[row] );
+			//if( row < m_root_objects.size() )
+				return createIndex( row, 0, (void*)m_root_objects[row] );
+			//else
+			//	return QModelIndex();
 		}
 
 		auto parent_object = static_cast<const aosl::Object*>( parent.internalPointer() );
