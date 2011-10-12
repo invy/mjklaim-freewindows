@@ -6,6 +6,8 @@
 #include <vector>
 #include <QAbstractItemModel>
 
+#include "aoslcpp/algorithm/iterator.hpp"
+
 namespace aosl
 {
 	class Canvas;
@@ -22,6 +24,7 @@ namespace view
 	class CanvasObjectsModel
 		: public QAbstractItemModel
 	{
+		Q_OBJECT
 	public:
 
 		CanvasObjectsModel();
@@ -30,34 +33,25 @@ namespace view
 
 		QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const;
 		QModelIndex parent( const QModelIndex& index ) const;
+
 		Qt::ItemFlags flags( const QModelIndex& index ) const;
 		QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
 		QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
 
+		bool hasChildren( const QModelIndex & parent = QModelIndex() ) const;
 		int rowCount( const QModelIndex& parent = QModelIndex() ) const;
 		int columnCount( const QModelIndex& parent = QModelIndex() ) const;
 
 		void build_registry( const aosl::Canvas& canvas );
 		void clear();
-
-		
 		
 	private:
 
-		struct ObjectInfos
-		{
-			const aosl::Object* object;
-			QModelIndex parent_idx;
-		};
+		std::map< const aosl::Object*, aoslcpp::ObjectTreeNodeInfos > m_object_registry;
+		std::vector< const aosl::Object* > m_root_objects;
 
-		std::map< QModelIndex, ObjectInfos > m_object_registry;
-		std::map< const aosl::Object*, QModelIndex > m_object_indice;
-		std::vector< QModelIndex > m_root_objects_indice;
+		aoslcpp::ObjectTreeNodeInfos find_infos( const aosl::Object& object ) const;
 
-		QModelIndex add( const aosl::Object*, size_t child_idx, const QModelIndex& parent_index );
-
-		const ObjectInfos* find( const QModelIndex& index ) const;
-		QModelIndex find_index( const aosl::Object& object ) const;
 	};
 
 }

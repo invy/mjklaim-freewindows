@@ -4,7 +4,7 @@
 
 #include "utilcpp/Assert.hpp"
 
-#include "aoslcpp/algorithm/iterator.hpp"
+
 #include "aosl/object.hpp"
 #include "aosl/canvas.hpp"
 
@@ -28,116 +28,68 @@ namespace view
 		using namespace aoslcpp;
 		// go through the object tree and register each object
 
-		std::map< const aosl::Object*, QModelIndex > parents;
-		std::map< const aosl::Object*, QModelIndex > next_parents;
-		size_t last_depth = 0;
-
 		std::for_each( objects_iterator_breadth::begin( canvas ), objects_iterator_breadth::end(), [&]( const ObjectTreeNodeInfos& infos )
 		{
-			if( last_depth != infos.depth() )
+			m_object_registry.insert( std::make_pair( infos.object(), infos ) );
+
+			if( infos.depth() == 0 )
 			{
-				// get one level deeper, change the parents of the next objects
-				parents.swap( next_parents );
-				next_parents.clear();
-				last_depth = infos.depth();
+				m_root_objects.push_back( infos.object() );
 			}
-
-			QModelIndex parent_idx = parents[ infos.parent() ]; // retrieve the model index of the parent or an invalid index if root
-			
-			auto new_index = add( infos.object(), infos.idx(), parent_idx );
-
-			if( infos.object()->children() && !infos.object()->children()->object().empty() )
-			{
-				// this object will be parent of one or more objects deeper : register it for later
-				next_parents.insert( std::make_pair( infos.object(), new_index ) );
-			}
-
-			UTILCPP_LOG << "Object : "	<< infos.object() 
-						//<< "\n\tindex = " << new_index
-						<< "\n\tchild idx = " << infos.idx()
-						<< "\n\tparent : " << infos.parent()
-						//<< "\n\tparent index = " << parent_idx
-						;
 
 		});
 	}
 
-	QModelIndex CanvasObjectsModel::add( const aosl::Object* object, size_t child_idx, const QModelIndex& parent_index )
-	{
-		UTILCPP_ASSERT_NOT_NULL( object );
-
-		const auto index = createIndex( child_idx, 0, (void*)object );
-		UTILCPP_ASSERT( index.isValid(), "Generated an invalid index!" );
-
-		ObjectInfos infos;
-		infos.parent_idx = parent_index;
-		infos.object = object;
-
-		m_object_registry[ index ] = infos;
-		m_object_indice[ object ] = index;
-
-		if( !parent_index.isValid() )
-		{
-			// root object, register also separately
-			m_root_objects_indice.push_back( index );
-		}
-
-		return index;
-	}
 
 	void CanvasObjectsModel::clear()
 	{
 		m_object_registry.clear();
-		m_object_indice.clear();
-		m_root_objects_indice.clear();
+		m_root_objects.clear();
 	}
 	
 
 	QModelIndex CanvasObjectsModel::index( int row, int column, const QModelIndex& parent /*= QModelIndex() */ ) const
 	{
-		if( parent.isValid() )
+		if( m_root_objects.empty() )
+			return QModelIndex();
+
+		if( !parent.isValid() )
 		{
-			const aosl::Object* parent_ = static_cast<const aosl::Object*>( parent.internalPointer() );
-			if( parent_ && parent_->children() && !parent_->children()->object().empty() )
-			{
-				UTILCPP_ASSERT( row < parent_->children()->object().size(), "Invalid row/child idx! idx = " << row << " , child count = " << parent_->children()->object().size() );
-				return find_index( parent_->children()->object()[ row ] );
-			}
-			/*
-			auto parent_info = find( parent );
-
-			if( parent_info )
-			{
-				UTILCPP_ASSERT_NOT_NULL( parent_info->object->children() );
-				UTILCPP_ASSERT( row < parent_info->object->children()->object().size(), "Invalid row/child idx! idx = " << row << " , child count = " << parent_info->object->children()->object().size() );
-
-				const aosl::Object& target_child = parent_info->object->children()->object()[ row ];
-				return find_index( target_child );
-
-			}
-			else
-			{
-				UTILCPP_ASSERT_IMPOSSIBLE( "Parent not found but provided???" )
-			}
-			*/
-
-		}
-		else if( row < m_root_objects_indice.size() ) // maybe a root object?
-		{
-			return m_root_objects_indice[ row ];
+			UTILCPP_ASSERT( row < m_root_objects.size(), "Tried to get root object with a wrong index : row = " << row << ", root objects count = " << m_root_objects.size() );
+			return createIndex( row, 0, (void*)m_root_objects[row] );
 		}
 
-		return QModelIndex();
+		auto parent_object = static_cast<const aosl::Object*>( parent.internalPointer() );
+		
+		UTILCPP_ASSERT_NOT_NULL( parent_object );
+		UTILCPP_ASSERT_NOT_NULL( parent_object->children() );
+		UTILCPP_ASSERT( row < parent_object->children()->object().size(), "Tried to get child object from parent object \""<< parent_object->id() << "\" with a wrong child index : row = " << row << ", root objects count = " << parent_object->children()->object().size() );
+
+		const aosl::Object& child_object = parent_object->children()->object()[ row ];
+
+		return createIndex( row, 0, (void*)&child_object );
 	}
 
 	QModelIndex CanvasObjectsModel::parent( const QModelIndex& index ) const
 	{
-		auto infos = find( index );
-		if( infos )
+		if( m_root_objects.empty() )
+			return QModelIndex();
+
+		if( !index.isValid() )
 		{
-			return infos->parent_idx;
+			return QModelIndex();
 		}
-		
+
+		auto object = static_cast< const aosl::Object* >( index.internalPointer() );
+		UTILCPP_ASSERT_NOT_NULL( object );
+
+		auto object_infos = find_infos( *object );
+		if( object_infos.parent() )
+		{
+			auto parent_infos = find_infos( *object_infos.parent() );
+			return createIndex( parent_infos.idx(), 0, (void*)parent_infos.object() );
+		}
+
 		return QModelIndex();
 	}
 
@@ -156,21 +108,25 @@ namespace view
 
 	QVariant CanvasObjectsModel::data( const QModelIndex& index, int role /*= Qt::DisplayRole */ ) const
 	{
-		auto infos = find( index );
-		if( infos )
+		if( m_root_objects.empty() || !index.isValid() )
+			return QVariant();
+
+		auto object = static_cast< const aosl::Object* >( index.internalPointer() );
+		UTILCPP_ASSERT_NOT_NULL( object );
+
+		switch( role )
 		{
-			switch( role )
+		case( Qt::DisplayRole ):
 			{
-			case( Qt::DisplayRole ):
-				{
-					return QString::fromStdString( infos->object->id() );
-				}
-				// TODO : add here other informations possible
+				return QString::fromStdString( object->id() );
 			}
+			// TODO : add here other informations possible
 
+		default:
+			{
+				return QVariant();
+			}
 		}
-
-		return QVariant();
 	}
 
 	QVariant CanvasObjectsModel::headerData( int section, Qt::Orientation orientation, int role /*= Qt::DisplayRole */ ) const
@@ -190,21 +146,15 @@ namespace view
 	{
 		if( parent.isValid() )
 		{
-			auto parent_infos = find( parent );
-			if( parent_infos && parent_infos->object->children() )
+			auto parent_object = static_cast<const aosl::Object*>( parent.internalPointer() );
+			UTILCPP_ASSERT_NOT_NULL( parent_object );
+			if( parent_object->children()  )
 			{
-				return parent_infos->object->children()->object().size();
+				return parent_object->children()->object().size();
 			}
-			else
-			{
-				return 0; // no child
-			}
+			else return 0;
 		}
-		else
-		{
-			return m_root_objects_indice.size(); // root
-		}
-		
+		else return m_root_objects.size();
 	}
 
 	int CanvasObjectsModel::columnCount( const QModelIndex& parent /*= QModelIndex() */ ) const
@@ -212,27 +162,37 @@ namespace view
 		return 1;
 	}
 
-
-	const CanvasObjectsModel::ObjectInfos* CanvasObjectsModel::find( const QModelIndex& index ) const
+	bool CanvasObjectsModel::hasChildren( const QModelIndex & parent /*= QModelIndex() */ ) const
 	{
-		auto find_it = m_object_registry.find( index );
-		if( find_it != m_object_registry.end() )
+		if( parent.isValid() )
 		{
-			UTILCPP_ASSERT_NOT_NULL( find_it->second.object );
-			return &find_it->second;
+			auto parent_object = static_cast< const aosl::Object* >( parent.internalPointer() );
+			UTILCPP_ASSERT_NOT_NULL( parent_object );
+
+			if( parent_object->children() )
+				return !parent_object->children()->object().empty();
+			else
+				return false;
 		}
-		return nullptr;
+
+		return !m_root_objects.empty();
 	}
 
-	QModelIndex CanvasObjectsModel::find_index( const aosl::Object& object ) const
+	aoslcpp::ObjectTreeNodeInfos CanvasObjectsModel::find_infos( const aosl::Object& object ) const
 	{
-		auto find_it = m_object_indice.find( &object );
-		if( find_it != m_object_indice.end() )
+		using namespace aoslcpp;
+
+		auto find_it = m_object_registry.find( &object );
+		if( find_it != m_object_registry.end() )
 		{
 			return find_it->second;
 		}
-		return QModelIndex();
+
+		return ObjectTreeNodeInfos();
 	}
+
+
+
 
 	
 

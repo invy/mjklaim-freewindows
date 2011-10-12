@@ -60,7 +60,6 @@ namespace aoslcpp
 	{
 	public:
 		
-		//void operator++( int ){ ++*this; }
 		void operator++();
 		ObjectTreeNodeInfos operator*() const;
 
