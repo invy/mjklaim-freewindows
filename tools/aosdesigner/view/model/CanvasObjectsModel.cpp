@@ -107,7 +107,7 @@ namespace view
 
 		return Qt::NoItemFlags;
 		*/
-		return Qt::ItemIsSelectable;
+		return QAbstractItemModel::flags( index ) | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsEditable;
 	}
 
 	QVariant CanvasObjectsModel::data( const QModelIndex& index, int role /*= Qt::DisplayRole */ ) const
@@ -123,6 +123,10 @@ namespace view
 		case( Qt::DisplayRole ):
 			{
 				return QString::fromStdString( object->id() );
+			}
+		case( Qt::CheckStateRole ):
+			{
+				return object->active() ? Qt::Checked : Qt::Unchecked;
 			}
 			// TODO : add here other informations possible
 
