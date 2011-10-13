@@ -122,10 +122,12 @@ namespace view
 		{
 		case( Qt::DisplayRole ):
 			{
+				// there is no "name" of objects so we use the id as name
 				return QString::fromStdString( object->id() );
 			}
 		case( Qt::CheckStateRole ):
 			{
+				// display a checked object if it's active, unchecked if it's not
 				return object->active() ? Qt::Checked : Qt::Unchecked;
 			}
 			// TODO : add here other informations possible

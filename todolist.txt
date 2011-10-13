@@ -21,6 +21,9 @@ AOSL
 
  - add heavy documentation in the xsd file
  - use xs3p to generate the documentation from the xsd file
+ ? objects should have comments
+ ? objects should have "names"
+ 
 
 
 AOSLCPP
@@ -43,7 +46,7 @@ AOS Designer
  
  x (klaim) add logging macros 
   x (klaim) that output in a file
-   - in the Log view
+   x in the Log view
    x (klaim) in Visual Studio's log view if debugging is active
   - use logs in current code
   - add an automatic deletion of old log files or limit log files count
@@ -80,5 +83,5 @@ AOS Designer
  - 
   
  - Objects view:
-  - list objects in the current
+  x list objects in the current
  
