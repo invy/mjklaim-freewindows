@@ -1247,41 +1247,6 @@
 
 	<!--############## Object's components. ###########################"-->
 
-
-	<xs:attributeGroup name="attributes_object">
-
-		<xs:attribute name="id" type="aos:object_id" use="required" >
-			<xs:annotation>
-				<xs:documentation>Id of the Object.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-
-		<xs:attribute name="active" type="xs:boolean" default="false" use="optional" >
-			<xs:annotation>
-				<xs:documentation>Is this Object currently active or unactive?</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-
-		<xs:attribute name="resource" type="aos:resource_ref" use="optional" >
-			<xs:annotation>
-				<xs:documentation>
-					The Resource to use. If no resource is set, the object will not be perceptible even if it's a graphic object.
-					It still can contain children objects and behave like an invisible group.
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-
-		<xs:attribute name="layer" type="aos:layer_ref" use="optional" >
-			<xs:annotation>
-				<xs:documentation>
-					Id of a Layer this Object is bound to.
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-
-	</xs:attributeGroup>
-
-
 	<xs:complexType name="properties_stream_object">
 
 		<xs:annotation>
@@ -1420,7 +1385,34 @@
 
 		</xs:sequence>
 
-		<xs:attributeGroup ref="aos:attributes_object" />
+		<xs:attribute name="id" type="aos:object_id" use="required" >
+			<xs:annotation>
+				<xs:documentation>Id of the Object.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="active" type="xs:boolean" default="false" use="optional" >
+			<xs:annotation>
+				<xs:documentation>Is this Object currently active or unactive?</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="resource" type="aos:resource_ref" use="optional" >
+			<xs:annotation>
+				<xs:documentation>
+					The Resource to use. If no resource is set, the object will not be perceptible even if it's a graphic object.
+					It still can contain children objects and behave like an invisible group.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+		<xs:attribute name="layer" type="aos:layer_ref" use="optional" >
+			<xs:annotation>
+				<xs:documentation>
+					Id of a Layer this Object is bound to.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 
 	</xs:complexType>
 
