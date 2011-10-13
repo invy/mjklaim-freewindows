@@ -77,6 +77,7 @@ set( AOSDESIGNER_DIALOG_HEADERS
 # View-model header files.
 set( AOSDESIGNER_VIEW_MODEL_HEADERS
 	${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasObjectsModel.hpp
+	${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasLayersModel.hpp
 )
 
 #-----------------------------------------------------------------
@@ -151,6 +152,7 @@ set( AOSDESIGNER_DIALOG_SOURCES
 # View-model source files.
 set( AOSDESIGNER_VIEW_MODEL_SOURCES 
     ${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasObjectsModel.cpp
+	${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasLayersModel.cpp
 )
 
 #------------------------------------------------------
