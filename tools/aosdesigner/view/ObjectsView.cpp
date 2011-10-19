@@ -1,7 +1,7 @@
 #include "ObjectsView.hpp"
 
 #include <QStandardItemModel>
-
+#include <QTreeView>
 
 #include "core/Context.hpp"
 #include "core/Project.hpp"
@@ -32,7 +32,11 @@ namespace view
 
 	void ObjectsView::connect_edition( const core::EditionSession& edition_session )
 	{
-		m_object_tree_view->setModel( find_model( edition_session.id() ) );
+		auto model = find_model( edition_session.id() );
+		if( model )
+			m_object_tree_view->setModel( model );
+		else
+			begin_model( edition_session );
 	}
 
 	void ObjectsView::disconnect_edition( const core::EditionSession& edition_session )
@@ -42,13 +46,12 @@ namespace view
 
 	void ObjectsView::begin_edition_session( const core::EditionSession& edition_session )
 	{
-		UTILCPP_ASSERT( m_model_registry.find( edition_session.id() ) == m_model_registry.end(), "Tried to begin edition session already registered : " << edition_session.id() );
-		m_model_registry.insert( std::make_pair( edition_session.id(), std::unique_ptr<CanvasObjectsModel>( new CanvasObjectsModel( edition_session.canvas() ) ) ) );
+		begin_model( edition_session );
 	}
 
 	void ObjectsView::end_edition_session( const core::EditionSession& edition_session )
 	{
-		m_model_registry.erase( edition_session.id() );
+		end_model( edition_session.id() );
 	}
 
 	CanvasObjectsModel* ObjectsView::find_model( const core::EditionSessionId& edition_id )
@@ -58,6 +61,17 @@ namespace view
 			return find_it->second.get();
 
 		return nullptr;
+	}
+
+	void ObjectsView::begin_model( const core::EditionSession& edition_session )
+	{
+		UTILCPP_ASSERT( m_model_registry.find( edition_session.id() ) == m_model_registry.end(), "Tried to begin edition session already registered : " << edition_session.id() );
+		m_model_registry.insert( std::make_pair( edition_session.id(), std::unique_ptr<CanvasObjectsModel>( new CanvasObjectsModel( edition_session.canvas() ) ) ) );
+	}
+
+	void ObjectsView::end_model( const core::EditionSessionId& edition_id )
+	{
+		m_model_registry.erase( edition_id );
 	}
 
 	

@@ -112,6 +112,22 @@ namespace view
 	}
 
 
+	void MainWindow::remove_editor( const core::EditionSessionId& edition_session_id )
+	{
+		auto editor_it = std::find_if( begin(m_editors), end(m_editors), [&]( const std::unique_ptr<Editor>& editor )
+		{
+			return editor->session_id() == edition_session_id;
+		});
+
+		if( editor_it != end(m_editors) )
+		{
+			auto& editor = *editor_it;
+			m_central_tabs->removeTab( m_central_tabs->indexOf( editor.get() ) );
+			
+			m_editors.erase( editor_it );
+		}
+	}
+
 	void MainWindow::setup_views_default()
 	{
 		// Tabs should be on the top of windows, not at the bottom
@@ -202,7 +218,7 @@ namespace view
 
 	void MainWindow::react_edition_session_end( const core::EditionSession& edition_session )
 	{
-		UTILCPP_NOT_IMPLEMENTED_YET;
+		remove_editor( edition_session.id() );
 	}
 
 	void MainWindow::react_sequence_created( const core::Sequence& sequence )
@@ -217,7 +233,7 @@ namespace view
 
 	void MainWindow::select_editor( const core::EditionSessionId& session_id )
 	{
-		auto find_it = std::find_if( m_editors.begin(), m_editors.end(), [&]( const std::unique_ptr<Editor>& editor )
+		auto find_it = std::find_if( begin(m_editors), end(m_editors), [&]( const std::unique_ptr<Editor>& editor )
 		{
 			return editor->session_id() == session_id;
 		});

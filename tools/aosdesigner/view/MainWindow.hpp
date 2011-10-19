@@ -109,6 +109,7 @@ namespace view
 		
 		/** Add an editor view in the central tabs of the window. **/
 		void add_editor( std::unique_ptr<Editor>&& editor );
+		void remove_editor(  const core::EditionSessionId& edition_session_id );
 
 		
 	};

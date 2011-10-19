@@ -4,11 +4,11 @@
 
 #include <map>
 #include <memory>
-#include <QTreeView>
 #include "core/EditionSessionId.hpp"
 #include "view/EditionToolView.hpp"
 #include "view/model/CanvasObjectsModel.hpp"
 
+class QTreeView;
 
 namespace aosd
 {
@@ -44,6 +44,9 @@ namespace view
 		void disconnect_edition( const core::EditionSession& edition_session );
 
 		CanvasObjectsModel* find_model( const core::EditionSessionId& edition_id );
+
+		void begin_model( const core::EditionSession& edition_session );
+		void end_model( const core::EditionSessionId& edition_id );
 
 	};
 

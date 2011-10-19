@@ -158,7 +158,8 @@ namespace core
 
 	Project::~Project()
 	{
-		// THIS IS TEMPORARY : should be replaced by proper edition selection clearing
+		// THIS IS TEMPORARY : should be replaced by proper edition selection clearing ?
+
 	}
 
 
@@ -379,6 +380,11 @@ namespace core
 			emit edition_deselected( *m_selected_session );
 			m_selected_session = nullptr;
 		}
+
+		for( auto it = begin( m_edit_sessions ), it_end = end( m_edit_sessions ); it != it_end; ++it )
+		{
+			emit edition_session_end( *it );
+		};
 		
 	}
 
