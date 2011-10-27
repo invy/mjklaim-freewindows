@@ -8,9 +8,12 @@ namespace view
 	LayersView::LayersView()
 	{
 		setWindowTitle(tr("Layers"));
-		setWidget( new QTreeView() );
+		//setWidget( new QTreeView() );
 	}
 
+	LayersView::~LayersView()
+	{
+	}
 
 	void LayersView::connect_edition( const core::EditionSession & )
 	{

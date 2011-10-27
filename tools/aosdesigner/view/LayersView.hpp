@@ -2,7 +2,7 @@
 #define HGUARD_AOSD_VIEW_LAYERSVIEW_HPP__
 #pragma once
 
-#include <QTreeView>
+#include <QListView>
 #include "view/EditionToolView.hpp"
 
 namespace aosd
@@ -20,15 +20,21 @@ namespace view
 	public:
 		
 		LayersView();
+		~LayersView();
 
 
 	private:
+
+		std::unique_ptr< QListView > m_layer_list_view;
+		std::unique_ptr< QListView > m_layer_objects_view;
+
 
 		void begin_edition_session( const core::EditionSession& edition_session ){}
 		void end_edition_session( const core::EditionSession& edition_session ){}
 		void connect_edition( const core::EditionSession& edition_session );
 		void disconnect_edition( const core::EditionSession& edition_session );
 		
+
 
 	};
 

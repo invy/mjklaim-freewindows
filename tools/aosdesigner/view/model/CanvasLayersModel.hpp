@@ -2,16 +2,13 @@
 #define HGUARD_AOSD_VIEW_CANVASLAYERSMODEL_HPP__
 #pragma once
 
-#include <map>
 #include <vector>
 #include <QAbstractListModel>
 
-#include "aoslcpp/algorithm/iterator.hpp"
-
 namespace aosl
 {
+	class Layer;
 	class Canvas;
-	class Object;
 }
 
 namespace aosd
@@ -29,8 +26,16 @@ namespace view
 
 		CanvasLayersModel();
 		explicit CanvasLayersModel( const aosl::Canvas& canvas );
+
+		int rowCount( const QModelIndex& parent = QModelIndex() ) const;
+		QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
+
+		void update( const aosl::Canvas& canvas );
+		void clear();
 		
 	private:
+
+		std::vector< const aosl::Layer* > m_layers;
 
 	};
 
