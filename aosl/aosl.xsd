@@ -1211,9 +1211,18 @@
 			</xs:documentation>
 		</xs:annotation>
 
-		<xs:all>
-			<xs:element name="extension" type="aos:extension" minOccurs="0" />
-		</xs:all>
+		<xs:sequence>
+			<xs:element name="extension" type="aos:extension" minOccurs="0" maxOccurs="1" />
+			
+			<xs:element name="object" type="aos:object_ref_element">
+				<xs:annotation>
+					<xs:documentation>
+						Reference to an object to be part of this layer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+		</xs:sequence>
 
 		<xs:attribute name="id" type="aos:layer_id" use="required" >
 			<xs:annotation>
@@ -1402,14 +1411,6 @@
 				<xs:documentation>
 					The Resource to use. If no resource is set, the object will not be perceptible even if it's a graphic object.
 					It still can contain children objects and behave like an invisible group.
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-
-		<xs:attribute name="layer" type="aos:layer_ref" use="optional" >
-			<xs:annotation>
-				<xs:documentation>
-					Id of a Layer this Object is bound to.
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
@@ -2332,6 +2333,19 @@
 		<xs:union memberTypes="aos:target_object_ref aos:special_object_ref" />
 
 	</xs:simpleType>
+
+	<xs:complexType name="object_ref_element">
+		<xs:annotation>
+			<xs:documentation> Reference to a specific object or to an automatic find of one or more references. Used as an element.</xs:documentation>
+		</xs:annotation>
+		
+		<xs:attribute name="id" type="aos:object_ref">
+			<xs:annotation>
+				<xs:documentation>Id of the referred object or automatic find id.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		
+	</xs:complexType>
 
 
 </xs:schema>
