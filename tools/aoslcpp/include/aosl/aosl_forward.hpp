@@ -802,6 +802,8 @@ namespace xml_schema
 
 #include "aosl/object_ref_forward.hpp"
 
+#include "aosl/object_ref_element_forward.hpp"
+
 // Forward declarations.
 //
 namespace aosl

@@ -30,9 +30,6 @@
 #include "aosl/resource_ref.hpp"
 #include "aosl/resource_ref.inl"
 
-#include "aosl/layer_ref.hpp"
-#include "aosl/layer_ref.inl"
-
 namespace aosl
 {
   // Object
@@ -239,41 +236,6 @@ namespace aosl
   resource (::std::auto_ptr< ResourceType > x)
   {
     this->resource_.set (x);
-  }
-
-  inline
-  const Object::LayerOptional& Object::
-  layer () const
-  {
-    return this->layer_;
-  }
-
-  inline
-  Object::LayerOptional& Object::
-  layer ()
-  {
-    return this->layer_;
-  }
-
-  inline
-  void Object::
-  layer (const LayerType& x)
-  {
-    this->layer_.set (x);
-  }
-
-  inline
-  void Object::
-  layer (const LayerOptional& x)
-  {
-    this->layer_ = x;
-  }
-
-  inline
-  void Object::
-  layer (::std::auto_ptr< LayerType > x)
-  {
-    this->layer_.set (x);
   }
 }
 

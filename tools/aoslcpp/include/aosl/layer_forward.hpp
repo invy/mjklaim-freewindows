@@ -592,6 +592,8 @@ namespace xml_schema
 
 #include "aosl/extension_forward.hpp"
 
+#include "aosl/object_ref_element_forward.hpp"
+
 #include "aosl/layer_id_forward.hpp"
 
 // Forward declarations.

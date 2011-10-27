@@ -7,8 +7,8 @@
 // conditions.
 //
 
-#ifndef AOSLCPP_AOSL__OBJECT_FORWARD_HPP
-#define AOSLCPP_AOSL__OBJECT_FORWARD_HPP
+#ifndef AOSLCPP_AOSL__OBJECT_REF_ELEMENT_FORWARD_HPP
+#define AOSLCPP_AOSL__OBJECT_REF_ELEMENT_FORWARD_HPP
 
 // Begin prologue.
 //
@@ -590,21 +590,13 @@ namespace xml_schema
   }
 }
 
-#include "aosl/property_forward.hpp"
-
-#include "aosl/extension_forward.hpp"
-
-#include "aosl/list_object_forward.hpp"
-
-#include "aosl/object_id_forward.hpp"
-
-#include "aosl/resource_ref_forward.hpp"
+#include "aosl/object_ref_forward.hpp"
 
 // Forward declarations.
 //
 namespace aosl
 {
-  class Object;
+  class Object_ref_element;
 }
 
 
@@ -615,4 +607,4 @@ namespace aosl
 //
 // End epilogue.
 
-#endif // AOSLCPP_AOSL__OBJECT_FORWARD_HPP
+#endif // AOSLCPP_AOSL__OBJECT_REF_ELEMENT_FORWARD_HPP

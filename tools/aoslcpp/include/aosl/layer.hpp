@@ -53,12 +53,16 @@
 
 #include "aosl/extension_forward.hpp"
 
+#include "aosl/object_ref_element_forward.hpp"
+
 #include "aosl/layer_id_forward.hpp"
 
 #undef XSD_DONT_INCLUDE_INLINE
 #else
 
 #include "aosl/extension_forward.hpp"
+
+#include "aosl/object_ref_element_forward.hpp"
 
 #include "aosl/layer_id_forward.hpp"
 
@@ -160,6 +164,77 @@ namespace aosl
      */
     void
     extension (::std::auto_ptr< ExtensionType > p);
+
+    //@}
+
+    /**
+     * @name object
+     *
+     * @brief Accessor and modifier functions for the %object
+     * required element.
+     *
+     * Reference to an object to be part of this layer.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
+    typedef ::aosl::Object_ref_element ObjectType;
+
+    /**
+     * @brief Element traits type.
+     */
+    typedef ::xsd::cxx::tree::traits< ObjectType, char > ObjectTraits;
+
+    /**
+     * @brief Return a read-only (constant) reference to the element.
+     *
+     * @return A constant reference to the element.
+     */
+    const ObjectType&
+    object () const;
+
+    /**
+     * @brief Return a read-write reference to the element.
+     *
+     * @return A reference to the element.
+     */
+    ObjectType&
+    object ();
+
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
+    void
+    object (const ObjectType& x);
+
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
+    void
+    object (::std::auto_ptr< ObjectType > p);
+
+    /**
+     * @brief Detach the element value from the object model.
+     *
+     * @return A pointer to the element value.
+     *
+     * Note that this function leaves the required element in 
+     * the original object model uninitialized.
+     */
+    ::std::auto_ptr< ObjectType >
+    detach_object ();
 
     //@}
 
@@ -304,7 +379,19 @@ namespace aosl
      * @brief Create an instance from the ultimate base and
      * initializers for required elements and attributes.
      */
-    Layer (const IdType&);
+    Layer (const ObjectType&,
+           const IdType&);
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes
+     * (auto_ptr version).
+     *
+     * This constructor will try to use the passed values directly
+     * instead of making copies.
+     */
+    Layer (::std::auto_ptr< ObjectType >&,
+           const IdType&);
 
     /**
      * @brief Create an instance from a DOM element.
@@ -366,6 +453,7 @@ namespace aosl
 
     protected:
     ExtensionOptional extension_;
+    ::xsd::cxx::tree::one< ObjectType > object_;
     ::xsd::cxx::tree::one< IdType > id_;
     ::xsd::cxx::tree::one< ActiveType > active_;
 
@@ -383,6 +471,9 @@ namespace aosl
 
 #include "aosl/extension.hpp"
 #include "aosl/extension.inl"
+
+#include "aosl/object_ref_element.hpp"
+#include "aosl/object_ref_element.inl"
 
 #include "aosl/layer_id.hpp"
 #include "aosl/layer_id.inl"

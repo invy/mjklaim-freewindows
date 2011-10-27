@@ -263,6 +263,8 @@
 
 #include "aosl/object_ref.hpp"
 
+#include "aosl/object_ref_element.hpp"
+
 #undef XSD_DONT_INCLUDE_INLINE
 #else
 
@@ -477,6 +479,8 @@
 #include "aosl/special_object_ref.hpp"
 
 #include "aosl/object_ref.hpp"
+
+#include "aosl/object_ref_element.hpp"
 
 #endif // XSD_DONT_INCLUDE_INLINE
 
@@ -701,6 +705,8 @@ namespace aosl
 #include "aosl/special_object_ref.inl"
 
 #include "aosl/object_ref.inl"
+
+#include "aosl/object_ref_element.inl"
 
 #endif // XSD_DONT_INCLUDE_INLINE
 

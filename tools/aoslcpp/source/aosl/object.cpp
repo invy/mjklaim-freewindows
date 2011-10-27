@@ -51,8 +51,7 @@ namespace aosl
     children_ (::xml_schema::Flags (), this),
     id_ (id, ::xml_schema::Flags (), this),
     active_ (active_default_value (), ::xml_schema::Flags (), this),
-    resource_ (::xml_schema::Flags (), this),
-    layer_ (::xml_schema::Flags (), this)
+    resource_ (::xml_schema::Flags (), this)
   {
   }
 
@@ -66,8 +65,7 @@ namespace aosl
     children_ (x.children_, f, this),
     id_ (x.id_, f, this),
     active_ (x.active_, f, this),
-    resource_ (x.resource_, f, this),
-    layer_ (x.layer_, f, this)
+    resource_ (x.resource_, f, this)
   {
   }
 
@@ -81,8 +79,7 @@ namespace aosl
     children_ (f, this),
     id_ (f, this),
     active_ (f, this),
-    resource_ (f, this),
-    layer_ (f, this)
+    resource_ (f, this)
   {
     if ((f & ::xml_schema::Flags::base) == 0)
     {
@@ -175,15 +172,6 @@ namespace aosl
         this->resource_.set (r);
         continue;
       }
-
-      if (n.name () == "layer" && n.namespace_ ().empty ())
-      {
-        ::std::auto_ptr< LayerType > r (
-          LayerTraits::create (i, f, this));
-
-        this->layer_.set (r);
-        continue;
-      }
     }
 
     if (!id_.present ())
@@ -242,9 +230,6 @@ namespace aosl
     if (!(x.resource () == y.resource ()))
       return false;
 
-    if (!(x.layer () == y.layer ()))
-      return false;
-
     return true;
   }
 
@@ -291,11 +276,6 @@ namespace aosl
     if (i.resource ())
     {
       o << ::std::endl << "resource: " << *i.resource ();
-    }
-
-    if (i.layer ())
-    {
-      o << ::std::endl << "layer: " << *i.layer ();
     }
 
     return o;
@@ -405,18 +385,6 @@ namespace aosl
           e));
 
       a << *i.resource ();
-    }
-
-    // layer
-    //
-    if (i.layer ())
-    {
-      ::xercesc::DOMAttr& a (
-        ::xsd::cxx::xml::dom::create_attribute (
-          "layer",
-          e));
-
-      a << *i.layer ();
     }
   }
 

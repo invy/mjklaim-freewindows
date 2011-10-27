@@ -61,8 +61,6 @@
 
 #include "aosl/resource_ref_forward.hpp"
 
-#include "aosl/layer_ref_forward.hpp"
-
 #undef XSD_DONT_INCLUDE_INLINE
 #else
 
@@ -75,8 +73,6 @@
 #include "aosl/object_id_forward.hpp"
 
 #include "aosl/resource_ref_forward.hpp"
-
-#include "aosl/layer_ref_forward.hpp"
 
 #endif // XSD_DONT_INCLUDE_INLINE
 
@@ -546,84 +542,6 @@ namespace aosl
     //@}
 
     /**
-     * @name layer
-     *
-     * @brief Accessor and modifier functions for the %layer
-     * optional attribute.
-     *
-     * Id of a Layer this Object is bound to.
-     */
-    //@{
-
-    /**
-     * @brief Attribute type.
-     */
-    typedef ::aosl::Layer_ref LayerType;
-
-    /**
-     * @brief Attribute optional container type.
-     */
-    typedef ::xsd::cxx::tree::optional< LayerType > LayerOptional;
-
-    /**
-     * @brief Attribute traits type.
-     */
-    typedef ::xsd::cxx::tree::traits< LayerType, char > LayerTraits;
-
-    /**
-     * @brief Return a read-only (constant) reference to the attribute
-     * container.
-     *
-     * @return A constant reference to the optional container.
-     */
-    const LayerOptional&
-    layer () const;
-
-    /**
-     * @brief Return a read-write reference to the attribute container.
-     *
-     * @return A reference to the optional container.
-     */
-    LayerOptional&
-    layer ();
-
-    /**
-     * @brief Set the attribute value.
-     *
-     * @param x A new value to set.
-     *
-     * This function makes a copy of its argument and sets it as
-     * the new value of the attribute.
-     */
-    void
-    layer (const LayerType& x);
-
-    /**
-     * @brief Set the attribute value.
-     *
-     * @param x An optional container with the new value to set.
-     *
-     * If the value is present in @a x then this function makes a copy 
-     * of this value and sets it as the new value of the attribute.
-     * Otherwise the attribute container is set the 'not present' state.
-     */
-    void
-    layer (const LayerOptional& x);
-
-    /**
-     * @brief Set the attribute value without copying.
-     *
-     * @param p A new value to use.
-     *
-     * This function will try to use the passed value directly instead
-     * of making a copy.
-     */
-    void
-    layer (::std::auto_ptr< LayerType > p);
-
-    //@}
-
-    /**
      * @name Constructors
      */
     //@{
@@ -699,7 +617,6 @@ namespace aosl
     ::xsd::cxx::tree::one< IdType > id_;
     ::xsd::cxx::tree::one< ActiveType > active_;
     ResourceOptional resource_;
-    LayerOptional layer_;
 
     //@endcond
   };
@@ -727,9 +644,6 @@ namespace aosl
 
 #include "aosl/resource_ref.hpp"
 #include "aosl/resource_ref.inl"
-
-#include "aosl/layer_ref.hpp"
-#include "aosl/layer_ref.inl"
 
 #endif // XSD_DONT_INCLUDE_INLINE
 

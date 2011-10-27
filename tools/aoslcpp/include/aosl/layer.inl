@@ -18,6 +18,9 @@
 #include "aosl/extension.hpp"
 #include "aosl/extension.inl"
 
+#include "aosl/object_ref_element.hpp"
+#include "aosl/object_ref_element.inl"
+
 #include "aosl/layer_id.hpp"
 #include "aosl/layer_id.inl"
 
@@ -59,6 +62,41 @@ namespace aosl
   extension (::std::auto_ptr< ExtensionType > x)
   {
     this->extension_.set (x);
+  }
+
+  inline
+  const Layer::ObjectType& Layer::
+  object () const
+  {
+    return this->object_.get ();
+  }
+
+  inline
+  Layer::ObjectType& Layer::
+  object ()
+  {
+    return this->object_.get ();
+  }
+
+  inline
+  void Layer::
+  object (const ObjectType& x)
+  {
+    this->object_.set (x);
+  }
+
+  inline
+  void Layer::
+  object (::std::auto_ptr< ObjectType > x)
+  {
+    this->object_.set (x);
+  }
+
+  inline
+  ::std::auto_ptr< Layer::ObjectType > Layer::
+  detach_object ()
+  {
+    return this->object_.detach ();
   }
 
   inline

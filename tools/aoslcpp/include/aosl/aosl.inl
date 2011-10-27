@@ -227,6 +227,8 @@
 
 #include "aosl/object_ref.inl"
 
+#include "aosl/object_ref_element.inl"
+
 namespace aosl
 {
 }

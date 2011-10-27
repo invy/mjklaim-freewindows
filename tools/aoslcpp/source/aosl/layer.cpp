@@ -44,9 +44,22 @@ namespace aosl
   //
 
   Layer::
-  Layer (const IdType& id)
+  Layer (const ObjectType& object,
+         const IdType& id)
   : ::xml_schema::Type (),
     extension_ (::xml_schema::Flags (), this),
+    object_ (object, ::xml_schema::Flags (), this),
+    id_ (id, ::xml_schema::Flags (), this),
+    active_ (active_default_value (), ::xml_schema::Flags (), this)
+  {
+  }
+
+  Layer::
+  Layer (::std::auto_ptr< ObjectType >& object,
+         const IdType& id)
+  : ::xml_schema::Type (),
+    extension_ (::xml_schema::Flags (), this),
+    object_ (object, ::xml_schema::Flags (), this),
     id_ (id, ::xml_schema::Flags (), this),
     active_ (active_default_value (), ::xml_schema::Flags (), this)
   {
@@ -58,6 +71,7 @@ namespace aosl
          ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
     extension_ (x.extension_, f, this),
+    object_ (x.object_, f, this),
     id_ (x.id_, f, this),
     active_ (x.active_, f, this)
   {
@@ -69,6 +83,7 @@ namespace aosl
          ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     extension_ (f, this),
+    object_ (f, this),
     id_ (f, this),
     active_ (f, this)
   {
@@ -103,7 +118,28 @@ namespace aosl
         }
       }
 
+      // object
+      //
+      if (n.name () == "object" && n.namespace_ () == "artofsequence.org/aosl/1.0")
+      {
+        ::std::auto_ptr< ObjectType > r (
+          ObjectTraits::create (i, f, this));
+
+        if (!object_.present ())
+        {
+          this->object_.set (r);
+          continue;
+        }
+      }
+
       break;
+    }
+
+    if (!object_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_element< char > (
+        "object",
+        "artofsequence.org/aosl/1.0");
     }
 
     while (p.more_attributes ())
@@ -159,6 +195,9 @@ namespace aosl
     if (!(x.extension () == y.extension ()))
       return false;
 
+    if (!(x.object () == y.object ()))
+      return false;
+
     if (!(x.id () == y.id ()))
       return false;
 
@@ -196,6 +235,7 @@ namespace aosl
       o << ::std::endl << "extension: " << *i.extension ();
     }
 
+    o << ::std::endl << "object: " << i.object ();
     o << ::std::endl << "id: " << i.id ();
     o << ::std::endl << "active: " << i.active ();
     return o;
@@ -241,6 +281,18 @@ namespace aosl
           e));
 
       s << *i.extension ();
+    }
+
+    // object
+    //
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "object",
+          "artofsequence.org/aosl/1.0",
+          e));
+
+      s << i.object ();
     }
 
     // id
