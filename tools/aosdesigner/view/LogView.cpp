@@ -1,6 +1,7 @@
 #include "LogView.hpp"
 
 #include <QTextEdit>
+#include <QScrollBar>
 
 
 namespace aosd
@@ -22,7 +23,7 @@ namespace view
 		setWidget( m_text_area.get() );
 
 		m_text_area->setReadOnly(true);
-
+		
 		util::register_log_output( [&]( util::Log::Level level, const std::string& message ){ print_log( level, message ); }, 1 );
 
 	}
@@ -40,6 +41,7 @@ namespace view
 
 
 		m_text_area->insertHtml( display_message );
+		m_text_area->verticalScrollBar()->setSliderPosition( m_text_area->verticalScrollBar()->maximum() );
 	}
 
 }
