@@ -33,7 +33,7 @@ namespace view
 		**/
 		bool load( const core::EditionSessionId& session_id );
 
-		/** Remove the current model from the 
+		/** Remove the current model from the view.
 		**/
 		void unload();
 
