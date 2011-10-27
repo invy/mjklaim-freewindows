@@ -18,10 +18,10 @@ namespace view
 	
 	CanvasObjectsModel::CanvasObjectsModel( const aosl::Canvas& canvas )
 	{
-		build_registry( canvas );
+		update( canvas );
 	}
 
-	void CanvasObjectsModel::build_registry( const aosl::Canvas& canvas )
+	void CanvasObjectsModel::update( const aosl::Canvas& canvas )
 	{
 		using namespace aoslcpp;
 		// go through the object tree and register each object

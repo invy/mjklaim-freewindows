@@ -42,7 +42,7 @@ namespace view
 		int rowCount( const QModelIndex& parent = QModelIndex() ) const;
 		int columnCount( const QModelIndex& parent = QModelIndex() ) const;
 
-		void build_registry( const aosl::Canvas& canvas );
+		void update( const aosl::Canvas& canvas );
 		void clear();
 		
 	private:
