@@ -6,6 +6,7 @@
 #include <memory>
 #include "core/EditionSessionId.hpp"
 #include "view/EditionToolView.hpp"
+#include "view/model/ModelViewBinder.hpp"
 #include "view/model/CanvasObjectsModel.hpp"
 
 class QTreeView;
@@ -35,15 +36,12 @@ namespace view
 	private:
 
 		std::unique_ptr<QTreeView> m_object_tree_view;
-		
-		std::map< core::EditionSessionId, std::unique_ptr< CanvasObjectsModel > > m_model_registry;
+		ModelViewBinder m_model_binder;
 		
 		void begin_edition_session( const core::EditionSession& edition_session );
 		void end_edition_session( const core::EditionSession& edition_session );
 		void connect_edition( const core::EditionSession& edition_session );
 		void disconnect_edition( const core::EditionSession& edition_session );
-
-		CanvasObjectsModel* find_model( const core::EditionSessionId& edition_id );
 
 		void begin_model( const core::EditionSession& edition_session );
 		void end_model( const core::EditionSessionId& edition_id );
