@@ -81,7 +81,7 @@ namespace aosl
      * @name id
      *
      * @brief Accessor and modifier functions for the %id
-     * optional attribute.
+     * required attribute.
      *
      * Id of the referred object or automatic find id.
      */
@@ -93,30 +93,24 @@ namespace aosl
     typedef ::aosl::Object_ref IdType;
 
     /**
-     * @brief Attribute optional container type.
-     */
-    typedef ::xsd::cxx::tree::optional< IdType > IdOptional;
-
-    /**
      * @brief Attribute traits type.
      */
     typedef ::xsd::cxx::tree::traits< IdType, char > IdTraits;
 
     /**
-     * @brief Return a read-only (constant) reference to the attribute
-     * container.
+     * @brief Return a read-only (constant) reference to the attribute.
      *
-     * @return A constant reference to the optional container.
+     * @return A constant reference to the attribute.
      */
-    const IdOptional&
+    const IdType&
     id () const;
 
     /**
-     * @brief Return a read-write reference to the attribute container.
+     * @brief Return a read-write reference to the attribute.
      *
-     * @return A reference to the optional container.
+     * @return A reference to the attribute.
      */
-    IdOptional&
+    IdType&
     id ();
 
     /**
@@ -131,27 +125,26 @@ namespace aosl
     id (const IdType& x);
 
     /**
-     * @brief Set the attribute value.
-     *
-     * @param x An optional container with the new value to set.
-     *
-     * If the value is present in @a x then this function makes a copy 
-     * of this value and sets it as the new value of the attribute.
-     * Otherwise the attribute container is set the 'not present' state.
-     */
-    void
-    id (const IdOptional& x);
-
-    /**
      * @brief Set the attribute value without copying.
      *
      * @param p A new value to use.
      *
-     * This function will try to use the passed value directly instead
-     * of making a copy.
+     * This function will try to use the passed value directly
+     * instead of making a copy.
      */
     void
     id (::std::auto_ptr< IdType > p);
+
+    /**
+     * @brief Detach the attribute value from the object model.
+     *
+     * @return A pointer to the attribute value.
+     *
+     * Note that this function leaves the required attribute in 
+     * the original object model uninitialized.
+     */
+    ::std::auto_ptr< IdType >
+    detach_id ();
 
     //@}
 
@@ -164,7 +157,7 @@ namespace aosl
      * @brief Create an instance from the ultimate base and
      * initializers for required elements and attributes.
      */
-    Object_ref_element ();
+    Object_ref_element (const IdType&);
 
     /**
      * @brief Create an instance from a DOM element.
@@ -225,7 +218,7 @@ namespace aosl
            ::xml_schema::Flags);
 
     protected:
-    IdOptional id_;
+    ::xsd::cxx::tree::one< IdType > id_;
 
     //@endcond
   };

@@ -44,22 +44,10 @@ namespace aosl
   //
 
   Layer::
-  Layer (const ObjectType& object,
-         const IdType& id)
+  Layer (const IdType& id)
   : ::xml_schema::Type (),
     extension_ (::xml_schema::Flags (), this),
-    object_ (object, ::xml_schema::Flags (), this),
-    id_ (id, ::xml_schema::Flags (), this),
-    active_ (active_default_value (), ::xml_schema::Flags (), this)
-  {
-  }
-
-  Layer::
-  Layer (::std::auto_ptr< ObjectType >& object,
-         const IdType& id)
-  : ::xml_schema::Type (),
-    extension_ (::xml_schema::Flags (), this),
-    object_ (object, ::xml_schema::Flags (), this),
+    object_ (::xml_schema::Flags (), this),
     id_ (id, ::xml_schema::Flags (), this),
     active_ (active_default_value (), ::xml_schema::Flags (), this)
   {
@@ -125,21 +113,11 @@ namespace aosl
         ::std::auto_ptr< ObjectType > r (
           ObjectTraits::create (i, f, this));
 
-        if (!object_.present ())
-        {
-          this->object_.set (r);
-          continue;
-        }
+        this->object_.push_back (r);
+        continue;
       }
 
       break;
-    }
-
-    if (!object_.present ())
-    {
-      throw ::xsd::cxx::tree::expected_element< char > (
-        "object",
-        "artofsequence.org/aosl/1.0");
     }
 
     while (p.more_attributes ())
@@ -235,7 +213,13 @@ namespace aosl
       o << ::std::endl << "extension: " << *i.extension ();
     }
 
-    o << ::std::endl << "object: " << i.object ();
+    for (Layer::ObjectConstIterator
+         b (i.object ().begin ()), e (i.object ().end ());
+         b != e; ++b)
+    {
+      o << ::std::endl << "object: " << *b;
+    }
+
     o << ::std::endl << "id: " << i.id ();
     o << ::std::endl << "active: " << i.active ();
     return o;
@@ -285,6 +269,9 @@ namespace aosl
 
     // object
     //
+    for (Layer::ObjectConstIterator
+         b (i.object ().begin ()), n (i.object ().end ());
+         b != n; ++b)
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -292,7 +279,7 @@ namespace aosl
           "artofsequence.org/aosl/1.0",
           e));
 
-      s << i.object ();
+      s << *b;
     }
 
     // id

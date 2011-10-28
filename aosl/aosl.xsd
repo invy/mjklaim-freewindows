@@ -1214,7 +1214,7 @@
 		<xs:sequence>
 			<xs:element name="extension" type="aos:extension" minOccurs="0" maxOccurs="1" />
 			
-			<xs:element name="object" type="aos:object_ref_element">
+			<xs:element name="object" type="aos:object_ref_element"  minOccurs="0" maxOccurs="unbounded" >
 				<xs:annotation>
 					<xs:documentation>
 						Reference to an object to be part of this layer.
@@ -2339,7 +2339,7 @@
 			<xs:documentation> Reference to a specific object or to an automatic find of one or more references. Used as an element.</xs:documentation>
 		</xs:annotation>
 		
-		<xs:attribute name="id" type="aos:object_ref">
+		<xs:attribute name="id" type="aos:object_ref" use="required" >
 			<xs:annotation>
 				<xs:documentation>Id of the referred object or automatic find id.</xs:documentation>
 			</xs:annotation>

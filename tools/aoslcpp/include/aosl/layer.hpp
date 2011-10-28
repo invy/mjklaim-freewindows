@@ -171,7 +171,7 @@ namespace aosl
      * @name object
      *
      * @brief Accessor and modifier functions for the %object
-     * required element.
+     * sequence element.
      *
      * Reference to an object to be part of this layer.
      */
@@ -183,58 +183,53 @@ namespace aosl
     typedef ::aosl::Object_ref_element ObjectType;
 
     /**
+     * @brief Element sequence container type.
+     */
+    typedef ::xsd::cxx::tree::sequence< ObjectType > ObjectSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
+    typedef ObjectSequence::iterator ObjectIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
+    typedef ObjectSequence::const_iterator ObjectConstIterator;
+
+    /**
      * @brief Element traits type.
      */
     typedef ::xsd::cxx::tree::traits< ObjectType, char > ObjectTraits;
 
     /**
-     * @brief Return a read-only (constant) reference to the element.
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
      *
-     * @return A constant reference to the element.
+     * @return A constant reference to the sequence container.
      */
-    const ObjectType&
+    const ObjectSequence&
     object () const;
 
     /**
-     * @brief Return a read-write reference to the element.
+     * @brief Return a read-write reference to the element sequence.
      *
-     * @return A reference to the element.
+     * @return A reference to the sequence container.
      */
-    ObjectType&
+    ObjectSequence&
     object ();
 
     /**
-     * @brief Set the element value.
+     * @brief Copy elements from a given sequence.
      *
-     * @param x A new value to set.
+     * @param s A sequence to copy elements from.
      *
-     * This function makes a copy of its argument and sets it as
-     * the new value of the element.
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
      */
     void
-    object (const ObjectType& x);
-
-    /**
-     * @brief Set the element value without copying.
-     *
-     * @param p A new value to use.
-     *
-     * This function will try to use the passed value directly
-     * instead of making a copy.
-     */
-    void
-    object (::std::auto_ptr< ObjectType > p);
-
-    /**
-     * @brief Detach the element value from the object model.
-     *
-     * @return A pointer to the element value.
-     *
-     * Note that this function leaves the required element in 
-     * the original object model uninitialized.
-     */
-    ::std::auto_ptr< ObjectType >
-    detach_object ();
+    object (const ObjectSequence& s);
 
     //@}
 
@@ -379,19 +374,7 @@ namespace aosl
      * @brief Create an instance from the ultimate base and
      * initializers for required elements and attributes.
      */
-    Layer (const ObjectType&,
-           const IdType&);
-
-    /**
-     * @brief Create an instance from the ultimate base and
-     * initializers for required elements and attributes
-     * (auto_ptr version).
-     *
-     * This constructor will try to use the passed values directly
-     * instead of making copies.
-     */
-    Layer (::std::auto_ptr< ObjectType >&,
-           const IdType&);
+    Layer (const IdType&);
 
     /**
      * @brief Create an instance from a DOM element.
@@ -453,7 +436,7 @@ namespace aosl
 
     protected:
     ExtensionOptional extension_;
-    ::xsd::cxx::tree::one< ObjectType > object_;
+    ObjectSequence object_;
     ::xsd::cxx::tree::one< IdType > id_;
     ::xsd::cxx::tree::one< ActiveType > active_;
 

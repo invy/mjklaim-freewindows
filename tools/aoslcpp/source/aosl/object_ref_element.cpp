@@ -44,9 +44,9 @@ namespace aosl
   //
 
   Object_ref_element::
-  Object_ref_element ()
+  Object_ref_element (const IdType& id)
   : ::xml_schema::Type (),
-    id_ (::xml_schema::Flags (), this)
+    id_ (id, ::xml_schema::Flags (), this)
   {
   }
 
@@ -91,6 +91,13 @@ namespace aosl
         this->id_.set (r);
         continue;
       }
+    }
+
+    if (!id_.present ())
+    {
+      throw ::xsd::cxx::tree::expected_attribute< char > (
+        "id",
+        "");
     }
   }
 
@@ -138,11 +145,7 @@ namespace aosl
   ::std::ostream&
   operator<< (::std::ostream& o, const Object_ref_element& i)
   {
-    if (i.id ())
-    {
-      o << ::std::endl << "id: " << *i.id ();
-    }
-
+    o << ::std::endl << "id: " << i.id ();
     return o;
   }
 }
@@ -177,14 +180,13 @@ namespace aosl
 
     // id
     //
-    if (i.id ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "id",
           e));
 
-      a << *i.id ();
+      a << i.id ();
     }
   }
 }

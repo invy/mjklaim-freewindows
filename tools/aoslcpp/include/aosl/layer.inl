@@ -65,38 +65,24 @@ namespace aosl
   }
 
   inline
-  const Layer::ObjectType& Layer::
+  const Layer::ObjectSequence& Layer::
   object () const
   {
-    return this->object_.get ();
+    return this->object_;
   }
 
   inline
-  Layer::ObjectType& Layer::
+  Layer::ObjectSequence& Layer::
   object ()
   {
-    return this->object_.get ();
+    return this->object_;
   }
 
   inline
   void Layer::
-  object (const ObjectType& x)
+  object (const ObjectSequence& s)
   {
-    this->object_.set (x);
-  }
-
-  inline
-  void Layer::
-  object (::std::auto_ptr< ObjectType > x)
-  {
-    this->object_.set (x);
-  }
-
-  inline
-  ::std::auto_ptr< Layer::ObjectType > Layer::
-  detach_object ()
-  {
-    return this->object_.detach ();
+    this->object_ = s;
   }
 
   inline
