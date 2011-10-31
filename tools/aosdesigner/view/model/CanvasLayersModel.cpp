@@ -30,16 +30,32 @@ namespace view
 			return QVariant();
 		
 		auto layer = m_layers[ index.row() ];
-		return QString::fromStdString( layer->id() );
+		UTILCPP_ASSERT_NOT_NULL( layer );
+
+		switch( role )
+		{
+		case( Qt::DisplayRole ):
+			{
+				return QString::fromStdString( layer->id() );
+			}
+		default:
+			{
+				return QVariant();
+			}
+		}
+
+		
 	}
 
 	void CanvasLayersModel::clear()
 	{
 		m_layers.clear();
+		emit dataChanged( QModelIndex(), QModelIndex() );
 	}
 
 	void CanvasLayersModel::update( const aosl::Canvas& canvas )
 	{
+		clear();
 		if( canvas.layers() )
 		{
 			const auto& layer_list = canvas.layers()->layer();
@@ -49,6 +65,12 @@ namespace view
 				m_layers.push_back( &layer );
 			});
 		}
+
+		if( !m_layers.empty() )
+		{
+			emit dataChanged( createIndex( 0, 0 ), createIndex( m_layers.size() - 1, 0 ) );
+		}
+		
 	}
 
 

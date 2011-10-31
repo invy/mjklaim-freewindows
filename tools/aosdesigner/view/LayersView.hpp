@@ -2,13 +2,19 @@
 #define HGUARD_AOSD_VIEW_LAYERSVIEW_HPP__
 #pragma once
 
-#include <QListView>
+#include <memory>
 #include "view/EditionToolView.hpp"
+#include "view/model/ModelViewBinder.hpp"
+
+class QListView;
+class QSplitter;
 
 namespace aosd
 {
 namespace view
 {
+	class LayerObjectsModel;
+	
 	/** Display the layers of a sequence, the associated objects and their state at the current story stage.
 		Allow activating and deactivating layers for the current stage.
 	**/
@@ -25,12 +31,15 @@ namespace view
 
 	private:
 
+		std::unique_ptr< QSplitter > m_splitter;
 		std::unique_ptr< QListView > m_layer_list_view;
 		std::unique_ptr< QListView > m_layer_objects_view;
 
+		ModelViewBinder m_layer_model_binder;
+		std::unique_ptr< LayerObjectsModel > m_layer_objects_model;
 
-		void begin_edition_session( const core::EditionSession& edition_session ){}
-		void end_edition_session( const core::EditionSession& edition_session ){}
+		void begin_edition_session( const core::EditionSession& edition_session );
+		void end_edition_session( const core::EditionSession& edition_session );
 		void connect_edition( const core::EditionSession& edition_session );
 		void disconnect_edition( const core::EditionSession& edition_session );
 		
