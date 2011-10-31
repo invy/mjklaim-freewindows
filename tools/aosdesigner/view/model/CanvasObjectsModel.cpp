@@ -23,6 +23,10 @@ namespace view
 
 	void CanvasObjectsModel::update( const aosl::Canvas& canvas )
 	{
+		clear();
+
+		beginResetModel();
+
 		using namespace aoslcpp;
 		// go through the object tree and register each object
 
@@ -37,15 +41,17 @@ namespace view
 
 		});
 
+		endResetModel();
+
 	}
 
 
 	void CanvasObjectsModel::clear()
 	{
+		beginResetModel();
 		m_object_registry.clear();
 		m_root_objects.clear();
-
-		reset();
+		endResetModel();
 	}
 	
 

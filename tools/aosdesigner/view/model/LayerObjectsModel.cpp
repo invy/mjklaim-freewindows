@@ -23,6 +23,7 @@ namespace view
 	{
 		clear();
 		
+		beginResetModel();
 		auto canvas = static_cast<const aosl::Canvas*>(layer._container()->_container());
 		if( !canvas )
 		{
@@ -46,17 +47,14 @@ namespace view
 			
 		});
 
-		if( !m_layer_objects.empty() )
-		{
-			emit dataChanged( createIndex( 0, 0 ), createIndex( m_layer_objects.size() - 1, 0 ) );
-		}
-		
+		endResetModel();
 	}
 
 	void LayerObjectsModel::clear()
 	{
+		beginResetModel();
 		m_layer_objects.clear();
-		emit dataChanged( QModelIndex(), QModelIndex() );
+		endResetModel();
 	}
 
 	QModelIndex LayerObjectsModel::index( int row, int column, const QModelIndex& parent /*= QModelIndex() */ ) const

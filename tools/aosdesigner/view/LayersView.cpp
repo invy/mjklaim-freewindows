@@ -25,8 +25,9 @@ namespace view
 	{
 		setWindowTitle(tr("Layers"));
 
-		connect( m_layer_list_view.get(), SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( react_layer_clicked( const QModelIndex& ) ) );
 		m_layer_objects_view->setModel( m_layer_objects_model.get() );
+		connect( m_layer_list_view.get(), SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( react_layer_clicked( const QModelIndex& ) ) );
+		
 
 		m_splitter->setOrientation( Qt::Vertical );
 		m_splitter->addWidget( m_layer_list_view.get() );
@@ -79,10 +80,8 @@ namespace view
 
 		if( !m_last_selected_layer || m_last_selected_layer != layer )
 		{
-			//m_layer_objects_view->setModel( nullptr );
 			m_layer_objects_model->update( *layer );
 			m_last_selected_layer = layer;
-			//m_layer_objects_view->setModel( m_layer_objects_model.get() );
 		}
 	}
 

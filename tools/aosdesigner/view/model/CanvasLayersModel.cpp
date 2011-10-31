@@ -56,13 +56,16 @@ namespace view
 
 	void CanvasLayersModel::clear()
 	{
+		beginResetModel();
 		m_layers.clear();
-		emit dataChanged( QModelIndex(), QModelIndex() );
+		endResetModel();
 	}
 
 	void CanvasLayersModel::update( const aosl::Canvas& canvas )
 	{
 		clear();
+
+		beginResetModel();
 		if( canvas.layers() )
 		{
 			const auto& layer_list = canvas.layers()->layer();
@@ -77,6 +80,7 @@ namespace view
 		{
 			emit dataChanged( createIndex( 0, 0 ), createIndex( m_layers.size() - 1, 0 ) );
 		}
+		endResetModel();
 		
 	}
 
