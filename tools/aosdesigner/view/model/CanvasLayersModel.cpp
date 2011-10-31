@@ -87,7 +87,7 @@ namespace view
 
 		UTILCPP_ASSERT( !parent.isValid(), "Try to ge the index of child of layer but there is no child!" );
 
-		return createIndex( row, column, (void*)&m_layers[row] );
+		return createIndex( row, column, (void*)m_layers[row] );
 	}
 
 	QModelIndex CanvasLayersModel::parent( const QModelIndex& index ) const

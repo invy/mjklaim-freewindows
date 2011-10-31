@@ -1,5 +1,7 @@
 #include "LayersView.hpp"
 
+#include "utilcpp/Log.hpp"
+
 #include <QSplitter>
 #include <QTreeView>
 
@@ -22,7 +24,7 @@ namespace view
 		setWindowTitle(tr("Layers"));
 
 		m_layer_objects_view->setModel( m_layer_objects_model.get() );
-		connect( m_layer_objects_view.get(), SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( react_layer_clicked( const QModelIndex& ) ) );
+		connect( m_layer_list_view.get(), SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( react_layer_clicked( const QModelIndex& ) ) );
 
 		m_splitter->setOrientation( Qt::Vertical );
 		m_splitter->addWidget( m_layer_list_view.get() );
@@ -65,7 +67,8 @@ namespace view
 
 	void LayersView::react_layer_clicked( const QModelIndex& layer_index )
 	{
-
+		auto layer = static_cast<const aosl::Layer*>( layer_index.internalPointer() );
+		UTILCPP_LOG << "Clicked on Layer '" << layer->id() << "'";
 	}
 
 
