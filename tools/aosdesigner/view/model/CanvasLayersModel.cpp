@@ -104,7 +104,7 @@ namespace view
 	{
 		if( parent.isValid() )
 		{
-			return 0;
+			return false;
 		}
 
 		return !m_layers.empty();

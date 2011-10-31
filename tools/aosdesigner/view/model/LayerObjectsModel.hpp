@@ -3,7 +3,7 @@
 #pragma once
 
 #include <vector>
-#include <QAbstractListModel>
+#include <QAbstractItemModel>
 
 namespace aosl
 {
@@ -18,20 +18,28 @@ namespace view
 {
 
 	class LayerObjectsModel
-		: public QAbstractListModel
+		: public QAbstractItemModel
 	{
 		Q_OBJECT
 	public:
 
 		LayerObjectsModel();
-		explicit LayerObjectsModel( const aosl::Canvas& canvas, const aosl::Layer& layer );
 		
-		int rowCount( const QModelIndex& parent = QModelIndex() ) const;
+
+		QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const;
+		QModelIndex parent( const QModelIndex& index ) const;
+
+		Qt::ItemFlags flags( const QModelIndex& index ) const;
 		QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
+		QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
 
-		void update( const aosl::Canvas& canvas, const aosl::Layer& layer );
+		bool hasChildren( const QModelIndex & parent = QModelIndex() ) const;
+		int rowCount( const QModelIndex& parent = QModelIndex() ) const;
+		int columnCount( const QModelIndex& parent = QModelIndex() ) const;
+
+
+		void update( const aosl::Layer& layer );
 		void clear();
-
 
 	private:
 

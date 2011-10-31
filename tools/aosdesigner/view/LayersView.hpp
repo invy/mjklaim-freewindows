@@ -10,6 +10,11 @@
 class QTreeView;
 class QSplitter;
 
+namespace aosl
+{
+	class Layer;
+}
+
 namespace aosd
 {
 namespace view
@@ -43,11 +48,14 @@ namespace view
 		ModelViewBinder m_layer_model_binder;
 		std::unique_ptr< LayerObjectsModel > m_layer_objects_model;
 
+		const aosl::Layer* m_last_selected_layer;
+
 		void begin_edition_session( const core::EditionSession& edition_session );
 		void end_edition_session( const core::EditionSession& edition_session );
 		void connect_edition( const core::EditionSession& edition_session );
 		void disconnect_edition( const core::EditionSession& edition_session );
 		
+		void update_layer_objects( const QModelIndex& );
 		
 
 	};

@@ -5,6 +5,7 @@
 #include <QSplitter>
 #include <QTreeView>
 
+#include "aosl/layer.hpp"
 #include "core/EditionSession.hpp"
 #include "view/model/CanvasLayersModel.hpp"
 #include "view/model/LayerObjectsModel.hpp"
@@ -20,11 +21,12 @@ namespace view
 		, m_layer_objects_view( new QTreeView() )
 		, m_layer_model_binder( *m_layer_list_view )
 		, m_layer_objects_model( new LayerObjectsModel() )
+		, m_last_selected_layer( nullptr )
 	{
 		setWindowTitle(tr("Layers"));
 
-		m_layer_objects_view->setModel( m_layer_objects_model.get() );
 		connect( m_layer_list_view.get(), SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( react_layer_clicked( const QModelIndex& ) ) );
+		m_layer_objects_view->setModel( m_layer_objects_model.get() );
 
 		m_splitter->setOrientation( Qt::Vertical );
 		m_splitter->addWidget( m_layer_list_view.get() );
@@ -35,6 +37,7 @@ namespace view
 
 	LayersView::~LayersView()
 	{
+		m_layer_objects_view->setModel( nullptr );
 	}
 
 	void LayersView::connect_edition( const core::EditionSession& edition_session )
@@ -46,7 +49,7 @@ namespace view
 			begin_edition_session( edition_session );
 			m_layer_model_binder.load( edition_session.id() );
 		}
-
+		
 	}
 
 	void LayersView::disconnect_edition( const core::EditionSession& edition_session )
@@ -67,8 +70,20 @@ namespace view
 
 	void LayersView::react_layer_clicked( const QModelIndex& layer_index )
 	{
+		update_layer_objects( layer_index );
+	}
+
+	void LayersView::update_layer_objects( const QModelIndex& layer_index )
+	{
 		auto layer = static_cast<const aosl::Layer*>( layer_index.internalPointer() );
-		UTILCPP_LOG << "Clicked on Layer '" << layer->id() << "'";
+
+		if( !m_last_selected_layer || m_last_selected_layer != layer )
+		{
+			//m_layer_objects_view->setModel( nullptr );
+			m_layer_objects_model->update( *layer );
+			m_last_selected_layer = layer;
+			//m_layer_objects_view->setModel( m_layer_objects_model.get() );
+		}
 	}
 
 
