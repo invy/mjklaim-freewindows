@@ -19,10 +19,17 @@ namespace view
 		update( canvas );
 	}
 
-	int CanvasLayersModel::rowCount( const QModelIndex& parent /*= QModelIndex() */ ) const
+
+	QVariant CanvasLayersModel::headerData( int section, Qt::Orientation orientation, int role /*= Qt::DisplayRole */ ) const
 	{
-		return m_layers.size();
+		if( role == Qt::DisplayRole )
+		{
+			if( section == 0 ) return QString( tr("Layer Id") );
+		}
+
+		return QVariant();
 	}
+
 
 	QVariant CanvasLayersModel::data( const QModelIndex& index, int role /*= Qt::DisplayRole */ ) const
 	{
@@ -72,6 +79,51 @@ namespace view
 		}
 		
 	}
+
+	QModelIndex CanvasLayersModel::index( int row, int column, const QModelIndex& parent /*= QModelIndex() */ ) const
+	{
+		if( m_layers.empty() )
+			return QModelIndex();
+
+		UTILCPP_ASSERT( !parent.isValid(), "Try to ge the index of child of layer but there is no child!" );
+
+		return createIndex( row, column, (void*)&m_layers[row] );
+	}
+
+	QModelIndex CanvasLayersModel::parent( const QModelIndex& index ) const
+	{
+		return QModelIndex();
+	}
+
+	Qt::ItemFlags CanvasLayersModel::flags( const QModelIndex& index ) const
+	{
+		return QAbstractItemModel::flags( index ) | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled;
+	}
+
+	bool CanvasLayersModel::hasChildren( const QModelIndex & parent /*= QModelIndex() */ ) const
+	{
+		if( parent.isValid() )
+		{
+			return 0;
+		}
+
+		return !m_layers.empty();
+	}
+
+	int CanvasLayersModel::rowCount( const QModelIndex& parent /*= QModelIndex() */ ) const
+	{
+		if( parent.isValid() )
+		{
+			return 0;
+		}
+		return m_layers.size();
+	}
+
+	int CanvasLayersModel::columnCount( const QModelIndex& parent /*= QModelIndex() */ ) const
+	{
+		return 1;
+	}
+
 
 
 }

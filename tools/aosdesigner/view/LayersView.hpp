@@ -3,10 +3,11 @@
 #pragma once
 
 #include <memory>
+#include <QModelIndex>
 #include "view/EditionToolView.hpp"
 #include "view/model/ModelViewBinder.hpp"
 
-class QListView;
+class QTreeView;
 class QSplitter;
 
 namespace aosd
@@ -29,11 +30,15 @@ namespace view
 		~LayersView();
 
 
+	private slots:
+
+		void react_layer_clicked( const QModelIndex& );
+
 	private:
 
 		std::unique_ptr< QSplitter > m_splitter;
-		std::unique_ptr< QListView > m_layer_list_view;
-		std::unique_ptr< QListView > m_layer_objects_view;
+		std::unique_ptr< QTreeView > m_layer_list_view;
+		std::unique_ptr< QTreeView > m_layer_objects_view;
 
 		ModelViewBinder m_layer_model_binder;
 		std::unique_ptr< LayerObjectsModel > m_layer_objects_model;
@@ -43,7 +48,7 @@ namespace view
 		void connect_edition( const core::EditionSession& edition_session );
 		void disconnect_edition( const core::EditionSession& edition_session );
 		
-
+		
 
 	};
 

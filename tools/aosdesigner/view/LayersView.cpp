@@ -1,7 +1,7 @@
 #include "LayersView.hpp"
 
 #include <QSplitter>
-#include <QListView>
+#include <QTreeView>
 
 #include "core/EditionSession.hpp"
 #include "view/model/CanvasLayersModel.hpp"
@@ -11,17 +11,18 @@ namespace aosd
 {
 namespace view
 {
-
+	 
 	LayersView::LayersView()
 		: m_splitter( new QSplitter() )
-		, m_layer_list_view( new QListView() )
-		, m_layer_objects_view( new QListView() )
+		, m_layer_list_view( new QTreeView() )
+		, m_layer_objects_view( new QTreeView() )
 		, m_layer_model_binder( *m_layer_list_view )
 		, m_layer_objects_model( new LayerObjectsModel() )
 	{
 		setWindowTitle(tr("Layers"));
 
 		m_layer_objects_view->setModel( m_layer_objects_model.get() );
+		connect( m_layer_objects_view.get(), SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( react_layer_clicked( const QModelIndex& ) ) );
 
 		m_splitter->setOrientation( Qt::Vertical );
 		m_splitter->addWidget( m_layer_list_view.get() );
@@ -44,8 +45,6 @@ namespace view
 			m_layer_model_binder.load( edition_session.id() );
 		}
 
-		// now update the object list for the selected layer
-		
 	}
 
 	void LayersView::disconnect_edition( const core::EditionSession& edition_session )
@@ -62,6 +61,11 @@ namespace view
 	void LayersView::end_edition_session( const core::EditionSession& edition_session )
 	{
 		m_layer_model_binder.remove( edition_session.id() );
+	}
+
+	void LayersView::react_layer_clicked( const QModelIndex& layer_index )
+	{
+
 	}
 
 
