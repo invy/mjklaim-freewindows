@@ -79,6 +79,7 @@ set( AOSDESIGNER_VIEW_MODEL_HEADERS
 	${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasObjectsModel.hpp
 	${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasLayersModel.hpp
 	${AOSDESIGNER_VIEW_MODEL_DIR}/LayerObjectsModel.hpp
+	${AOSDESIGNER_VIEW_MODEL_DIR}/LastChangesModel.hpp
 	${AOSDESIGNER_VIEW_MODEL_DIR}/ModelViewBinder.hpp
 )
 
@@ -156,6 +157,7 @@ set( AOSDESIGNER_VIEW_MODEL_SOURCES
 	${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasObjectsModel.cpp
 	${AOSDESIGNER_VIEW_MODEL_DIR}/CanvasLayersModel.cpp
 	${AOSDESIGNER_VIEW_MODEL_DIR}/LayerObjectsModel.cpp
+	${AOSDESIGNER_VIEW_MODEL_DIR}/LastChangesModel.cpp
 	${AOSDESIGNER_VIEW_MODEL_DIR}/ModelViewBinder.cpp
 )
 
