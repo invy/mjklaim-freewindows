@@ -12,8 +12,8 @@ namespace aoslcpp
 namespace aosl
 {
 	class Story;
+	class Canvas;
 	class Change;
-	class Move;
 }
 
 namespace aosd

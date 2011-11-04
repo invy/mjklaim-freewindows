@@ -62,7 +62,7 @@ namespace view
 		if( m_layer_objects.empty() )
 			return QModelIndex();
 
-		UTILCPP_ASSERT( !parent.isValid(), "Try to ge the index of child of layer's object but there it's forbidden!" );
+		UTILCPP_ASSERT( !parent.isValid(), "Try to ge the index of child of layer's object but it's forbidden!" );
 
 		return createIndex( row, column, (void*)m_layer_objects[row] );
 	}
