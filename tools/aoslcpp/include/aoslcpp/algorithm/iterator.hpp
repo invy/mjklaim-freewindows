@@ -14,7 +14,7 @@ namespace aosl
 
 namespace aoslcpp
 {
-
+	/** Tree node with informations about the node and the parent. */
 	template< class T >
 	class TreeNodeInfos
 	{
