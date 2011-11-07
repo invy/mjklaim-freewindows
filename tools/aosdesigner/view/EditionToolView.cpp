@@ -66,21 +66,25 @@ namespace view
 	
 	void EditionToolView::react_edition_session_begin( const core::EditionSession& edition_session )
 	{
+		UTILCPP_ASSERT( edition_session.is_valid(), "Beginning invalid edition session!" );
 		begin_edition_session( edition_session );
 	}
 
 	void EditionToolView::react_edition_session_end( const core::EditionSession& edition_session )
 	{
+		UTILCPP_ASSERT( edition_session.is_valid(), "Ending invalid edition session!" );
 		end_edition_session( edition_session );
 	}
 
 	void EditionToolView::react_edition_selected( const core::EditionSession& edition_session )
 	{
+		UTILCPP_ASSERT( edition_session.is_valid(), "Selected invalid edition session!" );
 		connect_edition( edition_session );
 	}
 
 	void EditionToolView::react_edition_deselected( const core::EditionSession& edition_session )
 	{
+		UTILCPP_ASSERT( edition_session.is_valid(), "Deselected invalid edition session!" );
 		disconnect_edition( edition_session );
 	}
 
