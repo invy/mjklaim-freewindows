@@ -52,6 +52,8 @@ namespace core
 		bool is_valid() const { return m_sequence && m_interpreter; }
 
 		const aosl::Canvas& canvas() const { return m_interpreter->canvas().canvas(); }
+		const aosl::Story& story() const { return m_interpreter->story(); }
+		const aoslcpp::StoryPath& path() const { return m_interpreter->path(); }
 		
 	public slots:
 
