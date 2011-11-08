@@ -18,7 +18,12 @@ namespace aoslcpp
 		, m_canvas( sequence.canvas() ) // copy the initial canvas
 		, m_navigation( sequence.story().navigation() ? *sequence.story().navigation() : aosl::Navigation() ) // empty navigation if not provided by the sequence
 	{
-		
+		// deduce the automatic next move if any
+		if( !m_story.stages().stage().empty() )
+		{
+			m_auto_next_move = auto_next( story(), aosl::Stage_ref( m_story.stages().stage().front().id() ) );
+		}
+
 	}
 
 	void SequenceInterpreter::go( const aosl::Event& event )
