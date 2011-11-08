@@ -24,18 +24,22 @@ namespace view
 	{
 		clear();
 
-		auto last_move = aoslcpp::find_move( story, current_path.last_move() );
-
-		if( last_move )
+		if( !current_path.empty() ) // we are not at the beginning of the story
 		{
-			beginResetModel();
+			auto last_move = aoslcpp::find_move( story, current_path.last_move() );
 
-			const auto& last_changes = last_move->change();
-			std::for_each( std::begin(last_changes), std::end(last_changes), [&]( const aosl::Change& change ){ m_last_changes.push_back(&change); });
+			if( last_move )
+			{
+				beginResetModel();
 
-			endResetModel();
+				const auto& last_changes = last_move->change();
+				std::for_each( std::begin(last_changes), std::end(last_changes), [&]( const aosl::Change& change ){ m_last_changes.push_back(&change); });
+
+				endResetModel();
+			}
+
 		}
-
+		
 		
 	}
 
