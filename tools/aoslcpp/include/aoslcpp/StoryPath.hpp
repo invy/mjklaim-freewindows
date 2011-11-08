@@ -38,10 +38,10 @@ namespace aoslcpp
 		void step_back( std::size_t step_count = 1 );
 
 		/** @return The current stage. */
-		aosl::Stage_ref current_stage() const { return m_steps.empty() ? aosl::Stage_ref() : m_steps.back().stage; }
+		aosl::Stage_ref current_stage() const { return m_steps.empty() ? aosl::Stage_ref("") : m_steps.back().stage; }
 
 		/** @return The last move through which we go to the current stage. */
-		aosl::Move_ref last_move() const { return m_steps.empty() ? aosl::Move_ref() : m_steps.back().move; }
+		aosl::Move_ref last_move() const { return m_steps.empty() ? aosl::Move_ref("") : m_steps.back().move; }
 		
 		/** @return Count of steps we've gone through. */
 		std::size_t step_count() const { return m_steps.size(); }
