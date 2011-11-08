@@ -35,8 +35,8 @@ namespace view
 
 	void ModelViewBinder::clear()
 	{
+		unload();
 		m_registry.clear();
-		m_view.setModel( nullptr );
 	}
 
 	bool ModelViewBinder::load( const core::EditionSessionId& session_id )
@@ -45,6 +45,7 @@ namespace view
 		if( model )
 		{
 			bind_to_view( model );
+			m_id = session_id;
 			return true;
 		}
 		else
@@ -55,6 +56,7 @@ namespace view
 	void ModelViewBinder::unload()
 	{
 		bind_to_view( nullptr );
+		m_id = core::EditionSessionId();
 	}
 
 
