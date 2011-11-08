@@ -37,10 +37,13 @@ namespace view
 		**/
 		void unload();
 
+		QAbstractItemModel* current_model() const { return m_model; }
+
 	private:
 
 		std::map< core::EditionSessionId, std::unique_ptr< QAbstractItemModel > > m_registry;
 		QAbstractItemView& m_view;
+		QAbstractItemModel* m_model;
 
 		QAbstractItemModel* find( const core::EditionSessionId& session_id );
 		void bind_to_view( QAbstractItemModel* model );

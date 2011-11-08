@@ -12,6 +12,7 @@ namespace view
 
 	ModelViewBinder::ModelViewBinder( QAbstractItemView& viewer )
 		: m_view( viewer )
+		, m_model( nullptr )
 	{
 
 	}
@@ -53,7 +54,7 @@ namespace view
 
 	void ModelViewBinder::unload()
 	{
-		m_view.setModel( nullptr );
+		bind_to_view( nullptr );
 	}
 
 
@@ -69,6 +70,7 @@ namespace view
 	void ModelViewBinder::bind_to_view( QAbstractItemModel* model )
 	{
 		m_view.setModel( model );
+		m_model = model;
 	}
 
 }
