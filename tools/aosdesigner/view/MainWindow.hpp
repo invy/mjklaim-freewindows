@@ -4,12 +4,13 @@
 
 #include <memory>
 #include <QMainWindow>
-#include <QTabWidget>
 
 #include "view/ForwardView.hpp"
 #include "core/ForwardCore.hpp"
 #include "core/EditionSessionId.hpp"
 #include "view/DesignerActions.hpp"
+
+class QMdiArea;
 
 namespace Ui
 {
@@ -33,8 +34,8 @@ namespace view
 		MainWindow();
 		~MainWindow();
 
-		/** Clear the tabs currently open in the center of the window. */
-		void clear_tabs();
+		/** Clear the windows currently open in the center of the window. */
+		void clear_windows();
 		
 		/** Open edition mode : all edition views are open or available. **/
 		void open_edition();
@@ -78,7 +79,7 @@ namespace view
 		std::unique_ptr<Ui::MainWindow> m_ui;
 
 		/** Tabs at the center of the window. */
-		std::unique_ptr<QTabWidget> m_central_tabs;
+		std::unique_ptr<QMdiArea> m_central_area;
 
 		// Components of the edition interface:
 		std::unique_ptr<ProjectView> m_project_view;

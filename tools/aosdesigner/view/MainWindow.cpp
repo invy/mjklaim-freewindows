@@ -1,6 +1,6 @@
 #include "MainWindow.hpp"
 
-#include <QTabWidget>
+#include <QMdiArea>
 #include <QKeyEvent>
 
 #include "ui_MainWindow.h"
@@ -28,7 +28,7 @@ namespace view
 		: QMainWindow( nullptr )
 		, m_edition_mode( false )
 		, m_ui( new Ui::MainWindow )
-		, m_central_tabs( new QTabWidget() )
+		, m_central_area( new QMdiArea() )
 		, m_project_view( new ProjectView() )
 		, m_changes_view( new ChangesView() )
 		, m_objects_view( new ObjectsView() )
@@ -42,7 +42,7 @@ namespace view
 		setWindowTitle( tr("Art Of Sequence") );
 
 		// basic infrastructure
-		setCentralWidget( m_central_tabs.get() );
+		setCentralWidget( m_central_area.get() );
 
 		// use default views setup 
 		// TODO : add a way to get a saved view setup
@@ -95,7 +95,7 @@ namespace view
 
 		disconnect( &project, 0, this, 0 );
 
-		clear_tabs();
+		clear_windows();
 
 	}
 
@@ -103,12 +103,9 @@ namespace view
 
 	void MainWindow::add_editor( std::unique_ptr<Editor>&& editor )
 	{
+		m_central_area->addSubWindow( editor.get() );
+		editor->show();
 		m_editors.push_back( std::move( editor ) );
-
-		const QString tab_title = m_editors.back()->title();
-		m_central_tabs->addTab( m_editors.back().get(), tab_title );
-
-		m_central_tabs->setCurrentIndex( m_central_tabs->count() - 1 );
 	}
 
 
@@ -122,7 +119,7 @@ namespace view
 		if( editor_it != end(m_editors) )
 		{
 			auto& editor = *editor_it;
-			m_central_tabs->removeTab( m_central_tabs->indexOf( editor.get() ) );
+			m_central_area->removeSubWindow( editor.get() );
 			
 			m_editors.erase( editor_it );
 		}
@@ -180,7 +177,7 @@ namespace view
 	{
 		m_edition_mode = false;
 
-		clear_tabs();
+		clear_windows();
 		/*
 		m_project_view->setVisible(false);
 		m_changes_view->setVisible(false);
@@ -199,9 +196,9 @@ namespace view
 	}
 
 
-	void MainWindow::clear_tabs()
+	void MainWindow::clear_windows()
 	{
-		m_central_tabs->clear();
+		m_central_area->closeAllSubWindows();
 		m_editors.clear();
 	}
 
@@ -241,7 +238,7 @@ namespace view
 		if( find_it != m_editors.end() )
 		{
 			Editor& editor = **find_it;
-			m_central_tabs->setCurrentIndex( m_central_tabs->indexOf( &editor ) );
+			editor.setFocus();
 		}
 	}
 
