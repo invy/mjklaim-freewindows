@@ -48,9 +48,9 @@ namespace core
 		const std::string& name() const { return m_name; }
 
 		/// Unique identifier of this Sequence.
-		const SequenceId& id() const { return m_id; }
+		SequenceId id() const { return m_id; }
 
-		const boost::filesystem::path& location() const { return m_location; }
+		boost::filesystem::path location() const { return m_location; }
 		boost::filesystem::path full_location() const;
 		
 		/// Project in which this sequence is loaded.

@@ -35,7 +35,8 @@ namespace core
 	EditionSession::EditionSession( const Project& project, const bfs::path& file_path )
 		: m_project( project )
 		, m_sequence( nullptr )
-		, m_id( to_string( boost::uuids::nil_generator()() ) )
+		, m_id( EditionSessionId_INVALID )
+		, m_save_filepath( file_path )
 	{
 		using namespace boost::property_tree;
 

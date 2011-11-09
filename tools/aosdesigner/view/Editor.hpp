@@ -32,9 +32,11 @@ namespace view
 		explicit Editor( const core::EditionSession& edition_session );
 		~Editor();
 
-		const QString& title() const { return m_title; }
+		QString title() const { return m_title; }
 
-		const core::EditionSessionId& session_id() const { return m_session_id; }
+		core::EditionSessionId session_id() const { return m_session_id; }
+
+		bool is_closing() const { return m_is_closing; }
 
 	private slots:
 
@@ -49,7 +51,11 @@ namespace view
 
 		QString m_title;
 		core::EditionSessionId m_session_id;
+
+		bool m_is_closing;
 		
+		/** We need to delete the edition session when closed. */
+		void closeEvent( QCloseEvent* closeEvent );
 	};
 
 }

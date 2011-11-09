@@ -2,9 +2,10 @@
 #define HGUARD_AOSD_CORE_PROJECT_HPP__
 #pragma once
 
+#include <memory>
 #include <string>
+#include <vector>
 #include <boost/filesystem/path.hpp>
-#include <boost/ptr_container/ptr_vector.hpp>
 #include <QObject>
 #include "core/SequenceId.hpp"
 #include "core/EditionSessionId.hpp"
@@ -39,14 +40,14 @@ namespace core
 		~Project();
 
 		/// Path of the file that contain all the project's informations.
-		const bfs::path& location() const { return m_location; }
+		bfs::path location() const { return m_location; }
 		
 		/// Path of the directory where this project's file is located.
-		const bfs::path& directory_path() const { return m_directory_path; }
+		bfs::path directory_path() const { return m_directory_path; }
 
 
 		/** Name of the project. */
-		const std::string& name() const { return m_name; }
+		std::string name() const { return m_name; }
 
 		/** Call the provided function for each Sequence in this project but don't allow to modify them. */
 		void foreach_sequence( std::function< void ( const Sequence& sequence )> func ) const;
@@ -54,7 +55,7 @@ namespace core
 		/** Call the provided function for each edition session in this project but don't allow to modify them. */
 		void foreach_edition( std::function< void ( const EditionSession& edition )> func ) const;
 
-		const Sequence* find_sequence( const SequenceId& sequence_id ) const {  return const_cast<Project*>(this)->find_sequence(sequence_id); }
+		const Sequence* find_sequence( SequenceId sequence_id ) const {  return const_cast<Project*>(this)->find_sequence(sequence_id); }
 
 		/** Current selected edition session or null if none or if there is no project open. */
 		const EditionSession* selected_edition_session() const { return m_selected_session; }
@@ -81,7 +82,7 @@ namespace core
 		bool new_edition();
 
 		/** Delete an edition session of the project. */
-		bool delete_edition( const EditionSessionId& session_id );
+		bool delete_edition( EditionSessionId session_id );
 
 		/** Select the referred edition session. */
 		void select_edition_session( const EditionSessionId& session_id );
@@ -133,10 +134,10 @@ namespace core
 	private:
 
 		/// Sequences for this project.
-		boost::ptr_vector< Sequence > m_sequences;
+		std::vector<std::unique_ptr< Sequence >> m_sequences;
 
 		/// Sequence edition sessions.
-		boost::ptr_vector< EditionSession > m_edit_sessions;
+		std::vector<std::unique_ptr< EditionSession >> m_edit_sessions;
 
 		/// Name of the project.
 		std::string m_name;
@@ -152,10 +153,10 @@ namespace core
 
 
 		/// Add a Sequence to this project.
-		void add_sequence( std::unique_ptr<Sequence>&& sequence );
+		void add_sequence( std::unique_ptr<Sequence> sequence );
 
 		/// Add an edition session to this project.
-		void add_edition( std::unique_ptr<EditionSession>&& sequence );
+		void add_edition( std::unique_ptr<EditionSession> sequence );
 
 		/** Search for a Sequence having the provided id.
 			@return The Sequence we looked after or null if not found. 
@@ -164,7 +165,7 @@ namespace core
 
 		/** Search for an edition session having the provided id.
 		**/
-		EditionSession* find_edition( const EditionSessionId& session_id );
+		EditionSession* find_edition( EditionSessionId session_id );
 
 	};
 

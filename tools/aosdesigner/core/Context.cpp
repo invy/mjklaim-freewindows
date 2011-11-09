@@ -177,7 +177,7 @@ namespace core
 		return false;
 	}
 
-	void Context::select_edition_session( const EditionSessionId& session_id )
+	void Context::select_edition_session( EditionSessionId session_id )
 	{
 		if( is_project_open() )
 		{
@@ -195,7 +195,7 @@ namespace core
 		return nullptr;
 	}
 
-	bool Context::delete_edition( const EditionSessionId& session_id )
+	bool Context::delete_edition( EditionSessionId session_id )
 	{
 		if( is_project_open() )
 		{

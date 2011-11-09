@@ -77,7 +77,7 @@ namespace view
 
 		project.foreach_edition( [&]( const core::EditionSession& edition_session ) 
 		{
-			add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
+			create_editor( edition_session );
 		});
 
 		if( initial_session_selection )
@@ -99,31 +99,6 @@ namespace view
 
 	}
 
-
-
-	void MainWindow::add_editor( std::unique_ptr<Editor>&& editor )
-	{
-		m_central_area->addSubWindow( editor.get() );
-		editor->show();
-		m_editors.push_back( std::move( editor ) );
-	}
-
-
-	void MainWindow::remove_editor( const core::EditionSessionId& edition_session_id )
-	{
-		auto editor_it = std::find_if( begin(m_editors), end(m_editors), [&]( const std::unique_ptr<Editor>& editor )
-		{
-			return editor->session_id() == edition_session_id;
-		});
-
-		if( editor_it != end(m_editors) )
-		{
-			auto& editor = *editor_it;
-			m_central_area->removeSubWindow( editor.get() );
-			
-			m_editors.erase( editor_it );
-		}
-	}
 
 	void MainWindow::setup_views_default()
 	{
@@ -198,8 +173,13 @@ namespace view
 
 	void MainWindow::clear_windows()
 	{
-		m_central_area->closeAllSubWindows();
-		m_editors.clear();
+		// we don't want to 'close' the windows, just remove them!
+		auto window_list = m_central_area->subWindowList();
+		std::for_each( window_list.begin(), window_list.end(), [&]( QMdiSubWindow* window )
+		{
+			m_central_area->removeSubWindow( window );
+		});
+
 	}
 
 	void MainWindow::create_menus()
@@ -210,12 +190,11 @@ namespace view
 
 	void MainWindow::react_edition_session_begin( const core::EditionSession& edition_session )
 	{
-		add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
+		create_editor( edition_session );
 	}
 
 	void MainWindow::react_edition_session_end( const core::EditionSession& edition_session )
 	{
-		remove_editor( edition_session.id() );
 	}
 
 	void MainWindow::react_sequence_created( const core::Sequence& sequence )
@@ -228,18 +207,33 @@ namespace view
 		UTILCPP_NOT_IMPLEMENTED_YET;
 	}
 
-	void MainWindow::select_editor( const core::EditionSessionId& session_id )
+	void MainWindow::select_editor( core::EditionSessionId session_id )
 	{
-		auto find_it = std::find_if( begin(m_editors), end(m_editors), [&]( const std::unique_ptr<Editor>& editor )
+		auto window_list = m_central_area->subWindowList();
+		auto find_it = std::find_if( window_list.begin(), window_list.end(), [&]( QMdiSubWindow* window ) -> bool
 		{
-			return editor->session_id() == session_id;
+			auto editor = dynamic_cast<Editor*>(window);
+			return editor ? editor->session_id() == session_id : false;
 		});
 
-		if( find_it != m_editors.end() )
+		if( find_it != window_list.end() )
 		{
-			Editor& editor = **find_it;
-			editor.setFocus();
+			auto editor = *find_it;
+			editor->setFocus();
 		}
+	}
+
+	void MainWindow::add_window( std::unique_ptr<QWidget> window )
+	{
+		auto window_ptr= window.release();
+		m_central_area->addSubWindow( window_ptr );
+		window_ptr->show();
+		
+	}
+
+	void MainWindow::create_editor( const core::EditionSession& edition_session )
+	{
+		add_window( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
 	}
 
 

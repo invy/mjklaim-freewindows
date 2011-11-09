@@ -42,16 +42,20 @@ namespace view
 
 		/** Close edition mode : disable all editions views. */
 		void close_edition();
-
 		
+		/** Add a window in the main window. */
+		void add_window( std::unique_ptr<QWidget> window );
+
 		/** True if we are currently in edition mode, false otherwise. */
 		bool is_edition_mode() const { return m_edition_mode; }
 
 	public slots:
 
 		/** Select visually the editor corresponding to the provided session id. */
-		void select_editor( const core::EditionSessionId& session_id );
+		void select_editor( core::EditionSessionId session_id );
 
+		/** Create an editor for an edition session. */
+		void create_editor( const core::EditionSession& edition_session );
 
 	private slots:
 
@@ -67,10 +71,10 @@ namespace view
 		/** Slot : called when a sequence have been deleted. */
 		void react_sequence_deleted( const core::Sequence& sequence );
 
-		/** Slot : called when a story walk is beginning. */
+		/** Slot : called when an edition session is beginning. */
 		void react_edition_session_begin( const core::EditionSession& edition_session );
 
-		/** Slot : called when a story walk is ending. */
+		/** Slot : called when an edition session is ending. */
 		void react_edition_session_end( const core::EditionSession& edition_session );
 
 	private:
@@ -90,8 +94,6 @@ namespace view
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
 
-		// Editors
-		std::vector< std::unique_ptr<Editor> > m_editors;
 
 		// Manage and provide main actions (in the main menu for example)
 		DesignerActions m_designer_actions;
@@ -108,9 +110,6 @@ namespace view
 		/** Setup the views in their default configuration and positions. **/
 		void setup_views_default();
 		
-		/** Add an editor view in the central tabs of the window. **/
-		void add_editor( std::unique_ptr<Editor>&& editor );
-		void remove_editor(  const core::EditionSessionId& edition_session_id );
 
 		
 	};

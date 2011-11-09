@@ -93,10 +93,10 @@ namespace core
 		/** Delete an edition session of the current project.
 			@return false if the edition session deletion failed or was canceled or if the edition session was not found. 
 		**/
-		bool delete_edition( const EditionSessionId& session_id );
+		bool delete_edition( EditionSessionId session_id );
 
 		/** Select the referred edition session. */
-		void select_edition_session( const EditionSessionId& session_id );
+		void select_edition_session( EditionSessionId session_id );
 		
 	signals:
 
