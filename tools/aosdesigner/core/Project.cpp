@@ -230,8 +230,16 @@ namespace core
 			return false;
 		}
 
-		std::for_each( m_sequences.begin(), m_sequences.end(), []( Sequence& sequence ){ sequence.save(); });
-		std::for_each( m_edit_sessions.begin(), m_edit_sessions.end(), []( EditionSession& edition_session ){ edition_session.save(); });
+		std::for_each( m_sequences.begin(), m_sequences.end(), [&]( Sequence& sequence )
+		{ 
+			sequence.save(); 
+		});
+
+		std::for_each( m_edit_sessions.begin(), m_edit_sessions.end(), [&]( EditionSession& edition_session )
+		{ 
+			const auto& file_path = directory_path() / path::EDITION_SESSION_FILE( edition_session.id() );
+			edition_session.save( file_path ); 
+		});
 
 		return true;
 	}
@@ -394,6 +402,37 @@ namespace core
 
 		// THIS IS TEMPORARY!!!
 		emit edition_end();
+	}
+
+	bool Project::delete_edition( const EditionSessionId& session_id )
+	{
+		auto edition_session = find_edition( session_id );
+
+		if( edition_session )
+		{
+			try
+			{
+				const auto& save_filepath = edition_session->save_filepath();
+				if( exists( save_filepath ) )
+				{
+					remove( save_filepath );
+				}
+			}
+			catch (const boost::exception& e)
+			{
+				UTILCPP_LOG_ERROR << "ERROR on deleting edition session '" << edition_session->name() << "' save file : \n" << boost::diagnostic_information(e) 
+					<< "'\nNote : The file will remain but the session will be removed from the Project.";
+			}
+			
+			// now notify the world about the end of this session
+			edition_session_end( *edition_session );
+
+			// and delete it
+			m_edit_sessions.erase_if( [&]( const EditionSession& session ){ return session.id() == session_id; } );
+			
+			return true;
+		}
+		else return false;
 	}
 
 

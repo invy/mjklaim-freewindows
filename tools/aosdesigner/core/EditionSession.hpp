@@ -48,6 +48,7 @@ namespace core
 		const SequenceId& sequence_id() const { return m_sequence_id; }
 
 		const std::string& name() const { return m_name; }
+		const bfs::path& save_filepath() const { return m_save_filepath; }
 
 		bool is_valid() const { return m_sequence && m_interpreter; }
 
@@ -57,7 +58,9 @@ namespace core
 		
 	public slots:
 
-		void save();
+		/** Save this edition session state in a file at the provided path. */
+		void save( const bfs::path& file_path );
+		
 
 	signals:
 
@@ -70,7 +73,7 @@ namespace core
 		std::unique_ptr<aoslcpp::SequenceInterpreter> m_interpreter;
 
 		std::string m_name;
-
+		bfs::path m_save_filepath;
 
 		const Project& m_project;
 		const Sequence* m_sequence;

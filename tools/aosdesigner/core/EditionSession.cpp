@@ -85,7 +85,7 @@ namespace core
 	}
 
 
-	void EditionSession::save()
+	void EditionSession::save( const bfs::path& file_path )
 	{
 		UTILCPP_ASSERT( m_sequence ? m_sequence_id == m_sequence->id() : true, "Edition session isn't in sync with the sequence id!" )
 
@@ -107,12 +107,10 @@ namespace core
 				//infos.put( "edition_session.steps.stage", step.stage );
 			});
 		}
-		
-
-		const auto& file_path = m_project.directory_path() / path::EDITION_SESSION_FILE( id() );
 
 		try
 		{
+			m_save_filepath = file_path;
 			namespace bfs = boost::filesystem;
 			bfs::ofstream file_stream( file_path );
 

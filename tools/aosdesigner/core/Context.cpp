@@ -195,6 +195,15 @@ namespace core
 		return nullptr;
 	}
 
+	bool Context::delete_edition( const EditionSessionId& session_id )
+	{
+		if( is_project_open() )
+		{
+			return m_project->delete_edition( session_id );
+		}
+		return false;
+	}
+
 
 }
 }

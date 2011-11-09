@@ -80,6 +80,9 @@ namespace core
 		/** Request informations to the user and use them to create a new edition session. */
 		bool new_edition();
 
+		/** Delete an edition session of the project. */
+		bool delete_edition( const EditionSessionId& session_id );
+
 		/** Select the referred edition session. */
 		void select_edition_session( const EditionSessionId& session_id );
 
