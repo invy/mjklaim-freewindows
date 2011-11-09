@@ -169,6 +169,7 @@ set( AOSDESIGNER_CORE_SOURCES
 	${AOSDESIGNER_CORE_DIR}/Project.cpp
 	${AOSDESIGNER_CORE_DIR}/Sequence.cpp
 	${AOSDESIGNER_CORE_DIR}/EditionSession.cpp
+	${AOSDESIGNER_CORE_DIR}/EditionSessionId.cpp
 )
 
 #------------------------------------------------------
