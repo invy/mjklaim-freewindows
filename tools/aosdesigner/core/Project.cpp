@@ -112,11 +112,35 @@ namespace core
 				{
 					if( edition_session.first == "session" )
 					{
-						const bfs::path session_file_location = directory_path() / path::EDITION_SESSION_FILE( edition_session.second.get_value<std::string>() );
-						add_edition( std::unique_ptr<EditionSession>( new EditionSession( *this, session_file_location ) ) );
+						EditionSessionId session_id;
+						try
+						{
+							 session_id = edition_session.second.get_value<EditionSessionId>();
+						}
+						catch (const boost::exception& e)
+						{
+							UTILCPP_LOG_ERROR << "Failed to interpret edition session id : [" << edition_session.second.get_value<std::string>() << "] : \n" << boost::diagnostic_information(e);
+						}
+						
+						if( is_valid( session_id ) )
+						{
+							try
+							{
+								const bfs::path session_file_location = directory_path() / path::EDITION_SESSION_FILE( session_id );
+								add_edition( std::unique_ptr<EditionSession>( new EditionSession( *this, session_file_location ) ) );
 
-						UTILCPP_LOG << "Loaded edition session : [" << m_edit_sessions.back().id() << "]";
-
+								UTILCPP_LOG << "Loaded edition session : [" << session_id << "]";
+							}
+							catch( const boost::exception& e )
+							{
+								UTILCPP_LOG_ERROR << "Failed to load edition session [" << session_id << "] : \n" << boost::diagnostic_information(e);
+							}
+						}
+						else
+						{
+							UTILCPP_LOG_ERROR << "Invalid session id found - certainly due to some problem in a previous working session.";
+						}
+						
 					}
 					else if( edition_session.first != "selected" )
 					{
@@ -125,17 +149,25 @@ namespace core
 				});
 
 				// select the last selected session
-				auto selected_session_id = infos.get<EditionSessionId>("project.edition.selected", "NONE");
-				if( selected_session_id != "NONE" )
+				auto selected_session_id = infos.get<EditionSessionId>("project.edition.selected", EditionSessionId_INVALID);
+				if( is_valid( selected_session_id ) )
 				{
 					UTILCPP_LOG << "Loaded selected session : [" << selected_session_id << "]";
 					select_edition_session( selected_session_id );
 				}
 				else
 				{
-					const auto last_session_id = m_edit_sessions.back().id();
-					UTILCPP_LOG << "Selected session not found, will select : [" << last_session_id << "]";
-					select_edition_session( last_session_id ); // select the last session registered if none selected found
+					if( !m_edit_sessions.empty() )
+					{
+						const auto last_session_id = m_edit_sessions.back().id();
+						UTILCPP_LOG << "Selected session not found, will select : [" << last_session_id << "]";
+						select_edition_session( last_session_id ); // select the last session registered if none selected found
+					}
+					else
+					{
+						UTILCPP_LOG << "Selected session not found, no other session to select.";
+					}
+					
 				}
 				
 			}
@@ -205,7 +237,8 @@ namespace core
 			infos.add( "project.edition.session", edition_session.id() );
 		});
 
-		infos.add( "project.edition.selected", m_selected_session ? m_selected_session->id() : "NONE" );
+		if( m_selected_session )
+			infos.add( "project.edition.selected",  m_selected_session->id() );
 
 		// TODO : add other informations here
 		// TODO : manage errors differently
@@ -349,7 +382,7 @@ namespace core
 
 	EditionSession* Project::find_edition( const EditionSessionId& session_id )
 	{
-		if( m_edit_sessions.empty() )
+		if( m_edit_sessions.empty() || !is_valid( session_id ) )
 			return nullptr;
 
 		auto find_it = std::find_if( m_edit_sessions.begin(), m_edit_sessions.end(), [&]( EditionSession& edition_session ){ return edition_session.id() == session_id; } );
