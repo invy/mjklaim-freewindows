@@ -30,7 +30,7 @@ namespace view
 		setWidget( m_splitter.get() );
 		setWindowTitle( m_title );
 
-		setAttribute( Qt::WA_DeleteOnClose, true ); // destroy this editor once closed by the user
+		setAttribute( Qt::WA_DeleteOnClose ); // make sure this editor will be automatically deleted if closed - not if removed from the main window
 
 		connect( this, SIGNAL( windowStateChanged( Qt::WindowStates, Qt::WindowStates ) ), this, SLOT( react_state_changed( Qt::WindowStates, Qt::WindowStates ) ) );
 		
@@ -55,7 +55,11 @@ namespace view
 
 	void Editor::closeEvent( QCloseEvent* closeEvent )
 	{
-		// if the user did close this window, we need to delete the edition session
+		UTILCPP_ASSERT_NOT_NULL( closeEvent );
+		
+		m_is_closing = true;
+
+		// the user did close the window : delete the associated session id
 		if( core::Context::instance().delete_edition( m_session_id ) )
 		{
 			QMdiSubWindow::closeEvent( closeEvent );
@@ -64,6 +68,9 @@ namespace view
 		{
 			closeEvent->ignore();
 		}
+
+		m_is_closing = false;
+
 	}
 
 

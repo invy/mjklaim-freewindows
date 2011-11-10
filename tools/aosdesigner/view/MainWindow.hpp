@@ -3,6 +3,7 @@
 #pragma once
 
 #include <memory>
+#include <map>
 #include <QMainWindow>
 
 #include "view/ForwardView.hpp"
@@ -43,9 +44,6 @@ namespace view
 		/** Close edition mode : disable all editions views. */
 		void close_edition();
 		
-		/** Add a window in the main window. */
-		void add_window( std::unique_ptr<QWidget> window );
-
 		/** True if we are currently in edition mode, false otherwise. */
 		bool is_edition_mode() const { return m_edition_mode; }
 
@@ -94,6 +92,10 @@ namespace view
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
 
+		// editor windows
+		std::map< core::EditionSessionId, std::unique_ptr<Editor>> m_editors;
+
+
 
 		// Manage and provide main actions (in the main menu for example)
 		DesignerActions m_designer_actions;
@@ -109,8 +111,15 @@ namespace view
 
 		/** Setup the views in their default configuration and positions. **/
 		void setup_views_default();
-		
 
+		/** Add an editor window in the main window. */
+		void add_editor( std::unique_ptr<Editor> window );
+		
+		/** Remove an editor window from the main window. */
+		void remove_editor( core::EditionSessionId session_id );
+
+		/** Search an editor window with the provided session id. */
+		Editor* find_editor( core::EditionSessionId session_id );
 		
 	};
 

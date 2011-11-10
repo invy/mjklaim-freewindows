@@ -180,6 +180,8 @@ namespace view
 			m_central_area->removeSubWindow( window );
 		});
 
+		m_editors.clear();
+
 	}
 
 	void MainWindow::create_menus()
@@ -195,6 +197,7 @@ namespace view
 
 	void MainWindow::react_edition_session_end( const core::EditionSession& edition_session )
 	{
+		remove_editor( edition_session.id() );
 	}
 
 	void MainWindow::react_sequence_created( const core::Sequence& sequence )
@@ -209,31 +212,60 @@ namespace view
 
 	void MainWindow::select_editor( core::EditionSessionId session_id )
 	{
-		auto window_list = m_central_area->subWindowList();
-		auto find_it = std::find_if( window_list.begin(), window_list.end(), [&]( QMdiSubWindow* window ) -> bool
-		{
-			auto editor = dynamic_cast<Editor*>(window);
-			return editor ? editor->session_id() == session_id : false;
-		});
+		auto editor = find_editor( session_id );
 
-		if( find_it != window_list.end() )
+		if( editor )
 		{
-			auto editor = *find_it;
 			editor->setFocus();
 		}
 	}
 
-	void MainWindow::add_window( std::unique_ptr<QWidget> window )
+	void MainWindow::create_editor( const core::EditionSession& edition_session )
 	{
-		auto window_ptr= window.release();
-		m_central_area->addSubWindow( window_ptr );
-		window_ptr->show();
+		add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
+	}
+
+	void MainWindow::add_editor( std::unique_ptr<Editor> editor )
+	{
+		m_central_area->addSubWindow( editor.get() );
+		
+		const auto session_id = editor->session_id();
+		m_editors.insert( std::make_pair( session_id, std::move(editor) ) );
+
+		m_editors[session_id]->show();
 		
 	}
 
-	void MainWindow::create_editor( const core::EditionSession& edition_session )
+	void MainWindow::remove_editor( core::EditionSessionId session_id )
 	{
-		add_window( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
+		auto editor_it = m_editors.find( session_id );
+
+		if( editor_it != end(m_editors) )
+		{
+			auto& editor = editor_it->second;
+			if( editor->is_closing() ) 
+			{
+				// make sure that if the editor is already closing, we just let it go - qt should delete it for us
+				editor_it->second.release();
+			}
+			else
+			{
+				// remove the editor without closing it
+				m_central_area->removeSubWindow( editor.get() );
+			}
+			m_editors.erase( editor_it );
+		}
+		
+	}
+
+	Editor* MainWindow::find_editor( core::EditionSessionId session_id )
+	{
+		auto find_it = m_editors.find( session_id );
+
+		if( find_it != end(m_editors) )
+			return find_it->second.get();
+		else 
+			return nullptr;
 	}
 
 
