@@ -59,7 +59,9 @@ namespace view
 
 	MainWindow::~MainWindow()
 	{
-
+		if( core::Context::instance().is_project_open() )
+			core::Context::instance().close_project();
+		clear_windows();
 	}
 
 
@@ -266,6 +268,13 @@ namespace view
 			return find_it->second.get();
 		else 
 			return nullptr;
+	}
+
+	void MainWindow::closeEvent( QCloseEvent* closeEvent )
+	{
+		// TODO : here ask the user about closing the project without saving
+
+		QMainWindow::closeEvent( closeEvent );
 	}
 
 

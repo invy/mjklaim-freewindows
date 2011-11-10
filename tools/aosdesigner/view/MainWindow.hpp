@@ -120,6 +120,9 @@ namespace view
 
 		/** Search an editor window with the provided session id. */
 		Editor* find_editor( core::EditionSessionId session_id );
+
+
+		void closeEvent( QCloseEvent* closeEvent );
 		
 	};
 
