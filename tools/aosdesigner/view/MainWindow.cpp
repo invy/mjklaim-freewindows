@@ -1,6 +1,7 @@
 #include "MainWindow.hpp"
 
 #include <QMdiArea>
+#include <QMdiSubWindow>
 #include <QKeyEvent>
 
 #include "ui_MainWindow.h"
@@ -40,6 +41,7 @@ namespace view
 		m_ui->setupUi( this );
 		
 		setWindowTitle( tr("Art Of Sequence") );
+		setAttribute( Qt::WA_QuitOnClose );
 
 		// basic infrastructure
 		setCentralWidget( m_central_area.get() );
@@ -229,12 +231,12 @@ namespace view
 
 	void MainWindow::add_editor( std::unique_ptr<Editor> editor )
 	{
-		m_central_area->addSubWindow( editor.get() );
+		auto window = m_central_area->addSubWindow( &editor->window_inside() );
 		
 		const auto session_id = editor->session_id();
 		m_editors.insert( std::make_pair( session_id, std::move(editor) ) );
 
-		m_editors[session_id]->show();
+		window->show();
 		
 	}
 
@@ -273,7 +275,7 @@ namespace view
 	void MainWindow::closeEvent( QCloseEvent* closeEvent )
 	{
 		// TODO : here ask the user about closing the project without saving
-
+		closeEvent->accept();
 		QMainWindow::closeEvent( closeEvent );
 	}
 

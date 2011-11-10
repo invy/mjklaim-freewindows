@@ -4,11 +4,13 @@
 
 #include <memory>
 #include <string>
-#include <QMdiSubWindow>
+#include <QSplitter>
 
 #include "core/EditionSessionId.hpp"
 
 class QSplitter;
+class QDockWidget;
+class QMdiSubWindow;
 
 namespace aosd
 {
@@ -24,7 +26,7 @@ namespace view
 		Every information displayed is dependent on the path followed in the sequence.
 	*/
 	class Editor
-		: public QMdiSubWindow
+		: public QSplitter
 	{
 		Q_OBJECT
 	public:
@@ -37,25 +39,38 @@ namespace view
 		core::EditionSessionId session_id() const { return m_session_id; }
 
 		bool is_closing() const { return m_is_closing; }
+		bool is_inside() const { return m_is_inside; }
+
+		QWidget& window_inside();
+		QWidget& window_outside();
+		QWidget& current_window();
 
 	private slots:
 
 		void react_state_changed( Qt::WindowStates oldState, Qt::WindowStates newState );
 
+		void switch_side();
+		void move_inside();
+		void move_outside();
+
 	private:
-				
-		std::unique_ptr<QSplitter> m_splitter;
+		
 		std::unique_ptr<CanvasView> m_canvas_view;
 		std::unique_ptr<StoryView> m_story_view;
 
+		std::unique_ptr<QMdiSubWindow> m_window_inside;
+		std::unique_ptr<QDockWidget> m_window_outside;
 
 		QString m_title;
 		core::EditionSessionId m_session_id;
 
 		bool m_is_closing;
+		bool m_is_inside;
 		
 		/** We need to delete the edition session when closed. */
 		void closeEvent( QCloseEvent* closeEvent );
+
+		
 	};
 
 }
