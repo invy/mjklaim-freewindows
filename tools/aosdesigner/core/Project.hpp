@@ -116,7 +116,13 @@ namespace core
 
 		/** Signal : no edition session is open now. */
 		void edition_end();
+
+		/** Signal : an edition session have been created. **/
+		void edition_session_created( const core::EditionSession& edition_session );
 		
+		/** Signal : an edition session have been deleted. **/
+		void edition_session_deleted( const core::EditionSession& edition_session );
+
 		/** Signal : an edition session have began. **/
 		void edition_session_begin( const core::EditionSession& edition_session );
 

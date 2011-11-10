@@ -329,7 +329,10 @@ namespace core
 		
 		if( sequence )
 		{
-			add_edition( std::unique_ptr< EditionSession >( new EditionSession( *this, *sequence, session_infos.name ) ) );
+			auto session = std::unique_ptr< EditionSession >( new EditionSession( *this, *sequence, session_infos.name ) );
+			emit edition_session_created( *session ); // notify the world!
+
+			add_edition( std::move(session) );
 
 			return true;
 		}
@@ -433,6 +436,12 @@ namespace core
 	{
 		deselect_edition_session();
 
+		// make sure that the world is notified by the closing of all edition sessions, without deleting them
+		std::for_each( begin(m_edit_sessions), end(m_edit_sessions), [&]( std::unique_ptr<EditionSession>& session )
+		{
+			emit edition_session_end( *session );
+		});
+
 		emit edition_end();
 	}
 
@@ -472,6 +481,8 @@ namespace core
 			
 			// now notify the world about the end of this session
 			emit edition_session_end( *edition_session );
+			emit edition_session_deleted( *edition_session );
+
 			const auto session_name = edition_session->name();
 
 			// and delete it
@@ -480,6 +491,9 @@ namespace core
 											, m_edit_sessions.end() );
 			
 			UTILCPP_LOG << "Edition session \"" << session_name << "\" have been destroyed and removed from the Project";
+
+			if( m_edit_sessions.empty() )
+				emit edition_end();
 
 			return true;
 		}
