@@ -18,7 +18,7 @@ namespace view
 		auto& context = core::Context::instance();
 
 		connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(react_project_open(const core::Project&)) );
-		connect( &context, SIGNAL(project_closed(const core::Project&)), this, SLOT(react_project_closed(const core::Project&)) );
+		connect( &context, SIGNAL(project_closed(const core::Project&)), this, SLOT(react_project_closed(const core::Project&)), Qt::QueuedConnection );
 
 	}
 
@@ -41,10 +41,10 @@ namespace view
 	void EditorManager::react_project_open( const core::Project& project )
 	{
 		connect( &project, SIGNAL(edition_session_begin(const core::EditionSession&)), this, SLOT(react_edition_session_begin(const core::EditionSession&)) );
-		connect( &project, SIGNAL(edition_session_end(const core::EditionSession&)), this, SLOT(react_edition_session_end(const core::EditionSession&)) );
+		connect( &project, SIGNAL(edition_session_end(const core::EditionSession&)), this, SLOT(react_edition_session_end(const core::EditionSession&)), Qt::QueuedConnection );
 
 		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
-		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
+		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)), Qt::QueuedConnection );
 
 		const auto* initial_session_selection = project.selected_edition_session();
 
@@ -131,8 +131,20 @@ namespace view
 		auto editor = find_editor( session_id );
 		if( editor )
 		{
-			m_window_manager.remove_window( *editor );
-			m_editor_registry.erase( session_id );
+			//if( editor->is_closing() )
+			//{
+			//	//m_window_manager.remove_window( *editor );
+			//	auto window = m_window_manager.find_window( *editor );
+			//	if( window )
+			//	{
+
+			//	}
+			//}
+			//else
+			{
+				m_window_manager.remove_window( *editor );
+				m_editor_registry.erase( session_id );
+			}
 		}
 	}
 

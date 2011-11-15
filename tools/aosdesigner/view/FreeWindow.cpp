@@ -26,7 +26,8 @@ namespace view
 
 	FreeWindow::~FreeWindow()
 	{
-
+		m_window_inside->setWidget( nullptr );
+		m_window_outside->setWidget( nullptr );
 	}
 
 	void FreeWindow::setup_inside_window()
@@ -34,7 +35,7 @@ namespace view
 		auto menu = m_window_inside->systemMenu();
 		UTILCPP_ASSERT_NOT_NULL( menu );
 		auto float_action = menu->addAction( tr("Float Window") );
-		connect( float_action, SIGNAL( pressed() ), this, SLOT( react_get_outside() ) );
+		connect( float_action, SIGNAL( triggered() ), this, SLOT( react_get_outside() ) );
 	}
 
 	void FreeWindow::setup_outside_window()
@@ -49,21 +50,24 @@ namespace view
 
 		}
 		
-		m_window_outside->setAllowedAreas( 0 ); // no docking area allowed in this form
+		//m_window_outside->setAllowedAreas( 0 ); // no docking area allowed in this form
 	}
 
 	template< class WindowA, class WindowB >
 	void move_widget_from_a_to_b( WindowA& a, WindowB& b, QWidget& widget )
 	{
+		// hide the current window
+		a.hide();
 		widget.hide();
 
+		// exchange content
 		a.setWidget( nullptr );
-		a.hide();
-
 		b.setWidget( &widget );
+		
+		// show the new window
+		widget.show();
 		b.show();
 
-		widget.show();
 	}
 
 	void FreeWindow::go_inside()
