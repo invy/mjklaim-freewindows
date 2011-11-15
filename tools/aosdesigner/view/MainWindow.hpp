@@ -10,6 +10,8 @@
 #include "core/ForwardCore.hpp"
 #include "core/EditionSessionId.hpp"
 #include "view/DesignerActions.hpp"
+#include "view/EditorManager.hpp"
+#include "view/FreeWindowManager.hpp"
 
 class QMdiArea;
 
@@ -47,14 +49,6 @@ namespace view
 		/** True if we are currently in edition mode, false otherwise. */
 		bool is_edition_mode() const { return m_edition_mode; }
 
-	public slots:
-
-		/** Select visually the editor corresponding to the provided session id. */
-		void select_editor( core::EditionSessionId session_id );
-
-		/** Create an editor for an edition session. */
-		void create_editor( const core::EditionSession& edition_session );
-
 	private slots:
 
 		/** Slot : called when a project have been opened. */
@@ -62,18 +56,6 @@ namespace view
 
 		/** Slot : called when a project have been closed. */
 		void react_project_closed( const core::Project& project );
-
-		/** Slot : called when a new sequence have been created. */
-		void react_sequence_created( const core::Sequence& sequence );
-
-		/** Slot : called when a sequence have been deleted. */
-		void react_sequence_deleted( const core::Sequence& sequence );
-
-		/** Slot : called when an edition session is beginning. */
-		void react_edition_session_begin( const core::EditionSession& edition_session );
-
-		/** Slot : called when an edition session is ending. */
-		void react_edition_session_end( const core::EditionSession& edition_session );
 
 	private:
 
@@ -83,6 +65,10 @@ namespace view
 		/** Tabs at the center of the window. */
 		std::unique_ptr<QMdiArea> m_central_area;
 
+		FreeWindowManager m_window_manager;
+		EditorManager m_editor_manager;
+
+		
 		// Components of the edition interface:
 		std::unique_ptr<ProjectView> m_project_view;
 		std::unique_ptr<ChangesView> m_changes_view;
@@ -91,11 +77,6 @@ namespace view
 		std::unique_ptr<LayersView> m_layers_view;
 		std::unique_ptr<ToolboxView> m_toolbox_view;
 		std::unique_ptr<LogView> m_log_view;
-
-		// editor windows
-		std::map< core::EditionSessionId, std::unique_ptr<Editor>> m_editors;
-
-
 
 		// Manage and provide main actions (in the main menu for example)
 		DesignerActions m_designer_actions;
@@ -111,16 +92,6 @@ namespace view
 
 		/** Setup the views in their default configuration and positions. **/
 		void setup_views_default();
-
-		/** Add an editor window in the main window. */
-		void add_editor( std::unique_ptr<Editor> window );
-		
-		/** Remove an editor window from the main window. */
-		void remove_editor( core::EditionSessionId session_id );
-
-		/** Search an editor window with the provided session id. */
-		Editor* find_editor( core::EditionSessionId session_id );
-
 
 		void closeEvent( QCloseEvent* closeEvent );
 		
