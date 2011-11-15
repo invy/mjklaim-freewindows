@@ -39,6 +39,7 @@ namespace view
 	void FreeWindow::initialize_outside_window()
 	{
 		m_widget.addAction( m_dock_action.get() );
+		
 		connect( m_dock_action.get(), SIGNAL( triggered() ), this, SLOT( react_get_inside() ) );
 	}
 
@@ -46,7 +47,7 @@ namespace view
 	{
 		m_window_inside->hide();
 		m_window_inside->setWidget( nullptr );
-		m_window_inside->removeAction( m_float_action.get() );
+		m_window_inside->systemMenu()->removeAction( m_float_action.get() );
 	}
 
 
