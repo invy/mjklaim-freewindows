@@ -2,8 +2,10 @@
 
 #include <QMdiArea>
 #include <QMdiSubWindow>
-#include <QDockWidget>
+#include <QWidget>
+#include <QAction>
 #include <QMenu>
+
 
 #include "utilcpp/Assert.hpp"
 
@@ -12,72 +14,62 @@ namespace aosd
 namespace view
 {
 
-
-
 	FreeWindow::FreeWindow( QWidget& widget )
 		: m_widget( widget )
-		, m_window_inside( new QMdiSubWindow )
-		, m_window_outside( new QDockWidget )
+		, m_window_inside( new WindowInside )
+		, m_dock_action( new QAction( tr("Dock Window"), nullptr ) )
+		, m_float_action( new QAction( tr("Float Window"), nullptr ) )
 	{
-		setup_inside_window();
-		setup_outside_window();
-		
+		initialize_inside_window();		
 	}
 
 	FreeWindow::~FreeWindow()
 	{
+		terminate_inside_window();		
+	}
+
+	void FreeWindow::initialize_inside_window()
+	{
+		m_window_inside->systemMenu()->addAction( m_float_action.get() );
+		connect( m_float_action.get(), SIGNAL( triggered() ), this, SLOT( react_get_outside() ) );
+
+		m_window_inside->setWindowTitle( m_widget.windowTitle() );
+	}
+
+	void FreeWindow::initialize_outside_window()
+	{
+		m_widget.addAction( m_dock_action.get() );
+		connect( m_dock_action.get(), SIGNAL( triggered() ), this, SLOT( react_get_inside() ) );
+	}
+
+	void FreeWindow::terminate_inside_window()
+	{
+		m_window_inside->hide();
 		m_window_inside->setWidget( nullptr );
-		m_window_outside->setWidget( nullptr );
+		m_window_inside->removeAction( m_float_action.get() );
 	}
 
-	void FreeWindow::setup_inside_window()
+
+	void FreeWindow::terminate_outside_window()
 	{
-		auto menu = m_window_inside->systemMenu();
-		UTILCPP_ASSERT_NOT_NULL( menu );
-		auto float_action = menu->addAction( tr("Float Window") );
-		connect( float_action, SIGNAL( triggered() ), this, SLOT( react_get_outside() ) );
+		m_widget.removeAction( m_dock_action.get() );
 	}
 
-	void FreeWindow::setup_outside_window()
-	{
-		auto title_bar = m_window_outside->titleBarWidget();
-		//UTILCPP_ASSERT_NOT_NULL( title_bar );
-		if( title_bar )
-		{
-			auto dock_action = new QAction( tr("Dock Window"), nullptr );
-			title_bar->addAction( dock_action );
-			connect( dock_action, SIGNAL( pressed() ), this, SLOT( react_get_inside() ) );
 
-		}
-		
-		//m_window_outside->setAllowedAreas( 0 ); // no docking area allowed in this form
-	}
-
-	template< class WindowA, class WindowB >
-	void move_widget_from_a_to_b( WindowA& a, WindowB& b, QWidget& widget )
-	{
-		// hide the current window
-		a.hide();
-		widget.hide();
-
-		// exchange content
-		a.setWidget( nullptr );
-		b.setWidget( &widget );
-		
-		// show the new window
-		widget.show();
-		b.show();
-
-	}
 
 	void FreeWindow::go_inside()
 	{
-		move_widget_from_a_to_b( *m_window_outside, *m_window_inside, m_widget );
+		m_window_inside->setWidget( &m_widget );
+		m_window_inside->show();
 	}
 
 	void FreeWindow::go_outside()
 	{
-		move_widget_from_a_to_b( *m_window_inside, *m_window_outside, m_widget );
+		m_window_inside->hide();
+		m_window_inside->setWidget( nullptr );
+
+		m_widget.show();
+
 	}
 
 	void FreeWindow::react_get_inside()
@@ -89,6 +81,7 @@ namespace view
 	{
 		go_outside();
 	}
+
 
 
 

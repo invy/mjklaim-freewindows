@@ -6,9 +6,8 @@
 #include <QObject>
 
 class QWidget;
-class QDockWidget;
+class QAction;
 class QMdiSubWindow;
-class QWidget;
 
 namespace aosd
 {
@@ -20,14 +19,20 @@ namespace view
 	class FreeWindow
 		: public QObject
 	{
-		Q_OBJECT;
+		Q_OBJECT
+
+		
+
 	public:
+
+		typedef QMdiSubWindow	WindowInside;
+		typedef QWidget			WindowOutside;
 		
 		explicit FreeWindow( QWidget& widget );
 		~FreeWindow();
 
-		QMdiSubWindow& window_inside() { return *m_window_inside; }
-		QDockWidget& window_outside() { return *m_window_outside; }
+		WindowInside& window_inside() { return *m_window_inside; }
+		WindowOutside& window_outside() { return m_widget; }
 
 		void go_inside();
 		void go_outside();
@@ -41,11 +46,16 @@ namespace view
 
 		QWidget& m_widget;
 
-		std::unique_ptr<QMdiSubWindow> m_window_inside;
-		std::unique_ptr<QDockWidget> m_window_outside;
+		std::unique_ptr<WindowInside> m_window_inside;
 
-		void setup_inside_window();
-		void setup_outside_window();
+		std::unique_ptr<QAction> m_float_action;
+		std::unique_ptr<QAction> m_dock_action;
+
+		void initialize_inside_window();
+		void terminate_inside_window();
+
+		void initialize_outside_window();
+		void terminate_outside_window();
 
 	};
 
