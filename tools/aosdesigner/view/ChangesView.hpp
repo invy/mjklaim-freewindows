@@ -6,6 +6,8 @@
 #include "view/EditionToolView.hpp"
 #include "view/model/ModelViewBinder.hpp"
 
+#include "core/EditionSessionId.hpp"
+
 class QTreeView;
 
 namespace aosd
@@ -26,7 +28,7 @@ namespace view
 	private:
 
 		std::unique_ptr< QTreeView > m_last_changes_view;
-		ModelViewBinder m_model_view_binder;
+		ModelViewBinder<core::EditionSessionId> m_model_view_binder;
 
 		void begin_edition_session( const core::EditionSession& edition_session );
 		void end_edition_session( const core::EditionSession& edition_session );

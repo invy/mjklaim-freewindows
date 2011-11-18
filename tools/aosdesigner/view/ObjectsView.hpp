@@ -36,7 +36,7 @@ namespace view
 	private:
 
 		std::unique_ptr<QTreeView> m_object_tree_view;
-		ModelViewBinder m_model_binder;
+		ModelViewBinder<core::EditionSessionId> m_model_binder;
 		
 		void begin_edition_session( const core::EditionSession& edition_session );
 		void end_edition_session( const core::EditionSession& edition_session );
