@@ -82,7 +82,7 @@ namespace view
 	void NewEditionSessionDialog::update_name()
 	{
 		auto& selector = *m_ui->selector_sequence;
-		SequenceId sequence_id = selector.itemData( selector.currentIndex() ).toString().toStdString();
+		core::SequenceId sequence_id = selector.itemData( selector.currentIndex() ).toString().toStdString();
 		const auto sequence_name = selector.currentText().toStdString();
 		std::size_t edition_count = 0;
 
