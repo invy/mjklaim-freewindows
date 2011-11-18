@@ -6,9 +6,10 @@
 
 namespace aosd
 {
-
+namespace core
+{
 	typedef std::string SequenceId;
-
+}
 }
 
 
