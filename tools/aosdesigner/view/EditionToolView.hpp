@@ -34,6 +34,9 @@ namespace view
 		virtual void connect_edition( const core::EditionSession& edition_session ) = 0;
 		virtual void disconnect_edition( const core::EditionSession& edition_session ) = 0;
 
+		virtual void connect_project( const core::Project& project ) {}
+		virtual void disconnect_project( const core::Project& project ) {}
+
 	
 	private slots:
 

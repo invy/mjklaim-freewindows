@@ -47,10 +47,13 @@ namespace view
 			react_edition_begin();
 		}
 
+		connect_project( project );
+
 	}
 
 	void EditionToolView::react_project_closed( const core::Project& project )
 	{
+		disconnect_project( project );
 		disconnect( &project, 0, this, 0 );
 	}
 
