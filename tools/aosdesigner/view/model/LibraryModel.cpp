@@ -16,7 +16,7 @@ namespace view
 
 	LibraryModel::LibraryModel()
 	{
-
+		
 	}
 
 	void LibraryModel::update( const aosl::Library& library )
@@ -66,7 +66,7 @@ namespace view
 
 	QVariant LibraryModel::data( const QModelIndex& index, int role /*= Qt::DisplayRole */ ) const
 	{
-		if( !index.isValid() || index.column() > 0 || m_resources.empty() )
+		if( !index.isValid() || m_resources.empty() )
 			return QVariant();
 
 		auto resource = m_resources[ index.row() ];
