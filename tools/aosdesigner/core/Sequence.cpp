@@ -115,6 +115,11 @@ namespace core
 		return std::unique_ptr<aoslcpp::SequenceInterpreter>();
 	}
 
+	const aosl::Library* Sequence::library() const
+	{
+		return m_sequence ? &m_sequence->library() : nullptr;
+	}
+
 
 
 }

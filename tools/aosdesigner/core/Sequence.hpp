@@ -14,6 +14,7 @@
 namespace aosl
 {
 	class Sequence;
+	class Library;
 }
 
 namespace aosd
@@ -60,7 +61,7 @@ namespace core
 		std::unique_ptr<aoslcpp::SequenceInterpreter> make_interpreter() const;
 
 		/** Library for this Sequence. **/
-		const aosl::Library* library() const { return m_sequence ? &m_sequence->library() : nullptr; }
+		const aosl::Library* library() const;
 
 	private:
 
