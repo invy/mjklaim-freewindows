@@ -1,8 +1,8 @@
 #include "CanvasView.hpp"
 
 
-#include "view/CanvasGraphicsView.hpp"
-#include "view/CanvasInvisibleObjectsView.hpp"
+#include "CanvasGraphicsView.hpp"
+#include "CanvasInvisibleObjectsView.hpp"
 
 namespace aosd
 {

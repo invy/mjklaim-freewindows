@@ -5,8 +5,8 @@
 #include <QSplitter>
 #include <QCloseEvent>
 
-#include "view/CanvasView.hpp"
-#include "view/StoryView.hpp"
+#include "CanvasView.hpp"
+#include "StoryView.hpp"
 #include "core/Context.hpp"
 #include "core/EditionSession.hpp"
 
