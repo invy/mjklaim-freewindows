@@ -60,6 +60,7 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/LogView.hpp
 	${AOSDESIGNER_VIEW_DIR}/CanvasView.hpp
 	${AOSDESIGNER_VIEW_DIR}/CanvasGraphicsView.hpp
+	${AOSDESIGNER_VIEW_DIR}/CanvasInvisibleObjectsView.hpp
 	${AOSDESIGNER_VIEW_DIR}/Editor.hpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.hpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
@@ -139,6 +140,7 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/ChangesView.cpp
 	${AOSDESIGNER_VIEW_DIR}/CanvasView.cpp
 	${AOSDESIGNER_VIEW_DIR}/CanvasGraphicsView.cpp
+	${AOSDESIGNER_VIEW_DIR}/CanvasInvisibleObjectsView.cpp
 	${AOSDESIGNER_VIEW_DIR}/Editor.cpp
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.cpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp

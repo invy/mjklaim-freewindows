@@ -1,8 +1,8 @@
 #include "CanvasView.hpp"
 
-#include <QGraphicsView>
 
 #include "view/CanvasGraphicsView.hpp"
+#include "view/CanvasInvisibleObjectsView.hpp"
 
 namespace aosd
 {
@@ -11,31 +11,17 @@ namespace view
 
 	CanvasView::CanvasView()
 		: m_graphic_view( new CanvasGraphicsView )
-		, m_content_view( new QGraphicsView )
+		, m_others_view( new CanvasInvisibleObjectsView )
 	{
-		initialize_graphic_view();
-		initialize_content_view();
-
 		setOrientation( Qt::Vertical );
 		addWidget( m_graphic_view.get() );
-		addWidget( m_content_view.get() );
+		addWidget( m_others_view.get() );
 
 	}
 
 	CanvasView::~CanvasView()
 	{
 
-	}
-
-	void CanvasView::initialize_graphic_view()
-	{
-
-	}
-
-	void CanvasView::initialize_content_view()
-	{
-		m_content_view->setFixedHeight( 80 );
-		// TODO : add horizontal layout 
 	}
 
 	void CanvasView::clear()

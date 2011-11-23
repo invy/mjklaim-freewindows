@@ -5,8 +5,6 @@
 #include <memory>
 #include <QSplitter>
 
-class QGraphicsView;
-
 namespace aosl
 {
 	class Canvas;
@@ -18,6 +16,7 @@ namespace aosd
 namespace view
 {
 	class CanvasGraphicsView;
+	class CanvasInvisibleObjectsView;
 
 	/** Display a graphic representation of the canvas of a Sequence 
 		at a specific stage of a story being played.
@@ -40,10 +39,8 @@ namespace view
 	private:
 
 		std::unique_ptr<CanvasGraphicsView> m_graphic_view;
-		std::unique_ptr<QGraphicsView> m_content_view;
+		std::unique_ptr<CanvasInvisibleObjectsView> m_others_view;
 
-		void initialize_graphic_view();
-		void initialize_content_view();
 
 
 	};

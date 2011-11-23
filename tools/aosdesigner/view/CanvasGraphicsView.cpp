@@ -11,6 +11,8 @@ namespace view
 		: m_scene( new QGraphicsScene )
 	{
 
+		setBackgroundBrush( QBrush( QColor( Qt::black ) ) );
+		setScene( m_scene.get() );
 	}
 
 	CanvasGraphicsView::~CanvasGraphicsView()
