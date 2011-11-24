@@ -5,8 +5,8 @@
 #include <QSplitter>
 #include <QCloseEvent>
 
-#include "view/CanvasView.hpp"
-#include "view/StoryView.hpp"
+#include "CanvasView.hpp"
+#include "StoryView.hpp"
 #include "core/Context.hpp"
 #include "core/EditionSession.hpp"
 
@@ -35,6 +35,8 @@ namespace view
 		connect( this, SIGNAL( windowStateChanged( Qt::WindowStates, Qt::WindowStates ) ), this, SLOT( react_state_changed( Qt::WindowStates, Qt::WindowStates ) ) );
 		
 		UTILCPP_LOG << "Created Editor view for edition session \"" << m_title.toStdString() << "\"";
+
+		// TODO : update views
 	}
 
 	Editor::~Editor()

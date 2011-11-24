@@ -16,7 +16,7 @@
 #include "view/LayersView.hpp"
 #include "view/ToolboxView.hpp"
 #include "view/LogView.hpp"
-#include "view/Editor.hpp"
+#include "view/editor/Editor.hpp"
 #include "view/DesignerActions.hpp"
 
 namespace aosd
