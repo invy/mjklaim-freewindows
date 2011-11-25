@@ -33,7 +33,7 @@ namespace view
 	public slots:
 
 		void clear();
-		void update( const aosl::Canvas& canvas, const aosl::Library& library );
+		void update( const aosl::Canvas& canvas );
 
 	private:
 

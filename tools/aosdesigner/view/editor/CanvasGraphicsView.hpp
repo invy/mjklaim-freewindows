@@ -12,6 +12,7 @@ namespace aosl
 {
 	class Canvas;
 	class Library;
+	class Object;
 }
 
 
@@ -35,11 +36,13 @@ namespace view
 	public slots:
 
 		void clear();
-		void update( const aosl::Canvas& canvas, const aosl::Library& library );
+		void update( const aosl::Canvas& canvas );
 
 	private:
 
 		std::unique_ptr<QGraphicsScene> m_scene;
+
+		void add_graphic_object( const aosl::Object& object );
 		
 	};
 

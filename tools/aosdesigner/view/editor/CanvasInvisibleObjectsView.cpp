@@ -27,7 +27,7 @@ namespace view
 
 	}
 
-	void CanvasInvisibleObjectsView::update( const aosl::Canvas& canvas, const aosl::Library& library )
+	void CanvasInvisibleObjectsView::update( const aosl::Canvas& canvas )
 	{
 
 	}

@@ -29,7 +29,7 @@ namespace view
 
 	}
 
-	void CanvasView::update( const aosl::Canvas& canvas, const aosl::Library& library )
+	void CanvasView::update( const aosl::Canvas& canvas )
 	{
 
 	}

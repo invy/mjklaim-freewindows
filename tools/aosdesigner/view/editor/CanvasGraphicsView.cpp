@@ -2,6 +2,11 @@
 
 #include <QGraphicsScene>
 
+#include "aosl/object.hpp"
+#include "aosl/canvas.hpp"
+#include "aosl/library.hpp"
+#include "aoslcpp/algorithm/for_each.hpp"
+
 namespace aosd
 {
 namespace view
@@ -25,7 +30,17 @@ namespace view
 
 	}
 
-	void CanvasGraphicsView::update( const aosl::Canvas& canvas, const aosl::Library& library )
+	void CanvasGraphicsView::update( const aosl::Canvas& canvas )
+	{
+		aoslcpp::for_each_object_depth( canvas, [&]( const aosl::Object& object )
+		{
+			
+		});
+
+
+	}
+
+	void CanvasGraphicsView::add_graphic_object( const aosl::Object& object )
 	{
 
 	}

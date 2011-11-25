@@ -36,7 +36,7 @@ namespace view
 		
 		UTILCPP_LOG << "Created Editor view for edition session \"" << m_title.toStdString() << "\"";
 
-		// TODO : update views
+		m_canvas_view->update( edition_session.canvas() );
 	}
 
 	Editor::~Editor()

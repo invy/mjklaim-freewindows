@@ -25,7 +25,7 @@ namespace view
 
 		beginResetModel();
 		
-		// TODO : this version does'nt take account of imports - LET'S DO THIS!!!!
+		// TODO : this version doesn't take account of imports - LET'S DO THIS!!!!
 
 		const auto& resource_list = library.resources().resource();
 
