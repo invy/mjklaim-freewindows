@@ -1146,7 +1146,7 @@
 					</xs:annotation>
 				</xs:attribute>
 
-				<xs:attribute name="type" type="aos:resource_type" use="optional" default="auto" >
+				<xs:attribute name="type" type="aos:resource_type" default="auto" >
 					<xs:annotation>
 						<xs:documentation>Type of the resource, automatically guessed by the interpreter by default.</xs:documentation>
 					</xs:annotation>
