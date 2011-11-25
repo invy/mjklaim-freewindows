@@ -61,6 +61,7 @@ namespace view
 	void LibrariesView::disconnect_project( const core::Project& project )
 	{
 		m_project_library_model->clear();
+		m_sequence_model_view_binder.clear();
 	}
 
 	void LibrariesView::begin_edition_session( const core::EditionSession& edition_session )
