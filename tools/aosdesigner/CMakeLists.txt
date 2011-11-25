@@ -247,6 +247,7 @@ source_group( designer\\view\\dialog FILES ${AOSDESIGNER_DIALOG_HEADERS} ${AOSDE
 source_group( designer\\view\\model FILES ${AOSDESIGNER_VIEW_MODEL_HEADERS} ${AOSDESIGNER_VIEW_MODEL_SOURCES} )
 source_group( designer\\view\\editor FILES ${AOSDESIGNER_VIEW_EDITOR_HEADERS} ${AOSDESIGNER_VIEW_EDITOR_SOURCES} )
 source_group( designer\\core FILES ${AOSDESIGNER_CORE_HEADERS} ${AOSDESIGNER_CORE_SOURCES} )
+source_group( designer\\core\\resources FILES ${AOSDESIGNER_CORE_RESOURCES_HEADERS} ${AOSDESIGNER_CORE_RESOURCEs_SOURCES} )
 source_group( designer FILES ${AOSDESIGNER_APPLICATION_HEADERS} ${AOSDESIGNER_APPLICATION_SOURCES} )
 
 ####################################################
