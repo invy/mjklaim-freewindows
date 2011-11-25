@@ -13,7 +13,7 @@
 
     <library>
         <resources>
-            <resource id="image_character" type="image">./resources/character.png</resource>
+            <resource id="image_character" >./resources/character.png</resource>
         </resources>
     </library>
 
