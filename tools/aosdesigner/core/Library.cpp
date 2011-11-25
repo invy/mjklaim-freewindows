@@ -1,6 +1,6 @@
 #include "Library.hpp"
 
-#include "core/Resource.hpp"
+#include "core/resources/Resource.hpp"
 
 #include "aosl/library.hpp"
 
