@@ -6,7 +6,7 @@
 
 namespace aosd
 {
-namespace
+namespace core
 {
 	class Resource;
 

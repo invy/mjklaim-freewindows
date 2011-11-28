@@ -16,13 +16,15 @@ namespace core
 	{
 	public:
 		
-		ResourcePtr get( const aosl::Resource& resource_infos ) { get( resource_infos. ) }
-		ResourcePtr get( const ResourceInfo& resource_infos ) { return get( resource_infos.uri(), resource_infos.type() ); }
-		ResourcePtr get( const URI& uri, const aosl::Resource_type& resource_type = "auto" );
+		ResourcePtr get( const ResourceInfo& resource_infos );
+		
 		
 	private:
 
 		std::map< ResourceInfo, ResourcePtr > m_resources_registry;
+
+		ResourcePtr find( const ResourceInfo& resource_infos );
+		void add_resource( const ResourceInfo& resource_infos, ResourcePtr resource );
 
 	};
 
