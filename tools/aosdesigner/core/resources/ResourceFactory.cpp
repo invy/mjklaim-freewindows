@@ -2,7 +2,12 @@
 
 #include <functional>
 #include <map>
+
+#include "utilcpp/Assert.hpp"
 #include "aosl/resource_type.hpp"
+
+#include "ResourcePtr.hpp"
+#include "Resource.hpp"
 
 namespace aosd
 {
@@ -13,18 +18,24 @@ namespace core
 	namespace 
 	{
 		typedef std::function< ResourcePtr ( const URI& resource_uri ) > ResourceFactory;
-		typedef std::map< aosl::Resource_type, ResourceFactory> ResourceFactoryTable;
+		typedef std::map< aosl::Resource_type, ResourceFactory > ResourceFactoryTable;
+
+		ResourceFactoryTable build_resource_factory_table();
+
+		const ResourceFactoryTable RESOURCE_FACTORY_TABLE = build_resource_factory_table();
 
 		ResourceFactoryTable build_resource_factory_table()
 		{
 			ResourceFactoryTable table;
 
+			table[ "auto" ] = []( const URI& uri ) { return ResourcePtr( new Resource_Unknow( uri ) ); };
+			table[ "image" ] = []( const URI& uri ) { return ResourcePtr( new Resource_Unknow( uri ) ); };
+			
+			
 
 			return table;
-		};
+		};		
 
-		const ResourceFactoryTable RESOURCE_FACTORY_TABLE = build_resource_factory_table();
-		
 
 	}
 
