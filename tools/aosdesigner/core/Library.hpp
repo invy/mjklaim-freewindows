@@ -2,9 +2,13 @@
 #define HGUARD_AOSD_CORE_LIBRARY_HPP__
 #pragma once
 
-#include <vector>
 #include <algorithm>
+#include <map>
+#include <vector>
 
+
+#include "aosl/resource_id.hpp"
+#include "core/resources/ResourcePtr.hpp"
 
 namespace aosl
 {
@@ -15,13 +19,14 @@ namespace aosd
 {
 namespace core
 {
-	class Resource;
-
+	/** Library of resources.
+	**/
 	class Library
 	{
 	public:
 
 		Library();
+		explicit Library( const aosl::Library& library_info );
 		~Library();
 
 		/** Update the content of the library. **/
@@ -30,16 +35,17 @@ namespace core
 		/** Import resources from another library. **/
 		void import( const Library& library );
 
-		/** Read-only walk through all resources in this Library. **/
-		template< class Func >
-		void for_each_resource( Func func )
-		{
-			std::for_each( m_resources.begin(), m_resources.end(), [&]( const Resource& resource ){ func(resource); } );
-		}
+		void add( aosl::Resource_id resource_id, ResourcePtr resource );
+
+		void clear();
+
+		ResourcePtr find( aosl::Resource_id resource_id );
 		
 	private:
 
-		std::vector< Resource > m_resources;
+		std::map< aosl::Resource_id,  ResourcePtr > m_resource_registry;
+
+		std::vector< ResourcePtr > m_resources;
 
 	};
 

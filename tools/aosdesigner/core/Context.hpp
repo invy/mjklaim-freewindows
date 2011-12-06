@@ -9,7 +9,7 @@
 #include "core/SequenceId.hpp"
 #include "core/EditionSessionId.hpp"
 #include "utilcpp/Singleton.hpp"
-
+#include "core/resources/ResourceProvider.hpp"
 
 
 namespace aosd
@@ -44,6 +44,8 @@ namespace core
 
 		/** Current selected edition session or null if none or if there is no project open. */
 		const EditionSession* selected_edition_session() const;
+
+		ResourceProvider& resource_provider() { return m_resource_provider; }
 		
 
 	public slots:
@@ -108,6 +110,8 @@ namespace core
 		void project_closed( const core::Project& project );
 		
 	private:
+
+		ResourceProvider m_resource_provider;
 
 		/// The currently open project or null if none.
 		std::unique_ptr< Project > m_project;
