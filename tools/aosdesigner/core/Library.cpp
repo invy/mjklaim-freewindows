@@ -45,6 +45,7 @@ namespace core
 
 	void Library::import( const Library& library )
 	{
+		// TODO : replace by std::copy? does it work with maps?
 		std::for_each( begin(library.m_resource_registry), end(library.m_resource_registry), [&]( std::pair< aosl::Resource_id, ResourcePtr > resource_it )
 		{
 			add( resource_it.first, resource_it.second );
@@ -62,6 +63,14 @@ namespace core
 		if( resource && !resource_id.empty() )
 		{
 			auto success = m_resource_registry.insert( std::make_pair( resource_id, resource ) );
+			if( success.second ) // inserted with success
+			{
+				m_resources.push_back( resource );
+			}
+			else
+			{
+				throw std::exception( "Failed to add resource!" );
+			}
 		}
 		else
 		{
