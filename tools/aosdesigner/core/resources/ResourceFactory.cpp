@@ -28,8 +28,8 @@ namespace core
 		{
 			ResourceFactoryTable table;
 
-			table[ "auto" ] = []( const URI& uri ) { return ResourcePtr( new Resource_Unknow( uri ) ); };
-			table[ "image" ] = []( const URI& uri ) { return ResourcePtr( new Resource_Unknow( uri ) ); };
+			table[ "auto" ] = []( const URI& uri ) { return ResourcePtr( new Resource_Unknow( uri, "unknown" ) ); };
+			table[ "image" ] = []( const URI& uri ) { return ResourcePtr( new Resource_Unknow( uri, "image" ) ); };
 			
 			
 

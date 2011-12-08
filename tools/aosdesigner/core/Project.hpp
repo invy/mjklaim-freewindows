@@ -9,7 +9,7 @@
 #include <QObject>
 #include "core/SequenceId.hpp"
 #include "core/EditionSessionId.hpp"
-#include "aosl/library.hpp"
+#include "core/Library.hpp"
 
 namespace aosd 
 { 
@@ -47,7 +47,7 @@ namespace core
 		bfs::path directory_path() const { return m_directory_path; }
 
 		/// Library containing resources available to all resources in this project.
-		const aosl::Library& library() const { return m_library; }
+		const Library& library() const { return m_library; }
 
 
 		/** Name of the project. */
@@ -162,7 +162,7 @@ namespace core
 		EditionSession* m_selected_session;
 
 		/// Library containing resources available to all resources in this project.
-		aosl::Library m_library;
+		Library m_library;
 
 		/// Add a Sequence to this project.
 		void add_sequence( std::unique_ptr<Sequence> sequence );

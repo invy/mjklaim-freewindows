@@ -8,7 +8,7 @@
 
 #include "core/SequenceId.hpp"
 #include "core/SequenceInfos.hpp"
-
+#include "core/Library.hpp"
 #include "aoslcpp/SequenceInterpreter.hpp"
 
 namespace aosl
@@ -61,7 +61,7 @@ namespace core
 		std::unique_ptr<aoslcpp::SequenceInterpreter> make_interpreter() const;
 
 		/** Library for this Sequence. **/
-		const aosl::Library* library() const;
+		const Library& library() const { return m_library; }
 
 	private:
 
@@ -73,6 +73,9 @@ namespace core
 
 		/// Path relative to the project's folder of the file containing this sequence.
 		boost::filesystem::path m_location;
+
+		/// Expanded library specific to this sequence.
+		Library m_library;
 
 		/// Raw Sequence data.
 		std::unique_ptr< aosl::Sequence > m_sequence;

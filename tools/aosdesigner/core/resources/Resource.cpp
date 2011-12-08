@@ -7,7 +7,8 @@ namespace aosd
 namespace core
 {
 
-	Resource::Resource( const URI& uri )
+	Resource::Resource( const URI& uri, const aosl::Resource_type& type )
+		: m_type_name( type ) 
 	{
 
 	}

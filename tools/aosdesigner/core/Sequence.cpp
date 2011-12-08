@@ -61,6 +61,8 @@ namespace core
 		{
 			m_name = m_sequence->name();
 			m_id = m_sequence->id();
+
+			m_library.update( m_sequence->library() );
 		}
 		else
 		{
@@ -115,10 +117,6 @@ namespace core
 		return std::unique_ptr<aoslcpp::SequenceInterpreter>();
 	}
 
-	const aosl::Library* Sequence::library() const
-	{
-		return m_sequence ? &m_sequence->library() : nullptr;
-	}
 
 
 

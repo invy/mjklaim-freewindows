@@ -28,7 +28,6 @@ namespace core
 		, m_name( infos.name )
 		, m_directory_path( infos.location.parent_path() )
 		, m_selected_session( nullptr )
-		, m_library( aosl::List_resource() )
 	{
 		UTILCPP_ASSERT( is_valid(infos), "Tried to construct a Project with invalid project infos!" );
 	}
@@ -37,7 +36,6 @@ namespace core
 		: m_location( project_file_path )
 		, m_directory_path( project_file_path.parent_path() )
 		, m_selected_session( nullptr )
-		, m_library( aosl::List_resource() )
 	{
 		UTILCPP_ASSERT( !project_file_path.empty(), "Tried to construct a Project at an empty path!" );
 		UTILCPP_ASSERT( bfs::is_regular_file( m_location ), "Tried to create a project with an invalid file path! Path : " << m_location )

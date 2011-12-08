@@ -71,7 +71,6 @@ namespace view
 			auto sequence = core::Context::instance().current_project().find_sequence( edition_session.sequence_id() );
 
 			UTILCPP_ASSERT_NOT_NULL( sequence );
-			UTILCPP_ASSERT_NOT_NULL( sequence->library() );
 			UTILCPP_ASSERT( sequence->id() == edition_session.sequence_id(), "Sequence found with an id doesn't contain the same Id???? "
 				<<	" Find id : " << edition_session.sequence_id()
 				<<  " Got id : " << sequence->id() 
@@ -106,7 +105,7 @@ namespace view
 	void LibrariesView::add_sequence_library( const core::Sequence& sequence )
 	{
 		auto model = std::unique_ptr<LibraryModel>( new LibraryModel() );
-		model->update( *sequence.library() );
+		model->update( sequence.library() );
 
 		m_sequence_model_view_binder.add( std::move(model), sequence.id() );
 		m_sequence_model_view_binder.load( sequence.id() );

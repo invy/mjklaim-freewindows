@@ -5,14 +5,15 @@
 #include <vector>
 #include <QAbstractItemModel>
 
-namespace aosl
+#include "core/resources/ResourceRef.hpp"
+
+namespace aosd
+{
+namespace core
 {
 	class Library;
 	class Resource;
 }
-
-namespace aosd
-{
 namespace view
 {
 	class LibraryModel
@@ -23,7 +24,7 @@ namespace view
 
 		LibraryModel();
 
-		void update( const aosl::Library& library );
+		void update( const core::Library& library );
 		void clear();
 
 		QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const;
@@ -39,7 +40,9 @@ namespace view
 		
 	private:
 
-		std::vector< const aosl::Resource* > m_resources;
+		
+
+		std::vector< core::ResourceRef > m_resources;
 
 	};
 

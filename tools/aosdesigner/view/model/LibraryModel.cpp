@@ -2,8 +2,8 @@
 
 #include <algorithm>
 
-#include "aosl/library.hpp"
-#include "aosl/resource.hpp"
+#include "core/resources/Resource.hpp"
+#include "core/Library.hpp"
 
 #include "utilcpp/Assert.hpp"
 
@@ -19,19 +19,15 @@ namespace view
 		
 	}
 
-	void LibraryModel::update( const aosl::Library& library )
+	void LibraryModel::update( const core::Library& library )
 	{
 		clear();
 
 		beginResetModel();
 		
-		// TODO : this version doesn't take account of imports - LET'S DO THIS!!!!
-
-		const auto& resource_list = library.resources().resource();
-
-		std::for_each( begin(resource_list), end(resource_list), [&]( const aosl::Resource& resource )
+		library.for_each_resource( [&]( core::ResourceRef resource_ref )
 		{
-			m_resources.push_back( &resource );
+			m_resources.push_back( resource_ref );
 		});
 		
 		endResetModel();
@@ -51,7 +47,7 @@ namespace view
 
 		UTILCPP_ASSERT( !parent.isValid(), "Try to ge the index of child of a resource but it's forbidden!" );
 
-		return createIndex( row, column, (void*)m_resources[row] );
+		return createIndex( row, column );
 	}
 
 	QModelIndex LibraryModel::parent( const QModelIndex& index ) const
@@ -69,8 +65,8 @@ namespace view
 		if( !index.isValid() || m_resources.empty() )
 			return QVariant();
 
-		auto resource = m_resources[ index.row() ];
-		UTILCPP_ASSERT_NOT_NULL( resource );
+		auto resource_ref = m_resources[ index.row() ];
+		UTILCPP_ASSERT_NOT_NULL( resource_ref.resource() );
 
 		switch( role )
 		{
@@ -78,8 +74,8 @@ namespace view
 			{
 				switch( index.column() )
 				{
-				case 0: return QString::fromStdString( resource->id() );
-				case 1: return QString::fromStdString( resource->type() );
+				case 0: return QString::fromStdString( resource_ref.id() );
+				case 1: return QString::fromStdString( resource_ref.resource()->type_name() ); 
 				}
 			}
 		default:
