@@ -2,13 +2,16 @@
 #define HGUARD_AOSD_CORE_LIBRARY_HPP__
 #pragma once
 
+#include <functional>
 #include <algorithm>
 #include <map>
 #include <vector>
 
+#include <boost/filesystem/path.hpp>
 
 #include "aosl/resource_id.hpp"
 #include "core/resources/ResourcePtr.hpp"
+#include "core/resources/ResourceRef.hpp"
 
 namespace aosl
 {
@@ -19,6 +22,8 @@ namespace aosd
 {
 namespace core
 {
+	namespace bfs = boost::filesystem;
+
 	/** Library of resources.
 	**/
 	class Library
@@ -27,6 +32,7 @@ namespace core
 
 		Library();
 		explicit Library( const aosl::Library& library_info );
+		explicit Library( const bfs::path& file_path );
 		~Library();
 
 		/** Update the content of the library. **/
@@ -40,12 +46,15 @@ namespace core
 		void clear();
 
 		ResourcePtr find( aosl::Resource_id resource_id );
+
+		typedef std::function< void ( ResourceRef ) > ResourceFunc;
+		void for_each_resource( ResourceFunc func ) const;
 		
 	private:
 
 		std::map< aosl::Resource_id,  ResourcePtr > m_resource_registry;
 
-		std::vector< ResourcePtr > m_resources;
+		std::vector< ResourceRef > m_resources;
 
 	};
 

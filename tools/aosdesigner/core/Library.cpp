@@ -1,5 +1,6 @@
 #include "Library.hpp"
 
+
 #include "core/Context.hpp"
 #include "core/resources/Resource.hpp"
 #include "aosl/library.hpp"
@@ -23,6 +24,11 @@ namespace core
 		update( library_info );
 	}
 
+	Library::Library( const bfs::path& file_path )
+	{
+		UTILCPP_NOT_IMPLEMENTED_YET;
+	}
+
 	Library::~Library()
 	{
 
@@ -33,7 +39,7 @@ namespace core
 		clear();
 
 		const auto& resource_list = library_info.resources().resource();
-
+		
 		std::for_each( begin(resource_list), end(resource_list), [&]( const aosl::Resource& resource )
 		{
 			auto resource_object = Context::instance().resource_provider().get( resource );
@@ -41,6 +47,26 @@ namespace core
 			add( resource.id() , resource_object );
 		});
 
+		if( library_info.import() )
+		{
+			const auto& import_list = library_info.import()->include();
+			std::for_each( begin(import_list), end(import_list), [&]( const aosl::Library_include& import_info )
+			{
+				// build the library
+				try
+				{
+					auto import_path = bfs::path( import_info.data() );
+					auto library_to_import = std::unique_ptr<Library>( new Library( import_path ) );
+					import( *library_to_import );
+				}
+				catch( const std::exception& e )
+				{
+					UTILCPP_LOG_ERROR << "Failed to load library at \"" << import_info.data() << "\" : " << e.what();
+				}
+				
+			});
+		}
+		
 	}
 
 	void Library::import( const Library& library )
@@ -65,7 +91,7 @@ namespace core
 			auto success = m_resource_registry.insert( std::make_pair( resource_id, resource ) );
 			if( success.second ) // inserted with success
 			{
-				m_resources.push_back( resource );
+				m_resources.emplace_back( ResourceRef( resource_id, resource ) );
 			}
 			else
 			{
@@ -88,6 +114,15 @@ namespace core
 		}
 
 		return ResourcePtr();
+	}
+
+	void Library::for_each_resource( ResourceFunc func ) const
+	{
+		std::for_each( begin(m_resources), end(m_resources), [&]( const ResourceRef& resource_ref ) 
+		{
+			UTILCPP_ASSERT_NOT_NULL( resource_ref.resource() );
+			func( resource_ref );
+		});
 	}
 
 }
