@@ -8,6 +8,8 @@
 #include "CanvasView.hpp"
 #include "StoryView.hpp"
 #include "core/Context.hpp"
+#include "core/Project.hpp"
+#include "core/Sequence.hpp"
 #include "core/EditionSession.hpp"
 
 namespace aosd
@@ -36,7 +38,9 @@ namespace view
 		
 		UTILCPP_LOG << "Created Editor view for edition session \"" << m_title.toStdString() << "\"";
 
-		m_canvas_view->update( edition_session.canvas() );
+		const auto& project = core::Context::instance().current_project();
+		auto sequence = project.find_sequence( edition_session.sequence_id() );
+		update( edition_session.canvas(), sequence->library(), project.library() );
 	}
 
 	Editor::~Editor()
@@ -73,6 +77,11 @@ namespace view
 
 		m_is_closing = false;
 
+	}
+
+	void Editor::update( const aosl::Canvas& canvas, const core::Library& sequence_library, const core::Library& project_library )
+	{
+		m_canvas_view->update( canvas, sequence_library, project_library );
 	}
 
 

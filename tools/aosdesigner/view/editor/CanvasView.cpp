@@ -1,6 +1,5 @@
 #include "CanvasView.hpp"
 
-
 #include "CanvasGraphicsView.hpp"
 #include "CanvasInvisibleObjectsView.hpp"
 
@@ -29,9 +28,10 @@ namespace view
 
 	}
 
-	void CanvasView::update( const aosl::Canvas& canvas )
+	void CanvasView::update( const aosl::Canvas& canvas, const core::Library& sequence_library, const core::Library& project_library )
 	{
-
+		m_graphic_view->update( canvas, sequence_library, project_library );
+		m_others_view->update( canvas, sequence_library, project_library );
 	}
 
 }

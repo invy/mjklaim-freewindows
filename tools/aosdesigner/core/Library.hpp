@@ -45,7 +45,7 @@ namespace core
 
 		void clear();
 
-		ResourcePtr find( aosl::Resource_id resource_id );
+		ResourcePtr find( const aosl::Resource_id& resource_id ) const;
 
 		typedef std::function< void ( ResourceRef ) > ResourceFunc;
 		void for_each_resource( ResourceFunc func ) const;

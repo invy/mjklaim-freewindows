@@ -104,7 +104,7 @@ namespace core
 		}
 	}
 
-	ResourcePtr Library::find( aosl::Resource_id resource_id )
+	ResourcePtr Library::find( const aosl::Resource_id& resource_id ) const
 	{
 		auto resource_it = m_resource_registry.find( resource_id );
 		if( resource_it != end(m_resource_registry) )

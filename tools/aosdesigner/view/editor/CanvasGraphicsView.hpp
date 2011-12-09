@@ -11,13 +11,16 @@ class QGraphicsScene;
 namespace aosl
 {
 	class Canvas;
-	class Library;
 	class Object;
 }
 
 
 namespace aosd
 {
+namespace core
+{
+	class Library;
+}
 namespace view
 {
 
@@ -36,7 +39,7 @@ namespace view
 	public slots:
 
 		void clear();
-		void update( const aosl::Canvas& canvas );
+		void update( const aosl::Canvas& canvas, const core::Library& sequence_library, const core::Library& project_library  );
 
 	private:
 

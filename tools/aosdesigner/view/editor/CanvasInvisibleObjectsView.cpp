@@ -2,6 +2,9 @@
 
 #include <QGraphicsScene>
 
+#include "core/Library.hpp"
+#include "aosl/canvas.hpp"
+
 namespace aosd
 {
 namespace view
@@ -27,7 +30,7 @@ namespace view
 
 	}
 
-	void CanvasInvisibleObjectsView::update( const aosl::Canvas& canvas )
+	void CanvasInvisibleObjectsView::update( const aosl::Canvas& canvas, const core::Library& sequence_library, const core::Library& project_library   )
 	{
 
 	}

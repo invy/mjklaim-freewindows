@@ -8,11 +8,15 @@
 namespace aosl
 {
 	class Canvas;
-	class Library;
+	
 }
 
 namespace aosd 
 {
+namespace core
+{
+	class Library;
+}
 namespace view
 {
 	class CanvasGraphicsView;
@@ -34,7 +38,7 @@ namespace view
 	public slots:
 
 		void clear();
-		void update( const aosl::Canvas& canvas );
+		void update( const aosl::Canvas& canvas, const core::Library& sequence_library, const core::Library& project_library  );
 
 	private:
 

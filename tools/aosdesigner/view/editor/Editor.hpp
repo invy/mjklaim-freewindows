@@ -10,9 +10,18 @@
 
 class QSplitter;
 
+namespace aosl
+{
+	class Canvas;
+}
+
 namespace aosd
 {
-	namespace core{ class EditionSession; }
+namespace core
+{ 
+	class EditionSession; 
+	class Library;
+}
 
 namespace view
 {
@@ -37,6 +46,8 @@ namespace view
 		core::EditionSessionId session_id() const { return m_session_id; }
 
 		bool is_closing() const { return m_is_closing; }
+
+		void update( const aosl::Canvas& canvas, const core::Library& sequence_library, const core::Library& project_library );
 
 	private slots:
 
