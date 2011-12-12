@@ -8,6 +8,7 @@
 class QWidget;
 class QAction;
 class QMdiSubWindow;
+class QMdiArea;
 
 namespace aosd
 {
@@ -20,22 +21,18 @@ namespace view
 		: public QObject
 	{
 		Q_OBJECT
-
 		
-
 	public:
 
-		typedef QMdiSubWindow	WindowInside;
-		typedef QWidget			WindowOutside;
-		
-		explicit FreeWindow( QWidget& widget );
+		explicit FreeWindow( QWidget& widget, QMdiArea& window_area );
 		~FreeWindow();
 
-		WindowInside& window_inside() { return *m_window_inside; }
-		WindowOutside& window_outside() { return m_widget; }
+		QMdiSubWindow& window() { return *m_window; }
 
 		void go_inside();
 		void go_outside();
+
+		bool is_inside() const { return m_is_inside; }
 
 	private slots:
 
@@ -45,8 +42,11 @@ namespace view
 	private:
 
 		QWidget& m_widget;
+		QMdiArea& m_window_area;
 
-		std::unique_ptr<WindowInside> m_window_inside;
+		bool m_is_inside;
+
+		std::unique_ptr<QMdiSubWindow> m_window;
 
 		std::unique_ptr<QAction> m_float_action;
 		std::unique_ptr<QAction> m_dock_action;

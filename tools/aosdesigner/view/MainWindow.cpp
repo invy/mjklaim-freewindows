@@ -42,7 +42,7 @@ namespace view
 		m_ui->setupUi( this );
 		
 		setWindowTitle( tr("Art Of Sequence") );
-		setAttribute( Qt::WA_QuitOnClose );
+		setAttribute( Qt::WA_QuitOnClose, true );
 
 		// basic infrastructure
 		setCentralWidget( m_central_area.get() );
