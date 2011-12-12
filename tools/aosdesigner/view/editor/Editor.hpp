@@ -4,11 +4,13 @@
 
 #include <memory>
 #include <string>
-#include <QMdiSubWindow>
+#include <QSplitter>
 
 #include "core/EditionSessionId.hpp"
 
 class QSplitter;
+class QDockWidget;
+class QMdiSubWindow;
 
 namespace aosl
 {
@@ -33,7 +35,7 @@ namespace view
 		Every information displayed is dependent on the path followed in the sequence.
 	*/
 	class Editor
-		: public QMdiSubWindow
+		: public QSplitter
 	{
 		Q_OBJECT
 	public:
@@ -48,18 +50,16 @@ namespace view
 		bool is_closing() const { return m_is_closing; }
 
 		void update( const aosl::Canvas& canvas, const core::Library& sequence_library, const core::Library& project_library );
+		
 
 	private slots:
 
-		void react_state_changed( Qt::WindowStates oldState, Qt::WindowStates newState );
 
 	private:
-				
-		std::unique_ptr<QSplitter> m_splitter;
+		
 		std::unique_ptr<CanvasView> m_canvas_view;
 		std::unique_ptr<StoryView> m_story_view;
-
-
+		
 		QString m_title;
 		core::EditionSessionId m_session_id;
 
@@ -67,6 +67,8 @@ namespace view
 		
 		/** We need to delete the edition session when closed. */
 		void closeEvent( QCloseEvent* closeEvent );
+
+		
 	};
 
 }

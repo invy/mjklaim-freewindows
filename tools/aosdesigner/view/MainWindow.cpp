@@ -26,9 +26,11 @@ namespace view
 
 	MainWindow::MainWindow()
 		: QMainWindow( nullptr )
-		, m_edition_mode( false )
 		, m_ui( new Ui::MainWindow )
 		, m_central_area( new QMdiArea() )
+		, m_window_manager( *m_central_area )
+		, m_editor_manager( m_window_manager )
+		, m_edition_mode( false )
 		, m_project_view( new ProjectView() )
 		, m_changes_view( new ChangesView() )
 		, m_objects_view( new ObjectsView() )
@@ -40,6 +42,7 @@ namespace view
 		m_ui->setupUi( this );
 		
 		setWindowTitle( tr("Art Of Sequence") );
+		setAttribute( Qt::WA_QuitOnClose, true );
 
 		// basic infrastructure
 		setCentralWidget( m_central_area.get() );
@@ -59,9 +62,7 @@ namespace view
 
 	MainWindow::~MainWindow()
 	{
-		if( core::Context::instance().is_project_open() )
-			core::Context::instance().close_project();
-		clear_windows();
+		
 	}
 
 
@@ -69,35 +70,12 @@ namespace view
 	{
 		setWindowTitle( tr("%1 - Art Of Sequence").arg( QString::fromStdString( project.name() ), 0 ) );
 
-		connect( &project, SIGNAL(edition_session_begin(const core::EditionSession&)), this, SLOT(react_edition_session_begin(const core::EditionSession&)) );
-		connect( &project, SIGNAL(edition_session_end(const core::EditionSession&)), this, SLOT(react_edition_session_end(const core::EditionSession&)) );
-
-		connect( &project, SIGNAL(sequence_created(const core::Sequence&)), this, SLOT(react_sequence_created(const core::Sequence&)) );
-		connect( &project, SIGNAL(sequence_deleted(const core::Sequence&)), this, SLOT(react_sequence_deleted(const core::Sequence&)) );
-
-		const auto* initial_session_selection = project.selected_edition_session();
-
-		project.foreach_edition( [&]( const core::EditionSession& edition_session ) 
-		{
-			create_editor( edition_session );
-		});
-
-		if( initial_session_selection )
-		{
-			core::Context::instance().select_edition_session( initial_session_selection->id() );
-			select_editor( initial_session_selection->id() );
-		}
-		
 	}
 
 
 	void MainWindow::react_project_closed( const core::Project& project )
 	{
 		setWindowTitle( tr("Art Of Sequence") );
-
-		disconnect( &project, 0, this, 0 );
-
-		clear_windows();
 
 	}
 
@@ -175,14 +153,8 @@ namespace view
 
 	void MainWindow::clear_windows()
 	{
-		// we don't want to 'close' the windows, just remove them!
-		auto window_list = m_central_area->subWindowList();
-		std::for_each( window_list.begin(), window_list.end(), [&]( QMdiSubWindow* window )
-		{
-			m_central_area->removeSubWindow( window );
-		});
-
-		m_editors.clear();
+		m_editor_manager.clear();
+		m_window_manager.clear();
 
 	}
 
@@ -192,88 +164,10 @@ namespace view
 
 	}
 
-	void MainWindow::react_edition_session_begin( const core::EditionSession& edition_session )
-	{
-		create_editor( edition_session );
-	}
-
-	void MainWindow::react_edition_session_end( const core::EditionSession& edition_session )
-	{
-		remove_editor( edition_session.id() );
-	}
-
-	void MainWindow::react_sequence_created( const core::Sequence& sequence )
-	{
-		// THINK : ?
-	}
-
-	void MainWindow::react_sequence_deleted( const core::Sequence& sequence )
-	{
-		UTILCPP_NOT_IMPLEMENTED_YET;
-	}
-
-	void MainWindow::select_editor( core::EditionSessionId session_id )
-	{
-		auto editor = find_editor( session_id );
-
-		if( editor )
-		{
-			editor->setFocus();
-		}
-	}
-
-	void MainWindow::create_editor( const core::EditionSession& edition_session )
-	{
-		add_editor( std::unique_ptr<Editor>( new Editor( edition_session ) ) );
-	}
-
-	void MainWindow::add_editor( std::unique_ptr<Editor> editor )
-	{
-		m_central_area->addSubWindow( editor.get() );
-		
-		const auto session_id = editor->session_id();
-		m_editors.insert( std::make_pair( session_id, std::move(editor) ) );
-
-		m_editors[session_id]->show();
-		
-	}
-
-	void MainWindow::remove_editor( core::EditionSessionId session_id )
-	{
-		auto editor_it = m_editors.find( session_id );
-
-		if( editor_it != end(m_editors) )
-		{
-			auto& editor = editor_it->second;
-			if( editor->is_closing() ) 
-			{
-				// make sure that if the editor is already closing, we just let it go - qt should delete it for us
-				editor_it->second.release();
-			}
-			else
-			{
-				// remove the editor without closing it
-				m_central_area->removeSubWindow( editor.get() );
-			}
-			m_editors.erase( editor_it );
-		}
-		
-	}
-
-	Editor* MainWindow::find_editor( core::EditionSessionId session_id )
-	{
-		auto find_it = m_editors.find( session_id );
-
-		if( find_it != end(m_editors) )
-			return find_it->second.get();
-		else 
-			return nullptr;
-	}
-
 	void MainWindow::closeEvent( QCloseEvent* closeEvent )
 	{
 		// TODO : here ask the user about closing the project without saving
-
+		closeEvent->accept();
 		QMainWindow::closeEvent( closeEvent );
 	}
 

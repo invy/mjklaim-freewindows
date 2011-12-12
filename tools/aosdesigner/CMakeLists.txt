@@ -78,6 +78,10 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.hpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.hpp
 	${AOSDESIGNER_VIEW_DIR}/EditionToolView.hpp
+	${AOSDESIGNER_VIEW_DIR}/FreeWindow.hpp
+	${AOSDESIGNER_VIEW_DIR}/FreeWindowManager.hpp
+	${AOSDESIGNER_VIEW_DIR}/EditorManager.hpp
+	${AOSDESIGNER_VIEW_DIR}/Editor.hpp
 )
 
 
@@ -171,6 +175,10 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/Dialogs.cpp
 	${AOSDESIGNER_VIEW_DIR}/DesignerActions.cpp
 	${AOSDESIGNER_VIEW_DIR}/EditionToolView.cpp
+	${AOSDESIGNER_VIEW_DIR}/FreeWindowManager.cpp
+	${AOSDESIGNER_VIEW_DIR}/FreeWindow.cpp
+	${AOSDESIGNER_VIEW_DIR}/EditorManager.cpp
+	${AOSDESIGNER_VIEW_DIR}/Editor.cpp
 )
 
 
