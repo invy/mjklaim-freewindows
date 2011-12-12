@@ -80,9 +80,7 @@ set( AOSDESIGNER_VIEW_HEADERS
 	${AOSDESIGNER_VIEW_DIR}/EditionToolView.hpp
 	${AOSDESIGNER_VIEW_DIR}/FreeWindow.hpp
 	${AOSDESIGNER_VIEW_DIR}/FreeWindowManager.hpp
-	${AOSDESIGNER_VIEW_DIR}/EditorManager.hpp
-	${AOSDESIGNER_VIEW_DIR}/Editor.hpp
-)
+)   
 
 
 # Dialog header files.
@@ -118,6 +116,7 @@ set( AOSDESIGNER_VIEW_EDITOR_STORY_HEADERS
 
 # Editor views header files.
 set( AOSDESIGNER_VIEW_EDITOR_HEADERS
+	${AOSDESIGNER_VIEW_EDITOR_DIR}/EditorManager.hpp
 	${AOSDESIGNER_VIEW_EDITOR_DIR}/Editor.hpp
 )
 
@@ -177,9 +176,7 @@ set( AOSDESIGNER_VIEW_SOURCES
 	${AOSDESIGNER_VIEW_DIR}/EditionToolView.cpp
 	${AOSDESIGNER_VIEW_DIR}/FreeWindowManager.cpp
 	${AOSDESIGNER_VIEW_DIR}/FreeWindow.cpp
-	${AOSDESIGNER_VIEW_DIR}/EditorManager.cpp
-	${AOSDESIGNER_VIEW_DIR}/Editor.cpp
-)
+)   
 
 
 # Dialog source files.
@@ -217,8 +214,9 @@ set( AOSDESIGNER_VIEW_EDITOR_STORY_SOURCES
 # Editor views source files.
 set( AOSDESIGNER_VIEW_EDITOR_SOURCES 
 	${AOSDESIGNER_VIEW_EDITOR_DIR}/Editor.cpp
+    ${AOSDESIGNER_VIEW_EDITOR_DIR}/EditorManager.cpp
 )
-
+	
 #------------------------------------------------------
 
 # Core source files

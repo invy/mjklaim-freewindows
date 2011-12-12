@@ -10,7 +10,7 @@
 #include "core/ForwardCore.hpp"
 #include "core/EditionSessionId.hpp"
 #include "view/DesignerActions.hpp"
-#include "view/EditorManager.hpp"
+#include "view/editor/EditorManager.hpp"
 #include "view/FreeWindowManager.hpp"
 
 class QMdiArea;

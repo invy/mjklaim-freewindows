@@ -4,7 +4,7 @@
 #include "core/Context.hpp"
 #include "core/EditionSession.hpp"
 
-#include "view/Editor.hpp"
+#include "view/editor/Editor.hpp"
 #include "view/FreeWindowManager.hpp"
 
 namespace aosd
