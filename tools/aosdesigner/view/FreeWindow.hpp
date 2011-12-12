@@ -9,6 +9,8 @@ class QWidget;
 class QAction;
 class QMdiSubWindow;
 class QMdiArea;
+class QSplitter;
+class QToolBar;
 
 namespace aosd
 {
@@ -47,6 +49,8 @@ namespace view
 		bool m_is_inside;
 
 		std::unique_ptr<QMdiSubWindow> m_window;
+		std::unique_ptr<QToolBar> m_toolbar;
+		std::unique_ptr<QSplitter> m_splitter;
 
 		std::unique_ptr<QAction> m_float_action;
 		std::unique_ptr<QAction> m_dock_action;

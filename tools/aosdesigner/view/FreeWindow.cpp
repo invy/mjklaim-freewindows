@@ -1,8 +1,10 @@
 #include "FreeWindow.hpp"
 
+#include <QWidget>
 #include <QMdiArea>
 #include <QMdiSubWindow>
-#include <QWidget>
+#include <QToolBar>
+#include <QSplitter>
 #include <QAction>
 #include <QMenu>
 
@@ -18,12 +20,19 @@ namespace view
 		: m_widget( widget )
 		, m_window_area( window_area )
 		, m_window( new QMdiSubWindow )
+		, m_toolbar( new QToolBar )
+		, m_splitter( new QSplitter )
 		, m_dock_action( new QAction( tr("Dock Window"), nullptr ) )
 		, m_float_action( new QAction( tr("Float Window"), nullptr ) )
 		, m_is_inside( false )
 	{
-		m_window->setWidget( &widget );
+		m_splitter->setOrientation( Qt::Vertical );
+		m_splitter->addWidget( m_toolbar.get() );
+		m_splitter->addWidget( &m_widget );
+
+		m_window->setWidget( m_splitter.get() );
 		m_window->setWindowTitle( m_widget.windowTitle() );
+
 		go_inside();
 	}
 
@@ -39,7 +48,7 @@ namespace view
 
 	void FreeWindow::initialize_inside_window()
 	{
-		m_window->systemMenu()->addAction( m_float_action.get() );
+		m_toolbar->addAction( m_float_action.get() );
 		connect( m_float_action.get(), SIGNAL( triggered() ), this, SLOT( react_get_outside() ) );
 		m_window_area.addSubWindow( m_window.get() );
 		m_window->show();
@@ -48,7 +57,7 @@ namespace view
 
 	void FreeWindow::initialize_outside_window()
 	{
-		m_window->systemMenu()->addAction( m_dock_action.get() );
+		m_toolbar->addAction( m_dock_action.get() );
 		connect( m_dock_action.get(), SIGNAL( triggered() ), this, SLOT( react_get_inside() ) );
 		m_window->show();
 	}
@@ -56,7 +65,7 @@ namespace view
 	void FreeWindow::terminate_inside_window()
 	{
 		m_window->hide();
-		m_window->systemMenu()->removeAction( m_float_action.get() );
+		m_toolbar->removeAction( m_float_action.get() );
 		m_window_area.removeSubWindow( m_window.get() );
 	}
 
@@ -64,7 +73,7 @@ namespace view
 	void FreeWindow::terminate_outside_window()
 	{
 		m_window->hide();
-		m_window->systemMenu()->removeAction( m_dock_action.get() );
+		m_toolbar->removeAction( m_dock_action.get() );
 	}
 
 
