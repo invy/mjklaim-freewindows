@@ -30,8 +30,7 @@ namespace view
 	
 		explicit EditorManager( FreeWindowManager& window_manager );
 		~EditorManager();
-
-
+		
 	public slots:
 			
 		/** Select visually the editor corresponding to the provided session id. */

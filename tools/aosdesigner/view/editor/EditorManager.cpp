@@ -18,7 +18,7 @@ namespace view
 		auto& context = core::Context::instance();
 
 		connect( &context, SIGNAL(project_open(const core::Project&)), this, SLOT(react_project_open(const core::Project&)) );
-		connect( &context, SIGNAL(project_closed(const core::Project&)), this, SLOT(react_project_closed(const core::Project&)), Qt::QueuedConnection );
+		connect( &context, SIGNAL(project_closed(const core::Project&)), this, SLOT(react_project_closed(const core::Project&)) );
 
 	}
 
