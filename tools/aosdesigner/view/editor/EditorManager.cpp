@@ -131,20 +131,8 @@ namespace view
 		auto editor = find_editor( session_id );
 		if( editor )
 		{
-			//if( editor->is_closing() )
-			//{
-			//	//m_window_manager.remove_window( *editor );
-			//	auto window = m_window_manager.find_window( *editor );
-			//	if( window )
-			//	{
-
-			//	}
-			//}
-			//else
-			{
-				m_window_manager.remove_window( *editor );
-				m_editor_registry.erase( session_id );
-			}
+			m_window_manager.remove_window( *editor );
+			m_editor_registry.erase( session_id );
 		}
 	}
 
